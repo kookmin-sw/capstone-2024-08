@@ -1,8 +1,15 @@
-librosa==0.8.0
-Unidecode==1.1.1
+# feedback
+librosa
+Unidecode
 jamo
 phonemizer
 jamotools
 unidecode
 g2pk
 kiwipiepy
+openai-whisper
+
+# server
+fastapi
+uvicorn
+python-multipart

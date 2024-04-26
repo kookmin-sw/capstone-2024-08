@@ -28,9 +28,9 @@ class LoadData {
   Stream<List<ScriptModel>> readUserScripts(String? category) {
     if (category == '전체') {
       return firestore
-          .collection('user')
-          .doc('mg')
           .collection('user_script')
+          .doc('mg')
+          .collection('script')
           .orderBy('createdAt', descending: true)
           .snapshots()
           .map((snapshot) => snapshot.docs
@@ -38,9 +38,9 @@ class LoadData {
               .toList());
     } else {
       return firestore
-          .collection('user')
-          .doc('mg')
           .collection('user_script')
+          .doc('mg')
+          .collection('script')
           .where('category', isEqualTo: category)
           .orderBy('createdAt', descending: true)
           .snapshots()

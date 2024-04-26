@@ -1,9 +1,12 @@
 # IDEs and editors
+
 .history
 .idea
 .vscode
-
+.dart_tool
 
 # python
 venv/
-**/__pycache__/
+__pycache__/
+
+

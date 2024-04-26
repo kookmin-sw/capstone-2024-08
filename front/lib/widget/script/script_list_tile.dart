@@ -89,7 +89,7 @@ Widget scriptListTile(BuildContext context, ScriptModel script) {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildCategory(script.category),
-                    _buildContent(script.content)
+                    _buildContent(script.content.join(' '))
                   ])
               )
             ))

@@ -14,7 +14,7 @@ ElevatedButton createUserScriptButton() {
       ),
   onPressed: () {
     HapticFeedback.lightImpact();
-    //Get.to(() => const CreateUserScript());
+    Get.to(() => const CreateUserScript());
   },
   child: const Text(
     '나만의 대본 만들기',
@@ -27,5 +27,4 @@ ElevatedButton createUserScriptButton() {
     ),
   )
 );
-
 }

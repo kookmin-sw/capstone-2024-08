@@ -5,7 +5,7 @@ class ScriptModel {
   //final String uid;
   final String title;
   final String category;
-  final String content;
+  final List<String> content;
   final Timestamp createdAt;
   //List<String> keyword;
   
@@ -24,7 +24,7 @@ class ScriptModel {
         //uid = doc.data()!['uid'],
         title = doc.data()!['title'],
         category = doc.data()!['category'],
-        content = doc.data()!['content'],
+        content = doc.data()!['content'].cast<String>(),
         createdAt = doc.data()!['createdAt'];
         //keyword = doc.data()!['keyword'] == null
         //    ? null

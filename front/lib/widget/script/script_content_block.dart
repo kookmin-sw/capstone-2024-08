@@ -1,21 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 
-List<String> splitContent(String content){
-  List<String> sentenceList = [];
-  for(String sentence in content.split('.')){
-    sentence.trim();
-    sentenceList.add('$sentence.');
-  }
-  if(sentenceList.last == '.') { sentenceList.removeLast(); }
-  return sentenceList;
-}
-
-Column scriptContentBlock(String content, var width) {
-  List<String> sentenceList = splitContent(content);
-
+Column scriptContentBlock(List<String>? sentenceList, var width) {
   return Column(
-      children: sentenceList.map((sentence) => 
+      children: sentenceList!.map((sentence) => 
         Container(
             width: width,
             margin: const EdgeInsets.only(bottom: 20),
