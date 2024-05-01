@@ -11,6 +11,5 @@ Widget characterSection(BuildContext context, characterIdx) {
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(15),
       width: MediaQuery.of(context).size.width / 1.7,
-      child:
-          Image(image: AssetImage(images.characterImageRoutes[characterIdx])));
+      child: images.characterImages[characterIdx]);
 }
