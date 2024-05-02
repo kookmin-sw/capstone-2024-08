@@ -12,8 +12,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(GetMaterialApp(
-      theme: ThemeData(fontFamily: fonts.font), home: const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Capstone',
-      theme: ThemeData(fontFamily: 'KoddiUDOnGothic'),
+      theme: ThemeData(fontFamily: fonts.font),
       builder: (context, child) =>
           ResponsiveBreakpoints.builder(child: child!, breakpoints: [
         const Breakpoint(start: 0, end: 450, name: MOBILE),
