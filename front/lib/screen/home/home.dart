@@ -39,7 +39,9 @@ class _HomeState extends State<Home> {
   }
 
   Widget _characterSection() {
-    return Container(child: characterSection(context, 'carrot'));
+    return SizedBox(
+        width: MediaQuery.of(context).size.width / 1.7,
+        child: characterSection('carrot'));
   }
 
   @override
@@ -47,6 +49,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: colors.bgrDarkColor,
         appBar: homeAppBar(),
-        body: Container());
+        body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [_characterSection()]));
   }
 }
