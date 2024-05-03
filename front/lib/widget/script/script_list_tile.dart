@@ -86,10 +86,12 @@ Widget scriptListTile(BuildContext context, ScriptModel script, String route, {R
               padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
               child: Column(
                 children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: _buildPrecision(record!.promptResult!.last['precision'])
-                  ),
+                  record!.promptResult!.isNotEmpty
+                  ? Align(
+                      alignment: Alignment.topRight,
+                      child: _buildPrecision(record.promptResult!.last['precision'])
+                    )
+                  : Container(padding: const EdgeInsets.only(bottom: 10)),
                   const SizedBox(height: 30),
                   _buildTitle(script.title)
               ])
