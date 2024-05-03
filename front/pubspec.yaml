@@ -1,8 +1,8 @@
 name: capstone
-description: "A new Flutter project."
+description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: none # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -31,16 +31,15 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   cloud_firestore: ^4.15.8
-  flutter_dotenv:
+  flutter_dotenv: null
   firebase_core: ^2.27.0
-  responsive_framework:
-
+  responsive_framework: null
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,6 +65,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
+    - assets/images/characters/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
