@@ -8,3 +8,4 @@ const Color buttonColor = Color(0xFFFF62B7);
 const Color exampleScriptColor = Color(0xFFFFE5F4);
 const Color buttonSideColor = Color(0xFFECECEC);
 const Color selectPracticebgrColor = Color(0xFF494949);
+const Color dotIndicatorColor = Color(0xFF999999);

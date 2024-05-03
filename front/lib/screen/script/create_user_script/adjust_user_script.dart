@@ -1,7 +1,7 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/model/save_data.dart';
 import 'package:capstone/model/script.dart';
-import 'package:capstone/screen/script/create_user_script/content_controller.dart';
+import 'package:capstone/screen/script/create_user_script/controller/content_controller.dart';
 import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/bottom_buttons.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';

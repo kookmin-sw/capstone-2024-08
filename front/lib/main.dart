@@ -2,7 +2,6 @@ import 'package:capstone/screen/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 void main() async {
@@ -22,13 +21,6 @@ class MyApp extends StatelessWidget {
       title: 'Capstone',
       theme: ThemeData(
         fontFamily: 'KoddiUDOnGothic'
-      ),
-      builder: (context, child) => ResponsiveBreakpoints.builder(
-        child: child!,
-        breakpoints: [
-          const Breakpoint(start: 0, end: 450, name: MOBILE),
-          const Breakpoint(start: 451, end: 800, name: TABLET),
-        ]
       ),
       initialRoute: '/bottom_navigation',
       getPages: [

@@ -1,13 +1,13 @@
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/widget/record/read_record_script.dart';
+import 'package:flutter/material.dart';
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/widget/category_buttons.dart';
-import 'package:capstone/widget/script/create_user_script_button.dart';
-import 'package:capstone/widget/script/read_script.dart';
-import 'package:flutter/material.dart';
 
-class ScriptList extends StatefulWidget {
-  const ScriptList({
+
+class RecordList extends StatefulWidget {
+  const RecordList({
     Key? key,
     required this.index
   }) : super(key: key);
@@ -15,10 +15,10 @@ class ScriptList extends StatefulWidget {
   final int index;
 
   @override
-  State<ScriptList> createState() => _ScriptListState();
+  State<RecordList> createState() => _RecordListState();
 }
 
-class _ScriptListState extends State<ScriptList> {
+class _RecordListState extends State<RecordList> {
   final LoadData loadData = LoadData();
   String selectedCategoryValue = texts.category[0];
 
@@ -42,19 +42,10 @@ class _ScriptListState extends State<ScriptList> {
               ),
               widget.index == 0 ?
                 Expanded(
-                  child: readScripts(loadData.readExampleScripts(selectedCategoryValue))
+                  child: readRecordScripts(loadData.readExampleScripts(selectedCategoryValue), 'example')
                 )
                 : Expanded(
-                    child: Stack(
-                      children:[
-                        readScripts(loadData.readUserScripts(selectedCategoryValue)),
-                        Positioned(
-                          bottom: 2,
-                          left: MediaQuery.of(context).size.width * 0.05,
-                          right: MediaQuery.of(context).size.width * 0.05,
-                          child: createUserScriptButton()
-                        )
-                    ])
+                    child: readRecordScripts(loadData.readUserScripts(selectedCategoryValue), 'user'),                     
                   )                    
           ])
         )

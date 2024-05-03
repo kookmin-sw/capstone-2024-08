@@ -9,4 +9,7 @@
 venv/
 __pycache__/
 
+# backend
+backend/create_script/.config_secret
+
 

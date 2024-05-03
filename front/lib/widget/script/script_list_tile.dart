@@ -1,5 +1,7 @@
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
+import 'package:capstone/screen/record/record_detail.dart';
 import 'package:capstone/screen/script/script_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +11,7 @@ Text _buildTitle(String title){
   return Text(
     title,
     semanticsLabel: title,
-    textAlign: TextAlign.start,
+    textAlign: TextAlign.center,
     overflow: TextOverflow.ellipsis,
     maxLines: 2,
     softWrap: false,
@@ -38,7 +40,7 @@ Text _buildContent(String content){
     '+ $content',
     semanticsLabel: content,
     overflow: TextOverflow.ellipsis,
-    maxLines: 2,
+    maxLines: 1,
     softWrap: false,
     style: const TextStyle(
       color: colors.textColor,
@@ -48,11 +50,25 @@ Text _buildContent(String content){
   );
 }
 
-Widget scriptListTile(BuildContext context, ScriptModel script) {
+Text _buildPrecision(int? precision){
+  return Text(
+    '$precision',
+    softWrap: false,
+    style: const TextStyle(
+      color: colors.buttonColor,
+      fontSize: 14,
+      fontWeight: FontWeight.w800,
+    ),
+  );
+}
+
+Widget scriptListTile(BuildContext context, ScriptModel script, String route, {RecordModel? record}) {
   return GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
-        Get.to(() => ScriptDetail(script: script));
+        route == 'record' ?
+          Get.to(() => RecordDetail(script: script, record: record))
+          : Get.to(() => ScriptDetail(script: script));
       },
       child: Stack(
         children: [
@@ -65,10 +81,23 @@ Widget scriptListTile(BuildContext context, ScriptModel script) {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(13),
                 )),
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(15, 65, 15, 0),
-              child: _buildTitle(script.title)
-            ),
+            child: route == 'record' ?
+            Container(
+              padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: _buildPrecision(record!.promptResult!.last['precision'])
+                  ),
+                  const SizedBox(height: 30),
+                  _buildTitle(script.title)
+              ])
+            )
+            : Container(
+                padding: const EdgeInsets.fromLTRB(15, 65, 15, 0),
+                child: _buildTitle(script.title)
+              ),
           ),
           Positioned(
             bottom: 0,

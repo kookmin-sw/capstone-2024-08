@@ -1,3 +1,4 @@
+import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -48,5 +49,16 @@ class LoadData {
               .map((doc) => ScriptModel.fromDocument(doc: doc))
               .toList());
     }
+  }
+
+  Stream<List<RecordModel>> readUserPracticeRecord(String route) {
+    return firestore
+          .collection('user')
+          .doc('mg')
+          .collection('${route}_practice')
+          .snapshots()
+          .map((snapshot) => snapshot.docs
+              .map((doc) => RecordModel.fromDocument(doc: doc))
+              .toList());
   }
 }

@@ -39,7 +39,11 @@ dependencies:
   cloud_firestore: ^4.15.8
   flutter_dotenv:
   firebase_core: ^2.27.0
-  responsive_framework:
+  carousel_slider: ^4.2.1
+  dots_indicator: ^3.0.0
+  multiple_stream_builder: ^3.0.2
+  fl_chart: ^0.67.0
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:

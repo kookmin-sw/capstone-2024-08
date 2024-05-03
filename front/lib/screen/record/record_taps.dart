@@ -1,15 +1,15 @@
-import 'package:capstone/screen/script/script_list.dart';
+import 'package:capstone/screen/record/record_list.dart';
 import 'package:capstone/widget/tap_bar.dart';
 import 'package:flutter/material.dart';
 
-class ScriptTabs extends StatefulWidget{
-  const ScriptTabs({Key? key}) : super(key: key);
+class RecordTabs extends StatefulWidget{
+  const RecordTabs({Key? key}) : super(key: key);
 
   @override    
-  ScriptTabsState createState() => ScriptTabsState();
+  RecordTabsState createState() => RecordTabsState();
 }
 
-class ScriptTabsState extends State<ScriptTabs> with SingleTickerProviderStateMixin {   
+class RecordTabsState extends State<RecordTabs> with SingleTickerProviderStateMixin {   
   late TabController _tabController;
 
   @override    
@@ -24,16 +24,16 @@ class ScriptTabsState extends State<ScriptTabs> with SingleTickerProviderStateMi
     _tabController.dispose();        
     super.dispose();    
   }    
-
+  
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: tapBar(_tabController),
       body: TabBarView(
-          controller: _tabController,
-          children: [
-            for(int idx=0; idx<_tabController.length; idx++)
-              ScriptList(index: idx)
+        controller: _tabController,
+        children: [
+          for(int idx=0; idx<_tabController.length; idx++)
+            RecordList(index: idx)
       ])
     );
   }
