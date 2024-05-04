@@ -7,9 +7,9 @@ import 'package:multiple_stream_builder/multiple_stream_builder.dart';
 
 LoadData loadData = LoadData();
 
-Widget readRecordScripts(dynamic streamFunc, String route){
+Widget readRecordScripts(dynamic streamFunc, String scriptType){
     return StreamBuilder2<List<ScriptModel>, List<RecordModel>>(
-        streams: StreamTuple2(streamFunc, loadData.readUserPracticeRecord(route)),
+        streams: StreamTuple2(streamFunc, loadData.readUserPracticeRecord(scriptType)),
         builder: (context, snapshots) {
           if(snapshots.snapshot1.hasData & snapshots.snapshot2.hasData){
             List<ScriptModel>? scriptList = snapshots.snapshot1.data;
@@ -19,7 +19,7 @@ Widget readRecordScripts(dynamic streamFunc, String route){
                 itemBuilder: (_, index) {
                   for(int idx=0; idx<scriptList!.length; idx++){
                     if(recordList[index].id == scriptList[idx].id) {
-                      return scriptListTile(context, scriptList[idx], 'record', record: recordList[index]);
+                      return scriptListTile(context, scriptList[idx], 'record', scriptType, record: recordList[index]);
                     }
                   }
                   return Container();

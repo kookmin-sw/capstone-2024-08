@@ -42,12 +42,12 @@ class _ScriptListState extends State<ScriptList> {
               ),
               widget.index == 0 ?
                 Expanded(
-                  child: readScripts(loadData.readExampleScripts(selectedCategoryValue))
+                  child: readScripts(loadData.readExampleScripts(selectedCategoryValue), 'example')
                 )
                 : Expanded(
                     child: Stack(
                       children:[
-                        readScripts(loadData.readUserScripts(selectedCategoryValue)),
+                        readScripts(loadData.readUserScripts(selectedCategoryValue), 'user'),
                         Positioned(
                           bottom: 2,
                           left: MediaQuery.of(context).size.width * 0.05,

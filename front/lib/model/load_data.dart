@@ -51,14 +51,20 @@ class LoadData {
     }
   }
 
-  Stream<List<RecordModel>> readUserPracticeRecord(String route) {
+  Stream<List<RecordModel>> readUserPracticeRecord(String scriptType) {
     return firestore
           .collection('user')
           .doc('mg')
-          .collection('${route}_practice')
+          .collection('${scriptType}_practice')
           .snapshots()
           .map((snapshot) => snapshot.docs
               .map((doc) => RecordModel.fromDocument(doc: doc))
               .toList());
+  }
+
+  Future<RecordModel> readRecordDocument(String scriptType, String documentId) async {
+    DocumentSnapshot<Map<String, dynamic>> recordDocument = 
+      await firestore.collection('user').doc('mg').collection('${scriptType}_practice').doc(documentId).get();
+    return RecordModel.fromDocument(doc: recordDocument);
   }
 }

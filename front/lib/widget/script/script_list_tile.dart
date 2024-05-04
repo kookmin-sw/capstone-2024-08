@@ -62,13 +62,13 @@ Text _buildPrecision(int? precision){
   );
 }
 
-Widget scriptListTile(BuildContext context, ScriptModel script, String route, {RecordModel? record}) {
+Widget scriptListTile(BuildContext context, ScriptModel script, String route, String scriptType, {RecordModel? record}) {
   return GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
         route == 'record' ?
           Get.to(() => RecordDetail(script: script, record: record))
-          : Get.to(() => ScriptDetail(script: script));
+          : Get.to(() => ScriptDetail(script: script, scriptType: scriptType));
       },
       child: Stack(
         children: [
