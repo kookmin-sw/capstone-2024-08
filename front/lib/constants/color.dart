@@ -9,5 +9,5 @@ const Color exampleScriptColor = Color(0xFFFFE5F4);
 const Color buttonSideColor = Color(0xFFECECEC);
 const Color selectPracticebgrColor = Color(0xFF494949);
 const Color dotIndicatorColor = Color(0xFF999999);
-const Color voicePrecisionGraphBgrColor = Color(0xFF9C90FF);
-const Color voicePrecisionGraphLineColor = Color(0xFF4F3EE0);
+const Color precisionGraphBgrColor = Color(0xFFFFB49B); //Color(0xFF9C90FF);
+const Color precisionGraphLineColor = Color(0xFFFA637A); //Color(0xFF4F3EE0);
