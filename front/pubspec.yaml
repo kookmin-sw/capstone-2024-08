@@ -39,6 +39,8 @@ dependencies:
   flutter_dotenv: null
   firebase_core: ^2.27.0
   responsive_framework: null
+  audioplayers:
+  permission_handler:
   
 dev_dependencies:
   flutter_test:
@@ -66,6 +68,7 @@ flutter:
   assets:
     - .env
     - assets/images/characters/
+    - assets/wavs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
