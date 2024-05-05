@@ -1,6 +1,6 @@
 import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/screen/bottom_navigation.dart';
-import 'package:capstone/screen/sign_up/voice_collection.dart';
+import 'package:capstone/screen/sign_up/audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -18,6 +18,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const MaterialApp(home: SimpleExampleApp()));
 }
 
