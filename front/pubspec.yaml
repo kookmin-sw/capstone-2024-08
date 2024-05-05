@@ -41,6 +41,9 @@ dependencies:
   responsive_framework: null
   audioplayers:
   permission_handler:
+  record:
+  firebase_messaging: ^14.9.1
+  flutter_local_notifications: ^17.1.1
   
 dev_dependencies:
   flutter_test:
