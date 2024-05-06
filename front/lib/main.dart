@@ -20,7 +20,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MaterialApp(home: VoiceRecorderApp()));
+  runApp(const MaterialApp(home: GetUserVoice()));
 }
 
 Future<bool> getPermission() async {
