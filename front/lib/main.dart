@@ -1,6 +1,7 @@
 import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/screen/bottom_navigation.dart';
 import 'package:capstone/screen/sign_up/audio_player.dart';
+import 'package:capstone/screen/sign_up/get_user_voice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MaterialApp(home: SimpleExampleApp()));
+  runApp(const MaterialApp(home: VoiceRecorderApp()));
 }
 
 Future<bool> getPermission() async {
@@ -28,13 +29,15 @@ Future<bool> getPermission() async {
     permissions = await [
       Permission.accessNotificationPolicy,
       Permission.microphone,
-      Permission.speech
+      Permission.speech,
+      Permission.storage
     ].request();
   } else {
     permissions = await [
       Permission.notification,
       Permission.microphone,
-      Permission.speech
+      Permission.speech,
+      Permission.storage
     ].request();
   }
 
