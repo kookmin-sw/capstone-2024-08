@@ -75,8 +75,9 @@ class RecorderController extends GetxController {
     final temppath = await getTemporaryDirectory();
 
     final fullpath = '${temppath.path}/$dtByInt.wav';
-
+    print("권한 확인 전 저장 경로는 ${fullpath}입니다");
     if (await _audioRecorder.hasPermission()) {
+      print("녹음 중");
       await _audioRecorder.start(
         recordConfig,
         path: fullpath,

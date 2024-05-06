@@ -28,6 +28,8 @@
 	<string>LaunchScreen</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>The app requires microphone access for recording the user's voice to create a personalized TTS model</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>The app requires microphone access for recording the user's voice to create a personalized TTS model</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

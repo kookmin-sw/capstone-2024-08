@@ -33,71 +33,73 @@ class _RecordingSheetState extends State<RecordingSheet> {
     /// duration에 따라 amplitude 설정
     recorderController.setAmplitude(const Duration(milliseconds: 100));
 
-    ///  추가적으로 초기값은 20%(0.2) 정도로 적당히 설정합니다.
-    recorderController.updateAmpl(intiMax: 0.2, initCurrent: 0.2);
-
     // print('max: ${ampl.value.max}, cur: ${ampl.value.cur}');
 
-    return Container(
-      alignment: Alignment.center,
-      height: sheetHeight,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(16.0),
-        ),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Stack(
-        fit: StackFit.expand,
+    return Obx(() {
+      ///  추가적으로 초기값은 20%(0.2) 정도로 적당히 설정합니다.
+      recorderController.updateAmpl(intiMax: 0.2, initCurrent: 0.2);
+
+      return Container(
         alignment: Alignment.center,
-        children: [
-          Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 200),
-                  curve: Curves.easeIn,
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: recorderController.ampl.value['current']! *
-                        (sheetHeight * 0.5),
-                    decoration: BoxDecoration(
-                      color: Colors.red.shade300,
-                      shape: BoxShape.circle,
+        height: sheetHeight,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(16.0),
+          ),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Stack(
+          fit: StackFit.expand,
+          alignment: Alignment.center,
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.easeIn,
+                    alignment: Alignment.center,
+                    child: Container(
+                      height: recorderController.ampl.value['current']! *
+                          (sheetHeight * 0.5),
+                      decoration: BoxDecoration(
+                        color: Colors.red.shade300,
+                        shape: BoxShape.circle,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: IconButton(
-                  icon: const Icon(Icons.stop_circle_outlined, size: 64.0),
-                  onPressed: () async {
-                    final filepath = await recorderController.stopRecoding();
-                    debugPrint("--------------");
+                Expanded(
+                  flex: 1,
+                  child: IconButton(
+                    icon: const Icon(Icons.stop_circle_outlined, size: 64.0),
+                    onPressed: () async {
+                      final filepath = await recorderController.stopRecoding();
+                      debugPrint("--------------");
 
-                    debugPrint(filepath);
+                      debugPrint(filepath);
 
-                    if (filepath != null) {
-                      Navigator.pop(context, filepath);
-                    } else {
-                      Future(
-                        () => ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Recording Failed'),
+                      if (filepath != null) {
+                        Navigator.pop(context, filepath);
+                      } else {
+                        Future(
+                          () => ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Recording Failed'),
+                            ),
                           ),
-                        ),
-                      ).then((value) => Navigator.pop(context));
-                    }
-                  },
+                        ).then((value) => Navigator.pop(context));
+                      }
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(height: MediaQuery.of(context).padding.bottom),
-            ],
-          ),
-        ],
-      ),
-    );
+                SizedBox(height: MediaQuery.of(context).padding.bottom),
+              ],
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

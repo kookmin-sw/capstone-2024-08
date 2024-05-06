@@ -1,4 +1,4 @@
-import 'package:capstone/screen/sign_up/voice_collection.dart';
+import 'package:capstone/widget/audio_recoder/recoding_sheet.dart';
 import 'package:flutter/material.dart';
 
 class VoiceRecorderApp extends StatelessWidget {
