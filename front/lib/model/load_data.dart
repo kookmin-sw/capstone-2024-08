@@ -11,6 +11,27 @@ class LoadData {
     return userDocumentSnapshot;
   }
 
+  Future<ScriptModel?> readScriptByDocumentRef(
+      DocumentReference? documentRef) async {
+    if (documentRef == null) {
+      print('Document reference is null.');
+      return null;
+    }
+    try {
+      DocumentSnapshot<Map<String, dynamic>> snapshot =
+          await documentRef.get() as DocumentSnapshot<Map<String, dynamic>>;
+
+      if (snapshot.exists) {
+        return ScriptModel.fromDocument(doc: snapshot);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error fetching script: $e');
+      return null;
+    }
+  }
+
   Stream<List<ScriptModel>> readExampleScripts(String? category) {
     if (category == '전체') {
       return firestore
