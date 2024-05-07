@@ -22,7 +22,6 @@ class AdjustUserScript extends StatefulWidget {
 
   final String title;
   final String category;
-  final Color backgroundColor = colors.bgrBrightColor;
 
   @override
   State<AdjustUserScript> createState() => _AdjustUserScriptState();
@@ -66,7 +65,6 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
       body: Stack(
               children: [
                 Container(
-                  color: widget.backgroundColor,
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: ListView(
                     children: [

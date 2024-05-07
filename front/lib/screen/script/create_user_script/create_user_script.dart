@@ -17,8 +17,6 @@ import 'package:get/get.dart';
 class CreateUserScript extends StatefulWidget {
   const CreateUserScript({Key? key}) : super(key: key);
 
-  final Color backgroundColor = colors.bgrBrightColor;
-
   @override
   State<CreateUserScript> createState() => _CreateUserScriptState();
 }
@@ -37,6 +35,9 @@ class _CreateUserScriptState extends State<CreateUserScript> {
   }
 
   void createScriptByGpt(String title, String category) async {
+      setState(() {
+        _content.text = 'AI로 대본을 생성하고 있습니다. 잠시만 기다려주세요.';
+      });
       await GptController().createScript(title, category).then((script) {
         setState(() {
           _content.text = script;
@@ -61,15 +62,12 @@ class _CreateUserScriptState extends State<CreateUserScript> {
       appBar: basicAppBar(title: '나만의 대본 만들기'),
       body: Stack(
         children: [
-          Container(
-            color: widget.backgroundColor,
-                child: Column(
-                  children: [
-                    TitleSection(titleController: _title, formKey: _titleKey),
-                    CategorySection(onCategorySelected: _handleCategorySelected),
-                    ContentSection(contentController: _content, formKey: _contentKey)
-                ])
-          ),
+          Column(
+            children: [
+              TitleSection(titleController: _title, formKey: _titleKey),
+              CategorySection(onCategorySelected: _handleCategorySelected),
+              ContentSection(contentController: _content, formKey: _contentKey)
+          ]),
           bottomButtons(
             MediaQuery.of(context).size.width, 
             outlinedRoundedRectangleButton('AI로 생성하기', () {

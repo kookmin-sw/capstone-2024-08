@@ -8,7 +8,6 @@ class Settings :
 
     config_secret_common = json.loads(open(CONFIG_SECRET_COMMON_FILE).read())
 
-    OPENAI_HEADERS: str = config_secret_common["openai_header"]
-
+    OPENAI_API_KEY: str = config_secret_common["openai_api_key"]
     
 settings = Settings()

@@ -2,7 +2,6 @@ import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/route.dart' as routes;
-import 'package:get/get.dart';
 
 class Setting extends StatelessWidget {
   const Setting({Key? key}) : super(key: key);
@@ -13,7 +12,6 @@ class Setting extends StatelessWidget {
       appBar: basicAppBar(title: '설정'),
       body: Container(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-        color: colors.bgrBrightColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: routes.settingItems.map((item) =>
