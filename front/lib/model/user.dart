@@ -17,13 +17,13 @@ class UserModel {
       required this.lastPracticeScript});
 
   // Deserialize from Firestore document snapshot
-  UserModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> snapshot)
-      : nickname = snapshot.get('nickname'),
-        character = snapshot.get('character'),
-        lastAccessDate = snapshot.get('lastAccessDate'),
-        attendanceStreak = snapshot.get('attendanceStreak'),
-        voiceUrls = snapshot.get('voice'),
-        lastPracticeScript = snapshot.get('lastPracticeScript');
+  UserModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> doc)
+      : nickname = doc.get('nickname'),
+        character = doc.get('character'),
+        lastAccessDate = doc.get('lastAccessDate'),
+        attendanceStreak = doc.get('attendanceStreak'),
+        voiceUrls = doc.get('voice'),
+        lastPracticeScript = doc.get('lastPracticeScript');
 
   // Serialize to Firestore document data
   Map<String, dynamic> convertToDocument() {
