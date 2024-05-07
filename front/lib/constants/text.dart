@@ -4,6 +4,8 @@ String homeWelcomeMessage = "반가워요, ";
 
 String attendaceStreakMessage = "님의 연속 연습 일 수";
 
+String lastPracticeScriptEmptyMessage = "연습한 이력이 없습니다.";
+
 String getUserVoiceAppBarTitle = "음성 정보 수집";
 
 String getUserVoiceSubtitle = '사용자의 음성을 기반으로 더 정확한 피드백을 제공합니다.';

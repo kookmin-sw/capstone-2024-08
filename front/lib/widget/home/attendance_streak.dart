@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/constants/color.dart' as colors;
 
-Widget attendanceStreak(name, day) {
+Widget attendanceStreakSection(name, day) {
   return Container(
     decoration: BoxDecoration(
         color: colors.themeWhiteColor, borderRadius: BorderRadius.circular(20)),

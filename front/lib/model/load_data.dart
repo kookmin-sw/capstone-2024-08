@@ -12,11 +12,7 @@ class LoadData {
   }
 
   Future<ScriptModel?> readScriptByDocumentRef(
-      DocumentReference? documentRef) async {
-    if (documentRef == null) {
-      print('Document reference is null.');
-      return null;
-    }
+      DocumentReference documentRef) async {
     try {
       DocumentSnapshot<Map<String, dynamic>> snapshot =
           await documentRef.get() as DocumentSnapshot<Map<String, dynamic>>;

@@ -2,7 +2,7 @@ import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/image.dart' as images;
 import 'package:flutter/material.dart';
 
-Widget characterSection(character) {
+Widget characterSection(String character) {
   return Container(
       decoration: BoxDecoration(
           color: colors.themeWhiteColor,
