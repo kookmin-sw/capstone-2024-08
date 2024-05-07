@@ -17,7 +17,7 @@ class UserModel {
       required this.lastPracticeScript});
 
   // Deserialize from Firestore document snapshot
-  UserModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> doc)
+  UserModel.fromDocument({required DocumentSnapshot<Map<String, dynamic>> doc})
       : nickname = doc.get('nickname'),
         character = doc.get('character'),
         lastAccessDate = doc.get('lastAccessDate'),
