@@ -3,7 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoadData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> readUser(
+      {required String uid}) async {
+    var userDocumentSnapshot =
+        await firestore.collection('user').doc(uid).get();
+    return userDocumentSnapshot;
+  }
+
   Stream<List<ScriptModel>> readExampleScripts(String? category) {
     if (category == '전체') {
       return firestore
