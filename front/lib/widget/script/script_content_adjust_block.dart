@@ -1,4 +1,4 @@
-import 'package:capstone/screen/script/create_user_script/content_controller.dart';
+import 'package:capstone/screen/script/create_user_script/controller/content_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 

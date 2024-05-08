@@ -48,7 +48,12 @@ dependencies:
   flutter_animation_progress_bar: ^2.3.1
   firebase_auth: ^4.19.5
   firebase_storage:
-  
+  carousel_slider: ^4.2.1
+  dots_indicator: ^3.0.0
+  multiple_stream_builder: ^3.0.2
+  fl_chart: ^0.67.0
+  http: ^1.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

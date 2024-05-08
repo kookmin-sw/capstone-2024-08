@@ -1,7 +1,7 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/model/save_data.dart';
 import 'package:capstone/model/script.dart';
-import 'package:capstone/screen/script/create_user_script/content_controller.dart';
+import 'package:capstone/screen/script/create_user_script/controller/content_controller.dart';
 import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/bottom_buttons.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
@@ -22,7 +22,6 @@ class AdjustUserScript extends StatefulWidget {
 
   final String title;
   final String category;
-  final Color backgroundColor = colors.bgrBrightColor;
 
   @override
   State<AdjustUserScript> createState() => _AdjustUserScriptState();
@@ -66,7 +65,6 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
       body: Stack(
               children: [
                 Container(
-                  color: widget.backgroundColor,
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: ListView(
                     children: [

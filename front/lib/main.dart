@@ -7,13 +7,13 @@ import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:io';
+import 'package:capstone/constants/color.dart' as colors;
 
 void main() async {
   await dotenv.load(fileName: '.env');
@@ -119,7 +119,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Capstone',
-      theme: ThemeData(fontFamily: fonts.font),
+      theme: ThemeData(fontFamily: fonts.font, scaffoldBackgroundColor: colors.bgrBrightColor),
       builder: (context, child) =>
           ResponsiveBreakpoints.builder(child: child!, breakpoints: [
         const Breakpoint(start: 0, end: 450, name: MOBILE),

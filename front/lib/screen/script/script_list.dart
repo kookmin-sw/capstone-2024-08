@@ -1,10 +1,9 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
-import 'package:capstone/model/script.dart';
 import 'package:capstone/widget/category_buttons.dart';
 import 'package:capstone/widget/script/create_user_script_button.dart';
-import 'package:capstone/widget/script/script_list_tile.dart';
+import 'package:capstone/widget/script/read_script.dart';
 import 'package:flutter/material.dart';
 
 class ScriptList extends StatefulWidget {
@@ -57,15 +56,15 @@ class _ScriptListState extends State<ScriptList> {
                 child: CategoryButtons(
                     onCategorySelected: _handleCategorySelected),
               ),
-              widget.index == 0
-                  ? Expanded(
-                      child: _readScripts(
-                          loadData.readExampleScripts(selectedCategoryValue)))
-                  : Expanded(
-                      child: Stack(children: [
-                      _readScripts(
-                          loadData.readUserScripts(selectedCategoryValue)),
-                      Positioned(
+              widget.index == 0 ?
+                Expanded(
+                  child: readScripts(loadData.readExampleScripts(selectedCategoryValue), 'example')
+                )
+                : Expanded(
+                    child: Stack(
+                      children:[
+                        readScripts(loadData.readUserScripts(selectedCategoryValue), 'user'),
+                        Positioned(
                           bottom: 2,
                           left: MediaQuery.of(context).size.width * 0.05,
                           right: MediaQuery.of(context).size.width * 0.05,

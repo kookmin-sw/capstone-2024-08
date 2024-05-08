@@ -9,6 +9,11 @@ g2pk
 kiwipiepy
 openai-whisper
 
+# script
+pydantic
+langchain
+langchain_openai
+
 # server
 fastapi
 uvicorn
