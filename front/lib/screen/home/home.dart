@@ -40,7 +40,8 @@ class _HomeState extends State<Home> {
               color: colors.themeWhiteColor, fontWeight: FontWeight.bold)),
       actions: [
         IconButton(
-          icon: const Icon(Icons.settings_rounded, color: Colors.white),
+          icon:
+              const Icon(Icons.settings_rounded, color: colors.themeWhiteColor),
           onPressed: () {
             HapticFeedback.lightImpact();
             Get.to(() => const Setting());

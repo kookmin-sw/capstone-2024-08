@@ -8,6 +8,8 @@ class LoadData {
       {required String uid}) async {
     var userDocumentSnapshot =
         await firestore.collection('user').doc(uid).get();
+    print("-----------");
+    print(userDocumentSnapshot);
     return userDocumentSnapshot;
   }
 
