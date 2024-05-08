@@ -8,10 +8,7 @@ import 'package:capstone/widget/script/script_list_tile.dart';
 import 'package:flutter/material.dart';
 
 class ScriptList extends StatefulWidget {
-  const ScriptList({
-    Key? key,
-    required this.index
-  }) : super(key: key);
+  const ScriptList({Key? key, required this.index}) : super(key: key);
 
   final int index;
 
@@ -29,8 +26,7 @@ class _ScriptListState extends State<ScriptList> {
     });
   }
 
-
-  Widget _readScripts(dynamic streamFunc){
+  Widget _readScripts(dynamic streamFunc) {
     return StreamBuilder<List<ScriptModel>>(
         stream: streamFunc,
         builder: (context, snapshots) {
@@ -42,47 +38,39 @@ class _ScriptListState extends State<ScriptList> {
                   ScriptModel script = snapshots.data![index];
                   return scriptListTile(context, script);
                 });
-        } else {
-          return const SelectionArea(
-            child: Center(
-              child: Icon(Icons.hourglass_bottom)
-            )
-          );
-        }
-      })
-    ;
+          } else {
+            return const SelectionArea(
+                child: Center(child: Icon(Icons.hourglass_bottom)));
+          }
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-          color: colors.bgrDarkColor,
-          child: Column(
-            children: [
+            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+            color: colors.bgrDarkColor,
+            child: Column(children: [
               Container(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                child: CategoryButtons(onCategorySelected: _handleCategorySelected),
+                child: CategoryButtons(
+                    onCategorySelected: _handleCategorySelected),
               ),
-              widget.index == 0 ?
-                Expanded(
-                  child: _readScripts(loadData.readExampleScripts(selectedCategoryValue))
-                )
-                : Expanded(
-                    child: Stack(
-                      children:[
-                        _readScripts(loadData.readUserScripts(selectedCategoryValue)),
-                        Positioned(
+              widget.index == 0
+                  ? Expanded(
+                      child: _readScripts(
+                          loadData.readExampleScripts(selectedCategoryValue)))
+                  : Expanded(
+                      child: Stack(children: [
+                      _readScripts(
+                          loadData.readUserScripts(selectedCategoryValue)),
+                      Positioned(
                           bottom: 2,
                           left: MediaQuery.of(context).size.width * 0.05,
                           right: MediaQuery.of(context).size.width * 0.05,
-                          child: createUserScriptButton()
-                        )
-                    ])
-                  )                    
-          ])
-        )
-    );
+                          child: createUserScriptButton())
+                    ]))
+            ])));
   }
 }
