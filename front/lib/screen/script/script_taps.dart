@@ -28,7 +28,7 @@ class ScriptTabsState extends State<ScriptTabs> with SingleTickerProviderStateMi
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: tapBar(_tabController),
+      appBar: listTapBar(_tabController, 'script'),
       body: TabBarView(
           controller: _tabController,
           children: [

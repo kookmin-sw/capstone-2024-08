@@ -51,6 +51,28 @@ class LoadData {
     }
   }
 
+  Stream<List<ScriptModel>> searchExampleScript(String? query) {
+    return firestore
+      .collection('example_script')
+      .snapshots()
+      .map((snapshot) => snapshot.docs
+        .where((doc) => doc['title'].toString().contains(query ?? ''))
+        .map((doc) => ScriptModel.fromDocument(doc: doc))
+        .toList());
+  }
+
+  Stream<List<ScriptModel>> searchUserScript(String? query) {
+    return firestore
+        .collection('user_script')
+        .doc('mg')
+        .collection('script')
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+          .where((doc) => doc['title'].toString().contains(query ?? ''))
+          .map((doc) => ScriptModel.fromDocument(doc: doc))
+          .toList());
+  }
+
   Stream<List<RecordModel>> readUserPracticeRecord(String scriptType) {
     return firestore
           .collection('user')

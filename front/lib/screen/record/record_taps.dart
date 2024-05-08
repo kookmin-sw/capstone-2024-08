@@ -28,7 +28,7 @@ class RecordTabsState extends State<RecordTabs> with SingleTickerProviderStateMi
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: tapBar(_tabController),
+      appBar: listTapBar(_tabController, 'record'),
       body: TabBarView(
         controller: _tabController,
         children: [
