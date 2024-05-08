@@ -20,7 +20,7 @@ class SaveData {
     Map<String, String> urls = {};
 
     for (MapEntry<String, File> element in wavs.entries) {
-      var wavRef = storage.ref().child('user_voice/${uid}/${element.key}.wav');
+      var wavRef = storage.ref().child('user_voice/$uid/${element.key}.wav');
       File file = File(element.value.path);
 
       try {
