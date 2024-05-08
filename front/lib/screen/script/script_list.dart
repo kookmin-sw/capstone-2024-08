@@ -25,25 +25,6 @@ class _ScriptListState extends State<ScriptList> {
     });
   }
 
-  Widget _readScripts(dynamic streamFunc) {
-    return StreamBuilder<List<ScriptModel>>(
-        stream: streamFunc,
-        builder: (context, snapshots) {
-          if (snapshots.hasData) {
-            return ListView.builder(
-                itemCount: snapshots.data!.length,
-                shrinkWrap: true,
-                itemBuilder: (_, index) {
-                  ScriptModel script = snapshots.data![index];
-                  return scriptListTile(context, script);
-                });
-          } else {
-            return const SelectionArea(
-                child: Center(child: Icon(Icons.hourglass_bottom)));
-          }
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,15 +37,17 @@ class _ScriptListState extends State<ScriptList> {
                 child: CategoryButtons(
                     onCategorySelected: _handleCategorySelected),
               ),
-              widget.index == 0 ?
-                Expanded(
-                  child: readScripts(loadData.readExampleScripts(selectedCategoryValue), 'example')
-                )
-                : Expanded(
-                    child: Stack(
-                      children:[
-                        readScripts(loadData.readUserScripts(selectedCategoryValue), 'user'),
-                        Positioned(
+              widget.index == 0
+                  ? Expanded(
+                      child: readScripts(
+                          loadData.readExampleScripts(selectedCategoryValue),
+                          'example'))
+                  : Expanded(
+                      child: Stack(children: [
+                      readScripts(
+                          loadData.readUserScripts(selectedCategoryValue),
+                          'user'),
+                      Positioned(
                           bottom: 2,
                           left: MediaQuery.of(context).size.width * 0.05,
                           right: MediaQuery.of(context).size.width * 0.05,

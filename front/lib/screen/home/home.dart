@@ -74,26 +74,27 @@ class _HomeState extends State<Home> {
         style: const TextStyle(color: colors.themeWhiteColor),
       );
     } else {
-      return FutureBuilder<ScriptModel?>(
-        future: loadData.readScriptByDocumentRef(lastPracticeScript),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator(
-              color: colors.exampleScriptColor,
-            ); // 로딩 중이면 로딩 인디케이터 표시
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}'); // 에러가 있으면 에러 메시지 표시
-          } else {
-            // 데이터가 로드되면 스크립트를 표시
-            final script = snapshot.data;
-            if (script != null) {
-              return scriptListTile(context, script);
-            } else {
-              return Text('No script found'); // 스크립트가 없으면 해당 메시지 표시
-            }
-          }
-        },
-      );
+      return Container();
+      // return FutureBuilder<ScriptModel?>(
+      //   future: loadData.readScriptByDocumentRef(lastPracticeScript),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.connectionState == ConnectionState.waiting) {
+      //       return const CircularProgressIndicator(
+      //         color: colors.exampleScriptColor,
+      //       ); // 로딩 중이면 로딩 인디케이터 표시
+      //     } else if (snapshot.hasError) {
+      //       return Text('Error: ${snapshot.error}'); // 에러가 있으면 에러 메시지 표시
+      //     } else {
+      //       // 데이터가 로드되면 스크립트를 표시
+      //       final script = snapshot.data;
+      //       if (script != null) {
+      //         return scriptListTile(context, script);
+      //       } else {
+      //         return Text('No script found'); // 스크립트가 없으면 해당 메시지 표시
+      //       }
+      //     }
+      //   },
+      // );
     }
   }
 
