@@ -2,6 +2,7 @@ import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/screen/bottom_navigation.dart';
 import 'package:capstone/screen/sign_up/audio_player.dart';
 import 'package:capstone/screen/sign_up/get_user_voice.dart';
+import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MaterialApp(home: GetUserVoice()));
+  runApp(const MaterialApp(home: RecordingSection()));
 }
 
 Future<bool> getPermission() async {

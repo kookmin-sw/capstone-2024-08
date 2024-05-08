@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
-
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
 
 class GetUserVoice extends StatefulWidget {
   const GetUserVoice({super.key});
@@ -16,11 +14,11 @@ class GetUserVoice extends StatefulWidget {
 }
 
 class _GetUserVoiceState extends State<GetUserVoice> {
-  double _currentValue = 5;
+  double _currentProgressValue = 5;
 
   nextButtonPressed(double value) {
     setState(() {
-      _currentValue = value;
+      _currentProgressValue = value;
     });
   }
 
@@ -45,8 +43,23 @@ class _GetUserVoiceState extends State<GetUserVoice> {
         child: Text(texts.getUserVoiceSubtitle));
   }
 
-  Widget exampleSentenceSection() {
-    return Container();
+  Widget exampleSentenceSection(String exampleSentence) {
+    return AnimatedSwitcher(
+        duration: Duration(milliseconds: 500),
+        child: Container(
+          key: ValueKey<String>(exampleSentence),
+          padding: EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            border: Border.all(color: colors.bgrDarkColor, width: 2.0),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Text(
+            // texts.getUserVoiceExampleSentences[exampleSentence],
+            '',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16.0),
+          ),
+        ));
   }
 
   AppBar getUserVoiceAppBar() {
@@ -66,7 +79,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
         body: Container(
             color: colors.bgrBrightColor,
             child: Column(children: [
-              progressBarSection(_currentValue),
+              progressBarSection(_currentProgressValue),
               subTitleSection()
             ])));
   }

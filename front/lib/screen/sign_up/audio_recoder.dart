@@ -20,7 +20,7 @@ class VoiceRecorderApp extends StatelessWidget {
                   showModalBottomSheet<String>(
                       context: context, builder: (context) => RecordingSheet());
                 },
-                icon: const Icon(Icons.graphic_eq)),
+                icon: const Icon(Icons.mic)),
           ],
         ),
       ),
