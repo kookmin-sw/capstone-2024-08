@@ -4,6 +4,7 @@ import 'package:audioplayers/audioplayers.dart' as ap;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:capstone/constants/color.dart' as colors;
 
 class AudioPlayer extends StatefulWidget {
   /// Path from where to play recorded audio
@@ -25,7 +26,8 @@ class AudioPlayer extends StatefulWidget {
 
 class AudioPlayerState extends State<AudioPlayer> {
   static const double _controlSize = 56;
-  static const double _deleteBtnSize = 24;
+  static const double _deleteBtnSize = 25;
+  static const double _recordBtnSize = 35;
 
   final _audioPlayer = ap.AudioPlayer()..setReleaseMode(ReleaseMode.stop);
   late StreamSubscription<void> _playerStateChangedSubscription;
@@ -80,7 +82,7 @@ class AudioPlayerState extends State<AudioPlayer> {
                 _buildSlider(constraints.maxWidth),
                 IconButton(
                   icon: const Icon(Icons.delete,
-                      color: Color(0xFF73748D), size: _deleteBtnSize),
+                      color: colors.deleteButtonColor, size: _deleteBtnSize),
                   onPressed: () {
                     if (_audioPlayer.state == ap.PlayerState.playing) {
                       stop().then((value) => widget.onDelete());
@@ -103,12 +105,13 @@ class AudioPlayerState extends State<AudioPlayer> {
     Color color;
 
     if (_audioPlayer.state == ap.PlayerState.playing) {
-      icon = const Icon(Icons.pause, color: Colors.red, size: 30);
-      color = Colors.red.withOpacity(0.1);
+      icon = const Icon(Icons.pause,
+          color: colors.recordButtonColor, size: _recordBtnSize);
+      color = colors.recordButtonColor.withOpacity(0.1);
     } else {
-      final theme = Theme.of(context);
-      icon = Icon(Icons.play_arrow, color: theme.primaryColor, size: 30);
-      color = theme.primaryColor.withOpacity(0.1);
+      icon = const Icon(Icons.play_arrow,
+          color: colors.recordButtonColor, size: _recordBtnSize);
+      color = colors.recordButtonColor.withOpacity(0.1);
     }
 
     return ClipOval(
@@ -145,8 +148,8 @@ class AudioPlayerState extends State<AudioPlayer> {
     return SizedBox(
       width: width,
       child: Slider(
-        activeColor: Theme.of(context).primaryColor,
-        inactiveColor: Theme.of(context).colorScheme.secondary,
+        activeColor: colors.recordButtonColor,
+        inactiveColor: colors.recordButtonColor.withOpacity(0.3),
         onChanged: (v) {
           if (duration != null) {
             final position = v * duration.inMilliseconds;

@@ -167,8 +167,8 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
       color = colors.buttonColor.withOpacity(0.1);
     } else {
       final theme = Theme.of(context);
-      icon = const Icon(Icons.mic, color: colors.bgrDarkColor, size: 35);
-      color = colors.bgrDarkColor.withOpacity(0.1);
+      icon = const Icon(Icons.mic, color: colors.recordButtonColor, size: 35);
+      color = colors.recordButtonColor.withOpacity(0.1);
     }
 
     return ClipOval(

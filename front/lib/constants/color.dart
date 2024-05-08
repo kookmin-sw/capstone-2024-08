@@ -9,3 +9,5 @@ const Color exampleScriptColor = Color(0xFFFFE5F4);
 const Color buttonSideColor = Color(0xFFECECEC);
 const Color selectPracticebgrColor = Color(0xFF494949);
 const Color themeWhiteColor = Color(0xFFFFFFFF);
+const Color deleteButtonColor = Color(0xFF73748D);
+const Color recordButtonColor = Colors.deepPurple;
