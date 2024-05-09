@@ -7,10 +7,7 @@ import 'package:capstone/widget/script/read_script.dart';
 import 'package:flutter/material.dart';
 
 class ScriptList extends StatefulWidget {
-  const ScriptList({
-    Key? key,
-    required this.index
-  }) : super(key: key);
+  const ScriptList({Key? key, required this.index}) : super(key: key);
 
   final int index;
 
@@ -32,32 +29,30 @@ class _ScriptListState extends State<ScriptList> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-          color: colors.bgrDarkColor,
-          child: Column(
-            children: [
+            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+            color: colors.bgrDarkColor,
+            child: Column(children: [
               Container(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                child: CategoryButtons(onCategorySelected: _handleCategorySelected),
+                child: CategoryButtons(
+                    onCategorySelected: _handleCategorySelected),
               ),
-              widget.index == 0 ?
-                Expanded(
-                  child: readScripts(loadData.readExampleScripts(selectedCategoryValue), 'example')
-                )
-                : Expanded(
-                    child: Stack(
-                      children:[
-                        readScripts(loadData.readUserScripts(selectedCategoryValue), 'user'),
-                        Positioned(
+              widget.index == 0
+                  ? Expanded(
+                      child: readScripts(
+                          loadData.readExampleScripts(selectedCategoryValue),
+                          'example'))
+                  : Expanded(
+                      child: Stack(children: [
+                      readScripts(
+                          loadData.readUserScripts(selectedCategoryValue),
+                          'user'),
+                      Positioned(
                           bottom: 2,
                           left: MediaQuery.of(context).size.width * 0.05,
                           right: MediaQuery.of(context).size.width * 0.05,
-                          child: createUserScriptButton()
-                        )
-                    ])
-                  )                    
-          ])
-        )
-    );
+                          child: createUserScriptButton())
+                    ]))
+            ])));
   }
 }
