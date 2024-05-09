@@ -1,3 +1,6 @@
+import 'package:capstone/screen/authentication/controller/auth_controller.dart';
+import 'package:capstone/screen/authentication/setup_user.dart';
+import 'package:capstone/screen/authentication/social_login.dart';
 import 'package:capstone/screen/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -9,7 +12,9 @@ void main() async {
   await dotenv.load(fileName: '.env');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+  ).then((value) {
+    Get.put(AuthController());
+  });
   runApp(const MyApp());
 }
 
@@ -24,10 +29,18 @@ class MyApp extends StatelessWidget {
         fontFamily: 'KoddiUDOnGothic',
         scaffoldBackgroundColor: colors.bgrBrightColor
       ),
-      initialRoute: '/bottom_navigation',
+      initialRoute: '/login',
       getPages: [
         GetPage(
-          name: '/bottom_navigation', 
+          name: '/login', 
+          page: () => const SocialLogin()
+        ),
+        GetPage(
+          name: '/user', 
+          page: () => const SetupUser()
+        ),
+        GetPage(
+          name: '/bottom_nav', 
           page: () => const BottomNavBar()
         )
       ],

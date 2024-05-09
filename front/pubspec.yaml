@@ -38,12 +38,15 @@ dependencies:
   get: ^4.6.5
   cloud_firestore: ^4.15.8
   flutter_dotenv:
+  firebase_auth:
   firebase_core: ^2.27.0
   carousel_slider: ^4.2.1
   dots_indicator: ^3.0.0
   multiple_stream_builder: ^3.0.2
   fl_chart: ^0.67.0
   http: ^1.2.0
+  google_sign_in: ^6.2.1
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +73,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
+    - assets/icons/authentication/login/loro_logo.png
+    - assets/icons/authentication/login/google_icon.png
+    - assets/icons/authentication/login/tos_line.svg
+    - assets/icons/authentication/login/policy_line.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
