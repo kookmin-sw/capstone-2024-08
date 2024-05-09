@@ -22,17 +22,15 @@ class _RecordingSectionState extends State<RecordingSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
+    return Container(
+      width: MediaQuery.of(context).size.width / 1.2,
+      padding: EdgeInsets.all(20),
       child: showPlayer
-          ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: AudioPlayer(
-                source: audioPath!,
-                onDelete: () {
-                  setState(() => showPlayer = false);
-                },
-              ),
+          ? AudioPlayer(
+              source: audioPath!,
+              onDelete: () {
+                setState(() => showPlayer = false);
+              },
             )
           : Recorder(
               onStop: (path) {
@@ -43,6 +41,6 @@ class _RecordingSectionState extends State<RecordingSection> {
                 });
               },
             ),
-    ));
+    );
   }
 }

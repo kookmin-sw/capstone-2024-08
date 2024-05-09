@@ -1,3 +1,4 @@
+import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
@@ -43,22 +44,35 @@ class _GetUserVoiceState extends State<GetUserVoice> {
         child: Text(texts.getUserVoiceSubtitle));
   }
 
-  Widget exampleSentenceSection(String exampleSentence) {
+  Widget exampleSentenceSection(String exampleSentenceType) {
     return AnimatedSwitcher(
         duration: Duration(milliseconds: 500),
         child: Container(
-          key: ValueKey<String>(exampleSentence),
+          width: MediaQuery.of(context).size.width / 1.2,
+          key: ValueKey<String>(exampleSentenceType),
           padding: EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-            border: Border.all(color: colors.bgrDarkColor, width: 2.0),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Text(
-            // texts.getUserVoiceExampleSentences[exampleSentence],
-            '',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16.0),
-          ),
+              color: colors.themeWhiteColor,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3) // changes position of shadow
+                    ),
+              ]),
+          child: Column(children: [
+            Container(
+              child: Text(
+                texts.getUserVoiceExampleSentences[exampleSentenceType]!,
+                textAlign: TextAlign.start,
+                style: TextStyle(fontSize: 14.0),
+              ),
+              padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
+            ),
+            RecordingSection()
+          ]),
         ));
   }
 
@@ -80,7 +94,8 @@ class _GetUserVoiceState extends State<GetUserVoice> {
             color: colors.bgrBrightColor,
             child: Column(children: [
               progressBarSection(_currentProgressValue),
-              subTitleSection()
+              subTitleSection(),
+              exampleSentenceSection('long'),
             ])));
   }
 }

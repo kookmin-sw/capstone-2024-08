@@ -123,29 +123,37 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                _buildRecordStopControl(),
-                const SizedBox(width: 20),
-                _buildPauseResumeControl(),
-                const SizedBox(width: 20),
-                _buildText(),
-              ],
-            ),
-            if (_amplitude != null) ...[
-              const SizedBox(height: 40),
-              Text('Current: ${_amplitude?.current ?? 0.0}'),
-              Text('Max: ${_amplitude?.max ?? 0.0}'),
-            ],
+          children: <Widget>[
+            _buildRecordStopControl(),
+            _buildPauseResumeControl(),
+            _buildText(),
           ],
         ),
-      ),
+        if (_amplitude != null) ...[
+          const SizedBox(height: 30),
+          Text('Current: ${_amplitude?.current ?? 0.0}'),
+          Text('Max: ${_amplitude?.max ?? 0.0}'),
+          AnimatedContainer(
+            duration: Duration(milliseconds: 200),
+            curve: Curves.easeIn,
+            height: 50,
+            alignment: Alignment.center,
+            child: Container(
+              height:
+                  (_amplitude?.current ?? 0.0) / (_amplitude?.max ?? 0.0) * 40,
+              decoration: BoxDecoration(
+                color: colors.bgrDarkColor.withOpacity(0.7),
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
+        ],
+      ],
     );
   }
 
@@ -166,7 +174,6 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
       icon = const Icon(Icons.stop, color: colors.buttonColor, size: 35);
       color = colors.buttonColor.withOpacity(0.1);
     } else {
-      final theme = Theme.of(context);
       icon = const Icon(Icons.mic, color: colors.recordButtonColor, size: 35);
       color = colors.recordButtonColor.withOpacity(0.1);
     }
@@ -196,30 +203,32 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
       icon = const Icon(Icons.pause, color: colors.buttonColor, size: 35);
       color = colors.buttonColor.withOpacity(0.1);
     } else {
-      final theme = Theme.of(context);
       icon = const Icon(Icons.play_arrow, color: colors.buttonColor, size: 35);
-      color = theme.primaryColor.withOpacity(0.1);
+      color = colors.buttonColor.withOpacity(0.1);
     }
 
-    return ClipOval(
-      child: Material(
-        color: color,
-        child: InkWell(
-          child: SizedBox(width: 56, height: 56, child: icon),
-          onTap: () {
-            (_recordState == RecordState.pause) ? _resume() : _pause();
-          },
+    return Row(children: [
+      SizedBox(width: 20),
+      ClipOval(
+        child: Material(
+          color: color,
+          child: InkWell(
+            child: SizedBox(width: 56, height: 56, child: icon),
+            onTap: () {
+              (_recordState == RecordState.pause) ? _resume() : _pause();
+            },
+          ),
         ),
-      ),
-    );
+      )
+    ]);
   }
 
   Widget _buildText() {
     if (_recordState != RecordState.stop) {
-      return _buildTimer();
+      return Row(children: [const SizedBox(width: 20), _buildTimer()]);
     }
 
-    return const Text("Waiting to record");
+    return Container();
   }
 
   Widget _buildTimer() {
