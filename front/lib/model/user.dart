@@ -14,13 +14,7 @@ class UserModel {
       required this.lastAccessDate,
       required this.attendanceStreak,
       required this.voiceUrls,
-      required this.lastPracticeScript,
-      DocumentSnapshot<Map<String, dynamic>>? doc}) {
-    if (voiceUrls != null) {
-      Map<String, dynamic>? rawVoiceUrls = doc!['voice'];
-      voiceUrls = castMapOfStringString(rawVoiceUrls);
-    }
-  }
+      required this.lastPracticeScript});
 
   // Deserialize from Firestore document snapshot
   UserModel.fromDocument({required DocumentSnapshot<Map<String, dynamic>> doc})
@@ -28,13 +22,11 @@ class UserModel {
         character = doc.get('character'),
         lastAccessDate = doc.get('lastAccessDate'),
         attendanceStreak = doc.get('attendanceStreak'),
-        voiceUrls = doc.get('voice'),
-        lastPracticeScript = doc.get('lastPracticeScript') {
-    if (voiceUrls != null) {
-      Map<String, dynamic>? rawVoiceUrls = doc['voice'];
-      voiceUrls = castMapOfStringString(rawVoiceUrls);
-    }
-  }
+        voiceUrls = doc.data()!['voice'] == null
+            ? null
+            : (doc.data()!['voice'] as Map<String, dynamic>)
+                .cast<String, String>(),
+        lastPracticeScript = doc.get('lastPracticeScript');
 
   // Serialize to Firestore document data
   Map<String, dynamic> convertToDocument() {

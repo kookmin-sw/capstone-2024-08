@@ -25,7 +25,7 @@ void main() async {
 
   // auth_controller 생성 후 없어질 코드
   Get.put(UserController());
-
+  await Future.delayed(const Duration(seconds: 2));
   runApp(const MaterialApp(home: MyApp()));
 }
 
