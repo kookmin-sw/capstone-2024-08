@@ -78,29 +78,25 @@ Future<bool> showConfirmationDialog(BuildContext context, String type) async {
 
 
   Future<void> handleLogoutAction(BuildContext context) async {
-    //AuthController authController = AuthController.instance;
+    AuthController authController = AuthController.instance;
     bool confirmLogout = await showConfirmationDialog(context, 'logout');
-    print('*******************confirmLogout');
-    print(confirmLogout);
 
-    // if (confirmLogout) {
-    //   authController.logout();
-    // }
+    if (confirmLogout) {
+      authController.logout();
+    }
   }
 
   void handleDeleteAction(BuildContext context) async {
-    //AuthController authController = AuthController.instance;
+    AuthController authController = AuthController.instance;
     bool confirmDelete = await showConfirmationDialog(context, 'deleteUser');
-    print('*******************confirmDelete');
-    print(confirmDelete);
 
-    // if (confirmDelete) {
-    //   CollectionReference userInfo = FirebaseFirestore.instance.collection('user');
-    //   User? user = FirebaseAuth.instance.currentUser;
+    if (confirmDelete) {
+      CollectionReference userInfo = FirebaseFirestore.instance.collection('user');
+      User? user = FirebaseAuth.instance.currentUser;
       
-    //   if (user != null) {
-    //     userInfo.doc(user.uid).delete();
-    //     authController.deleteUser(); 
-    //   }
-    // }
+      if (user != null) {
+        userInfo.doc(user.uid).delete();
+        authController.deleteUser(); 
+      }
+    }
   }
