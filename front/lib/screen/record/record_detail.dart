@@ -1,6 +1,7 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
+import 'package:capstone/screen/record/prompt_precision_graph.dart';
 import 'package:capstone/screen/record/scrap_sentence_slider.dart';
 import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
@@ -18,7 +19,6 @@ class RecordDetail extends StatefulWidget {
 
   ScriptModel script;
   RecordModel? record;
-  final Color backgroundColor = colors.bgrBrightColor;
 
   @override
   State<RecordDetail> createState() => _RecordDetailState();
@@ -29,8 +29,8 @@ class _RecordDetailState extends State<RecordDetail> {
 
   @override
   void initState() {
-    super.initState();
     _checkScrapList();
+    super.initState();
   }
 
   void _checkScrapList() {
@@ -41,56 +41,39 @@ class _RecordDetailState extends State<RecordDetail> {
     }
   }
 
-  Text _buildCategory(String category){
+  Text _buildText(String text, double fontSize) {
     return Text(
-      category,
-      semanticsLabel: category,
+      text,
+      semanticsLabel: text,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-        fontSize: 12,
+      style: TextStyle(
+        fontSize: fontSize,
         fontWeight: FontWeight.w500,
         color: colors.textColor
       ),
     );
+  }
+
+  Text _buildCategory(String category){
+    return _buildText(category, 12);
   }
 
   Text _buildTitle(String title){
-    return Text(
-      title,
-      semanticsLabel: title,
-      textAlign: TextAlign.start,
-      style: const TextStyle(
-        fontSize: 15,
-        fontWeight: FontWeight.w500,
-        color: colors.textColor
-      ),
-    );
-  }
-
-  Text _notExistsScrapSentence() {
-    return const Text(
-      '스크랩한 문장이\n존재하지 않습니다.',
-      semanticsLabel: '스크랩한 문장이 존재하지 않습니다.',
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: 15,
-        fontWeight: FontWeight.w500,
-        color: colors.textColor
-      ),
-    );
+    return _buildText(title, 15);
   }
 
   Text _buildRecordItemTitle(String title) {
-    return Text(
-      title,
-      semanticsLabel: title,
-      textAlign: TextAlign.start,
-      style: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        color: colors.textColor
-      ),
-    );
+    return _buildText(title, 12);
+  }
+
+  Container _notExistsRecord(String item) {
+    var height = MediaQuery.of(context).size.height;
+    return Container(
+      padding: EdgeInsets.only(top: height * 0.1, bottom: height * 0.1),
+      child: Align(
+        alignment: Alignment.center,
+        child: _buildText(item, 14)
+    ));
   }
 
   @override
@@ -99,23 +82,29 @@ class _RecordDetailState extends State<RecordDetail> {
         appBar: basicAppBar(title: '기록'),
         body: Stack(
           children: [
-            Container(
-              color: widget.backgroundColor,
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildCategory(widget.script.category),
-                  const SizedBox(height: 12),
-                  _buildTitle(widget.script.title),
-                  const SizedBox(height: 20),
-                  _buildRecordItemTitle('스크랩한 문장 목록'),
-                  scrapSentenceList.isNotEmpty ?
-                    ScrapSentenceSlider(scrapSentenceList: scrapSentenceList)
-                    : _notExistsScrapSentence(),
-                  const SizedBox(height: 20),
-                  _buildRecordItemTitle('프롬프트 정확도 추이 그래프'),
-                ])),    
+            ListView(
+              children: [
+                Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildCategory(widget.script.category),
+                    const SizedBox(height: 12),
+                    _buildTitle(widget.script.title),
+                    const SizedBox(height: 20),
+                    _buildRecordItemTitle('스크랩한 문장 목록'),
+                    scrapSentenceList.isNotEmpty ?
+                      ScrapSentenceSlider(scrapSentenceList: scrapSentenceList)
+                      : _notExistsRecord('스크랩한 문장이 존재하지 않습니다.'),
+                    const SizedBox(height: 20),
+                    _buildRecordItemTitle('프롬프트 정확도 추이 그래프'),
+                    widget.record!.promptResult!.isNotEmpty ?
+                      PromptPrecisionGraph(promptResult: widget.record!.promptResult!)
+                      : _notExistsRecord('프롬프트 연습 기록이 존재하지 않습니다.')
+                  ])
+          )]),    
                 Positioned(
                   left: 0,
                   right: 0,

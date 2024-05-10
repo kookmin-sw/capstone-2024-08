@@ -2,6 +2,7 @@ import 'package:capstone/model/google_sign_in_api.dart';
 import 'package:capstone/screen/authentication/setup_user.dart';
 import 'package:capstone/screen/authentication/social_login.dart';
 import 'package:capstone/screen/bottom_navigation.dart';
+import 'package:capstone/screen/sign_up/controller/user_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -36,8 +37,8 @@ class AuthController extends GetxController {
       bool isUserSetUp = await checkIfUserSetUp(user.uid);
 
       if (isUserSetUp) {
-        //Get.put(UserController(), permanent: true);
-        //await Future.delayed(const Duration(seconds: 2));
+        Get.put(UserController(), permanent: true);
+        await Future.delayed(const Duration(seconds: 2));
         Get.offAll(() => const BottomNavBar());
       } else {
         Get.offAll(() => const SetupUser());

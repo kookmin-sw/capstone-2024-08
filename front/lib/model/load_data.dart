@@ -4,7 +4,33 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoadData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> readUser(
+      {required String uid}) async {
+    var userDocumentSnapshot =
+        await firestore.collection('user').doc(uid).get();
+    print("-----------");
+    print(userDocumentSnapshot);
+    return userDocumentSnapshot;
+  }
+
+  Future<ScriptModel?> readScriptByDocumentRef(
+      DocumentReference documentRef) async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> snapshot =
+          await documentRef.get() as DocumentSnapshot<Map<String, dynamic>>;
+
+      if (snapshot.exists) {
+        return ScriptModel.fromDocument(doc: snapshot);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error fetching script: $e');
+      return null;
+    }
+  }
+
   Stream<List<ScriptModel>> readExampleScripts(String? category) {
     if (category == '전체') {
       return firestore
