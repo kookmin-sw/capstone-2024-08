@@ -1,4 +1,8 @@
+import 'package:capstone/model/user.dart';
+import 'package:capstone/screen/authentication/controller/auth_controller.dart';
 import 'package:capstone/screen/bottom_navigation.dart';
+import 'package:capstone/screen/authentication/controller/user_controller.dart';
+import 'package:capstone/screen/authentication/get_user_voice.dart';
 import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/widget/utils/device_size.dart';
@@ -6,7 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:capstone/constants/color.dart' as colors;
-import 'package:capstone/constants/auth_icons.dart' as auth_icons;
+import 'package:capstone/constants/image.dart' as images;
 import 'package:get/get.dart';
 
 class SetupUser extends StatefulWidget {
@@ -18,11 +22,11 @@ class SetupUser extends StatefulWidget {
 
 class _SetupUserState extends State<SetupUser> {
   final TextEditingController _nickname = TextEditingController();
-  Image? _selectedCharacter = auth_icons.characters[0];
+  String? _selectedCharacter = images.characterForSetup[0];
   final _formKey = GlobalKey<FormState>();
   final User? user = FirebaseAuth.instance.currentUser;
 
-  void _handleCharacterSelected(Image character) {
+  void _handleCharacterSelected(String character) {
     setState(() {
       _selectedCharacter = character;
     });
@@ -81,7 +85,7 @@ class _SetupUserState extends State<SetupUser> {
       width: getDeviceWidth(context) * 0.5,
       height: getDeviceHeight(context) * 0.2,
       decoration: _boxDecoration(10),
-      child: _selectedCharacter, 
+      child: Image.asset(_selectedCharacter!), 
     );
   }
 
@@ -99,9 +103,11 @@ class _SetupUserState extends State<SetupUser> {
               children: [
                 for (int idx = 2 * paragraph; idx < 2 * paragraph + 2; idx++)
                   IconButton(
-                    icon: auth_icons.characters[idx],
-                    iconSize: getDeviceWidth(context) * 0.3,
-                    onPressed: () => _handleCharacterSelected(auth_icons.characters[idx]),
+                    icon: Image.asset(
+                      images.characterForSetup[idx]!,
+                      width: getDeviceWidth(context) * 0.3,
+                    ),
+                    onPressed: () => _handleCharacterSelected(images.characterForSetup[idx]!),
                   )
           ])
       ]) 
@@ -125,16 +131,39 @@ class _SetupUserState extends State<SetupUser> {
               const SizedBox(height: 20),
               Container(
                 width: getDeviceWidth(context) * 0.9,
-                child: fullyRoundedRectangleButton(colors.blockColor, '완료', () {
+                child: fullyRoundedRectangleButton(colors.blockColor, '완료', () async {
                   if (_formKey.currentState!.validate()) {
+                    UserModel userData = UserModel(
+                      nickname: _nickname.text,
+                      character: _selectedCharacter!.split('/')[3].split('.')[0],
+                      attendanceStreak: null,
+                      lastAccessDate: null,
+                      lastPracticeScript: null,
+                      voiceUrls: {
+                        'long': "",
+                        'middle': "",
+                        'short': ""
+                      }
+                    );
+                    //Get.to(() => GetUserVoice(userData: userData));
+
+                    //GetUserVoice 완성 시, 아래 코드 삭제
                     FirebaseFirestore.instance
                     .collection('user')
                     .doc(user!.uid)
                     .set({
                       'nickname': _nickname.text,
-                      'character': "unicorn"
+                      'character': _selectedCharacter!.split('/')[3].split('.')[0],
+                      'attendanceStreak': 5,
+                      'lastAccessDate': Timestamp.now(),
+                      'lastPracticeScript': null,
+                      'voice': {
+                        'long': "",
+                        'middle': "",
+                        'short': ""
+                      }
                     });
-                    Get.to(() => const BottomNavBar());
+                    AuthController.instance.handleUserInfoCompletion();
                   }
                 })
               )
