@@ -1,3 +1,4 @@
+import 'package:capstone/model/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
@@ -7,7 +8,12 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class GetUserVoice extends StatefulWidget {
-  const GetUserVoice({super.key});
+  GetUserVoice({
+    super.key,
+    required this.userData
+  });
+
+  UserModel userData;
 
   @override
   State<GetUserVoice> createState() => _GetUserVoiceState();

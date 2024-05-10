@@ -3,7 +3,7 @@ import 'package:capstone/widget/authentication/login/social_login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/text.dart' as text;
 import 'package:capstone/constants/color.dart' as colors;
-import 'package:capstone/constants/auth_icons.dart' as auth_icons;
+import 'package:capstone/constants/image.dart' as images;
 import 'package:capstone/screen/authentication/controller/auth_controller.dart';
 
 class SocialLogin extends StatelessWidget {
@@ -21,14 +21,14 @@ class SocialLogin extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Colors.transparent,
         ),
-        child: auth_icons.loroLogo,
+        child: images.loroLogo,
       );
     }
 
     Widget buildButtons(BuildContext context) {
       return SocialLoginButton(
         color: Colors.white,
-        icon: auth_icons.googleIcon,
+        icon: images.googleIcon,
         text: text.googleLoginText,
         onPressed: (context) async {
           await AuthController.instance.loginWithGoogle(context);
@@ -42,13 +42,13 @@ class SocialLogin extends StatelessWidget {
           PolicyLink(
             text: text.termsOfService,
             policyPath: text.usingPolicy,
-            icon: auth_icons.tosLine,
+            icon: images.tosLine,
           ),
           SizedBox(height: deviceHeight * 0.01),
           PolicyLink(
             text: text.privacyPolicy,
             policyPath: text.personalData,
-            icon: auth_icons.policyLine,
+            icon: images.policyLine,
           ),
         ],
       );

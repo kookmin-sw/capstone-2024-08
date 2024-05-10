@@ -2,7 +2,7 @@ import 'package:capstone/model/google_sign_in_api.dart';
 import 'package:capstone/screen/authentication/setup_user.dart';
 import 'package:capstone/screen/authentication/social_login.dart';
 import 'package:capstone/screen/bottom_navigation.dart';
-import 'package:capstone/screen/sign_up/controller/user_controller.dart';
+import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -106,8 +106,6 @@ class AuthController extends GetxController {
       UserCredential? userCredential = await _signInWithCredential(() async {
         var user = await GoogleSignInApi.login();
         var googleAuth = await user!.authentication;
-        print('******************');
-        print(googleAuth);
         return GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
@@ -125,8 +123,6 @@ class AuthController extends GetxController {
   Future<UserCredential> _signInWithCredential(
       Future<AuthCredential> Function() getCredential) async {
     var credential = await getCredential();
-    print('******************');
-    print(credential);
     return FirebaseAuth.instance.signInWithCredential(credential);
   }
 
