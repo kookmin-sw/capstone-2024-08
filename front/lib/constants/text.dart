@@ -18,6 +18,12 @@ Map<String, String> getUserVoiceExampleSentences = {
       ' 최근 국내 정치와 경제에 대한 관심이 높아지고 있는 가운데, 정책의 변화와 함께 시민들의 관심도 고조되고 있습니다. 특히 정치적으로는 국회에서 논의되고 있는 법안들이 시민들의 이목을 사로잡고 있으며, 정치인들의 발언과 행동 역시 화제를 모으고 있습니다. 경제적으로는 최근의 경기 호조와 함께 산업 부문에서의 변화와 혁신에 관한 보도들이 주목받고 있습니다. '
 };
 
+Map<String, double> getUserProgressValues = {
+  'short': 5,
+  'middle': 50,
+  'long': 100
+};
+
 Map<String, String> warningMessage = {
   'category': '카테고리는 비워둘 수 없습니다. \n카테고리를 선택해주세요.'
 };

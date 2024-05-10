@@ -16,10 +16,22 @@ class GetUserVoice extends StatefulWidget {
 
 class _GetUserVoiceState extends State<GetUserVoice> {
   double _currentProgressValue = 5;
+  String _currentState = 'short';
 
-  nextButtonPressed(double value) {
+  getNextState(String currentState) {
+    if (currentState == 'short') {
+      return 'middle';
+    } else if (currentState == 'middle') {
+      return 'long';
+    } else {
+      return 'end';
+    }
+  }
+
+  nextButtonPressed(String currentState) {
     setState(() {
-      _currentProgressValue = value;
+      _currentState = getNextState(currentState);
+      _currentProgressValue = texts.getUserProgressValues[_currentState]!;
     });
   }
 
@@ -81,7 +93,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
         width: MediaQuery.of(context).size.width / 1.2,
         margin: const EdgeInsets.all(10),
         child: ElevatedButton(
-          onPressed: () => nextButtonPressed(50),
+          onPressed: () => nextButtonPressed(_currentState),
           style: ButtonStyle(
               elevation: MaterialStateProperty.all<double>(5),
               shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -123,7 +135,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
                   Column(children: [
                     progressBarSection(_currentProgressValue),
                     subTitleSection(),
-                    exampleSentenceSection('long'),
+                    exampleSentenceSection(_currentState),
                   ]),
                   Padding(
                       padding: const EdgeInsets.all(20), child: nextButton())
