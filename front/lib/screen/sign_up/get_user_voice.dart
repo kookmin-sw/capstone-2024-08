@@ -76,6 +76,31 @@ class _GetUserVoiceState extends State<GetUserVoice> {
         ));
   }
 
+  Widget nextButton() {
+    return Container(
+        width: MediaQuery.of(context).size.width / 1.2,
+        margin: const EdgeInsets.all(10),
+        child: ElevatedButton(
+          onPressed: () => nextButtonPressed(50),
+          style: ButtonStyle(
+              elevation: MaterialStateProperty.all<double>(5),
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  colors.bgrDarkColor)), // 값을 변경하도록 수정
+          child: const Text(
+            '다음',
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: colors.themeWhiteColor),
+          ), // 버튼 텍스트 추가
+        ));
+  }
+
   AppBar getUserVoiceAppBar() {
     return AppBar(
       backgroundColor: colors.bgrDarkColor,
@@ -92,10 +117,16 @@ class _GetUserVoiceState extends State<GetUserVoice> {
         appBar: getUserVoiceAppBar(),
         body: Container(
             color: colors.bgrBrightColor,
-            child: Column(children: [
-              progressBarSection(_currentProgressValue),
-              subTitleSection(),
-              exampleSentenceSection('long'),
-            ])));
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(children: [
+                    progressBarSection(_currentProgressValue),
+                    subTitleSection(),
+                    exampleSentenceSection('long'),
+                  ]),
+                  Padding(
+                      padding: const EdgeInsets.all(20), child: nextButton())
+                ])));
   }
 }
