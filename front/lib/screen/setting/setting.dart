@@ -24,11 +24,11 @@ class Setting extends StatelessWidget {
                 if (item.containsKey('action')) {
                   item['action'](context);
                 }
-                if (item.containsKey('page')) {
+                if (item.containsKey('route')) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => item['page'],
+                      builder: (context) => item['route'],
                     ),
                   );
                 }
