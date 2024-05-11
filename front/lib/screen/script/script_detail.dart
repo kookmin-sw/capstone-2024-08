@@ -8,6 +8,8 @@ import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/widget/outlined_rounded_rectangle_button.dart';
 import 'package:capstone/screen/script/select_practice.dart';
+import 'package:capstone/widget/utils/device_size.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +29,25 @@ class ScriptDetail extends StatefulWidget {
 
 class _ScriptDetailState extends State<ScriptDetail> {
   LoadData loadData = LoadData();
+  RecordModel? record;
+  bool recordExists = false;
+
+  @override
+  void initState() {
+    super.initState();
+    checkRecordExists();
+  }
+
+  Future<void> checkRecordExists() async {
+    DocumentSnapshot<Map<String, dynamic>> recordDocument = await loadData.readRecordDocument(widget.scriptType, widget.script.id!);
+
+    if (recordDocument.exists) {
+      setState(() {
+        record = RecordModel.fromDocument(doc: recordDocument);
+        recordExists = true;
+      });
+    }
+  }
 
   Text _buildCategory(String category){
     return Text(
@@ -56,8 +77,6 @@ class _ScriptDetailState extends State<ScriptDetail> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-
     return Scaffold(
         appBar: basicAppBar(backgroundColor: colors.bgrBrightColor, title: ''),
         body: Stack(
@@ -72,7 +91,7 @@ class _ScriptDetailState extends State<ScriptDetail> {
                       const SizedBox(height: 20),
                       Column(
                         children: widget.script.content.map((sentence) 
-                          => scriptContentBlock(sentence, width)).toList()),
+                          => scriptContentBlock(sentence, getDeviceWidth(context))).toList()),
                       const SizedBox(height: 30),
                   ])
                 ),     
@@ -94,20 +113,13 @@ class _ScriptDetailState extends State<ScriptDetail> {
                       ]),
                     child: Container(
                       padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: false ?
-                      fullyRoundedRectangleButton(colors.textColor, '연습하기', () {
-                        Get.to(() => SelectPractice(
-                          script: widget.script,
-                          tapCloseButton: () { Get.back(); },
-                        ));
-                      })
-                      : Row(
+                      child: recordExists
+                      ? Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              width: width * 0.4,
+                              width: getDeviceWidth(context) * 0.4,
                               child: outlinedRoundedRectangleButton('기록보기', () async {
-                                RecordModel record = await loadData.readRecordDocument(widget.scriptType, widget.script.id!);
                                 Get.to(() => RecordDetail(
                                   script: widget.script, 
                                   record: record
@@ -115,7 +127,7 @@ class _ScriptDetailState extends State<ScriptDetail> {
                               })
                             ),
                             Container(
-                              width: width * 0.4,
+                              width: getDeviceWidth(context) * 0.4,
                               child: fullyRoundedRectangleButton(colors.buttonColor, '연습하기', () {
                                 Get.to(() => SelectPractice(
                                   script: widget.script,
@@ -124,6 +136,12 @@ class _ScriptDetailState extends State<ScriptDetail> {
                               })
                             ),
                         ])
+                      : fullyRoundedRectangleButton(colors.textColor, '연습하기', () {
+                        Get.to(() => SelectPractice(
+                          script: widget.script,
+                          tapCloseButton: () { Get.back(); },
+                        ));
+                      })
                     )
                 ))
           ])

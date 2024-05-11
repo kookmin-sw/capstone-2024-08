@@ -3,8 +3,8 @@ from feedback import levenshtein, text
 from fastapi.responses import JSONResponse
 import tempfile
 from feedback import stt
-from create_script import gpt
-from create_script.schemas.gpt_sch import GptRequestSch, GptResponseSch
+from create_script.user_script import create_user_script 
+from create_script.user_script.schemas.gpt_sch import GptRequestSch, GptResponseSch
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -18,7 +18,7 @@ app.add_middleware(
 
 @app.post("/script", response_model= GptResponseSch)
 async def create_script(req: GptRequestSch):
-    script = await gpt.create_script_by_gpt(req)
+    script = await create_user_script.create_script_by_gpt(req)
     return {"script": script}
 
 

@@ -110,9 +110,7 @@ class LoadData {
               .toList());
   }
 
-  Future<RecordModel> readRecordDocument(String scriptType, String documentId) async {
-    DocumentSnapshot<Map<String, dynamic>> recordDocument = 
-      await firestore.collection('user').doc('mg').collection('${scriptType}_practice').doc(documentId).get();
-    return RecordModel.fromDocument(doc: recordDocument);
+  Future<DocumentSnapshot<Map<String, dynamic>>> readRecordDocument(String scriptType, String documentId) async {
+    return await firestore.collection('user').doc('mg').collection('${scriptType}_practice').doc(documentId).get();
   }
 }
