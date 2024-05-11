@@ -4,6 +4,7 @@ import 'package:capstone/screen/authentication/controller/auth_controller.dart';
 import 'package:capstone/screen/bottom_navigation.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/model/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
@@ -63,7 +64,12 @@ class _GetUserVoiceState extends State<GetUserVoice> {
       debugPrint('After: ${widget.userData.voiceUrls}');
       debugPrint(
           "이거 해야함 -> AuthController.instance.handleUserInfoCompletion()");
-      saveData.saveUserInfo(userData: widget.userData);
+      saveData.saveUserInfo(
+          nickname: widget.userData.nickname!,
+          character: widget.userData.character!,
+          lastAccessDate: Timestamp.now(),
+          voiceUrls: widget.userData.voiceUrls,
+          attendanceStreak: 1);
       AuthController.instance.handleUserInfoCompletion();
     }
   }

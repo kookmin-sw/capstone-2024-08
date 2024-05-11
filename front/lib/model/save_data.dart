@@ -17,17 +17,24 @@ class SaveData {
         .add(script.convertToDocument());
   }
 
-  Future<void> saveUserInfo({required UserModel userData}) async {
+  Future<void> saveUserInfo({
+    required String nickname,
+    required String character,
+    Timestamp? lastAccessDate,
+    int? attendanceStreak,
+    Map<String, String>? voiceUrls,
+    DocumentReference? lastPracticeScript,
+  }) async {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
       await FirebaseFirestore.instance.collection('user').doc(user.uid).set({
-        'nickname': userData.nickname,
-        'character': userData.character,
-        'attendanceStreak': 1,
-        'lastAccessDate': Timestamp.now(),
-        'lastPracticeScript': null,
-        'voiceUrls': userData.voiceUrls
+        'nickname': nickname,
+        'character': character,
+        'attendanceStreak': attendanceStreak,
+        'lastAccessDate': lastAccessDate,
+        'lastPracticeScript': lastPracticeScript,
+        'voiceUrls': voiceUrls
       });
     }
   }
@@ -49,5 +56,12 @@ class SaveData {
     }
 
     return urls;
+  }
+
+  updateAttendance(String uid, int attendanceStreak) async {
+    await firestore.collection('user').doc(uid).set({
+      'lastAccessDate': Timestamp.now(),
+      'attendanceStreak': attendanceStreak
+    });
   }
 }
