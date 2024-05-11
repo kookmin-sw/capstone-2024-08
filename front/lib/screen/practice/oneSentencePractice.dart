@@ -1,30 +1,30 @@
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/record/record_detail.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/widget/practice/pratice_app_bar.dart';
-import 'package:capstone/widget/script/script_content_block.dart';
+import 'package:capstone/widget/progress_bar_section.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/widget/outlined_rounded_rectangle_button.dart';
 import 'package:capstone/screen/script/select_practice.dart';
 import 'package:capstone/widget/utils/device_size.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OneSentencePratice extends StatefulWidget {
-  const OneSentencePratice(
+  OneSentencePratice(
       {Key? key,
       required this.script,
       required this.scriptType,
-      required this.recordExists})
+      required this.record})
       : super(key: key);
 
   final ScriptModel script;
   final String scriptType;
-  final bool recordExists;
+  RecordModel? record;
 
   @override
   State<OneSentencePratice> createState() => _OneSentencePraticeState();
@@ -32,10 +32,8 @@ class OneSentencePratice extends StatefulWidget {
 
 class _OneSentencePraticeState extends State<OneSentencePratice> {
   LoadData loadData = LoadData();
-  RecordModel? record;
   int _currentSentenceIndex = 0;
   int? sentenceLength;
-  String buttonText = '연습하기';
 
   double _currentProgressValue = 5;
   bool showPlayer = false;
@@ -45,7 +43,6 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   void initState() {
     super.initState();
     showPlayer = false;
-    buttonText = widget.recordExists ? '다시 연습하기' : '연습하기';
     sentenceLength = widget.script.content.length;
     _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
   }
@@ -70,12 +67,36 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     );
   }
 
-  Widget exampleSentenceSection(String exampleSentenceType) {
+  nextButtonPressed(int _currentSentenceIndex) async {
+    setState(() {
+      // widget.record.voiceUrls?[currentState] = audioPath!;
+      showPlayer = false;
+      _currentSentenceIndex += 1;
+      _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
+    });
+
+    // if (_currentState == 'end') {
+    //   debugPrint('Before: ${widget.userData.voiceUrls}');
+    //   await uploadWavFilesToStorage();
+    //   debugPrint('After: ${widget.userData.voiceUrls}');
+    //   debugPrint(
+    //       "이거 해야함 -> AuthController.instance.handleUserInfoCompletion()");
+    //   await saveData.saveUserInfo(
+    //       nickname: widget.userData.nickname!,
+    //       character: widget.userData.character!,
+    //       lastAccessDate: Timestamp.now(),
+    //       voiceUrls: widget.userData.voiceUrls,
+    //       attendanceStreak: 1);
+    //   AuthController.instance.handleUserInfoCompletion();
+    // }
+  }
+
+  Widget sentenceSection(int sentenceIndex) {
     return AnimatedSwitcher(
         duration: Duration(milliseconds: 300),
         child: Container(
           width: MediaQuery.of(context).size.width / 1.2,
-          key: ValueKey<String>(exampleSentenceType),
+          key: ValueKey<int>(sentenceIndex),
           padding: EdgeInsets.all(20.0),
           decoration: BoxDecoration(
               color: colors.themeWhiteColor,
@@ -91,7 +112,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
           child: Column(children: [
             Container(
               child: Text(
-                texts.getUserVoiceExampleSentences[exampleSentenceType]!,
+                widget.script.content[sentenceIndex]!,
                 textAlign: TextAlign.start,
                 style: TextStyle(fontSize: 14.0),
               ),
@@ -117,31 +138,31 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         margin: const EdgeInsets.all(10),
         child: ElevatedButton(
           onPressed: () {
-            debugPrint('녹음 완료 상태 : $showPlayer');
-            if (showPlayer) {
-              nextButtonPressed(_currentState);
-            } else {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text(
-                      '잠시만요!',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    content: Text(texts.warningMessage['getUserVoice']!),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(texts.okButtonText),
-                      ),
-                    ],
-                  );
-                },
-              );
-            }
+            // debugPrint('녹음 완료 상태 : $showPlayer');
+            // if (showPlayer) {
+            nextButtonPressed(_currentSentenceIndex);
+            // } else {
+            //   showDialog(
+            //     context: context,
+            //     builder: (BuildContext context) {
+            //       return AlertDialog(
+            //         title: const Text(
+            //           '잠시만요!',
+            //           style: TextStyle(fontWeight: FontWeight.bold),
+            //         ),
+            //         content: Text(texts.warningMessage['getUserVoice']!),
+            //         actions: <Widget>[
+            //           TextButton(
+            //             onPressed: () {
+            //               Navigator.of(context).pop();
+            //             },
+            //             child: Text(texts.okButtonText),
+            //           ),
+            //         ],
+            //       );
+            //     },
+            //   );
+            // }
           },
           style: ButtonStyle(
               elevation: MaterialStateProperty.all<double>(5),
@@ -175,7 +196,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         body: Stack(children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-              child: ListView(children: [
+              child: Column(children: [
                 _buildCategory(widget.script.category),
                 const SizedBox(height: 15),
                 _buildTitle(widget.script.title),
@@ -187,9 +208,8 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                         children: [
                           Column(children: [
                             progressBarSection(_currentProgressValue),
-                            subTitleSection(),
-                            _currentState != 'end'
-                                ? sentenceSection(_currentState)
+                            _currentSentenceIndex != sentenceLength
+                                ? sentenceSection(_currentSentenceIndex)
                                 : Container(),
                           ]),
                           Padding(
@@ -197,55 +217,6 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                               child: nextButton())
                         ]))
               ])),
-          Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                  padding: const EdgeInsets.all(5),
-                  decoration:
-                      const BoxDecoration(color: colors.blockColor, boxShadow: [
-                    BoxShadow(
-                      color: colors.buttonSideColor,
-                      blurRadius: 5,
-                      spreadRadius: 5,
-                    )
-                  ]),
-                  child: Container(
-                      padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: recordExists
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                  Container(
-                                      width: getDeviceWidth(context) * 0.4,
-                                      child: outlinedRoundedRectangleButton(
-                                          '기록보기', () async {
-                                        Get.to(() => RecordDetail(
-                                            script: widget.script,
-                                            record: record));
-                                      })),
-                                  Container(
-                                      width: getDeviceWidth(context) * 0.4,
-                                      child: fullyRoundedRectangleButton(
-                                          colors.buttonColor, '연습하기', () {
-                                        Get.to(() => SelectPractice(
-                                              script: widget.script,
-                                              tapCloseButton: () {
-                                                Get.back();
-                                              },
-                                            ));
-                                      })),
-                                ])
-                          : fullyRoundedRectangleButton(
-                              colors.textColor, '연습하기', () {
-                              Get.to(() => SelectPractice(
-                                    script: widget.script,
-                                    tapCloseButton: () {
-                                      Get.back();
-                                    },
-                                  ));
-                            }))))
         ]));
   }
 }

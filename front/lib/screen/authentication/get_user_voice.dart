@@ -2,10 +2,10 @@ import 'package:capstone/model/save_data.dart';
 import 'package:capstone/screen/authentication/controller/auth_controller.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/model/user.dart';
+import 'package:capstone/widget/progress_bar_section.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:flutter/widgets.dart';
@@ -69,22 +69,6 @@ class _GetUserVoiceState extends State<GetUserVoice> {
           attendanceStreak: 1);
       AuthController.instance.handleUserInfoCompletion();
     }
-  }
-
-  Widget progressBarSection(double currentValue) {
-    return Container(
-        padding: const EdgeInsets.fromLTRB(15, 15, 20, 20),
-        color: colors.bgrBrightColor,
-        child: FAProgressBar(
-          currentValue: currentValue,
-          animatedDuration: Duration(milliseconds: 500),
-          maxValue: 100,
-          backgroundColor: colors.bgrBrightColor,
-          progressColor: colors.bgrDarkColor,
-          borderRadius: BorderRadius.circular(20),
-          size: 20,
-          displayText: '%',
-        ));
   }
 
   Widget subTitleSection() {

@@ -12,7 +12,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class AdjustUserScript extends StatefulWidget {
   const AdjustUserScript({
     Key? key,
@@ -30,85 +29,73 @@ class AdjustUserScript extends StatefulWidget {
 class _AdjustUserScriptState extends State<AdjustUserScript> {
   SaveData saveData = SaveData();
 
-  Text _buildCategory(String category){
+  Text _buildCategory(String category) {
     return Text(
       category,
       semanticsLabel: category,
       textAlign: TextAlign.start,
       style: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        color: colors.textColor
-      ),
+          fontSize: 12, fontWeight: FontWeight.w500, color: colors.textColor),
     );
   }
 
-  Text _buildTitle(String title){
+  Text _buildTitle(String title) {
     return Text(
       title,
       semanticsLabel: title,
       textAlign: TextAlign.start,
       style: const TextStyle(
-        fontSize: 15,
-        fontWeight: FontWeight.w500,
-        color: colors.textColor
-      ),
+          fontSize: 15, fontWeight: FontWeight.w500, color: colors.textColor),
     );
   }
- 
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: basicAppBar(title: '나만의 대본 만들기'),
-      body: Stack(
-              children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                  child: ListView(
-                    children: [
-                      _buildCategory(widget.category),
-                      const SizedBox(height: 15),
-                      _buildTitle(widget.title),
-                      const SizedBox(height: 20),
-                      GetBuilder<UserScriptContentController>(
-                        builder: (controller){
-                          return scriptContentAdjustBlock(controller, width);
-                        }
-                      ),
-                      const SizedBox(height: 30),
-                  ])
-                ),
-                bottomButtons(
-                  width, 
-                  outlinedRoundedRectangleButton('저장 후 나가기', () {
-                      saveUserScript();                    
-                      Get.close(2);
-                  }), 
-                  fullyRoundedRectangleButton(colors.buttonColor, '연습하기', () {
-                      ScriptModel userScript = saveUserScript();
-                      Get.to(() => SelectPractice(
-                        script: userScript,
-                        tapCloseButton: () { Get.close(3); },
-                      ));
-                  })
-              )]
-      ));
+        appBar: basicAppBar(title: '나만의 대본 만들기'),
+        body: Stack(children: [
+          Container(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+              child: ListView(children: [
+                _buildCategory(widget.category),
+                const SizedBox(height: 15),
+                _buildTitle(widget.title),
+                const SizedBox(height: 20),
+                GetBuilder<UserScriptContentController>(builder: (controller) {
+                  return scriptContentAdjustBlock(controller, width);
+                }),
+                const SizedBox(height: 30),
+              ])),
+          bottomButtons(
+              width,
+              outlinedRoundedRectangleButton('저장 후 나가기', () {
+                saveUserScript();
+                Get.close(2);
+              }),
+              fullyRoundedRectangleButton(colors.buttonColor, '연습하기', () {
+                ScriptModel userScript = saveUserScript();
+                // Get.to(() => SelectPractice(
+                //   script: userScript,
+                //   tapCloseButton: () { Get.close(3); },
+                // ));
+              }))
+        ]));
   }
 
-  ScriptModel saveUserScript(){
-    List<TextEditingController> controllers = Get.find<UserScriptContentController>().textEditingControllerList!;
+  ScriptModel saveUserScript() {
+    List<TextEditingController> controllers =
+        Get.find<UserScriptContentController>().textEditingControllerList!;
     List<String> sentenceList = [
-      for(TextEditingController controller in controllers)
-        controller.text
+      for (TextEditingController controller in controllers) controller.text
     ];
     ScriptModel userScript = ScriptModel(
-        //uid: user!.uid,
-        title: widget.title,
-        category: widget.category,
-        content: sentenceList,
-        createdAt: Timestamp.now(),
+      //uid: user!.uid,
+      title: widget.title,
+      category: widget.category,
+      content: sentenceList,
+      createdAt: Timestamp.now(),
     );
 
     saveData.addUserScript('mg', userScript);
