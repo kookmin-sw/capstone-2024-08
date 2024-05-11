@@ -17,6 +17,14 @@ class GetUserVoice extends StatefulWidget {
 class _GetUserVoiceState extends State<GetUserVoice> {
   double _currentProgressValue = 5;
   String _currentState = 'short';
+  bool showPlayer = false;
+  String? audioPath;
+
+  @override
+  void initState() {
+    showPlayer = false;
+    super.initState();
+  }
 
   getNextState(String currentState) {
     if (currentState == 'short') {
@@ -29,10 +37,38 @@ class _GetUserVoiceState extends State<GetUserVoice> {
   }
 
   nextButtonPressed(String currentState) {
-    setState(() {
-      _currentState = getNextState(currentState);
-      _currentProgressValue = texts.getUserProgressValues[_currentState]!;
-    });
+    debugPrint('$showPlayer');
+
+    if (showPlayer) {
+      setState(() {
+        // wav 파일 저장하는 코드 필요
+        _currentState = getNextState(currentState);
+        _currentProgressValue = texts.getUserProgressValues[_currentState]!;
+        debugPrint("#########################");
+        debugPrint(audioPath);
+      });
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              '잠시만요!',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            content: Text(texts.warningMessage['getUserVoice']!),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('확인'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   Widget progressBarSection(double currentValue) {
@@ -83,7 +119,16 @@ class _GetUserVoiceState extends State<GetUserVoice> {
               ),
               padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
             ),
-            RecordingSection()
+            RecordingSection(
+              showPlayer: showPlayer,
+              audioPath: '',
+              onDone: (bool isShowPlayer, String? path) {
+                setState(() {
+                  showPlayer = isShowPlayer;
+                  audioPath = path;
+                });
+              },
+            )
           ]),
         ));
   }
