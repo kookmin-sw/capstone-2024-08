@@ -19,7 +19,7 @@ class UserController extends GetxController {
   void onInit() async {
     super.onInit();
     DocumentSnapshot<Map<String, dynamic>> document =
-        await loadData.readUser(uid: 'anzxwon');
+        await loadData.readUser(uid: 'anzxwon'); // user!.uid
     userModel = UserModel.fromDocument(doc: document);
     userModelReady.value = true;
   }
