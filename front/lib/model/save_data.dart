@@ -70,4 +70,52 @@ class SaveData {
         .doc(uid)
         .update({'lastPracticeScript': documentRef});
   }
+
+  scrap(
+      String scriptType, String scriptId, String uid, int sentenceIndex) async {
+    try {
+      DocumentReference scriptRef = FirebaseFirestore.instance
+          .collection('user')
+          .doc(uid)
+          .collection('${scriptType}_practice')
+          .doc(scriptId);
+
+      await FirebaseFirestore.instance.runTransaction((transaction) async {
+        DocumentSnapshot scriptDoc = await transaction.get(scriptRef);
+
+        if (scriptDoc.exists) {
+          List<int> scrapSentence =
+              List.from(scriptDoc.get('scrapSentence') ?? []);
+          scrapSentence.add(sentenceIndex);
+          transaction.update(scriptRef, {'scrapSentence': scrapSentence});
+        }
+      });
+    } catch (e) {
+      print('Error adding value to scrap sentence: $e');
+    }
+  }
+
+  cancelScrap(
+      String scriptType, String scriptId, String uid, int sentenceIndex) async {
+    try {
+      DocumentReference scriptRef = FirebaseFirestore.instance
+          .collection('user')
+          .doc(uid)
+          .collection('${scriptType}_practice')
+          .doc(scriptId);
+
+      await FirebaseFirestore.instance.runTransaction((transaction) async {
+        DocumentSnapshot scriptDoc = await transaction.get(scriptRef);
+
+        if (scriptDoc.exists) {
+          List<int> scrapSentence =
+              List.from(scriptDoc.get('scrapSentence') ?? []);
+          scrapSentence.remove(sentenceIndex);
+          transaction.update(scriptRef, {'scrapSentence': scrapSentence});
+        }
+      });
+    } catch (e) {
+      print('Error adding value to scrap sentence: $e');
+    }
+  }
 }
