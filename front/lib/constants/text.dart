@@ -10,6 +10,10 @@ String getUserVoiceAppBarTitle = "음성 정보 수집";
 
 String getUserVoiceSubtitle = '사용자의 음성을 기반으로 더 정확한 피드백을 제공합니다.';
 
+String okButtonText = "확인";
+
+String nextButtonText = "다음";
+
 Map<String, String> getUserVoiceExampleSentences = {
   'short': '오늘도 강한 볕이 내리쬐는 하루였습니다.',
   'middle':

@@ -52,7 +52,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(
+            title: const Text(
               '잠시만요!',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -62,7 +62,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('확인'),
+                child: Text(texts.okButtonText),
               ),
             ],
           );
@@ -148,9 +148,9 @@ class _GetUserVoiceState extends State<GetUserVoice> {
               ),
               backgroundColor: MaterialStateProperty.all<Color>(
                   colors.bgrDarkColor)), // 값을 변경하도록 수정
-          child: const Text(
-            '다음',
-            style: TextStyle(
+          child: Text(
+            texts.nextButtonText,
+            style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: colors.themeWhiteColor),
