@@ -59,9 +59,16 @@ class SaveData {
   }
 
   updateAttendance(String uid, int attendanceStreak) async {
-    await firestore.collection('user').doc(uid).set({
+    await firestore.collection('user').doc(uid).update({
       'lastAccessDate': Timestamp.now(),
       'attendanceStreak': attendanceStreak
     });
+  }
+
+  updateLastPracticeScript(String uid, DocumentReference documentRef) async {
+    await firestore
+        .collection('user')
+        .doc(uid)
+        .update({'lastPracticeScript': documentRef});
   }
 }
