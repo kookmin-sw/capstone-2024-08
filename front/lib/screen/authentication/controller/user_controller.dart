@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/save_data.dart';
 import 'package:capstone/model/user.dart';
@@ -13,6 +15,7 @@ class UserController extends GetxController {
   final RxBool userModelReady = false.obs;
 
   late UserModel userModel;
+  late Map<String, File?> wavFiles;
 
   @override
   void onInit() async {
@@ -21,6 +24,7 @@ class UserController extends GetxController {
         await loadData.readUser(uid: user!.uid);
     userModel = UserModel.fromDocument(doc: document);
     userModelReady.value = true;
+    await downloadAllWavFiles();
   }
 
   void updateAttendance() {
@@ -42,5 +46,14 @@ class UserController extends GetxController {
     return (currentDate.year == lastDate.year &&
         currentDate.month == lastDate.month &&
         currentDate.day - lastDate.day == 1);
+  }
+
+  Future<void> downloadAllWavFiles() async {
+    if (userModel.voiceUrls != null) {
+      for (MapEntry<String, String> element in userModel.voiceUrls!.entries) {
+        wavFiles[element.key] =
+            await loadData.downloadWavFile(element.value, element.key);
+      }
+    }
   }
 }

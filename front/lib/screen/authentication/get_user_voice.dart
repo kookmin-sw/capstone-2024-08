@@ -1,7 +1,5 @@
-import 'dart:io';
 import 'package:capstone/model/save_data.dart';
 import 'package:capstone/screen/authentication/controller/auth_controller.dart';
-import 'package:capstone/screen/bottom_navigation.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,7 +9,6 @@ import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.da
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 
 class GetUserVoice extends StatefulWidget {
   final UserModel userData;
