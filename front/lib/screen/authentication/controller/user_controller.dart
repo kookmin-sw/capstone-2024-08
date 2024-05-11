@@ -7,9 +7,7 @@ import 'package:get/get.dart';
 
 class UserController extends GetxController {
   final User? user = FirebaseAuth.instance.currentUser;
-
   final LoadData loadData = LoadData();
-  final SaveData saveData = SaveData();
 
   final RxBool userModelReady = false.obs;
 
@@ -19,7 +17,7 @@ class UserController extends GetxController {
   void onInit() async {
     super.onInit();
     DocumentSnapshot<Map<String, dynamic>> document =
-        await loadData.readUser(uid: 'anzxwon'); // user!.uid
+        await loadData.readUser(uid: user!.uid);
     userModel = UserModel.fromDocument(doc: document);
     userModelReady.value = true;
   }

@@ -1,4 +1,7 @@
+import 'dart:io';
+import 'package:capstone/model/save_data.dart';
 import 'package:capstone/screen/authentication/controller/auth_controller.dart';
+import 'package:capstone/screen/bottom_navigation.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/model/user.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,15 +13,16 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class GetUserVoice extends StatefulWidget {
-  GetUserVoice({super.key, required this.userData});
-
-  UserModel userData;
+  final UserModel userData;
+  const GetUserVoice({super.key, required this.userData});
 
   @override
   State<GetUserVoice> createState() => _GetUserVoiceState();
 }
 
 class _GetUserVoiceState extends State<GetUserVoice> {
+  final SaveData saveData = SaveData();
+
   double _currentProgressValue = 5;
   String _currentState = 'short';
   bool showPlayer = false;
@@ -40,20 +44,28 @@ class _GetUserVoiceState extends State<GetUserVoice> {
     }
   }
 
-  nextButtonPressed(String currentState) {
+  uploadWavFilesToStorage() async {
+    widget.userData.voiceUrls = await saveData.uploadWavFiles(
+        widget.userData.id!, widget.userData.voiceUrls!);
+  }
+
+  nextButtonPressed(String currentState) async {
     setState(() {
       widget.userData.voiceUrls?[currentState] = audioPath!;
       showPlayer = false;
-
-      if (currentState == 'long') {
-        debugPrint(
-            "이거 해야함 -> AuthController.instance.handleUserInfoCompletion()");
-        // AuthController.instance.handleUserInfoCompletion();
-      } else {
-        _currentState = getNextState(currentState);
-        _currentProgressValue = texts.getUserProgressValues[_currentState]!;
-      }
+      _currentState = getNextState(currentState);
+      _currentProgressValue = texts.getUserProgressValues[_currentState]!;
     });
+
+    if (_currentState == 'end') {
+      debugPrint('Before: ${widget.userData.voiceUrls}');
+      await uploadWavFilesToStorage();
+      debugPrint('After: ${widget.userData.voiceUrls}');
+      debugPrint(
+          "이거 해야함 -> AuthController.instance.handleUserInfoCompletion()");
+      saveData.saveUserInfo(userData: widget.userData);
+      AuthController.instance.handleUserInfoCompletion();
+    }
   }
 
   Widget progressBarSection(double currentValue) {
@@ -62,6 +74,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
         color: colors.bgrBrightColor,
         child: FAProgressBar(
           currentValue: currentValue,
+          animatedDuration: Duration(milliseconds: 500),
           maxValue: 100,
           backgroundColor: colors.bgrBrightColor,
           progressColor: colors.bgrDarkColor,
@@ -79,7 +92,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
 
   Widget exampleSentenceSection(String exampleSentenceType) {
     return AnimatedSwitcher(
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 300),
         child: Container(
           width: MediaQuery.of(context).size.width / 1.2,
           key: ValueKey<String>(exampleSentenceType),

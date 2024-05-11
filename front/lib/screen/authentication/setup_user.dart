@@ -126,6 +126,7 @@ class _SetupUserState extends State<SetupUser> {
                 fullyRoundedRectangleButton(colors.blockColor, '완료', () async {
               if (_formKey.currentState!.validate()) {
                 UserModel userData = UserModel(
+                    id: user!.uid,
                     nickname: _nickname.text,
                     character: _selectedCharacter!.split('/')[3].split('.')[0],
                     attendanceStreak: null,
@@ -133,24 +134,6 @@ class _SetupUserState extends State<SetupUser> {
                     lastPracticeScript: null,
                     voiceUrls: {'long': "", 'middle': "", 'short': ""});
                 Get.to(() => GetUserVoice(userData: userData));
-
-                //GetUserVoice 완성 시, 아래 코드 삭제
-                // FirebaseFirestore.instance
-                // .collection('user')
-                // .doc(user!.uid)
-                // .set({
-                //   'nickname': _nickname.text,
-                //   'character': _selectedCharacter!.split('/')[3].split('.')[0],
-                //   'attendanceStreak': 1,
-                //   'lastAccessDate': Timestamp.now(),
-                //   'lastPracticeScript': null,
-                //   'voice': {
-                //     'long': "",
-                //     'middle': "",
-                //     'short': ""
-                //   }
-                // });
-                AuthController.instance.handleUserInfoCompletion();
               }
             }))
       ]))),

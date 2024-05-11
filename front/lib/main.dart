@@ -25,23 +25,24 @@ void main() async {
   getPermission();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+    // );
 
-  // auth_controller 생성 후 없어질 코드
-  Get.put(UserController());
-  await Future.delayed(const Duration(seconds: 2));
-  UserModel _userData = UserModel(
-      nickname: 'test',
-      character: 'chick',
-      attendanceStreak: 1,
-      lastAccessDate: Timestamp.now(),
-      lastPracticeScript: null,
-      voiceUrls: {'long': "", 'middle': "", 'short': ""});
-  runApp(MaterialApp(home: GetUserVoice(userData: _userData)));
-  // ).then((value) async {
-  //   Get.put(AuthController());
-  // });
-  // runApp(const MyApp());
+    // // auth_controller 생성 후 없어질 코드
+    // Get.put(UserController());
+    // await Future.delayed(const Duration(seconds: 2));
+    // UserModel _userData = UserModel(
+    //     id: '1FahONJkvdXFCEfsFaGpT9uSnr82',
+    //     nickname: 'test',
+    //     character: 'chick',
+    //     attendanceStreak: 1,
+    //     lastAccessDate: Timestamp.now(),
+    //     lastPracticeScript: null,
+    //     voiceUrls: {'long': "", 'middle': "", 'short': ""});
+    // runApp(MaterialApp(home: GetUserVoice(userData: _userData)));
+  ).then((value) async {
+    Get.put(AuthController());
+  });
+  runApp(const MyApp());
 }
 
 Future<bool> getPermission() async {
