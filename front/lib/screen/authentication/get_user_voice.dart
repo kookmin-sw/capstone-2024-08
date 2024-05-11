@@ -42,7 +42,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
     }
   }
 
-  uploadWavFilesToStorage() async {
+  Future<void> uploadWavFilesToStorage() async {
     widget.userData.voiceUrls = await saveData.uploadWavFiles(
         widget.userData.id!, widget.userData.voiceUrls!);
   }
@@ -61,7 +61,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
       debugPrint('After: ${widget.userData.voiceUrls}');
       debugPrint(
           "이거 해야함 -> AuthController.instance.handleUserInfoCompletion()");
-      saveData.saveUserInfo(
+      await saveData.saveUserInfo(
           nickname: widget.userData.nickname!,
           character: widget.userData.character!,
           lastAccessDate: Timestamp.now(),
@@ -207,7 +207,9 @@ class _GetUserVoiceState extends State<GetUserVoice> {
                   Column(children: [
                     progressBarSection(_currentProgressValue),
                     subTitleSection(),
-                    exampleSentenceSection(_currentState),
+                    _currentState != 'end'
+                        ? exampleSentenceSection(_currentState)
+                        : Container(),
                   ]),
                   Padding(
                       padding: const EdgeInsets.all(20), child: nextButton())
