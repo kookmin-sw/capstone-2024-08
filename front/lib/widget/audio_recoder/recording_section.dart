@@ -51,7 +51,7 @@ class _RecordingSectionState extends State<RecordingSection> {
                 setState(() {
                   audioPath = path;
                   showPlayer = true;
-                  widget.onDone(showPlayer, path);
+                  widget.onDone(showPlayer, audioPath);
                 });
               },
             ),

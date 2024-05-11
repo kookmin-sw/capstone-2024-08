@@ -1,3 +1,4 @@
+import 'package:capstone/screen/authentication/controller/auth_controller.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/model/user.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +30,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
     super.initState();
   }
 
-  getNextState(String currentState) {
+  String getNextState(String currentState) {
     if (currentState == 'short') {
       return 'middle';
     } else if (currentState == 'middle') {
@@ -40,38 +41,19 @@ class _GetUserVoiceState extends State<GetUserVoice> {
   }
 
   nextButtonPressed(String currentState) {
-    debugPrint('$showPlayer');
+    setState(() {
+      widget.userData.voiceUrls?[currentState] = audioPath!;
+      showPlayer = false;
 
-    if (showPlayer) {
-      setState(() {
-        // wav 파일 저장하는 코드 필요
+      if (currentState == 'long') {
+        debugPrint(
+            "이거 해야함 -> AuthController.instance.handleUserInfoCompletion()");
+        // AuthController.instance.handleUserInfoCompletion();
+      } else {
         _currentState = getNextState(currentState);
         _currentProgressValue = texts.getUserProgressValues[_currentState]!;
-        debugPrint("#########################");
-        debugPrint(audioPath);
-      });
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text(
-              '잠시만요!',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            content: Text(texts.warningMessage['getUserVoice']!),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(texts.okButtonText),
-              ),
-            ],
-          );
-        },
-      );
-    }
+      }
+    });
   }
 
   Widget progressBarSection(double currentValue) {
@@ -141,7 +123,33 @@ class _GetUserVoiceState extends State<GetUserVoice> {
         width: MediaQuery.of(context).size.width / 1.2,
         margin: const EdgeInsets.all(10),
         child: ElevatedButton(
-          onPressed: () => nextButtonPressed(_currentState),
+          onPressed: () {
+            debugPrint('녹음 완료 상태 : $showPlayer');
+            if (showPlayer) {
+              nextButtonPressed(_currentState);
+            } else {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text(
+                      '잠시만요!',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    content: Text(texts.warningMessage['getUserVoice']!),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(texts.okButtonText),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+          },
           style: ButtonStyle(
               elevation: MaterialStateProperty.all<double>(5),
               shape: MaterialStateProperty.all<OutlinedBorder>(
