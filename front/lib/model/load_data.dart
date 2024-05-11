@@ -1,9 +1,11 @@
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoadData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final User? user = FirebaseAuth.instance.currentUser;
 
   Future<DocumentSnapshot<Map<String, dynamic>>> readUser(
       {required String uid}) async {
@@ -56,7 +58,7 @@ class LoadData {
     if (category == '전체') {
       return firestore
           .collection('user_script')
-          .doc('mg')
+          .doc(user!.uid)
           .collection('script')
           .orderBy('createdAt', descending: true)
           .snapshots()
@@ -66,7 +68,7 @@ class LoadData {
     } else {
       return firestore
           .collection('user_script')
-          .doc('mg')
+          .doc(user!.uid)
           .collection('script')
           .where('category', isEqualTo: category)
           .orderBy('createdAt', descending: true)
@@ -90,7 +92,7 @@ class LoadData {
   Stream<List<ScriptModel>> searchUserScript(String? query) {
     return firestore
         .collection('user_script')
-        .doc('mg')
+        .doc(user!.uid)
         .collection('script')
         .snapshots()
         .map((snapshot) => snapshot.docs
@@ -102,7 +104,7 @@ class LoadData {
   Stream<List<RecordModel>> readUserPracticeRecord(String scriptType) {
     return firestore
           .collection('user')
-          .doc('mg')
+          .doc(user!.uid)
           .collection('${scriptType}_practice')
           .snapshots()
           .map((snapshot) => snapshot.docs
@@ -111,6 +113,6 @@ class LoadData {
   }
 
   Future<DocumentSnapshot<Map<String, dynamic>>> readRecordDocument(String scriptType, String documentId) async {
-    return await firestore.collection('user').doc('mg').collection('${scriptType}_practice').doc(documentId).get();
+    return await firestore.collection('user').doc(user!.uid).collection('${scriptType}_practice').doc(documentId).get();
   }
 }

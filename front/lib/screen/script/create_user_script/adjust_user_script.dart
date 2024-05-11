@@ -104,14 +104,13 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
         controller.text
     ];
     ScriptModel userScript = ScriptModel(
-        //uid: user!.uid,
         title: widget.title,
         category: widget.category,
         content: sentenceList,
         createdAt: Timestamp.now(),
     );
 
-    saveData.addUserScript('mg', userScript);
+    saveData.addUserScript(userScript);
 
     Get.delete<UserScriptContentController>();
 
