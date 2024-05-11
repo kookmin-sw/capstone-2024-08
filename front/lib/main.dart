@@ -1,13 +1,15 @@
+import 'package:capstone/screen/authentication/controller/auth_controller.dart';
+import 'package:capstone/screen/authentication/setup_user.dart';
+import 'package:capstone/screen/authentication/social_login.dart';
 import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/screen/bottom_navigation.dart';
-import 'package:capstone/screen/sign_up/audio_player.dart';
-import 'package:capstone/screen/sign_up/controller/user_controller.dart';
-import 'package:capstone/screen/sign_up/get_user_voice.dart';
+import 'package:capstone/screen/authentication/audio_player.dart';
+import 'package:capstone/screen/authentication/controller/user_controller.dart';
+import 'package:capstone/screen/authentication/get_user_voice.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -21,12 +23,10 @@ void main() async {
   getPermission();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  // auth_controller 생성 후 없어질 코드
-  Get.put(UserController());
-  await Future.delayed(const Duration(seconds: 2));
-  runApp(const MaterialApp(home: GetUserVoice()));
+  ).then((value) async {
+    Get.put(AuthController());
+  });
+  runApp(const MyApp());
 }
 
 Future<bool> getPermission() async {
@@ -123,14 +123,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: fonts.font,
           scaffoldBackgroundColor: colors.bgrBrightColor),
-      builder: (context, child) =>
-          ResponsiveBreakpoints.builder(child: child!, breakpoints: [
-        const Breakpoint(start: 0, end: 450, name: MOBILE),
-        const Breakpoint(start: 451, end: 800, name: TABLET),
-      ]),
-      initialRoute: '/bottom_navigation',
+      initialRoute: '/login',
       getPages: [
-        GetPage(name: '/bottom_navigation', page: () => const BottomNavBar())
+        GetPage(name: '/login', page: () => const SocialLogin()),
+        GetPage(name: '/user', page: () => const SetupUser()),
+        GetPage(name: '/bottom_nav', page: () => const BottomNavBar())
       ],
       debugShowCheckedModeBanner: false,
     );

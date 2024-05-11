@@ -1,6 +1,5 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/screen/home/home.dart';
-import 'package:capstone/screen/my_record/my_record.dart';
 import 'package:capstone/screen/record/record_taps.dart';
 import 'package:capstone/screen/script/script_taps.dart';
 import 'package:flutter/material.dart';

@@ -3,7 +3,7 @@ import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/setting/setting.dart';
-import 'package:capstone/screen/sign_up/controller/user_controller.dart';
+import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:capstone/widget/home/attendance_streak.dart';
 import 'package:capstone/widget/home/character_section.dart';
 import 'package:capstone/widget/script/script_list_tile.dart';

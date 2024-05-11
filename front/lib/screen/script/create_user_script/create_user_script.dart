@@ -45,15 +45,18 @@ class _CreateUserScriptState extends State<CreateUserScript> {
       });
   }
 
-  void checkValidCategory(String? category) {
+  bool checkValidCategory(String? category) {
     if (category == null) {
       showDialog(
         context: context,
-        builder: (context) {
-          return const WarningDialog(
-              warningObject: 'category');
-        });
+        builder: (BuildContext context) =>
+          const WarningDialog(
+            warningObject: 'category'
+          )
+      );
+      return false;
     }
+    return true;
   }
 
   @override
@@ -71,16 +74,16 @@ class _CreateUserScriptState extends State<CreateUserScript> {
           bottomButtons(
             MediaQuery.of(context).size.width, 
             outlinedRoundedRectangleButton('AI로 생성하기', () {
-              checkValidCategory(_selectedCategory);
+              bool validCategory = checkValidCategory(_selectedCategory);
               
-              if (_titleKey.currentState!.validate()) {
+              if (_titleKey.currentState!.validate() & validCategory) {
                 createScriptByGpt(_title.text, _selectedCategory!);
               }
             }), 
             fullyRoundedRectangleButton(colors.buttonColor, '완료', () { 
-              checkValidCategory(_selectedCategory);
+              bool validCategory = checkValidCategory(_selectedCategory);
 
-              if (_titleKey.currentState!.validate() & _contentKey.currentState!.validate()) {
+              if (_titleKey.currentState!.validate() & validCategory & _contentKey.currentState!.validate()) {
                 List<String>? sentenceList = splitContent(_content.text);
                 Get.put(UserScriptContentController(sentenceList));
 

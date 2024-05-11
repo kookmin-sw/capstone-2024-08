@@ -18,8 +18,10 @@ ElevatedButton fullyRoundedRectangleButton(Color backgroundColor, String buttonT
     buttonText,
     semanticsLabel: buttonText,
     textAlign: TextAlign.center,
-    style: const TextStyle(
-      color: colors.blockColor,
+    style: TextStyle(
+      color: backgroundColor != colors.blockColor 
+        ? colors.blockColor
+        : colors.textColor,
       fontSize: 13,
       fontWeight: FontWeight.w700,
     ),
