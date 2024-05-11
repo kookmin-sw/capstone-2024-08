@@ -4,7 +4,16 @@ import 'package:capstone/widget/audio_player.dart';
 import 'package:capstone/widget/audio_recoder/audio_recorder.dart';
 
 class RecordingSection extends StatefulWidget {
-  const RecordingSection({super.key});
+  final bool showPlayer;
+  final String? audioPath;
+  final void Function(bool isShowPlayer, String? path) onDone;
+
+  const RecordingSection({
+    Key? key,
+    required this.showPlayer,
+    required this.audioPath,
+    required this.onDone,
+  }) : super(key: key);
 
   @override
   State<RecordingSection> createState() => _RecordingSectionState();
@@ -22,17 +31,19 @@ class _RecordingSectionState extends State<RecordingSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
+    return Container(
+      width: MediaQuery.of(context).size.width / 1.2,
+      padding: EdgeInsets.all(20),
       child: showPlayer
-          ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: AudioPlayer(
-                source: audioPath!,
-                onDelete: () {
-                  setState(() => showPlayer = false);
-                },
-              ),
+          ? AudioPlayer(
+              source: audioPath!,
+              onDelete: () {
+                setState(() {
+                  showPlayer = false;
+                  audioPath = null;
+                  widget.onDone(showPlayer, audioPath);
+                });
+              },
             )
           : Recorder(
               onStop: (path) {
@@ -40,9 +51,10 @@ class _RecordingSectionState extends State<RecordingSection> {
                 setState(() {
                   audioPath = path;
                   showPlayer = true;
+                  widget.onDone(showPlayer, audioPath);
                 });
               },
             ),
-    ));
+    );
   }
 }
