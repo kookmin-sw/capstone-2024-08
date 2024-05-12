@@ -1,14 +1,11 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
-import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/setting/setting.dart';
 import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:capstone/widget/home/attendance_streak.dart';
 import 'package:capstone/widget/home/character_section.dart';
-import 'package:capstone/widget/script/script_list_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

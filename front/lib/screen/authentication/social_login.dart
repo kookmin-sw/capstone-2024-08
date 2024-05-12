@@ -52,7 +52,6 @@ class SocialLogin extends StatelessWidget {
       );
     }
 
-
     Widget buildScaffoldBody(BuildContext context) {
       return Container(
         color: colors.bgrDarkColor,

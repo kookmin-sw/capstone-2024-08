@@ -3,10 +3,6 @@ import 'package:capstone/screen/authentication/setup_user.dart';
 import 'package:capstone/screen/authentication/social_login.dart';
 import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/screen/bottom_navigation.dart';
-import 'package:capstone/screen/authentication/audio_player.dart';
-import 'package:capstone/screen/authentication/controller/user_controller.dart';
-import 'package:capstone/screen/authentication/get_user_voice.dart';
-import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -121,23 +117,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Capstone',
       theme: ThemeData(
-        fontFamily: fonts.font,
-        scaffoldBackgroundColor: colors.bgrBrightColor
-      ),
+          fontFamily: fonts.font,
+          scaffoldBackgroundColor: colors.bgrBrightColor),
       initialRoute: '/login',
       getPages: [
-        GetPage(
-          name: '/login', 
-          page: () => const SocialLogin()
-        ),
-        GetPage(
-          name: '/user', 
-          page: () => const SetupUser()
-        ),
-        GetPage(
-          name: '/bottom_nav', 
-          page: () => const BottomNavBar()
-        )
+        GetPage(name: '/login', page: () => const SocialLogin()),
+        GetPage(name: '/user', page: () => const SetupUser()),
+        GetPage(name: '/bottom_nav', page: () => const BottomNavBar())
       ],
       debugShowCheckedModeBanner: false,
     );
