@@ -1,3 +1,4 @@
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 
@@ -21,8 +22,8 @@ class _ContentSectionState extends State<ContentSection> {
     return Form(
       key: widget.formKey,
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.4,
+        width: getDeviceWidth(context),
+        height: getDeviceHeight(context) * 0.4,
         margin: const EdgeInsets.fromLTRB(30, 10, 30, 30),
         decoration: BoxDecoration(
           color: colors.blockColor,

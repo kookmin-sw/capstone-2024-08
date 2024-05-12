@@ -9,6 +9,7 @@ import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/bottom_buttons.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/widget/outlined_rounded_rectangle_button.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:capstone/widget/warning_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,7 +73,7 @@ class _CreateUserScriptState extends State<CreateUserScript> {
               ContentSection(contentController: _content, formKey: _contentKey)
           ]),
           bottomButtons(
-            MediaQuery.of(context).size.width, 
+            getDeviceWidth(context), 
             outlinedRoundedRectangleButton('AI로 생성하기', () {
               bool validCategory = checkValidCategory(_selectedCategory);
               

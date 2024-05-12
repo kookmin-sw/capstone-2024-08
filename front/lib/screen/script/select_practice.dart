@@ -1,4 +1,5 @@
 import 'package:capstone/model/script.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:flutter/services.dart';
@@ -17,8 +18,8 @@ class SelectPractice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        width: getDeviceWidth(context),
+        height: getDeviceHeight(context),
         color: colors.selectPracticebgrColor,
         child: Column(
           children: [
@@ -29,7 +30,7 @@ class SelectPractice extends StatelessWidget {
                 onPressed: () { tapCloseButton(); }, 
               )
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.3),
+            SizedBox(height: getDeviceHeight(context) * 0.3),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -58,8 +59,8 @@ Text notice(){
 
 Container practiceButton(BuildContext context, String buttonText, Function pressedFunc) {
   return Container(
-    width: MediaQuery.of(context).size.width * 0.8,
-    height: MediaQuery.of(context).size.height * 0.08,
+    width: getDeviceWidth(context) * 0.8,
+    height: getDeviceHeight(context) * 0.08,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
           backgroundColor: colors.blockColor,

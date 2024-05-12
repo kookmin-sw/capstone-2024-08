@@ -8,6 +8,7 @@ import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/widget/outlined_rounded_rectangle_button.dart';
 import 'package:capstone/widget/script/script_content_adjust_block.dart';
 import 'package:capstone/screen/script/select_practice.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,8 +59,6 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
  
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: basicAppBar(title: '나만의 대본 만들기'),
       body: Stack(
@@ -74,14 +73,14 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
                       const SizedBox(height: 20),
                       GetBuilder<UserScriptContentController>(
                         builder: (controller){
-                          return scriptContentAdjustBlock(controller, width);
+                          return scriptContentAdjustBlock(controller, getDeviceWidth(context));
                         }
                       ),
                       const SizedBox(height: 30),
                   ])
                 ),
                 bottomButtons(
-                  width, 
+                  getDeviceWidth(context), 
                   outlinedRoundedRectangleButton('저장 후 나가기', () {
                       saveUserScript();                    
                       Get.close(2);

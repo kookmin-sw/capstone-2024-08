@@ -1,5 +1,6 @@
 import 'package:capstone/screen/authentication/controller/auth_controller.dart';
 import 'package:capstone/widget/basic_app_bar.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:capstone/widget/warning_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,8 +35,8 @@ class Setting extends StatelessWidget {
                 }
               },
               child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.1,
+                width: getDeviceWidth(context),
+                height: getDeviceHeight(context) * 0.1,
                 margin: const EdgeInsets.only(bottom: 20),
                 decoration: BoxDecoration(
                   color: colors.blockColor,

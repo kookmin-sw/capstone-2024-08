@@ -1,5 +1,6 @@
 import 'package:capstone/widget/authentication/login/policy_link.dart';
 import 'package:capstone/widget/authentication/login/social_login_button.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/text.dart' as text;
 import 'package:capstone/constants/color.dart' as colors;
@@ -11,13 +12,10 @@ class SocialLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var deviceWidth = MediaQuery.of(context).size.width;
-    var deviceHeight = MediaQuery.of(context).size.height;
-
     Widget buildLogo() {
       return Container(
-        width: deviceWidth * 0.5,
-        height: deviceHeight * 0.38,
+        width: getDeviceWidth(context) * 0.5,
+        height: getDeviceHeight(context) * 0.38,
         decoration: const BoxDecoration(
           color: Colors.transparent,
         ),
@@ -44,7 +42,7 @@ class SocialLogin extends StatelessWidget {
             policyPath: text.usingPolicy,
             icon: images.tosLine,
           ),
-          SizedBox(height: deviceHeight * 0.01),
+          SizedBox(height: getDeviceHeight(context) * 0.01),
           PolicyLink(
             text: text.privacyPolicy,
             policyPath: text.personalData,
@@ -63,9 +61,9 @@ class SocialLogin extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             buildLogo(),
-            SizedBox(height: deviceHeight * 0.08),
+            SizedBox(height: getDeviceHeight(context) * 0.08),
             buildButtons(context),
-            SizedBox(height: deviceHeight * 0.05),
+            SizedBox(height: getDeviceHeight(context) * 0.05),
             buildPolicyLinks()
           ],
         ),
