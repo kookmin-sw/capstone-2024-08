@@ -43,7 +43,9 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     showPlayer = false;
     sentenceLength = widget.script.content.length;
     _currentSentenceIndex = 0;
-    _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
+    _currentProgressValue = (_currentSentenceIndex == 0)
+        ? 5
+        : (100 * _currentSentenceIndex / sentenceLength!);
     scrapSentences = widget.record == null ? [] : widget.record!.scrapSentence;
     super.initState();
   }

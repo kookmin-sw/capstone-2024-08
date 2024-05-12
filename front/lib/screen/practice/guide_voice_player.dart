@@ -95,8 +95,8 @@ class _GuideVoicePlayerState extends State<GuideVoicePlayer> {
       // 멀티파트 리퀘스트 생성
       var request = http.MultipartRequest('POST', url);
 
-      // 텍스트 필드 추가
-      request.fields['text'] = text;
+      // // 텍스트 필드 추가
+      // request.fields['text'] = text;
 
       // WAV 파일 추가
       var wavFile = File(currentSentencePracticeWavFilePath);
@@ -108,7 +108,7 @@ class _GuideVoicePlayerState extends State<GuideVoicePlayer> {
       var wavStream = http.ByteStream(wavFile.openRead());
       var length = await wavFile.length();
       var multipartFile = http.MultipartFile(
-        'wavs',
+        'user_wav',
         wavStream,
         length,
         filename: 'currentSentencePracticeWavFile.wav', // 파일 이름 지정
@@ -122,9 +122,10 @@ class _GuideVoicePlayerState extends State<GuideVoicePlayer> {
       if (response.statusCode == 200) {
         // 서버에서 받은 응답 파싱
         var responseData = await response.stream.bytesToString();
+        var jsonData = jsonDecode(responseData);
 
         // 응답 데이터를 정수로 변환하여 반환
-        return int.tryParse(responseData);
+        return jsonData['similarity_percentage'];
       } else {
         print('서버 요청에 실패했습니다. 상태 코드: ${response.statusCode}');
         return null;
@@ -150,7 +151,7 @@ Future<int?> getVoicesSimilarity(
     var request = http.MultipartRequest('POST', url);
 
     // 텍스트 필드 추가
-    request.fields['text'] = text;
+    request.fields['guide_trans'] = text;
 
     // WAV 파일 추가
     var wavFile = File(currentSentencePracticeWavFilePath);
@@ -162,7 +163,7 @@ Future<int?> getVoicesSimilarity(
     var wavStream = http.ByteStream(wavFile.openRead());
     var length = await wavFile.length();
     var multipartFile = http.MultipartFile(
-      'wavs',
+      'user_wav',
       wavStream,
       length,
       filename: 'currentSentencePracticeWavFile.wav', // 파일 이름 지정
@@ -176,9 +177,12 @@ Future<int?> getVoicesSimilarity(
     if (response.statusCode == 200) {
       // 서버에서 받은 응답 파싱
       var responseData = await response.stream.bytesToString();
+      var jsonData = jsonDecode(responseData);
+
+      print(jsonData);
 
       // 응답 데이터를 정수로 변환하여 반환
-      return int.tryParse(responseData);
+      return jsonData['similarity_percentage'] as int;
     } else {
       print('서버 요청에 실패했습니다. 상태 코드: ${response.statusCode}');
       return null;
