@@ -168,7 +168,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                 ),
               ),
               backgroundColor: MaterialStateProperty.all<Color>(
-                  colors.bgrDarkColor)), // 값을 변경하도록 수정
+                  colors.buttonColor)), // 값을 변경하도록 수정
           child: Text(
             texts.nextButtonText,
             style: const TextStyle(
