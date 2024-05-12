@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 class GuideVoicePlayer extends StatefulWidget {
   GuideVoicePlayer({Key? key, required this.text}) : super(key: key);
-  String text;
+  final String text;
 
   @override
   State<GuideVoicePlayer> createState() => _GuideVoicePlayerState();
@@ -31,14 +31,21 @@ class _GuideVoicePlayerState extends State<GuideVoicePlayer> {
     // 텍스트 필드 추가
     request.fields['text'] = widget.text;
 
-    // WAV 파일 추가
-    var wavStream = http.ByteStream(wavFile.openRead());
-    var length = await wavFile.length();
-    var multipartFiles =
-        http.MultipartFile('wavs', wavStream, length, filename: 'audio.wav');
-
-    // WAV 파일을 리퀘스트에 추가
-    request.files.add(multipartFile);
+    // WAV 파일들 추가
+    for (var entry in wavFiles.entries) {
+      var wavFile = entry.value;
+      if (wavFile != null) {
+        var wavStream = http.ByteStream(wavFile.openRead());
+        var length = await wavFile.length();
+        var multipartFile = http.MultipartFile(
+          'wavs',
+          wavStream,
+          length,
+          filename: '${entry.key}.wav', // 파일 이름 지정
+        );
+        request.files.add(multipartFile);
+      }
+    }
 
     // 리퀘스트 보내기
     var response = await request.send();
