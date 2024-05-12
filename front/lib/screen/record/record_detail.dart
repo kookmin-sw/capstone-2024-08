@@ -9,7 +9,6 @@ import 'package:capstone/screen/script/select_practice.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class RecordDetail extends StatefulWidget {
   RecordDetail({
     Key? key,
@@ -34,9 +33,11 @@ class _RecordDetailState extends State<RecordDetail> {
   }
 
   void _checkScrapList() {
-    for(int idx=0; idx<widget.script.content.length; idx++){
-      if(widget.record!.scrapSentence.contains(idx)) {
-        scrapSentenceList.add(widget.script.content[idx]);
+    for (int idx = 0; idx < widget.script.content.length; idx++) {
+      if (widget.record!.scrapSentence != null) {
+        if (widget.record!.scrapSentence!.contains(idx)) {
+          scrapSentenceList.add(widget.script.content[idx]);
+        }
       }
     }
   }
@@ -47,18 +48,17 @@ class _RecordDetailState extends State<RecordDetail> {
       semanticsLabel: text,
       textAlign: TextAlign.start,
       style: TextStyle(
-        fontSize: fontSize,
-        fontWeight: FontWeight.w500,
-        color: colors.textColor
-      ),
+          fontSize: fontSize,
+          fontWeight: FontWeight.w500,
+          color: colors.textColor),
     );
   }
 
-  Text _buildCategory(String category){
+  Text _buildCategory(String category) {
     return _buildText(category, 12);
   }
 
-  Text _buildTitle(String title){
+  Text _buildTitle(String title) {
     return _buildText(title, 15);
   }
 
@@ -69,69 +69,62 @@ class _RecordDetailState extends State<RecordDetail> {
   Container _notExistsRecord(String item) {
     var height = MediaQuery.of(context).size.height;
     return Container(
-      padding: EdgeInsets.only(top: height * 0.1, bottom: height * 0.1),
-      child: Align(
-        alignment: Alignment.center,
-        child: _buildText(item, 14)
-    ));
+        padding: EdgeInsets.only(top: height * 0.1, bottom: height * 0.1),
+        child: Align(alignment: Alignment.center, child: _buildText(item, 14)));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: basicAppBar(title: '기록'),
-        body: Stack(
-          children: [
-            ListView(
-              children: [
-                Container(
+        body: Stack(children: [
+          ListView(children: [
+            Container(
                 width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.all(20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildCategory(widget.script.category),
-                    const SizedBox(height: 12),
-                    _buildTitle(widget.script.title),
-                    const SizedBox(height: 20),
-                    _buildRecordItemTitle('스크랩한 문장 목록'),
-                    scrapSentenceList.isNotEmpty ?
-                      ScrapSentenceSlider(scrapSentenceList: scrapSentenceList)
-                      : _notExistsRecord('스크랩한 문장이 존재하지 않습니다.'),
-                    const SizedBox(height: 20),
-                    _buildRecordItemTitle('프롬프트 정확도 추이 그래프'),
-                    widget.record!.promptResult!.isNotEmpty ?
-                      PromptPrecisionGraph(promptResult: widget.record!.promptResult!)
-                      : _notExistsRecord('프롬프트 연습 기록이 존재하지 않습니다.')
-                  ])
-          )]),    
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration:
-                      const BoxDecoration(
-                        color: colors.blockColor, 
-                        boxShadow: [
-                          BoxShadow(
-                            color: colors.buttonSideColor,
-                            blurRadius: 5,
-                            spreadRadius: 5,
-                          )
-                      ]),
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      child: fullyRoundedRectangleButton(colors.textColor, '다시 연습하기', () {
-                        Get.to(() => SelectPractice(
-                          script: widget.script,
-                          tapCloseButton: () { Get.back(); },
-                        ));
-                      })
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildCategory(widget.script.category),
+                      const SizedBox(height: 12),
+                      _buildTitle(widget.script.title),
+                      const SizedBox(height: 20),
+                      _buildRecordItemTitle('스크랩한 문장 목록'),
+                      scrapSentenceList.isNotEmpty
+                          ? ScrapSentenceSlider(
+                              scrapSentenceList: scrapSentenceList)
+                          : _notExistsRecord('스크랩한 문장이 존재하지 않습니다.'),
+                      const SizedBox(height: 20),
+                      _buildRecordItemTitle('프롬프트 정확도 추이 그래프'),
+                      widget.record!.promptResult!.isNotEmpty
+                          ? PromptPrecisionGraph(
+                              promptResult: widget.record!.promptResult!)
+                          : _notExistsRecord('프롬프트 연습 기록이 존재하지 않습니다.')
+                    ]))
+          ]),
+          Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration:
+                      const BoxDecoration(color: colors.blockColor, boxShadow: [
+                    BoxShadow(
+                      color: colors.buttonSideColor,
+                      blurRadius: 5,
+                      spreadRadius: 5,
                     )
-                ))
-          ])
-      );
+                  ]),
+                  child: Container(
+                      padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                      child: fullyRoundedRectangleButton(
+                          colors.textColor, '다시 연습하기', () {
+                        // Get.to(() => SelectPractice(
+                        //   script: widget.script,
+                        //   tapCloseButton: () { Get.back(); },
+                        // ));
+                      }))))
+        ]));
   }
 }
