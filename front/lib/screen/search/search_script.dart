@@ -67,7 +67,12 @@ class _SearchScriptState extends State<SearchScript> {
               ])
             ),
             Flexible(
-              child: SearchTabs(query: query.text),
+              child: GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                },
+                child: SearchTabs(query: query.text),
+              )
             )
         ])
     ));
