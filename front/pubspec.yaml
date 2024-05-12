@@ -54,6 +54,7 @@ dependencies:
   http: ^1.2.0
   google_sign_in: ^6.2.1
   flutter_svg: ^2.0.10+1
+  flutter_native_splash:
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,18 @@ flutter_launcher_icons:
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
   remove_alpha_ios: true
+
+flutter_native_splash:
+  color: "#1F2544"
+  image: assets/images/splash_default.png
+
+  android_12:
+    color: "#1F2544"
+    image: assets/images/splash_android12.png
+  
+  android: true
+  ios: true
+  fullscreen: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

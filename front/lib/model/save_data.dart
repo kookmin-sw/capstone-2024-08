@@ -7,11 +7,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 class SaveData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseStorage storage = FirebaseStorage.instance;
+  final User? user = FirebaseAuth.instance.currentUser;
 
-  addUserScript(String uid, ScriptModel script) async {
+  addUserScript(ScriptModel script) async {
     firestore
         .collection('user_script')
-        .doc(uid)
+        .doc(user!.uid)
         .collection('script')
         .add(script.convertToDocument());
   }

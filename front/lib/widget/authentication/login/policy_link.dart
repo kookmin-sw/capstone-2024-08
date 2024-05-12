@@ -1,4 +1,5 @@
 import 'package:capstone/screen/setting/policy.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class PolicyLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var deviceHeight = MediaQuery.of(context).size.height;
+    var deviceHeight = getDeviceHeight(context);
     var marginValue = deviceHeight * 0.004;
 
     return TextButton(

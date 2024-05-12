@@ -3,6 +3,7 @@ import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/record/record_detail.dart';
 import 'package:capstone/screen/script/script_detail.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -73,8 +74,8 @@ Widget scriptListTile(
       child: Stack(children: [
         Container(
           margin: const EdgeInsets.fromLTRB(0, 10, 20, 10),
-          width: MediaQuery.of(context).size.width * 0.85,
-          height: MediaQuery.of(context).size.width * 0.45,
+          width: getDeviceWidth(context) * 0.85,
+          height: getDeviceWidth(context) * 0.45,
           decoration: ShapeDecoration(
               color: colors.blockColor,
               shape: RoundedRectangleBorder(
@@ -102,8 +103,8 @@ Widget scriptListTile(
             left: 0,
             child: Container(
                 margin: const EdgeInsets.fromLTRB(0, 10, 20, 10),
-                width: MediaQuery.of(context).size.width * 0.85,
-                height: MediaQuery.of(context).size.width * 0.18,
+                width: getDeviceWidth(context) * 0.85,
+                height: getDeviceWidth(context) * 0.18,
                 decoration: ShapeDecoration(
                     color: colors.exampleScriptColor,
                     shape: RoundedRectangleBorder(

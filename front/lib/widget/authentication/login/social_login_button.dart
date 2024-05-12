@@ -1,3 +1,4 @@
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 
@@ -17,8 +18,8 @@ class SocialLoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var deviceWidth = MediaQuery.of(context).size.width;
-    var deviceHeight = MediaQuery.of(context).size.height;
+    var deviceWidth = getDeviceWidth(context);
+    var deviceHeight = getDeviceHeight(context);
 
     return Container(
       width: deviceWidth * 0.91,
