@@ -87,55 +87,6 @@ class _GuideVoicePlayerState extends State<GuideVoicePlayer> {
     return null;
   }
 
-  Future<int?> getVoicesSimilarity(
-      String text, String currentSentencePracticeWavFilePath) async {
-    try {
-      var url = Uri.parse('${texts.baseUrl}/feedback/');
-
-      // 멀티파트 리퀘스트 생성
-      var request = http.MultipartRequest('POST', url);
-
-      // // 텍스트 필드 추가
-      // request.fields['text'] = text;
-
-      // WAV 파일 추가
-      var wavFile = File(currentSentencePracticeWavFilePath);
-      if (!wavFile.existsSync()) {
-        print('파일이 존재하지 않습니다.');
-        return null;
-      }
-
-      var wavStream = http.ByteStream(wavFile.openRead());
-      var length = await wavFile.length();
-      var multipartFile = http.MultipartFile(
-        'user_wav',
-        wavStream,
-        length,
-        filename: 'currentSentencePracticeWavFile.wav', // 파일 이름 지정
-      );
-      request.files.add(multipartFile);
-
-      // 리퀘스트 보내기
-      var response = await request.send();
-
-      // 응답 확인
-      if (response.statusCode == 200) {
-        // 서버에서 받은 응답 파싱
-        var responseData = await response.stream.bytesToString();
-        var jsonData = jsonDecode(responseData);
-
-        // 응답 데이터를 정수로 변환하여 반환
-        return jsonData['similarity_percentage'];
-      } else {
-        print('서버 요청에 실패했습니다. 상태 코드: ${response.statusCode}');
-        return null;
-      }
-    } catch (e) {
-      print('오류 발생: $e');
-      return null;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
