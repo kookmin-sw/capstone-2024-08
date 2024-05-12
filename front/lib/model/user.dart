@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
+  String? id;
   String? nickname;
   String? character;
   Timestamp? lastAccessDate;
@@ -9,7 +10,8 @@ class UserModel {
   DocumentReference? lastPracticeScript;
 
   UserModel(
-      {required this.nickname,
+      {this.id,
+      required this.nickname,
       required this.character,
       required this.lastAccessDate,
       required this.attendanceStreak,
@@ -18,7 +20,8 @@ class UserModel {
 
   // Deserialize from Firestore document snapshot
   UserModel.fromDocument({required DocumentSnapshot<Map<String, dynamic>> doc})
-      : nickname = doc.get('nickname'),
+      : id = doc.id,
+        nickname = doc.get('nickname'),
         character = doc.get('character'),
         lastAccessDate = doc.get('lastAccessDate'),
         attendanceStreak = doc.get('attendanceStreak'),

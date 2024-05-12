@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
 
 class LoadData {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -78,13 +83,11 @@ class LoadData {
   }
 
   Stream<List<ScriptModel>> searchExampleScript(String? query) {
-    return firestore
-      .collection('example_script')
-      .snapshots()
-      .map((snapshot) => snapshot.docs
-        .where((doc) => doc['title'].toString().contains(query ?? ''))
-        .map((doc) => ScriptModel.fromDocument(doc: doc))
-        .toList());
+    return firestore.collection('example_script').snapshots().map((snapshot) =>
+        snapshot.docs
+            .where((doc) => doc['title'].toString().contains(query ?? ''))
+            .map((doc) => ScriptModel.fromDocument(doc: doc))
+            .toList());
   }
 
   Stream<List<ScriptModel>> searchUserScript(String? query) {
@@ -94,23 +97,53 @@ class LoadData {
         .collection('script')
         .snapshots()
         .map((snapshot) => snapshot.docs
-          .where((doc) => doc['title'].toString().contains(query ?? ''))
-          .map((doc) => ScriptModel.fromDocument(doc: doc))
-          .toList());
+            .where((doc) => doc['title'].toString().contains(query ?? ''))
+            .map((doc) => ScriptModel.fromDocument(doc: doc))
+            .toList());
   }
 
   Stream<List<RecordModel>> readUserPracticeRecord(String scriptType) {
     return firestore
-          .collection('user')
-          .doc('mg')
-          .collection('${scriptType}_practice')
-          .snapshots()
-          .map((snapshot) => snapshot.docs
-              .map((doc) => RecordModel.fromDocument(doc: doc))
-              .toList());
+        .collection('user')
+        .doc('mg')
+        .collection('${scriptType}_practice')
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => RecordModel.fromDocument(doc: doc))
+            .toList());
   }
 
-  Future<DocumentSnapshot<Map<String, dynamic>>> readRecordDocument(String scriptType, String documentId) async {
-    return await firestore.collection('user').doc('mg').collection('${scriptType}_practice').doc(documentId).get();
+  Future<DocumentSnapshot<Map<String, dynamic>>> readRecordDocument(
+      String scriptType, String documentId) async {
+    return await firestore
+        .collection('user')
+        .doc('mg')
+        .collection('${scriptType}_practice')
+        .doc(documentId)
+        .get();
+  }
+
+  Future<File?> downloadWavFile(String filePath, String fileNanme) async {
+    try {
+      // 파일 경로를 기반으로 Firebase Storage에서 파일을 다운로드
+      Reference ref = FirebaseStorage.instance.ref().child(filePath);
+      Uint8List? data = await ref.getData();
+      Directory dir = await getTemporaryDirectory();
+      String localPath = '$dir/user_voices/$fileNanme.wav';
+
+      if (data != null) {
+        // 다운로드한 데이터를 사용하여 파일을 생성하거나 저장할 수 있음
+        // 여기서는 예시로 로컬 파일에 저장하도록 함
+        File file = File(localPath);
+        await file.writeAsBytes(data);
+        print('File downloaded successfully');
+        return file;
+      } else {
+        print('Failed to download file: Data is null');
+      }
+    } catch (e) {
+      print('Error downloading file: $e');
+    }
+    return null;
   }
 }

@@ -34,50 +34,45 @@ class _SetupUserState extends State<SetupUser> {
 
   Widget _nicknameSection() {
     return Form(
-      key: _formKey,
-      child: Container(
-        width: getDeviceWidth(context) * 0.9,
-        decoration: _boxDecoration(28),
-        child: TextFormField(
-          maxLines: 1,
-          textInputAction: TextInputAction.next,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return '닉네임은 비어있을 수 없습니다';
-            }
-            return null;
-          },
-          decoration: InputDecoration(
-            labelText: '닉네임을 입력해주세요.',
-              labelStyle: const TextStyle(
-                color: colors.textColor,
-                fontWeight: FontWeight.w500
+        key: _formKey,
+        child: Container(
+            width: getDeviceWidth(context) * 0.9,
+            decoration: _boxDecoration(28),
+            child: TextFormField(
+              maxLines: 1,
+              textInputAction: TextInputAction.next,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '닉네임은 비어있을 수 없습니다';
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: '닉네임을 입력해주세요.',
+                labelStyle: const TextStyle(
+                    color: colors.textColor, fontWeight: FontWeight.w500),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+                fillColor: colors.blockColor,
+                filled: true,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(28),
+                    borderSide: BorderSide.none),
               ),
-            floatingLabelBehavior: FloatingLabelBehavior.never,
-            fillColor: colors.blockColor,
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(28),
-              borderSide: BorderSide.none),
-          ),
-          controller: _nickname,
-        )
-      )
-    );
+              controller: _nickname,
+            )));
   }
 
   BoxDecoration _boxDecoration(double radius) {
     return BoxDecoration(
-      color: colors.blockColor,
-      borderRadius: BorderRadius.circular(radius),
-      boxShadow: const [
-        BoxShadow(
-          color: colors.buttonSideColor,
-          blurRadius: 3,
-          spreadRadius: 3,
-        )
-      ]
-    );
+        color: colors.blockColor,
+        borderRadius: BorderRadius.circular(radius),
+        boxShadow: const [
+          BoxShadow(
+            color: colors.buttonSideColor,
+            blurRadius: 3,
+            spreadRadius: 3,
+          )
+        ]);
   }
 
   Widget _buildSelectedCharacter() {
@@ -85,33 +80,30 @@ class _SetupUserState extends State<SetupUser> {
       width: getDeviceWidth(context) * 0.5,
       height: getDeviceHeight(context) * 0.2,
       decoration: _boxDecoration(10),
-      child: Image.asset(_selectedCharacter!), 
+      child: Image.asset(_selectedCharacter!),
     );
   }
 
   Widget _buildCharacterList() {
     return Container(
-      width: getDeviceWidth(context) * 0.9,
-      height: getDeviceHeight(context) * 0.4,
-      decoration: _boxDecoration(10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround, 
-        children: [
+        width: getDeviceWidth(context) * 0.9,
+        height: getDeviceHeight(context) * 0.4,
+        decoration: _boxDecoration(10),
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           for (int paragraph = 0; paragraph < 2; paragraph++)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround, 
-              children: [
-                for (int idx = 2 * paragraph; idx < 2 * paragraph + 2; idx++)
-                  IconButton(
-                    icon: Image.asset(
-                      images.characterForSetup[idx]!,
-                      width: getDeviceWidth(context) * 0.3,
-                    ),
-                    onPressed: () => _handleCharacterSelected(images.characterForSetup[idx]!),
-                  )
-          ])
-      ]) 
-    );
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              for (int idx = 2 * paragraph; idx < 2 * paragraph + 2; idx++)
+                IconButton(
+                  icon: Image.asset(
+                    images.characterForSetup[idx]!,
+                    width: getDeviceWidth(context) * 0.3,
+                  ),
+                  onPressed: () =>
+                      _handleCharacterSelected(images.characterForSetup[idx]!),
+                )
+            ])
+        ]));
   }
 
   @override
@@ -119,57 +111,32 @@ class _SetupUserState extends State<SetupUser> {
     return Scaffold(
       appBar: basicAppBar(title: '회원가입', backButton: false),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              _nicknameSection(),
-              const SizedBox(height: 20),
-              _buildSelectedCharacter(),
-              const SizedBox(height: 20),
-              _buildCharacterList(),
-              const SizedBox(height: 20),
-              Container(
-                width: getDeviceWidth(context) * 0.9,
-                child: fullyRoundedRectangleButton(colors.blockColor, '완료', () async {
-                  if (_formKey.currentState!.validate()) {
-                    UserModel userData = UserModel(
-                      nickname: _nickname.text,
-                      character: _selectedCharacter!.split('/')[3].split('.')[0],
-                      attendanceStreak: null,
-                      lastAccessDate: null,
-                      lastPracticeScript: null,
-                      voiceUrls: {
-                        'long': "",
-                        'middle': "",
-                        'short': ""
-                      }
-                    );
-                    //Get.to(() => GetUserVoice(userData: userData));
-
-                    //GetUserVoice 완성 시, 아래 코드 삭제
-                    FirebaseFirestore.instance
-                    .collection('user')
-                    .doc(user!.uid)
-                    .set({
-                      'nickname': _nickname.text,
-                      'character': _selectedCharacter!.split('/')[3].split('.')[0],
-                      'attendanceStreak': 5,
-                      'lastAccessDate': Timestamp.now(),
-                      'lastPracticeScript': null,
-                      'voice': {
-                        'long': "",
-                        'middle': "",
-                        'short': ""
-                      }
-                    });
-                    AuthController.instance.handleUserInfoCompletion();
-                  }
-                })
-              )
-          ])
-        )
-      ),
+          child: Center(
+              child: Column(children: [
+        const SizedBox(height: 20),
+        _nicknameSection(),
+        const SizedBox(height: 20),
+        _buildSelectedCharacter(),
+        const SizedBox(height: 20),
+        _buildCharacterList(),
+        const SizedBox(height: 20),
+        Container(
+            width: getDeviceWidth(context) * 0.9,
+            child:
+                fullyRoundedRectangleButton(colors.blockColor, '완료', () async {
+              if (_formKey.currentState!.validate()) {
+                UserModel userData = UserModel(
+                    id: user!.uid,
+                    nickname: _nickname.text,
+                    character: _selectedCharacter!.split('/')[3].split('.')[0],
+                    attendanceStreak: null,
+                    lastAccessDate: null,
+                    lastPracticeScript: null,
+                    voiceUrls: {'long': "", 'middle': "", 'short': ""});
+                Get.to(() => GetUserVoice(userData: userData));
+              }
+            }))
+      ]))),
     );
   }
 }
