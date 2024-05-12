@@ -36,12 +36,12 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
 
   @override
   void initState() {
-    super.initState();
     showPlayer = false;
     sentenceLength = widget.script.content.length;
     _currentSentenceIndex = 0;
     _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
     scrapSentences = widget.record == null ? [] : widget.record!.scrapSentence;
+    super.initState();
   }
 
   Text _buildCategory(String category) {
