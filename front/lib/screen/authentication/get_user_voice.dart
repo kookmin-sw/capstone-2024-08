@@ -188,6 +188,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
   AppBar getUserVoiceAppBar() {
     return AppBar(
       backgroundColor: colors.bgrDarkColor,
+      automaticallyImplyLeading: false,
       centerTitle: true,
       title: Text(texts.getUserVoiceAppBarTitle,
           style: const TextStyle(
