@@ -177,12 +177,13 @@ Future<int?> getVoicesSimilarity(
     if (response.statusCode == 200) {
       // 서버에서 받은 응답 파싱
       var responseData = await response.stream.bytesToString();
-      var jsonData = jsonDecode(responseData);
+      int precision =
+          jsonDecode(responseData)['similarity_percentage'].truncate();
 
-      print(jsonData);
+      print(responseData);
 
       // 응답 데이터를 정수로 변환하여 반환
-      return jsonData['similarity_percentage'] as int;
+      return precision;
     } else {
       print('서버 요청에 실패했습니다. 상태 코드: ${response.statusCode}');
       return null;
