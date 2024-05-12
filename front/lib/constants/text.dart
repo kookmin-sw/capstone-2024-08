@@ -44,7 +44,8 @@ Map<String, String> warningMessage = {
   'deleteUser': '서비스를 탈퇴 하시겠습니까?\n탈퇴 시, 계정은 삭제되며 복구되지 않습니다.'
 };
 
-const String baseUrl = "http://192.168.0.10:8000";
+const String baseUrl =
+    "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com";
 
 Map<String, String> usingPolicy = {
   'policyName': '이용약관',

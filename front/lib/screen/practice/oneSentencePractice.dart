@@ -3,10 +3,12 @@ import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
+import 'package:capstone/screen/practice/guide_voice_player.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/widget/practice/pratice_app_bar.dart';
 import 'package:capstone/widget/progress_bar_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class OneSentencePratice extends StatefulWidget {
   OneSentencePratice(
@@ -32,6 +34,8 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   double _currentProgressValue = 5;
   bool showPlayer = false;
   String? audioPath;
+  String? currnetPracticeAudioPath;
+  int? currentPrecision;
   List<int>? scrapSentences;
 
   @override
@@ -68,6 +72,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     setState(() {
       showPlayer = false;
       _currentSentenceIndex += 1;
+      currnetPracticeAudioPath = audioPath!;
       _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
     });
 
@@ -126,6 +131,19 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
             )
           ]),
         ));
+  }
+
+  Future<Widget> precisionSection() async {
+    if (showPlayer) {
+      setState(() {
+        currnetPracticeAudioPath = audioPath!;
+      });
+      currentPrecision = await getVoicesSimilarity(
+          widget.script.content[_currentSentenceIndex],
+          currnetPracticeAudioPath!);
+      return Text('정확도 : $currentPrecision');
+    }
+    return Container();
   }
 
   Widget nextButton() {
@@ -196,27 +214,55 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         body: Stack(children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-              child: Column(children: [
-                _buildCategory(widget.script.category),
-                const SizedBox(height: 15),
-                _buildTitle(widget.script.title),
-                const SizedBox(height: 20),
-                Container(
-                    color: colors.bgrBrightColor,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(children: [
-                            progressBarSection(_currentProgressValue),
-                            _currentSentenceIndex != sentenceLength
-                                ? sentenceSection(_currentSentenceIndex)
-                                : Container(),
-                          ]),
-                          Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: nextButton())
-                        ]))
-              ])),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(children: [
+                      _buildCategory(widget.script.category),
+                      const SizedBox(height: 15),
+                      _buildTitle(widget.script.title),
+                      const SizedBox(height: 20),
+                      progressBarSection(_currentProgressValue),
+                    ]),
+                    Container(
+                        child: Column(children: [
+                      Column(children: [
+                        _currentSentenceIndex != sentenceLength
+                            ? sentenceSection(_currentSentenceIndex)
+                            : Container(),
+                      ]),
+                    ])),
+                    FutureBuilder<Widget>(
+                      future:
+                          precisionSection(), // precisionSection 함수를 호출하여 Future<Widget>을 얻음
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          // 데이터 로딩 중일 때 표시할 위젯
+                          return Column(children: [
+                            CircularProgressIndicator(
+                              color: colors.recordButtonColor,
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              '유사도 계산하는 중',
+                              style: TextStyle(
+                                  color: colors.recordButtonColor,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ]);
+                        } else if (snapshot.hasError) {
+                          // 오류 발생 시 표시할 위젯
+                          return Text('Error: ${snapshot.error}');
+                        } else {
+                          // 데이터를 성공적으로 받아왔을 때 표시할 위젯
+                          return snapshot.data ?? Container(); // 반환된 위젯을 표시
+                        }
+                      },
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.all(20), child: nextButton())
+                  ])),
         ]));
   }
 }
