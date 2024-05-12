@@ -34,8 +34,10 @@ class _RecordDetailState extends State<RecordDetail> {
 
   void _checkScrapList() {
     for (int idx = 0; idx < widget.script.content.length; idx++) {
-      if (widget.record!.scrapSentence.contains(idx)) {
-        scrapSentenceList.add(widget.script.content[idx]);
+      if (widget.record!.scrapSentence != null) {
+        if (widget.record!.scrapSentence!.contains(idx)) {
+          scrapSentenceList.add(widget.script.content[idx]);
+        }
       }
     }
   }

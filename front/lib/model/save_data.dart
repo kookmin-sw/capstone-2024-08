@@ -38,6 +38,26 @@ class SaveData {
     }
   }
 
+  Future<void> addPractice({
+    required String scriptId,
+    required String scriptType,
+    List<int>? scrapSentence,
+    List<Map<String, dynamic>>? promptResult,
+    Timestamp? practiceDate,
+    int? precision,
+  }) async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      await FirebaseFirestore.instance
+          .collection('user')
+          .doc(user.uid)
+          .collection('${scriptType}_practice')
+          .doc(scriptId)
+          .set({'scrapSentence': scrapSentence, 'promptResult': promptResult});
+    }
+  }
+
   Future<Map<String, String>> uploadWavFiles(
       String uid, Map<String, String> wavs) async {
     Map<String, String> urls = {};
@@ -71,7 +91,7 @@ class SaveData {
         .update({'lastPracticeScript': documentRef});
   }
 
-  scrap(
+  Future<List<int>?> scrap(
       String scriptType, String scriptId, String uid, int sentenceIndex) async {
     try {
       DocumentReference scriptRef = FirebaseFirestore.instance
@@ -84,18 +104,21 @@ class SaveData {
         DocumentSnapshot scriptDoc = await transaction.get(scriptRef);
 
         if (scriptDoc.exists) {
-          List<int> scrapSentence =
+          List<int>? scrapSentence =
               List.from(scriptDoc.get('scrapSentence') ?? []);
           scrapSentence.add(sentenceIndex);
           transaction.update(scriptRef, {'scrapSentence': scrapSentence});
+
+          return scrapSentence;
         }
       });
     } catch (e) {
       print('Error adding value to scrap sentence: $e');
     }
+    return null;
   }
 
-  cancelScrap(
+  Future<List<int>?> cancelScrap(
       String scriptType, String scriptId, String uid, int sentenceIndex) async {
     try {
       DocumentReference scriptRef = FirebaseFirestore.instance
@@ -108,14 +131,17 @@ class SaveData {
         DocumentSnapshot scriptDoc = await transaction.get(scriptRef);
 
         if (scriptDoc.exists) {
-          List<int> scrapSentence =
+          List<int>? scrapSentence =
               List.from(scriptDoc.get('scrapSentence') ?? []);
           scrapSentence.remove(sentenceIndex);
           transaction.update(scriptRef, {'scrapSentence': scrapSentence});
+
+          return scrapSentence;
         }
       });
     } catch (e) {
       print('Error adding value to scrap sentence: $e');
     }
+    return null;
   }
 }

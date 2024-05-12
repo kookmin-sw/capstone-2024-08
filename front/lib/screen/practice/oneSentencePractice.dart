@@ -3,16 +3,10 @@ import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
-import 'package:capstone/screen/record/record_detail.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/widget/practice/pratice_app_bar.dart';
 import 'package:capstone/widget/progress_bar_section.dart';
-import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
-import 'package:capstone/widget/outlined_rounded_rectangle_button.dart';
-import 'package:capstone/screen/script/select_practice.dart';
-import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class OneSentencePratice extends StatefulWidget {
   OneSentencePratice(
@@ -38,13 +32,16 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   double _currentProgressValue = 5;
   bool showPlayer = false;
   String? audioPath;
+  List<int>? scrapSentences;
 
   @override
   void initState() {
     super.initState();
     showPlayer = false;
     sentenceLength = widget.script.content.length;
+    _currentSentenceIndex = 0;
     _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
+    scrapSentences = widget.record == null ? [] : widget.record!.scrapSentence;
   }
 
   Text _buildCategory(String category) {
@@ -67,9 +64,8 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     );
   }
 
-  nextButtonPressed(int _currentSentenceIndex) async {
+  nextButtonPressed() async {
     setState(() {
-      // widget.record.voiceUrls?[currentState] = audioPath!;
       showPlayer = false;
       _currentSentenceIndex += 1;
       _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
@@ -111,12 +107,12 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
               ]),
           child: Column(children: [
             Container(
+              padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
               child: Text(
-                widget.script.content[sentenceIndex]!,
+                widget.script.content[sentenceIndex],
                 textAlign: TextAlign.start,
                 style: TextStyle(fontSize: 14.0),
               ),
-              padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
             ),
             RecordingSection(
               showPlayer: showPlayer,
@@ -138,31 +134,31 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         margin: const EdgeInsets.all(10),
         child: ElevatedButton(
           onPressed: () {
-            // debugPrint('녹음 완료 상태 : $showPlayer');
-            // if (showPlayer) {
-            nextButtonPressed(_currentSentenceIndex);
-            // } else {
-            //   showDialog(
-            //     context: context,
-            //     builder: (BuildContext context) {
-            //       return AlertDialog(
-            //         title: const Text(
-            //           '잠시만요!',
-            //           style: TextStyle(fontWeight: FontWeight.bold),
-            //         ),
-            //         content: Text(texts.warningMessage['getUserVoice']!),
-            //         actions: <Widget>[
-            //           TextButton(
-            //             onPressed: () {
-            //               Navigator.of(context).pop();
-            //             },
-            //             child: Text(texts.okButtonText),
-            //           ),
-            //         ],
-            //       );
-            //     },
-            //   );
-            // }
+            debugPrint('녹음 완료 상태 : $showPlayer');
+            if (showPlayer) {
+              nextButtonPressed();
+            } else {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text(
+                      '잠시만요!',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    content: Text(texts.warningMessage['getUserVoice']!),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(texts.okButtonText),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
           },
           style: ButtonStyle(
               elevation: MaterialStateProperty.all<double>(5),
@@ -183,6 +179,10 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         ));
   }
 
+  Widget guideVoicePlayer() {
+    return Container();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -190,7 +190,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
           script: widget.script,
           scriptType: widget.scriptType,
           backButton: true,
-          scrapSentences: [1, 2],
+          scrapSentences: scrapSentences,
           sentenceIndex: _currentSentenceIndex,
         ),
         body: Stack(children: [

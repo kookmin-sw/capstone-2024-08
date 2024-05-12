@@ -48,13 +48,11 @@ class SelectPractice extends StatelessWidget {
                     practiceButton(context, '프롬프트', () {}),
                     const SizedBox(height: 25),
                     practiceButton(context, '문장단위연습', () {
-                      Get.to(() {
-                        OneSentencePratice(
-                          script: script,
-                          scriptType: scriptType,
-                          record: record,
-                        );
-                      });
+                      Get.to(() => OneSentencePratice(
+                            script: script,
+                            scriptType: scriptType,
+                            record: record,
+                          ));
                     })
                   ])
             ])));

@@ -7,7 +7,7 @@ import 'package:capstone/constants/color.dart' as colors;
 
 class PracticeAppBar extends StatefulWidget implements PreferredSizeWidget {
   bool backButton = true;
-  List<int> scrapSentences = [];
+  List<int>? scrapSentences = [];
   final ScriptModel script;
   final String scriptType;
   int sentenceIndex;
@@ -30,7 +30,7 @@ class PracticeAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _PracticeAppBarState extends State<PracticeAppBar> {
   String uid = Get.find<UserController>().userModel.id!;
-  List<int> scrapSentences = [];
+  List<int>? scrapSentences = [];
 
   @override
   void initState() {
@@ -38,11 +38,21 @@ class _PracticeAppBarState extends State<PracticeAppBar> {
     scrapSentences = widget.scrapSentences;
   }
 
+  void updateScrap(List<int>? updatedScrapSentences) {
+    setState(() {
+      scrapSentences = updatedScrapSentences;
+    });
+  }
+
   bool isClicked(int sentenceIndex) {
-    if (scrapSentences.contains(sentenceIndex)) {
-      return true;
+    if (scrapSentences == null) {
+      return false;
+    } else {
+      if (scrapSentences!.contains(sentenceIndex)) {
+        return true;
+      }
+      return false;
     }
-    return false;
   }
 
   @override
@@ -53,12 +63,12 @@ class _PracticeAppBarState extends State<PracticeAppBar> {
       leading: widget.backButton
           ? IconButton(
               icon: const Icon(Icons.keyboard_backspace_rounded,
-                  color: colors.bgrBrightColor),
+                  color: colors.textColor),
               onPressed: () => Get.back())
           : null,
       actions: [
         scrapsButton(widget.scriptType, widget.script.id!, uid,
-            widget.sentenceIndex, isClicked(widget.sentenceIndex))
+            widget.sentenceIndex, isClicked(widget.sentenceIndex), updateScrap)
       ],
     );
   }
