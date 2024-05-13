@@ -112,7 +112,9 @@ class _ScriptDetailState extends State<ScriptDetail> {
                                           '기록보기', () async {
                                         Get.to(() => RecordDetail(
                                             script: widget.script,
-                                            record: record));
+                                            record: record,
+                                            scriptType: widget.scriptType,
+                                        ));
                                       })),
                                   Container(
                                       width: getDeviceWidth(context) * 0.4,
@@ -136,7 +138,6 @@ class _ScriptDetailState extends State<ScriptDetail> {
                                       Get.back();
                                     },
                                     scriptType: widget.scriptType,
-                                    record: record,
                                   ));
                             }))))
         ]));
