@@ -106,22 +106,23 @@ class LoadData {
 
   Stream<List<RecordModel>> readUserPracticeRecord(String scriptType) {
     return firestore
-          .collection('user')
-          .doc(user!.uid)
-          .collection('${scriptType}_practice')
-          .snapshots()
-          .map((snapshot) => snapshot.docs
-              .map((doc) => RecordModel.fromDocument(doc: doc))
-              .toList());
+        .collection('user')
+        .doc(user!.uid)
+        .collection('${scriptType}_practice')
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => RecordModel.fromDocument(doc: doc))
+            .toList());
   }
 
-  Future<DocumentSnapshot<Map<String, dynamic>>> readRecordDocument(String scriptType, String documentId) async {
+  Future<DocumentSnapshot<Map<String, dynamic>>> readRecordDocument(
+      String scriptType, String documentId) async {
     return await firestore
-      .collection('user')
-      .doc(user!.uid)
-      .collection('${scriptType}_practice')
-      .doc(documentId)
-      .get();
+        .collection('user')
+        .doc(user!.uid)
+        .collection('${scriptType}_practice')
+        .doc(documentId)
+        .get();
   }
 
   Future<File?> downloadWavFile(String filePath, String fileNanme) async {

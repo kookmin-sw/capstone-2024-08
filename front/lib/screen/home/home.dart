@@ -10,6 +10,7 @@ import 'package:capstone/widget/script/script_list_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
@@ -68,10 +69,13 @@ class _HomeState extends State<Home> {
   Widget _lastPracticeScript(
       BuildContext context, DocumentReference? documentRef) {
     if (documentRef == null) {
-      return Text(
-        texts.lastPracticeScriptEmptyMessage,
-        style: const TextStyle(color: colors.themeWhiteColor),
-      );
+      return Container(
+          padding: EdgeInsets.fromLTRB(10, 40, 10, 0),
+          child: Text(texts.lastPracticeScriptEmptyMessage,
+              style: const TextStyle(
+                  color: colors.themeWhiteColor,
+                  // fontWeight: FontWeight.bold,
+                  fontSize: 16)));
     } else {
       String scriptType = documentRef.path.split('_')[0];
       return FutureBuilder<ScriptModel?>(
@@ -105,8 +109,8 @@ class _HomeState extends State<Home> {
         appBar: homeAppBar(),
         body: Column(children: [
           _characterSection(character),
-          _lastPracticeScript(context, lastPracticeScriptRef),
-          _attendanceStreak(nickname, attendanceStreakDays)
+          _attendanceStreak(nickname, attendanceStreakDays),
+          _lastPracticeScript(context, lastPracticeScriptRef)
         ]));
   }
 }

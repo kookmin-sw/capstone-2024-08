@@ -109,42 +109,40 @@ class _SetupUserState extends State<SetupUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: basicAppBar(title: '회원가입', backButton: false),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: ListView(
-          children: [
+        appBar: basicAppBar(title: '회원가입', backButton: false),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: ListView(children: [
             Center(
-              child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  _nicknameSection(),
-                  const SizedBox(height: 20),
-                  _buildSelectedCharacter(),
-                  const SizedBox(height: 20),
-                  _buildCharacterList(),
-                  const SizedBox(height: 20),
-                  Container(
-                    width: getDeviceWidth(context) * 0.9,
-                    child:
-                        fullyRoundedRectangleButton(colors.blockColor, '완료', () async {
-                      if (_formKey.currentState!.validate()) {
-                        UserModel userData = UserModel(
-                            id: user!.uid,
-                            nickname: _nickname.text,
-                            character: _selectedCharacter!.split('/')[3].split('.')[0],
-                            attendanceStreak: null,
-                            lastAccessDate: null,
-                            lastPracticeScript: null,
-                            voiceUrls: {'long': "", 'middle': "", 'short': ""});
-                        Get.to(() => GetUserVoice(userData: userData));
-                      }
-                    }))
-                ])
-            )
-        ]),
-    ));
+                child: Column(children: [
+              const SizedBox(height: 20),
+              _nicknameSection(),
+              const SizedBox(height: 20),
+              _buildSelectedCharacter(),
+              const SizedBox(height: 20),
+              _buildCharacterList(),
+              const SizedBox(height: 20),
+              Container(
+                  width: getDeviceWidth(context) * 0.9,
+                  child: fullyRoundedRectangleButton(colors.blockColor, '완료',
+                      () async {
+                    if (_formKey.currentState!.validate()) {
+                      UserModel userData = UserModel(
+                          id: user!.uid,
+                          nickname: _nickname.text,
+                          character:
+                              _selectedCharacter!.split('/')[3].split('.')[0],
+                          attendanceStreak: null,
+                          lastAccessDate: null,
+                          lastPracticeScript: null,
+                          voiceUrls: {'long': "", 'middle': "", 'short': ""});
+                      Get.to(() => GetUserVoice(userData: userData));
+                    }
+                  }))
+            ]))
+          ]),
+        ));
   }
 }
