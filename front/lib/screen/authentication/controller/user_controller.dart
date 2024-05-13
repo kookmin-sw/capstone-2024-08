@@ -32,21 +32,29 @@ class UserController extends GetxController {
     if (userModel.lastAccessDate != null) {
       DateTime lastAccessDate = userModel.lastAccessDate!.toDate();
       DateTime currentDate = DateTime.now();
-      if (_isConsecutiveDay(lastAccessDate, currentDate)) {
-        if (userModel.attendanceStreak == null) {
-          userModel.attendanceStreak = 1;
-        } else {
-          userModel.attendanceStreak = userModel.attendanceStreak! + 1;
-        }
-        saveData.updateAttendance(user!.uid, userModel.attendanceStreak!);
+      if (_isSameDay(lastAccessDate, currentDate)) {
+        return;
+      } else if (_isConsecutiveDay(lastAccessDate, currentDate)) {
+        userModel.attendanceStreak = userModel.attendanceStreak! + 1;
+      } else {
+        userModel.attendanceStreak = 1;
       }
+    } else {
+      userModel.attendanceStreak = 1;
     }
+    saveData.updateAttendance(user!.uid, userModel.attendanceStreak!);
   }
 
   bool _isConsecutiveDay(DateTime lastDate, DateTime currentDate) {
     return (currentDate.year == lastDate.year &&
         currentDate.month == lastDate.month &&
         currentDate.day - lastDate.day == 1);
+  }
+
+  bool _isSameDay(DateTime lastDate, DateTime currentDate) {
+    return (currentDate.year == lastDate.year &&
+        currentDate.month == lastDate.month &&
+        currentDate.day == lastDate.day);
   }
 
   Future<void> downloadAllWavFiles() async {
