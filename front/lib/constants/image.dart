@@ -25,15 +25,15 @@ final policyLine = SvgPicture.asset(
 );
 
 final Map<String, String> characterImagePaths = {
-  'carrot': 'assets/images/characters/carrot.png',
-  'catus': 'assets/images/characters/catus.png',
-  'chick': 'assets/images/characters/chick.png',
-  'unicorn': 'assets/images/characters/unicorn.png',
+  'panda': 'assets/images/characters/panda.png',
+  'fox': 'assets/images/characters/fox.png',
+  'frog': 'assets/images/characters/frog.png',
+  'hippo': 'assets/images/characters/hippo.png',
 };
 
 List<String?> characterForSetup = [
-  characterImagePaths['carrot'],
-  characterImagePaths['catus'],
-  characterImagePaths['chick'],
-  characterImagePaths['unicorn'],
+  characterImagePaths['panda'],
+  characterImagePaths['fox'],
+  characterImagePaths['frog'],
+  characterImagePaths['hippo'],
 ];

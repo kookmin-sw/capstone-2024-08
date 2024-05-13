@@ -15,10 +15,12 @@ class RecordDetail extends StatefulWidget {
     Key? key,
     required this.script,
     required this.record,
+    required this.scriptType
   }) : super(key: key);
 
   ScriptModel script;
   RecordModel? record;
+  String scriptType;
 
   @override
   State<RecordDetail> createState() => _RecordDetailState();
@@ -122,10 +124,12 @@ class _RecordDetailState extends State<RecordDetail> {
                       padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
                       child: fullyRoundedRectangleButton(
                           colors.textColor, '다시 연습하기', () {
-                        // Get.to(() => SelectPractice(
-                        //   script: widget.script,
-                        //   tapCloseButton: () { Get.back(); },
-                        // ));
+                          Get.to(() => SelectPractice(
+                            script: widget.script,
+                            tapCloseButton: () { Get.back(); },
+                            scriptType: widget.scriptType,
+                            record: widget.record
+                          ));
                       }))))
         ]));
   }

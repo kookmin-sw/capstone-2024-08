@@ -39,8 +39,7 @@ class _SetupUserState extends State<SetupUser> {
             width: getDeviceWidth(context) * 0.9,
             decoration: _boxDecoration(28),
             child: TextFormField(
-              maxLines: 1,
-              textInputAction: TextInputAction.next,
+              maxLength: 8,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return '닉네임은 비어있을 수 없습니다';
@@ -54,6 +53,7 @@ class _SetupUserState extends State<SetupUser> {
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 fillColor: colors.blockColor,
                 filled: true,
+                counterText: '',
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(28),
                     borderSide: BorderSide.none),
@@ -80,7 +80,9 @@ class _SetupUserState extends State<SetupUser> {
       width: getDeviceWidth(context) * 0.5,
       height: getDeviceHeight(context) * 0.2,
       decoration: _boxDecoration(10),
-      child: Image.asset(_selectedCharacter!),
+      child: Padding(
+        padding: EdgeInsets.all(getDeviceWidth(context) * 0.05),
+        child: Image.asset(_selectedCharacter!)),
     );
   }
 
@@ -97,7 +99,7 @@ class _SetupUserState extends State<SetupUser> {
                 IconButton(
                   icon: Image.asset(
                     images.characterForSetup[idx]!,
-                    width: getDeviceWidth(context) * 0.3,
+                    width: getDeviceWidth(context) * 0.22,
                   ),
                   onPressed: () =>
                       _handleCharacterSelected(images.characterForSetup[idx]!),
