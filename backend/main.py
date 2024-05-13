@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, Form
 
 from feedback import levenshtein
 from fastapi.responses import JSONResponse, FileResponse
@@ -7,8 +7,8 @@ from feedback import stt
 from create_script.user_script import create_user_script 
 from create_script.user_script.schemas.gpt_sch import GptRequestSch, GptResponseSch
 from fastapi.middleware.cors import CORSMiddleware
-from voice_converison import change_voice
-from tts import infer
+#from voice_converison import change_voice
+#from tts import infer
 import text
 
 
@@ -28,7 +28,7 @@ async def create_script(req: GptRequestSch):
 
 
 @app.post("/feedback/")
-async def create_upload_file(guide_trans: str, user_wav: UploadFile = File(...)):
+async def create_upload_file(guide_trans: str = Form(...), user_wav: UploadFile = File(...)):
     if not user_wav.filename.endswith('.wav'):
         return JSONResponse(status_code=400, content={"message": "Please upload WAV files only."})
 
