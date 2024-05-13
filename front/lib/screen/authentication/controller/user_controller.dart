@@ -33,6 +33,7 @@ class UserController extends GetxController {
       DateTime lastAccessDate = userModel.lastAccessDate!.toDate();
       DateTime currentDate = DateTime.now();
       if (_isSameDay(lastAccessDate, currentDate)) {
+        saveData.updateAttendance(user!.uid, userModel.attendanceStreak!);
         return;
       } else if (_isConsecutiveDay(lastAccessDate, currentDate)) {
         userModel.attendanceStreak = userModel.attendanceStreak! + 1;
