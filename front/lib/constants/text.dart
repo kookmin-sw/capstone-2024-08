@@ -9,7 +9,10 @@ const String check = '확인';
 const String googleLoginText = 'Google 계정으로 로그인';
 const String termsOfService = '이용약관';
 const String privacyPolicy = '개인정보 처리방침';
+
 String attendaceStreakMessage = "님의 연속 연습 일 수";
+
+String characterEmptyMessage = '선택한 캐릭터가 없습니다.';
 
 String lastPracticeScriptEmptyMessage = "연습한 이력이 없습니다.";
 

@@ -52,9 +52,9 @@ class _HomeState extends State<Home> {
   }
 
   Widget _characterSection(String? character) {
-    if (character == null)
-      return Text('캐릭터 없음');
-    else {
+    if (character == null) {
+      return Text(texts.characterEmptyMessage);
+    } else {
       return Container(
           width: MediaQuery.of(context).size.width / 1.7,
           child: characterSection(character));
