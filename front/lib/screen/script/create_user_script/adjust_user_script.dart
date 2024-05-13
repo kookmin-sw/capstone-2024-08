@@ -9,6 +9,7 @@ import 'package:capstone/widget/outlined_rounded_rectangle_button.dart';
 import 'package:capstone/widget/script/script_content_adjust_block.dart';
 import 'package:capstone/screen/script/select_practice.dart';
 import 'package:capstone/widget/utils/device_size.dart';
+import 'package:capstone/widget/warning_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,6 +31,7 @@ class AdjustUserScript extends StatefulWidget {
 
 class _AdjustUserScriptState extends State<AdjustUserScript> {
   SaveData saveData = SaveData();
+  List<String> sentenceList = [];
 
   Text _buildCategory(String category){
     return Text(
@@ -62,8 +64,12 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
     return Scaffold(
       appBar: basicAppBar(title: '나만의 대본 만들기'),
       body: Stack(
-              children: [
-                Container(
+          children: [
+              GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                },
+                child: Container(
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: ListView(
                     children: [
@@ -78,30 +84,53 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
                       ),
                       const SizedBox(height: 30),
                   ])
-                ),
+                )),
                 bottomButtons(
                   getDeviceWidth(context), 
                   outlinedRoundedRectangleButton('저장 후 나가기', () {
-                      saveUserScript();                    
-                      Get.close(2);
+                      if(checkValidContent()){
+                        saveUserScript();
+                        Get.close(2);
+                      }                  
                   }), 
                   fullyRoundedRectangleButton(colors.buttonColor, '연습하기', () {
-                      ScriptModel userScript = saveUserScript();
-                      Get.to(() => SelectPractice(
-                        script: userScript,
-                        tapCloseButton: () { Get.close(3); },
-                      ));
+                      if(checkValidContent()){
+                        ScriptModel userScript = saveUserScript();
+                        Get.to(() => SelectPractice(
+                          script: userScript,
+                          tapCloseButton: () { Get.close(3); },
+                        ));
+                      }    
                   })
               )]
       ));
   }
 
-  ScriptModel saveUserScript(){
+  void showInvalidContentWarning() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+          const WarningDialog(
+            warningObject: 'content'
+          )
+      );
+  }
+
+  bool checkValidContent() {
     List<TextEditingController> controllers = Get.find<UserScriptContentController>().textEditingControllerList!;
-    List<String> sentenceList = [
-      for(TextEditingController controller in controllers)
-        controller.text
-    ];
+    sentenceList.clear();
+
+    for(TextEditingController controller in controllers) {
+      if(controller.text == ''){
+        showInvalidContentWarning();
+        return false;
+      }
+      sentenceList.add(controller.text); 
+    }
+    return true;
+  }
+
+  ScriptModel saveUserScript(){
     ScriptModel userScript = ScriptModel(
         title: widget.title,
         category: widget.category,

@@ -39,6 +39,7 @@ Map<String, double> getUserProgressValues = {
 
 Map<String, String> warningMessage = {
   'category': '카테고리는 비워둘 수 없습니다. \n카테고리를 선택해주세요.',
+  'content': '비어있는 문장이 있습니다. 내용을 작성하거나 삭제해주세요.',
   'getUserVoice': '음성 녹음을 완료하지 않았습니다. \n녹음을 완료해주세요',
   'logout': '로그아웃 하시겠습니까?',
   'deleteUser': '서비스를 탈퇴 하시겠습니까?\n탈퇴 시, 계정은 삭제되며 복구되지 않습니다.'
