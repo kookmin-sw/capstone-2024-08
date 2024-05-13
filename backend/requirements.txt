@@ -10,6 +10,7 @@ kiwipiepy
 openai-whisper
 python-Levenshtein
 setuptools
+levenshtein
 
 # script
 pydantic
