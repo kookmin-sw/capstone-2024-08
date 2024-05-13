@@ -4,6 +4,7 @@ import 'package:capstone/model/load_data.dart';
 import 'package:capstone/widget/category_buttons.dart';
 import 'package:capstone/widget/script/create_user_script_button.dart';
 import 'package:capstone/widget/script/read_script.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 
 class ScriptList extends StatefulWidget {
@@ -49,8 +50,8 @@ class _ScriptListState extends State<ScriptList> {
                           'user'),
                       Positioned(
                           bottom: 2,
-                          left: MediaQuery.of(context).size.width * 0.05,
-                          right: MediaQuery.of(context).size.width * 0.05,
+                          left: getDeviceWidth(context) * 0.05,
+                          right: getDeviceWidth(context) * 0.05,
                           child: createUserScriptButton())
                     ]))
             ])));

@@ -24,7 +24,7 @@ class WarningDialog extends StatelessWidget {
               fontWeight: FontWeight.w500),
         ),
         actions: [
-            warningObject == 'category'
+            warningObject == 'category' || warningObject == 'content'
             ? fullyRoundedRectangleButton(colors.buttonColor, '확인', () {
                 Navigator.of(context).pop();
             })

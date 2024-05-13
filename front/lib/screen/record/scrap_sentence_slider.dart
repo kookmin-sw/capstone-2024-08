@@ -1,4 +1,5 @@
 import 'package:capstone/widget/script/script_content_block.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -24,14 +25,14 @@ class _ScrapSentenceSliderState extends State<ScrapSentenceSlider> {
     return Column(
       children: [
         Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.25,
+          width: getDeviceWidth(context),
+          height: getDeviceHeight(context) * 0.25,
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
           child: CarouselSlider(
             items: widget.scrapSentenceList.map((sentence) {
               return Builder(
                 builder: (BuildContext context){
-                  return scriptContentBlock(sentence, MediaQuery.of(context).size.width);
+                  return scriptContentBlock(sentence, getDeviceWidth(context));
               });
             }).toList(),
             options: CarouselOptions(

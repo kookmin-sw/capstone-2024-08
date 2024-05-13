@@ -1,4 +1,5 @@
 import 'package:capstone/screen/search/search_taps.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:get/get.dart';
@@ -58,7 +59,7 @@ class _SearchScriptState extends State<SearchScript> {
           children: [
             Container(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              width: MediaQuery.of(context).size.width,
+              width: getDeviceWidth(context),
               child: Row(
                 children: [
                   backToPreviousPage(),
@@ -66,7 +67,12 @@ class _SearchScriptState extends State<SearchScript> {
               ])
             ),
             Flexible(
-              child: SearchTabs(query: query.text),
+              child: GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                },
+                child: SearchTabs(query: query.text),
+              )
             )
         ])
     ));

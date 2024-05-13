@@ -9,6 +9,7 @@ import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/bottom_buttons.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/widget/outlined_rounded_rectangle_button.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:capstone/widget/warning_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -61,18 +62,29 @@ class _CreateUserScriptState extends State<CreateUserScript> {
 
   @override
   Widget build(BuildContext context) {
+    final contentController = Get.put(UserScriptContentController());
+
     return Scaffold(
       appBar: basicAppBar(title: '나만의 대본 만들기'),
       body: Stack(
         children: [
-          Column(
-            children: [
-              TitleSection(titleController: _title, formKey: _titleKey),
-              CategorySection(onCategorySelected: _handleCategorySelected),
-              ContentSection(contentController: _content, formKey: _contentKey)
-          ]),
+          GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: ListView(
+              children: [
+                  Column(
+                    children: [
+                      TitleSection(titleController: _title, formKey: _titleKey),
+                      CategorySection(onCategorySelected: _handleCategorySelected),
+                      ContentSection(contentController: _content, formKey: _contentKey)
+                  ]),
+                ]
+            )
+          ),
           bottomButtons(
-            MediaQuery.of(context).size.width, 
+            getDeviceWidth(context), 
             outlinedRoundedRectangleButton('AI로 생성하기', () {
               bool validCategory = checkValidCategory(_selectedCategory);
               
@@ -85,7 +97,7 @@ class _CreateUserScriptState extends State<CreateUserScript> {
 
               if (_titleKey.currentState!.validate() & validCategory & _contentKey.currentState!.validate()) {
                 List<String>? sentenceList = splitContent(_content.text);
-                Get.put(UserScriptContentController(sentenceList));
+                contentController.updateContent(sentenceList);
 
                 Get.to(() => AdjustUserScript(
                   title: _title.text, 

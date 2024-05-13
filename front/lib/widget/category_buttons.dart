@@ -54,9 +54,11 @@ class _CategoryButtonsState extends State<CategoryButtons> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
+                side: const BorderSide(
+                  color: colors.blockColor
+                ),
                 selectedColor: colors.exampleScriptColor,
                 backgroundColor: colors.blockColor,
-                disabledColor: colors.blockColor,
             )
           )
         ]));

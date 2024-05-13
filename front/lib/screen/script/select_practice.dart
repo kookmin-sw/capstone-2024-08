@@ -1,6 +1,7 @@
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/practice/oneSentencePractice.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:flutter/services.dart';
@@ -24,38 +25,38 @@ class SelectPractice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            color: colors.selectPracticebgrColor,
-            child: Column(children: [
-              Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                    icon: const Icon(Icons.close_rounded,
-                        color: colors.blockColor, size: 40),
-                    onPressed: () {
-                      tapCloseButton();
-                    },
-                  )),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.3),
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    notice(),
-                    const SizedBox(height: 25),
-                    practiceButton(context, '프롬프트', () {}),
-                    const SizedBox(height: 25),
-                    practiceButton(context, '문장단위연습', () {
+      body: Container(
+        width: getDeviceWidth(context),
+        height: getDeviceHeight(context),
+        color: colors.selectPracticebgrColor,
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                icon: const Icon(Icons.close_rounded, color: colors.blockColor, size: 40),
+                onPressed: () { tapCloseButton(); }, 
+              )
+            ),
+            SizedBox(height: getDeviceHeight(context) * 0.3),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                notice(),
+                const SizedBox(height: 25),
+                practiceButton(context, '프롬프트', () {}),
+                const SizedBox(height: 25),
+                practiceButton(context, '문장단위연습', () {
                       Get.to(() => OneSentencePratice(
                             script: script,
                             scriptType: scriptType,
                             record: record,
                           ));
                     })
-                  ])
-            ])));
+              ])
+        ])
+    ));
   }
 }
 
@@ -71,14 +72,13 @@ Text notice() {
 Container practiceButton(
     BuildContext context, String buttonText, Function pressedFunc) {
   return Container(
-      width: MediaQuery.of(context).size.width * 0.8,
-      height: MediaQuery.of(context).size.height * 0.08,
-      child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: colors.blockColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
+    width: getDeviceWidth(context) * 0.8,
+    height: getDeviceHeight(context) * 0.08,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          backgroundColor: colors.blockColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
           onPressed: () {
             HapticFeedback.lightImpact();

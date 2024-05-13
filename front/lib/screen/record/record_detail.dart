@@ -6,6 +6,7 @@ import 'package:capstone/screen/record/scrap_sentence_slider.dart';
 import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/screen/script/select_practice.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -67,20 +68,24 @@ class _RecordDetailState extends State<RecordDetail> {
   }
 
   Container _notExistsRecord(String item) {
-    var height = MediaQuery.of(context).size.height;
     return Container(
-        padding: EdgeInsets.only(top: height * 0.1, bottom: height * 0.1),
-        child: Align(alignment: Alignment.center, child: _buildText(item, 14)));
+      padding: EdgeInsets.only(top: getDeviceHeight(context) * 0.1, bottom: getDeviceHeight(context) * 0.1),
+      child: Align(
+        alignment: Alignment.center,
+        child: _buildText(item, 14)
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: basicAppBar(title: '기록'),
-        body: Stack(children: [
-          ListView(children: [
-            Container(
-                width: MediaQuery.of(context).size.width,
+        body: Stack(
+          children: [
+            ListView(
+              children: [
+                Container(
+                width: getDeviceWidth(context),
                 padding: const EdgeInsets.all(20),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
