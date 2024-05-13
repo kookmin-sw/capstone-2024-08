@@ -55,80 +55,77 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: basicAppBar(title: '나만의 대본 만들기'),
-      body: Stack(
-          children: [
-              GestureDetector(
-                onTap: () {
-                  FocusScope.of(context).unfocus();
-                },
-                child: Container(
+        appBar: basicAppBar(title: '나만의 대본 만들기'),
+        body: Stack(children: [
+          GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: Container(
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                  child: ListView(
-                    children: [
-                      _buildCategory(widget.category),
-                      const SizedBox(height: 15),
-                      _buildTitle(widget.title),
-                      const SizedBox(height: 20),
-                      GetBuilder<UserScriptContentController>(
-                        builder: (controller){
-                          return scriptContentAdjustBlock(controller, getDeviceWidth(context));
-                        }
-                      ),
-                      const SizedBox(height: 30),
-                  ])
-                )),
-                bottomButtons(
-                  getDeviceWidth(context), 
-                  outlinedRoundedRectangleButton('저장 후 나가기', () {
-                      if(checkValidContent()){
-                        saveUserScript();
-                        Get.close(2);
-                      }                  
-                  }), 
-                  fullyRoundedRectangleButton(colors.buttonColor, '연습하기', () {
-                      if(checkValidContent()){
-                        ScriptModel userScript = saveUserScript();
-                        Get.to(() => SelectPractice(
-                          script: userScript,
-                          tapCloseButton: () { Get.close(3); },
-                        ));
-                      }    
-                  })
-              )]
-      ));
+                  child: ListView(children: [
+                    _buildCategory(widget.category),
+                    const SizedBox(height: 15),
+                    _buildTitle(widget.title),
+                    const SizedBox(height: 20),
+                    GetBuilder<UserScriptContentController>(
+                        builder: (controller) {
+                      return scriptContentAdjustBlock(
+                          controller, getDeviceWidth(context));
+                    }),
+                    const SizedBox(height: 30),
+                  ]))),
+          bottomButtons(
+              getDeviceWidth(context),
+              outlinedRoundedRectangleButton('저장 후 나가기', () {
+                if (checkValidContent()) {
+                  saveUserScript();
+                  Get.close(2);
+                }
+              }),
+              fullyRoundedRectangleButton(colors.buttonColor, '연습하기', () {
+                if (checkValidContent()) {
+                  ScriptModel userScript = saveUserScript();
+                  Get.to(() => SelectPractice(
+                        script: userScript,
+                        scriptType: 'user',
+                        tapCloseButton: () {
+                          Get.close(3);
+                        },
+                      ));
+                }
+              }))
+        ]));
   }
 
   void showInvalidContentWarning() {
-      showDialog(
+    showDialog(
         context: context,
         builder: (BuildContext context) =>
-          const WarningDialog(
-            warningObject: 'content'
-          )
-      );
+            const WarningDialog(warningObject: 'content'));
   }
 
   bool checkValidContent() {
-    List<TextEditingController> controllers = Get.find<UserScriptContentController>().textEditingControllerList!;
+    List<TextEditingController> controllers =
+        Get.find<UserScriptContentController>().textEditingControllerList!;
     sentenceList.clear();
 
-    for(TextEditingController controller in controllers) {
-      if(controller.text == ''){
+    for (TextEditingController controller in controllers) {
+      if (controller.text == '') {
         showInvalidContentWarning();
         return false;
       }
-      sentenceList.add(controller.text); 
+      sentenceList.add(controller.text);
     }
     return true;
   }
 
-  ScriptModel saveUserScript(){
+  ScriptModel saveUserScript() {
     ScriptModel userScript = ScriptModel(
-        title: widget.title,
-        category: widget.category,
-        content: sentenceList,
-        createdAt: Timestamp.now(),
+      title: widget.title,
+      category: widget.category,
+      content: sentenceList,
+      createdAt: Timestamp.now(),
     );
 
     saveData.addUserScript(userScript);

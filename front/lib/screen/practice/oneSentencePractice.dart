@@ -12,10 +12,7 @@ import 'package:flutter/widgets.dart';
 
 class OneSentencePratice extends StatefulWidget {
   OneSentencePratice(
-      {Key? key,
-      required this.script,
-      required this.scriptType,
-      required this.record})
+      {Key? key, required this.script, required this.scriptType, this.record})
       : super(key: key);
 
   final ScriptModel script;
