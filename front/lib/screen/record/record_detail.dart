@@ -69,22 +69,19 @@ class _RecordDetailState extends State<RecordDetail> {
 
   Container _notExistsRecord(String item) {
     return Container(
-      padding: EdgeInsets.only(top: getDeviceHeight(context) * 0.1, bottom: getDeviceHeight(context) * 0.1),
-      child: Align(
-        alignment: Alignment.center,
-        child: _buildText(item, 14)
-    ));
+        padding: EdgeInsets.only(
+            top: getDeviceHeight(context) * 0.1,
+            bottom: getDeviceHeight(context) * 0.1),
+        child: Align(alignment: Alignment.center, child: _buildText(item, 14)));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: basicAppBar(title: '기록'),
-        body: Stack(
-          children: [
-            ListView(
-              children: [
-                Container(
+        body: Stack(children: [
+          ListView(children: [
+            Container(
                 width: getDeviceWidth(context),
                 padding: const EdgeInsets.all(20),
                 child: Column(
