@@ -39,8 +39,7 @@ class _SetupUserState extends State<SetupUser> {
             width: getDeviceWidth(context) * 0.9,
             decoration: _boxDecoration(28),
             child: TextFormField(
-              maxLines: 1,
-              textInputAction: TextInputAction.next,
+              maxLength: 8,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return '닉네임은 비어있을 수 없습니다';
@@ -54,6 +53,7 @@ class _SetupUserState extends State<SetupUser> {
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 fillColor: colors.blockColor,
                 filled: true,
+                counterText: '',
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(28),
                     borderSide: BorderSide.none),
