@@ -14,7 +14,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class AdjustUserScript extends StatefulWidget {
   const AdjustUserScript({
     Key? key,
@@ -33,32 +32,26 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
   SaveData saveData = SaveData();
   List<String> sentenceList = [];
 
-  Text _buildCategory(String category){
+  Text _buildCategory(String category) {
     return Text(
       category,
       semanticsLabel: category,
       textAlign: TextAlign.start,
       style: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        color: colors.textColor
-      ),
+          fontSize: 12, fontWeight: FontWeight.w500, color: colors.textColor),
     );
   }
 
-  Text _buildTitle(String title){
+  Text _buildTitle(String title) {
     return Text(
       title,
       semanticsLabel: title,
       textAlign: TextAlign.start,
       style: const TextStyle(
-        fontSize: 15,
-        fontWeight: FontWeight.w500,
-        color: colors.textColor
-      ),
+          fontSize: 15, fontWeight: FontWeight.w500, color: colors.textColor),
     );
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

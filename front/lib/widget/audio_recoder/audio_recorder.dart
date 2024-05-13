@@ -134,33 +134,6 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
             _buildText(),
           ],
         ),
-        if (_amplitude != null) ...[
-          const SizedBox(height: 30),
-          Container(
-              child: Column(
-            children: [
-              Text('Current: ${_amplitude?.current ?? 0.0}'),
-              Text('Max: ${_amplitude?.max ?? 0.0}'),
-              // Expanded(
-              //   flex: 3,
-              //   child: AnimatedContainer(
-              //     duration: Duration(milliseconds: 200),
-              //     curve: Curves.easeIn,
-              //     alignment: Alignment.center,
-              //     child: Container(
-              //       height: (_amplitude?.current ?? 0.0) /
-              //           (_amplitude?.max ?? 0.0) *
-              //           20,
-              //       decoration: BoxDecoration(
-              //         color: colors.bgrDarkColor.withOpacity(0.7),
-              //         shape: BoxShape.circle,
-              //       ),
-              //     ),
-              //   ),
-              // )
-            ],
-          )),
-        ],
       ],
     );
   }

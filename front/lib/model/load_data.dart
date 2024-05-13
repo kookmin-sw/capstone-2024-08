@@ -130,7 +130,7 @@ class LoadData {
       Reference ref = FirebaseStorage.instance.ref().child(filePath);
       Uint8List? data = await ref.getData();
       Directory dir = await getTemporaryDirectory();
-      String localPath = '$dir/user_voices/$fileNanme.wav';
+      String localPath = '${dir.path}/user_voices/$fileNanme.wav';
 
       if (data != null) {
         // 다운로드한 데이터를 사용하여 파일을 생성하거나 저장할 수 있음
