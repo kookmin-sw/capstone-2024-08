@@ -24,6 +24,7 @@ class UserController extends GetxController {
         await loadData.readUser(uid: user!.uid);
     userModel = UserModel.fromDocument(doc: document);
     userModelReady.value = true;
+    updateAttendance();
     await downloadAllWavFiles();
   }
 
