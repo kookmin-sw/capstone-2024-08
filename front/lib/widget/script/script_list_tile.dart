@@ -67,7 +67,7 @@ Widget scriptListTile(
       onTap: () {
         HapticFeedback.lightImpact();
         route == 'record'
-            ? Get.to(() => RecordDetail(script: script, record: record))
+            ? Get.to(() => RecordDetail(script: script, record: record, scriptType: scriptType))
             : Get.to(
                 () => ScriptDetail(script: script, scriptType: scriptType));
       },
