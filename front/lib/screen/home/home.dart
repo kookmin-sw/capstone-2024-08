@@ -21,7 +21,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // final User? user = FirebaseAuth.instance.currentUser;
   final LoadData loadData = LoadData();
 
   String? nickname = Get.find<UserController>().userModel.nickname;
