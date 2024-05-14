@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
@@ -5,12 +6,12 @@ import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:capstone/screen/practice/guide_voice_player.dart';
+import 'package:capstone/widget/audio_player.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/widget/practice/pratice_app_bar.dart';
 import 'package:capstone/widget/practice/scrap_button.dart';
 import 'package:capstone/widget/progress_bar_section.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class OneSentencePratice extends StatefulWidget {
@@ -27,6 +28,7 @@ class OneSentencePratice extends StatefulWidget {
 }
 
 class _OneSentencePraticeState extends State<OneSentencePratice> {
+  final Map<String, File?> _wavFiles = Get.find<UserController>().wavFiles;
   LoadData loadData = LoadData();
   int _currentSentenceIndex = 0;
   int? sentenceLength;
@@ -95,21 +97,6 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
       currnetPracticeAudioPath = audioPath!;
       _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
     });
-
-    // if (_currentState == 'end') {
-    //   debugPrint('Before: ${widget.userData.voiceUrls}');
-    //   await uploadWavFilesToStorage();
-    //   debugPrint('After: ${widget.userData.voiceUrls}');
-    //   debugPrint(
-    //       "이거 해야함 -> AuthController.instance.handleUserInfoCompletion()");
-    //   await saveData.saveUserInfo(
-    //       nickname: widget.userData.nickname!,
-    //       character: widget.userData.character!,
-    //       lastAccessDate: Timestamp.now(),
-    //       voiceUrls: widget.userData.voiceUrls,
-    //       attendanceStreak: 1);
-    //   AuthController.instance.handleUserInfoCompletion();
-    // }
   }
 
   Widget sentenceSection(int sentenceIndex) {
@@ -143,6 +130,13 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                 textAlign: TextAlign.start,
                 style: TextStyle(fontSize: 14.0),
               ),
+            ),
+            FutureBuilder<Widget>(
+              future: guideVoicePlayer(widget.script.content[
+                  sentenceIndex]), // precisionSection 함수를 호출하여 Future<Widget>을 얻음
+              builder: (context, snapshot) {
+                return waitingGetGuideVoicePlayer(snapshot);
+              },
             ),
             RecordingSection(
               showPlayer: showPlayer,
@@ -222,8 +216,36 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         ));
   }
 
-  Widget guideVoicePlayer() {
-    return Container();
+  Future<Widget> guideVoicePlayer(String text) async {
+    String? audioPath =
+        await sendDataToServerAndDownLoadGuideVoice(text, _wavFiles);
+    return AudioPlayer(
+      source: audioPath!,
+      onDelete: () {},
+    );
+  }
+
+  Widget waitingGetGuideVoicePlayer(snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      // 데이터 로딩 중일 때 표시할 위젯
+      return const Column(children: [
+        CircularProgressIndicator(
+          color: colors.recordButtonColor,
+        ),
+        SizedBox(height: 20),
+        Text(
+          '가이드 음성 생성하는 중',
+          style: TextStyle(
+              color: colors.recordButtonColor, fontWeight: FontWeight.bold),
+        )
+      ]);
+    } else if (snapshot.hasError) {
+      // 오류 발생 시 표시할 위젯
+      return Text('Error: ${snapshot.error}');
+    } else {
+      // 데이터를 성공적으로 받아왔을 때 표시할 위젯
+      return snapshot.data ?? Container(); // 반환된 위젯을 표시
+    }
   }
 
   Widget waitingGetPrecisionSection(snapshot) {
@@ -281,9 +303,11 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                         return waitingGetPrecisionSection(snapshot);
                       },
                     ),
-                    Padding(
-                        padding: const EdgeInsets.all(20), child: nextButton())
                   ])),
+          Container(
+              alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.all(20),
+              child: nextButton())
         ]));
   }
 }
