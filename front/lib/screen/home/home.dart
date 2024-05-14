@@ -73,12 +73,9 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.fromLTRB(10, 40, 10, 0),
           child: Text(texts.lastPracticeScriptEmptyMessage,
               style: const TextStyle(
-                  color: colors.themeWhiteColor,
-                  // fontWeight: FontWeight.bold,
-                  fontSize: 16)));
+                  color: colors.themeWhiteColor, fontSize: 16)));
     } else {
       String scriptType = documentRef.path.split('_')[0];
-      print(documentRef.path);
       return FutureBuilder<ScriptModel?>(
         future: loadData.readScriptByDocumentRef(documentRef),
         builder: (context, snapshot) {

@@ -16,8 +16,6 @@ class LoadData {
       {required String uid}) async {
     var userDocumentSnapshot =
         await firestore.collection('user').doc(uid).get();
-    print("-----------");
-    print(userDocumentSnapshot);
     return userDocumentSnapshot;
   }
 
@@ -26,7 +24,6 @@ class LoadData {
     try {
       DocumentSnapshot<Map<String, dynamic>> snapshot =
           await documentRef.get() as DocumentSnapshot<Map<String, dynamic>>;
-
       if (snapshot.exists) {
         return ScriptModel.fromDocument(doc: snapshot);
       } else {
