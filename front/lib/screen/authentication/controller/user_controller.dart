@@ -27,6 +27,7 @@ class UserController extends GetxController {
     await updateAttendance();
     wavFiles = {};
     await downloadAllWavFiles();
+    print('wavFiles : $wavFiles');
   }
 
   Future<void> updateAttendance() async {
