@@ -30,7 +30,7 @@ class _ScriptListState extends State<ScriptList> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+            padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
             color: colors.bgrDarkColor,
             child: Column(children: [
               Container(

@@ -5,12 +5,8 @@ import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/widget/category_buttons.dart';
 
-
 class RecordList extends StatefulWidget {
-  const RecordList({
-    Key? key,
-    required this.index
-  }) : super(key: key);
+  const RecordList({Key? key, required this.index}) : super(key: key);
 
   final int index;
 
@@ -32,23 +28,24 @@ class _RecordListState extends State<RecordList> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-          color: colors.bgrDarkColor,
-          child: Column(
-            children: [
+            padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+            color: colors.bgrDarkColor,
+            child: Column(children: [
               Container(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                child: CategoryButtons(onCategorySelected: _handleCategorySelected),
+                child: CategoryButtons(
+                    onCategorySelected: _handleCategorySelected),
               ),
-              widget.index == 0 ?
-                Expanded(
-                  child: readRecordScripts(loadData.readExampleScripts(selectedCategoryValue), 'example')
-                )
-                : Expanded(
-                    child: readRecordScripts(loadData.readUserScripts(selectedCategoryValue), 'user'),                     
-                  )                    
-          ])
-        )
-    );
+              widget.index == 0
+                  ? Expanded(
+                      child: readRecordScripts(
+                          loadData.readExampleScripts(selectedCategoryValue),
+                          'example'))
+                  : Expanded(
+                      child: readRecordScripts(
+                          loadData.readUserScripts(selectedCategoryValue),
+                          'user'),
+                    )
+            ])));
   }
 }

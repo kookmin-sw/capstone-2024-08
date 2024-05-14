@@ -67,13 +67,14 @@ Widget scriptListTile(
       onTap: () {
         HapticFeedback.lightImpact();
         route == 'record'
-            ? Get.to(() => RecordDetail(script: script, record: record, scriptType: scriptType))
+            ? Get.to(() => RecordDetail(
+                script: script, record: record, scriptType: scriptType))
             : Get.to(
                 () => ScriptDetail(script: script, scriptType: scriptType));
       },
       child: Stack(children: [
         Container(
-          margin: const EdgeInsets.fromLTRB(0, 10, 20, 10),
+          margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           width: getDeviceWidth(context) * 0.85,
           height: getDeviceWidth(context) * 0.45,
           decoration: ShapeDecoration(
@@ -102,7 +103,7 @@ Widget scriptListTile(
             bottom: 0,
             left: 0,
             child: Container(
-                margin: const EdgeInsets.fromLTRB(0, 10, 20, 10),
+                margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                 width: getDeviceWidth(context) * 0.85,
                 height: getDeviceWidth(context) * 0.18,
                 decoration: ShapeDecoration(
