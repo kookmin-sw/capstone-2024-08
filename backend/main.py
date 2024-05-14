@@ -8,7 +8,7 @@ from create_script.user_script import create_user_script
 from create_script.user_script.schemas.gpt_sch import GptRequestSch, GptResponseSch
 from fastapi.middleware.cors import CORSMiddleware
 #from voice_converison import change_voice
-#from tts import infer
+from tts import infer
 import text
 
 
