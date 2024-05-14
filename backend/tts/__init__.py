@@ -6,12 +6,11 @@ from torch import nn
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
 
-from .commons import *
-from .utils import *
-from .data_utils import TextAudioLoader, TextAudioCollate, TextAudioSpeakerLoader, TextAudioSpeakerCollate
-from .models import SynthesizerTrn
-from ..text.symbols import symbols
-from ..text import text_to_sequence
+from tts import commons, utils
+from tts.data_utils import TextAudioLoader, TextAudioCollate, TextAudioSpeakerLoader, TextAudioSpeakerCollate
+from tts.models import SynthesizerTrn
+from text.symbols import symbols
+from text import text_to_sequence
 import soundfile as sf
 
 

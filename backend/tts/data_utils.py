@@ -5,10 +5,17 @@ import numpy as np
 import torch
 import torch.utils.data
 
-from .commons import *
-from mel_processing import spectrogram_torch
-from .utils import load_wav_to_torch, load_filepaths_and_text
-from .text import text_to_sequence, cleaned_text_to_sequence
+from tts import commons
+from tts.mel_processing import spectrogram_torch
+from tts.utils import load_wav_to_torch, load_filepaths_and_text
+import sys
+import os
+
+# 현재 스크립트 파일의 위치에서 상위 디렉토리로 가서 'lib' 폴더 경로를 구합니다.
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+lib_path = os.path.join(project_root, 'text')
+sys.path.insert(0, lib_path)
+from text import text_to_sequence, cleaned_text_to_sequence
 
 
 class TextAudioLoader(torch.utils.data.Dataset):
