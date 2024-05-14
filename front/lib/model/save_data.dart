@@ -71,8 +71,10 @@ class SaveData {
         await wavRef.putFile(file);
         String url = await wavRef.getDownloadURL();
         urls[element.key] = url;
-        // ignore: empty_catches
-      } on FirebaseException {}
+      } on FirebaseException {
+        print("========================");
+        print("스토리지에 wav 파일 업로드 실패");
+      }
     }
 
     return urls;
