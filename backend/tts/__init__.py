@@ -26,7 +26,11 @@ def get_text(text, hps):
 
 
 def infer(script: str):
-    hps = utils.get_hparams_from_file("/home/ubuntu/forked/capstone-2024-08/backend/tts/config/nia22.json")
+    current_file_path = os.path.abspath(__file__)
+    current_dir = os.path.dirname(current_file_path)
+    config_path = os.path.join(current_dir, "config", "nia22.json")
+    model_path = os.path.join(current_dir, "vits_nia22.pth")
+    hps = utils.get_hparams_from_file(config_path)
     net_g = SynthesizerTrn(
         len(symbols),
         hps.data.filter_length // 2 + 1,
@@ -34,7 +38,7 @@ def infer(script: str):
         n_speakers=hps.data.n_speakers,
         **hps.model).cpu()
     _ = net_g.eval()
-    _ = utils.load_checkpoint("/home/ubuntu/forked/capstone-2024-08/backend/tts/vits_nia22.pth", net_g, None)
+    _ = utils.load_checkpoint(model_path, net_g, None)
     stn_tst = get_text(script, hps)
     with torch.no_grad():
         x_tst = stn_tst.cpu().unsqueeze(0)
