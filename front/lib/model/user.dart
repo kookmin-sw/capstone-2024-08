@@ -25,9 +25,9 @@ class UserModel {
         character = doc.get('character'),
         lastAccessDate = doc.get('lastAccessDate'),
         attendanceStreak = doc.get('attendanceStreak'),
-        voiceUrls = doc.data()!['voice'] == null
+        voiceUrls = doc.data()!['voiceUrls'] == null
             ? null
-            : (doc.data()!['voice'] as Map<String, dynamic>)
+            : (doc.data()!['voiceUrls'] as Map<String, dynamic>)
                 .cast<String, String>(),
         lastPracticeScript = doc.get('lastPracticeScript');
 
@@ -38,7 +38,7 @@ class UserModel {
       'character': character,
       'lastAccessDate': lastAccessDate,
       'attendanceStreak': attendanceStreak,
-      'voice': voiceUrls,
+      'voiceUrls': voiceUrls,
       'lastPracticeScript': lastPracticeScript
     };
   }
