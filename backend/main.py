@@ -68,7 +68,7 @@ async def provide_voice_guide(sentence: str):
 
 
 @app.post("/test/")
-async def test(text: str = Form(...), wavs: list[UploadFile] = File(...)):
+async def test(sentence: str = Form(...), wavs: list[UploadFile] = File(...)):
     # Process received text and files here
     print(f"Received text: {text}")
     for wav_file in wavs:
@@ -76,7 +76,7 @@ async def test(text: str = Form(...), wavs: list[UploadFile] = File(...)):
         print(f"Received file: {wav_file.filename}, size: {len(contents)} bytes")
 
     # Simulate processing and return a URL for a WAV file
-    wav_url = "/home/ubuntu/capstone-2024-08/backend/voice_converison/vc_out.wav"
+    wav_url = "/home/ubuntu/capstone-2024-08/backend/voice_converison/SPK064KBSCU001M001.wav"
     return JSONResponse(status_code=200, content={"wav_url": wav_url})
 
 
