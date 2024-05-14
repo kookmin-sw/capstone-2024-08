@@ -78,6 +78,7 @@ class _HomeState extends State<Home> {
                   fontSize: 16)));
     } else {
       String scriptType = documentRef.path.split('_')[0];
+      print(documentRef.path);
       return FutureBuilder<ScriptModel?>(
         future: loadData.readScriptByDocumentRef(documentRef),
         builder: (context, snapshot) {

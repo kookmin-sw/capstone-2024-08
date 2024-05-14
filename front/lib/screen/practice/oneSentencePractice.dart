@@ -3,12 +3,15 @@ import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
+import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:capstone/screen/practice/guide_voice_player.dart';
 import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:capstone/widget/practice/pratice_app_bar.dart';
+import 'package:capstone/widget/practice/scrap_button.dart';
 import 'package:capstone/widget/progress_bar_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class OneSentencePratice extends StatefulWidget {
   OneSentencePratice(
@@ -27,6 +30,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   LoadData loadData = LoadData();
   int _currentSentenceIndex = 0;
   int? sentenceLength;
+  String uid = Get.find<UserController>().userModel.id!;
 
   double _currentProgressValue = 5;
   bool showPlayer = false;
@@ -45,6 +49,23 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         : (100 * _currentSentenceIndex / sentenceLength!);
     scrapSentences = widget.record == null ? [] : widget.record!.scrapSentence;
     super.initState();
+  }
+
+  void updateScrap(List<int>? updatedScrapSentences) {
+    setState(() {
+      scrapSentences = updatedScrapSentences;
+    });
+  }
+
+  bool isClicked(int sentenceIndex) {
+    if (scrapSentences == null) {
+      return false;
+    } else {
+      if (scrapSentences!.contains(sentenceIndex)) {
+        return true;
+      }
+      return false;
+    }
   }
 
   Text _buildCategory(String category) {
@@ -110,6 +131,11 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                     ),
               ]),
           child: Column(children: [
+            Container(
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.fromLTRB(5, 20, 5, 10),
+                child: scrapsButton(widget.scriptType, widget.script.id!, uid,
+                    sentenceIndex, isClicked(sentenceIndex), updateScrap)),
             Container(
               padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
               child: Text(
@@ -200,16 +226,33 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     return Container();
   }
 
+  Widget waitingGetPrecisionSection(snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      // 데이터 로딩 중일 때 표시할 위젯
+      return const Column(children: [
+        CircularProgressIndicator(
+          color: colors.recordButtonColor,
+        ),
+        SizedBox(height: 20),
+        Text(
+          '유사도 계산하는 중',
+          style: TextStyle(
+              color: colors.recordButtonColor, fontWeight: FontWeight.bold),
+        )
+      ]);
+    } else if (snapshot.hasError) {
+      // 오류 발생 시 표시할 위젯
+      return Text('Error: ${snapshot.error}');
+    } else {
+      // 데이터를 성공적으로 받아왔을 때 표시할 위젯
+      return snapshot.data ?? Container(); // 반환된 위젯을 표시
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PracticeAppBar(
-          script: widget.script,
-          scriptType: widget.scriptType,
-          backButton: true,
-          scrapSentences: scrapSentences,
-          sentenceIndex: _currentSentenceIndex,
-        ),
+        appBar: practiceAppBar(),
         body: Stack(children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
@@ -235,28 +278,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                       future:
                           precisionSection(), // precisionSection 함수를 호출하여 Future<Widget>을 얻음
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          // 데이터 로딩 중일 때 표시할 위젯
-                          return Column(children: [
-                            CircularProgressIndicator(
-                              color: colors.recordButtonColor,
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              '유사도 계산하는 중',
-                              style: TextStyle(
-                                  color: colors.recordButtonColor,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ]);
-                        } else if (snapshot.hasError) {
-                          // 오류 발생 시 표시할 위젯
-                          return Text('Error: ${snapshot.error}');
-                        } else {
-                          // 데이터를 성공적으로 받아왔을 때 표시할 위젯
-                          return snapshot.data ?? Container(); // 반환된 위젯을 표시
-                        }
+                        return waitingGetPrecisionSection(snapshot);
                       },
                     ),
                     Padding(
