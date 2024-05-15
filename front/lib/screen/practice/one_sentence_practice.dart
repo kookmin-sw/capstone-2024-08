@@ -97,6 +97,14 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
       currnetPracticeAudioPath = audioPath!;
       _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
     });
+
+    if (_currentSentenceIndex == sentenceLength) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/record_tab', // 목표로 하는 경로
+        (Route<dynamic> route) => false,
+      );
+    }
   }
 
   Widget sentenceSection(int sentenceIndex) {
@@ -220,7 +228,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         await sendDataToServerAndDownLoadGuideVoice(text, _wavFiles);
     return (audioPath != null)
         ? AudioPlayer(
-            source: audioPath!,
+            source: audioPath,
             onDelete: () {},
           )
         : Text('가이드 음성 : $audioPath');

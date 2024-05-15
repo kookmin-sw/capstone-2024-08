@@ -3,6 +3,7 @@ import 'package:capstone/screen/authentication/setup_user.dart';
 import 'package:capstone/screen/authentication/social_login.dart';
 import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/screen/bottom_navigation.dart';
+import 'package:capstone/screen/record/record_taps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -132,7 +133,8 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/login', page: () => const SocialLogin()),
         GetPage(name: '/user', page: () => const SetupUser()),
-        GetPage(name: '/bottom_nav', page: () => const BottomNavBar())
+        GetPage(name: '/bottom_nav', page: () => const BottomNavBar()),
+        GetPage(name: '/record_tab', page: () => const RecordTabs())
       ],
       debugShowCheckedModeBanner: false,
     );
