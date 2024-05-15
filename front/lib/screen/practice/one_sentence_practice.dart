@@ -99,11 +99,13 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     });
 
     if (_currentSentenceIndex == sentenceLength) {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/bottom_nav', // 목표로 하는 경로
-        (Route<dynamic> route) => false,
-      );
+      Future.delayed(Duration(milliseconds: 700), () {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/bottom_nav', // 목표로 하는 경로
+          (Route<dynamic> route) => false,
+        );
+      });
     }
   }
 
@@ -316,7 +318,9 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
           Container(
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(20),
-              child: nextButton())
+              child: (_currentSentenceIndex != sentenceLength)
+                  ? nextButton()
+                  : Container())
         ]));
   }
 }
