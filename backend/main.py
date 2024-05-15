@@ -70,7 +70,7 @@ async def provide_voice_guide(sentence: str):
 
 
 @app.post("/test/")
-async def test(text: str = Form(...), wavs: list[UploadFile] = File(...)):
+async def test(sentence: str = Form(...), wavs: list[UploadFile] = File(...)):
     # Process received text and files here
     print(f"Received text: {text}")
     for wav_file in wavs:
