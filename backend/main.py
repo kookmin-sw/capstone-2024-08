@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
 from fastapi.staticfiles import StaticFiles
-=======
->>>>>>> Stashed changes
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 import os
 import shutil
