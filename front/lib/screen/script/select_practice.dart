@@ -1,6 +1,6 @@
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
-import 'package:capstone/screen/practice/oneSentencePractice.dart';
+import 'package:capstone/screen/practice/one_sentence_practice.dart';
 import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;

@@ -18,7 +18,7 @@ Future<String?> sendDataToServerAndDownLoadGuideVoice(
   var request = http.MultipartRequest('POST', url);
 
   // 텍스트 필드 추가
-  request.fields['sentence'] = text;
+  request.fields['text'] = text;
 
   // WAV 파일들 추가
   for (var entry in wavFiles.entries) {
@@ -34,6 +34,7 @@ Future<String?> sendDataToServerAndDownLoadGuideVoice(
       );
       request.files.add(multipartFile);
     }
+    break;
   }
 
   // 리퀘스트 보내기
@@ -45,7 +46,8 @@ Future<String?> sendDataToServerAndDownLoadGuideVoice(
     var responseData = jsonDecode(await response.stream.bytesToString());
 
     // 응답 데이터에서 WAV 파일의 URL 가져오기
-    var wavUrl = jsonDecode(responseData)['wav_url'];
+    var wavUrl = responseData['wav_url'];
+    print(wavUrl);
 
     // WAV 파일 다운로드
     var wavResponse = await http.get(Uri.parse(wavUrl));

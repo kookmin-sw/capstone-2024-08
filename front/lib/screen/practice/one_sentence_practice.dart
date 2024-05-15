@@ -132,8 +132,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
               ),
             ),
             FutureBuilder<Widget>(
-              future: guideVoicePlayer(widget.script.content[
-                  sentenceIndex]), // precisionSection 함수를 호출하여 Future<Widget>을 얻음
+              future: guideVoicePlayer(widget.script.content[sentenceIndex]),
               builder: (context, snapshot) {
                 return waitingGetGuideVoicePlayer(snapshot);
               },
@@ -219,10 +218,12 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   Future<Widget> guideVoicePlayer(String text) async {
     String? audioPath =
         await sendDataToServerAndDownLoadGuideVoice(text, _wavFiles);
-    return AudioPlayer(
-      source: audioPath!,
-      onDelete: () {},
-    );
+    return (audioPath != null)
+        ? AudioPlayer(
+            source: audioPath!,
+            onDelete: () {},
+          )
+        : Text('가이드 음성 : $audioPath');
   }
 
   Widget waitingGetGuideVoicePlayer(snapshot) {
@@ -278,32 +279,32 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         body: Stack(children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(children: [
-                      _buildCategory(widget.script.category),
-                      const SizedBox(height: 15),
-                      _buildTitle(widget.script.title),
-                      const SizedBox(height: 20),
-                      progressBarSection(_currentProgressValue),
-                    ]),
-                    Container(
-                        child: Column(children: [
+              child: Column(children: [
+                Column(children: [
+                  _buildCategory(widget.script.category),
+                  const SizedBox(height: 15),
+                  _buildTitle(widget.script.title),
+                  const SizedBox(height: 20),
+                  progressBarSection(_currentProgressValue),
+                ]),
+                Container(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                       Column(children: [
                         _currentSentenceIndex != sentenceLength
                             ? sentenceSection(_currentSentenceIndex)
                             : Container(),
                       ]),
                     ])),
-                    FutureBuilder<Widget>(
-                      future:
-                          precisionSection(), // precisionSection 함수를 호출하여 Future<Widget>을 얻음
-                      builder: (context, snapshot) {
-                        return waitingGetPrecisionSection(snapshot);
-                      },
-                    ),
-                  ])),
+                FutureBuilder<Widget>(
+                  future:
+                      precisionSection(), // precisionSection 함수를 호출하여 Future<Widget>을 얻음
+                  builder: (context, snapshot) {
+                    return waitingGetPrecisionSection(snapshot);
+                  },
+                ),
+              ])),
           Container(
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(20),
