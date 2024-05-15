@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, UploadFile, Form
-
+from fastapi.staticfiles import StaticFiles
 from feedback import levenshtein
 from fastapi.responses import JSONResponse, FileResponse
 import tempfile
@@ -19,6 +19,8 @@ app.add_middleware(
     allow_origins=["*"],
     allow_methods=["GET", "POST", "OPTIONS"],
 )
+
+app.mount("/static", StaticFiles(directory="/home/ubuntu/capstone-2024-08/backend/voice_conversion"), name="static")
 
 
 @app.post("/script", response_model= GptResponseSch)
@@ -76,7 +78,7 @@ async def test(text: str = Form(...), wavs: list[UploadFile] = File(...)):
         print(f"Received file: {wav_file.filename}, size: {len(contents)} bytes")
 
     # Simulate processing and return a URL for a WAV file
-    wav_url = "/home/ubuntu/capstone-2024-08/backend/voice_converison/vc_out.wav"
+    wav_url = "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/SPK064KBSCU001M001.wav"
     return JSONResponse(status_code=200, content={"wav_url": wav_url})
 
 

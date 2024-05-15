@@ -4,7 +4,7 @@ import whisper
 
 def transcribe_korean_audio(file_path):
     # 모델 로드 (한국어 포함 모델 선택)
-    model = whisper.load_model("medium")
+    model = whisper.load_model("medium", device="cuda")
     result = model.transcribe(file_path)
     return result["text"]
 
