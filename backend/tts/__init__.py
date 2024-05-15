@@ -31,6 +31,9 @@ def infer(script: str):
     config_path = os.path.join(current_dir, "config", "nia22.json")
     model_path = os.path.join(current_dir, "vits_nia22.pth")
     output_path = os.path.join(current_dir, "output_audio.wav")
+    print(config_path)
+    print(model_path)
+    print(output_path)
     hps = utils.get_hparams_from_file(config_path)
     net_g = SynthesizerTrn(
         len(symbols),
