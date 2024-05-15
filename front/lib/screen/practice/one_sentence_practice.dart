@@ -101,7 +101,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     if (_currentSentenceIndex == sentenceLength) {
       Navigator.pushNamedAndRemoveUntil(
         context,
-        '/record_tab', // 목표로 하는 경로
+        '/bottom_nav', // 목표로 하는 경로
         (Route<dynamic> route) => false,
       );
     }

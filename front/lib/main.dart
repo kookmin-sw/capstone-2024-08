@@ -133,8 +133,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/login', page: () => const SocialLogin()),
         GetPage(name: '/user', page: () => const SetupUser()),
-        GetPage(name: '/bottom_nav', page: () => const BottomNavBar()),
-        GetPage(name: '/record_tab', page: () => const RecordTabs())
+        GetPage(name: '/bottom_nav', page: () => const BottomNavBar())
       ],
       debugShowCheckedModeBanner: false,
     );
