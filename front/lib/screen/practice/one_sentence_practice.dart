@@ -70,6 +70,10 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     }
   }
 
+  bool isEnd() {
+    return (_currentSentenceIndex == sentenceLength);
+  }
+
   Text _buildCategory(String category) {
     return Text(
       category,
@@ -98,15 +102,20 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
       _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
     });
 
-    if (_currentSentenceIndex == sentenceLength) {
-      Future.delayed(Duration(milliseconds: 700), () {
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          '/bottom_nav', // 목표로 하는 경로
-          (Route<dynamic> route) => false,
-        );
-      });
+    if (isEnd()) {
+      backToHomePage();
     }
+  }
+
+  backToHomePage() {
+    // 연습 기록 저장 코드
+    Future.delayed(Duration(milliseconds: 700), () {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/bottom_nav',
+        (Route<dynamic> route) => false,
+      );
+    });
   }
 
   Widget sentenceSection(int sentenceIndex) {
@@ -318,9 +327,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
           Container(
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(20),
-              child: (_currentSentenceIndex != sentenceLength)
-                  ? nextButton()
-                  : Container())
+              child: isEnd() ? nextButton() : Container())
         ]));
   }
 }
