@@ -1,5 +1,7 @@
-from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException
+import os
+import shutil
 from feedback import levenshtein
 from fastapi.responses import JSONResponse, FileResponse
 import tempfile
@@ -7,7 +9,7 @@ from feedback import stt
 from create_script.user_script import create_user_script 
 from create_script.user_script.schemas.gpt_sch import GptRequestSch, GptResponseSch
 from fastapi.middleware.cors import CORSMiddleware
-#from voice_converison import change_voice
+from voice_conversion import change_voice
 from tts import infer
 import text
 
@@ -55,22 +57,29 @@ async def create_upload_file(sentence: str = Form(...), user_wav: UploadFile = F
 
 
 @app.post("/voice_guide/")
-async def provide_voice_guide(sentence: str):
-    # test
-
-    # part-1: tts
-    guide_audio = infer(sentence)
-
-
-    # part-2: voice conversion
-    change_voice("voice_converison/SPK064KBSCU001M001.wav", ["/home/ubuntu/forked/capstone-2024-08/backend/voice_converison/output_audio.wav"])
-    print("conversion complete!!")
-    return FileResponse("/home/ubuntu/forked/capstone-2024-08/backend/voice_converison/vc_out.wav", media_type="audio/wav")
-
+async def provide_voice_guide(sentence: str = Form(...), wavs: list[UploadFile] = File(...)):
+    temp_dir = tempfile.mkdtemp()
+    user_voices_paths = []  # 저장된 파일 경로를 추적
+    try:
+        for wav in wavs:
+            temp_file_path = os.path.join(temp_dir, wav.filename)
+            with open(temp_file_path, 'wb+') as out_file:  # 임시 파일 생성 및 쓰기
+                shutil.copyfileobj(wav.file, out_file)
+            user_voices_paths.append(temp_file_path)
+        # part-1: tts
+        guide_audio_path = infer(sentence)
+        # part-2: voice conversion
+        output_voice_path = change_voice(guide_audio_path, user_voices_paths)
+        print("conversion complete!!")
+        return JSONResponse(status_code=200, content={"wav_url": output_voice_path})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        shutil.rmtree(temp_dir)
 
 
 @app.post("/test/")
-async def test(sentence: str = Form(...), wavs: list[UploadFile] = File(...)):
+async def test(text: str = Form(...), wavs: list[UploadFile] = File(...)):
     # Process received text and files here
     print(f"Received text: {text}")
     for wav_file in wavs:

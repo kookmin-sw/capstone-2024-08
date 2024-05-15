@@ -30,6 +30,7 @@ def infer(script: str):
     current_dir = os.path.dirname(current_file_path)
     config_path = os.path.join(current_dir, "config", "nia22.json")
     model_path = os.path.join(current_dir, "vits_nia22.pth")
+    output_path = os.path.join(current_dir, "output_audio.wav")
     hps = utils.get_hparams_from_file(config_path)
     net_g = SynthesizerTrn(
         len(symbols),
@@ -47,5 +48,5 @@ def infer(script: str):
         audio = net_g.infer(x_tst, x_tst_lengths, sid=sid, noise_scale=.667, noise_scale_w=0.8, length_scale=1.0)[0][
             0, 0].data.cpu().float().numpy()
     # `audio`는 NumPy 배열 형태의 음성 데이터이고, `hps.data.sampling_rate`는 해당 데이터의 샘플링 레이트입니다.
-    sf.write('output_audio.wav', audio, hps.data.sampling_rate)
-    return audio
+    sf.write(output_path, audio, hps.data.sampling_rate)
+    return output_path
