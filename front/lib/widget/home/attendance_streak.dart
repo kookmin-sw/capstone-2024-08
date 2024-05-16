@@ -7,7 +7,7 @@ Widget attendanceStreakSection(name, day) {
   return Container(
     decoration: BoxDecoration(
         color: colors.themeWhiteColor, borderRadius: BorderRadius.circular(20)),
-    margin: const EdgeInsets.all(10),
+    margin: const EdgeInsets.all(15),
     child: ListTile(
       title: Text(
         '$day일',

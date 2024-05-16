@@ -1,6 +1,10 @@
 import 'package:capstone/model/record.dart';
+import 'package:capstone/model/save_data.dart';
 import 'package:capstone/model/script.dart';
-import 'package:capstone/screen/practice/oneSentencePractice.dart';
+import 'package:capstone/screen/authentication/controller/user_controller.dart';
+import 'package:capstone/screen/practice/one_sentence_practice.dart';
+import 'package:capstone/screen/practice/prompt_practice.dart';
+import 'package:capstone/widget/practice/prompt_timer.dart';
 import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
@@ -18,6 +22,8 @@ class SelectPractice extends StatelessWidget {
 
   final ScriptModel script;
   final Function tapCloseButton;
+  final SaveData saveData = SaveData();
+  String uid = Get.find<UserController>().userModel.id!;
 
   final String scriptType;
   RecordModel? record;
@@ -49,9 +55,22 @@ class SelectPractice extends StatelessWidget {
                   children: [
                     notice(),
                     SizedBox(height: deviceHeight * 0.05),
-                    practiceButton(context, '프롬프트', () {}),
+                    practiceButton(context, '프롬프트', () {
+                      saveData.updateLastPracticeScript(
+                          uid, scriptType, script.id!);
+                      Get.to(() => PromptTimer(
+                          script: script,
+                          scriptType: scriptType,
+                          record: record,
+                          route: 'play_guide'));
+                      // PromptPractice(
+                      //       script: script,
+                      //     ));
+                    }),
                     SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '문장단위연습', () {
+                      saveData.updateLastPracticeScript(
+                          uid, scriptType, script.id!);
                       Get.to(() => OneSentencePratice(
                             script: script,
                             scriptType: scriptType,

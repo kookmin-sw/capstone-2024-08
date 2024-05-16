@@ -221,7 +221,9 @@ class _GetUserVoiceState extends State<GetUserVoice> {
                           ),
                   ]),
                   Padding(
-                      padding: const EdgeInsets.all(20), child: nextButton())
+                      padding: const EdgeInsets.all(20),
+                      child:
+                          (_currentState != 'end') ? nextButton() : Container())
                 ])));
   }
 }

@@ -107,13 +107,12 @@ class _SetupUserState extends State<SetupUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: basicAppBar(title: '회원가입', backButton: false),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: ListView(
-          children: [
+        appBar: basicAppBar(title: '회원가입', backButton: false),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: ListView(children: [
             Center(
               child: Column(
                 children: [

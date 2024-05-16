@@ -8,6 +8,6 @@ Widget characterSection(String character) {
           color: colors.themeWhiteColor,
           borderRadius: BorderRadius.circular(20)),
       margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(40),
       child: Image.asset(images.characterImagePaths[character]!));
 }

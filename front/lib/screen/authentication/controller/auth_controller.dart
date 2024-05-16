@@ -48,10 +48,8 @@ class AuthController extends GetxController {
 
   Future<bool> checkIfUserSetUp(String userId) async {
     try {
-      DocumentSnapshot snapshot = await FirebaseFirestore.instance
-          .collection('user')
-          .doc(userId)
-          .get();
+      DocumentSnapshot snapshot =
+          await FirebaseFirestore.instance.collection('user').doc(userId).get();
 
       if (snapshot.exists) {
         Map<String, dynamic>? userData =
