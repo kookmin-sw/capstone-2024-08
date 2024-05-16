@@ -115,8 +115,7 @@ class _CreateUserScriptState extends State<CreateUserScript> {
 List<String> splitContent(String content) {
   List<String> sentenceList = [];
   for(String sentence in content.split('.')){
-    sentence.trim();
-    sentenceList.add('$sentence.');
+    sentenceList.add('${sentence.trim()}.');
   }
   if(sentenceList.last == '.') { sentenceList.removeLast(); }
   return sentenceList;

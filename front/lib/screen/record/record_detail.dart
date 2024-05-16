@@ -79,31 +79,35 @@ class _RecordDetailState extends State<RecordDetail> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+    var deviceHeight = getDeviceHeight(context);
+
     return Scaffold(
         appBar: basicAppBar(title: '기록'),
         body: Stack(children: [
           ListView(children: [
             Container(
-                width: getDeviceWidth(context),
+                width: deviceWidth,
                 padding: const EdgeInsets.all(20),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildCategory(widget.script.category),
-                      const SizedBox(height: 12),
+                      SizedBox(height: deviceHeight * 0.01),
                       _buildTitle(widget.script.title),
-                      const SizedBox(height: 20),
+                      SizedBox(height: deviceHeight * 0.025),
                       _buildRecordItemTitle('스크랩한 문장 목록'),
                       scrapSentenceList.isNotEmpty
                           ? ScrapSentenceSlider(
                               scrapSentenceList: scrapSentenceList)
                           : _notExistsRecord('스크랩한 문장이 존재하지 않습니다.'),
-                      const SizedBox(height: 20),
+                      SizedBox(height: deviceHeight * 0.03),
                       _buildRecordItemTitle('프롬프트 정확도 추이 그래프'),
                       widget.record!.promptResult!.isNotEmpty
                           ? PromptPrecisionGraph(
                               promptResult: widget.record!.promptResult!)
-                          : _notExistsRecord('프롬프트 연습 기록이 존재하지 않습니다.')
+                          : _notExistsRecord('프롬프트 연습 기록이 존재하지 않습니다.'),
+                      SizedBox(height: deviceHeight * 0.07),
                     ]))
           ]),
           Positioned(

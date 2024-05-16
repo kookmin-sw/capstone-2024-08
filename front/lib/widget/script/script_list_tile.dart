@@ -63,6 +63,9 @@ Text _buildPrecision(int? precision) {
 Widget scriptListTile(
     BuildContext context, ScriptModel script, String route, String scriptType,
     {RecordModel? record}) {
+  
+  var deviceWidth = getDeviceWidth(context);
+
   return GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
@@ -74,27 +77,33 @@ Widget scriptListTile(
       child: Stack(children: [
         Container(
           margin: const EdgeInsets.fromLTRB(0, 10, 20, 10),
-          width: getDeviceWidth(context) * 0.85,
-          height: getDeviceWidth(context) * 0.45,
+          width: deviceWidth * 0.85,
+          height: deviceWidth * 0.45,
           decoration: ShapeDecoration(
               color: colors.blockColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(13),
               )),
           child: route == 'record'
-              ? Container(
-                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-                  child: Column(children: [
+              ? Column(
+                  children: [
                     record!.promptResult!.isNotEmpty
-                        ? Align(
-                            alignment: Alignment.topRight,
+                      ? Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
                             child: _buildPrecision(
-                                record.promptResult!.last['precision']))
-                        : Container(padding: const EdgeInsets.only(bottom: 10)),
-                    const SizedBox(height: 30),
-                    _buildTitle(script.title)
-                  ]))
-              : Container(
+                              record.promptResult!.last['precision'])
+                        ))
+                      : const Padding(
+                          padding: EdgeInsets.only(bottom: 30)
+                        ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(15, 35, 15, 0),
+                      child: _buildTitle(script.title)
+                    )
+                  ])
+              : Padding(
                   padding: const EdgeInsets.fromLTRB(15, 65, 15, 0),
                   child: _buildTitle(script.title)),
         ),
@@ -103,8 +112,8 @@ Widget scriptListTile(
             left: 0,
             child: Container(
                 margin: const EdgeInsets.fromLTRB(0, 10, 20, 10),
-                width: getDeviceWidth(context) * 0.85,
-                height: getDeviceWidth(context) * 0.18,
+                width: deviceWidth * 0.85,
+                height: deviceWidth * 0.18,
                 decoration: ShapeDecoration(
                     color: colors.exampleScriptColor,
                     shape: RoundedRectangleBorder(

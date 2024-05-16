@@ -13,10 +13,13 @@ class Setting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+    var deviceHeight = getDeviceHeight(context);
+
     return Scaffold(
       appBar: basicAppBar(title: '설정'),
       body: Container(
-        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+        padding: EdgeInsets.all(deviceWidth * 0.05),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: routes.settingItems.map((item) =>
@@ -35,9 +38,9 @@ class Setting extends StatelessWidget {
                 }
               },
               child: Container(
-                width: getDeviceWidth(context),
-                height: getDeviceHeight(context) * 0.1,
-                margin: const EdgeInsets.only(bottom: 20),
+                width: deviceWidth,
+                height: deviceHeight * 0.1,
+                margin: EdgeInsets.only(bottom: deviceWidth * 0.04),
                 decoration: BoxDecoration(
                   color: colors.blockColor,
                   borderRadius: BorderRadius.circular(15),

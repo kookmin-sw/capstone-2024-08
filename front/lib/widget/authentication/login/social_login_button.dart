@@ -29,9 +29,9 @@ class SocialLoginButton extends StatelessWidget {
         color: color,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2), // Shadow color
-            blurRadius: 6, // Spread of the shadow
-            offset: const Offset(0, 3), // Shadow offset (x, y)
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
           ),
         ],
       ),

@@ -16,7 +16,7 @@ class Policy extends StatelessWidget {
       appBar: basicAppBar(title: policy['policyName']!),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           child: Wrap(
             children: [
                 Text(
