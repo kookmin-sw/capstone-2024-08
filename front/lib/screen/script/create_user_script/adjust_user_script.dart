@@ -54,6 +54,9 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+    var deviceHeight = getDeviceHeight(context);
+
     return Scaffold(
         appBar: basicAppBar(title: '나만의 대본 만들기'),
         body: Stack(children: [
@@ -62,21 +65,21 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
                 FocusScope.of(context).unfocus();
               },
               child: Container(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                  padding: const EdgeInsets.all(20),
                   child: ListView(children: [
                     _buildCategory(widget.category),
-                    const SizedBox(height: 15),
+                    SizedBox(height: deviceHeight * 0.01),
                     _buildTitle(widget.title),
-                    const SizedBox(height: 20),
+                    SizedBox(height: deviceHeight * 0.03),
                     GetBuilder<UserScriptContentController>(
                         builder: (controller) {
                       return scriptContentAdjustBlock(
-                          controller, getDeviceWidth(context));
+                          controller, deviceWidth);
                     }),
-                    const SizedBox(height: 30),
+                    SizedBox(height: deviceHeight * 0.08),
                   ]))),
           bottomButtons(
-              getDeviceWidth(context),
+              deviceWidth,
               outlinedRoundedRectangleButton('저장 후 나가기', () {
                 if (checkValidContent()) {
                   saveUserScript();
@@ -98,11 +101,11 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
         ]));
   }
 
-  void showInvalidContentWarning() {
+  void showInvalidContentWarning(String warningType) {
     showDialog(
         context: context,
         builder: (BuildContext context) =>
-            const WarningDialog(warningObject: 'content'));
+            WarningDialog(warningObject: warningType));
   }
 
   bool checkValidContent() {
@@ -110,9 +113,14 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
         Get.find<UserScriptContentController>().textEditingControllerList!;
     sentenceList.clear();
 
+    if(controllers.isEmpty){
+      showInvalidContentWarning('emptyContent');
+      return false;
+    }
+
     for (TextEditingController controller in controllers) {
       if (controller.text == '') {
-        showInvalidContentWarning();
+        showInvalidContentWarning('emptySentenceBlock');
         return false;
       }
       sentenceList.add(controller.text);
