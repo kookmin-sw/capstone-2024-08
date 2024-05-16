@@ -12,8 +12,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from voice_conversion import change_voice
 from tts import infer
 import text
+from whisper_jax import FlaxWhisperPipline
+import jax.numpy as jnp
 
-
+pipeline = FlaxWhisperPipline("openai/whisper-medium", dtype=jnp.bfloat16)
 app = FastAPI()
 # CORS 설정
 app.add_middleware(
@@ -43,7 +45,7 @@ async def create_upload_file(sentence: str = Form(...), user_wav: UploadFile = F
         tmp.write(content)
         tmp_path = tmp.name
         tmp.seek(0)
-        user_trans = stt.transcribe_korean_audio(tmp_path)
+        user_trans = stt.transcribe_korean_audio(tmp_path, pipeline)
 
     # TODO: Add guide audio later
 
