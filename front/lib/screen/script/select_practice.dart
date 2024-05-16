@@ -55,7 +55,11 @@ class SelectPractice extends StatelessWidget {
                     practiceButton(context, '프롬프트', () {
                       saveData.updateLastPracticeScript(
                           uid, scriptType, script.id!);
-                      Get.to(() => PromptTimer());
+                      Get.to(() => PromptTimer(
+                          script: script,
+                          scriptType: scriptType,
+                          record: record,
+                          route: 'play_guide'));
                       // PromptPractice(
                       //       script: script,
                       //     ));
