@@ -3,6 +3,7 @@ import 'package:capstone/screen/authentication/setup_user.dart';
 import 'package:capstone/screen/authentication/social_login.dart';
 import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/screen/bottom_navigation.dart';
+import 'package:capstone/screen/record/record_taps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -13,15 +14,24 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:io';
 import 'package:capstone/constants/color.dart' as colors;
+// import 'package:firebase_app_check/firebase_app_check.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
   getPermission();
+
+  // WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   ).then((value) async {
     Get.put(AuthController());
   });
+  // FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.instance;
+  // await firebaseAppCheck.activate(
+  //   androidProvider: AndroidProvider.playIntegrity,
+  // );
+
   runApp(const MyApp());
 }
 

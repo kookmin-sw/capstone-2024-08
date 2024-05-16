@@ -71,8 +71,10 @@ class SaveData {
         await wavRef.putFile(file);
         String url = await wavRef.getDownloadURL();
         urls[element.key] = url;
-        // ignore: empty_catches
-      } on FirebaseException {}
+      } on FirebaseException catch (e) {
+        print("========================");
+        print("Failed with error '${e.code}': ${e.message}");
+      }
     }
 
     return urls;
@@ -85,11 +87,15 @@ class SaveData {
     });
   }
 
-  updateLastPracticeScript(String uid, DocumentReference documentRef) async {
+  updateLastPracticeScript(
+      String uid, String scriptType, String scriptId) async {
+    DocumentReference scriptRef = FirebaseFirestore.instance
+        .collection('${scriptType}_script')
+        .doc(scriptId);
     await firestore
         .collection('user')
         .doc(uid)
-        .update({'lastPracticeScript': documentRef});
+        .update({'lastPracticeScript': scriptRef});
   }
 
   Future<List<int>?> scrap(

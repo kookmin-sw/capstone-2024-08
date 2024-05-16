@@ -24,16 +24,19 @@ class UserController extends GetxController {
         await loadData.readUser(uid: user!.uid);
     userModel = UserModel.fromDocument(doc: document);
     userModelReady.value = true;
-    updateAttendance();
+    await updateAttendance();
+    wavFiles = {};
     await downloadAllWavFiles();
+    print('wavFiles : $wavFiles');
   }
 
-  void updateAttendance() {
+  Future<void> updateAttendance() async {
     if (userModel.lastAccessDate != null) {
       DateTime lastAccessDate = userModel.lastAccessDate!.toDate();
       DateTime currentDate = DateTime.now();
       if (_isSameDay(lastAccessDate, currentDate)) {
-        saveData.updateAttendance(user!.uid, userModel.attendanceStreak!);
+        // 같은 날 일 경우에는 업데이트 안해줘도 되지만 다운로드 음성 파일의 디버깅을 위해 임시로 추가해둠
+        await saveData.updateAttendance(user!.uid, userModel.attendanceStreak!);
         return;
       } else if (_isConsecutiveDay(lastAccessDate, currentDate)) {
         userModel.attendanceStreak = userModel.attendanceStreak! + 1;
