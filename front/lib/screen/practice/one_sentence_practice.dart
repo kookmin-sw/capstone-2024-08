@@ -42,6 +42,8 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   int? currentPrecision;
   List<int>? scrapSentences;
 
+  Map<int, Widget> _guideVoicePlayers = {};
+
   @override
   void initState() {
     showPlayer = false;
@@ -122,6 +124,15 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   }
 
   Widget sentenceSection(int sentenceIndex) {
+    // 이미 호출된 guideVoicePlayer() 함수의 결과를 저장하고 있다가 재사용
+    if (!_guideVoicePlayers.containsKey(sentenceIndex)) {
+      _guideVoicePlayers[sentenceIndex] = FutureBuilder<Widget>(
+        future: guideVoicePlayer(widget.script.content[sentenceIndex]),
+        builder: (context, snapshot) {
+          return waitingGetGuideVoicePlayer(snapshot);
+        },
+      );
+    }
     return AnimatedSwitcher(
         duration: Duration(milliseconds: 300),
         child: Container(
@@ -153,12 +164,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                 style: TextStyle(fontSize: 14.0),
               ),
             ),
-            FutureBuilder<Widget>(
-              future: guideVoicePlayer(widget.script.content[sentenceIndex]),
-              builder: (context, snapshot) {
-                return waitingGetGuideVoicePlayer(snapshot);
-              },
-            ),
+            _guideVoicePlayers[sentenceIndex]!,
             RecordingSection(
               showPlayer: showPlayer,
               audioPath: '',
