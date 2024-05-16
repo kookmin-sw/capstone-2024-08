@@ -8,29 +8,29 @@ import 'package:capstone/constants/color.dart' as colors;
 import 'package:get/get.dart';
 
 class PromptPractice extends StatefulWidget {
-  PromptPractice({super.key, required this.script});
+  PromptPractice({super.key, required this.script, this.guideVoicePath});
 
   final ScriptModel script;
+  final String? guideVoicePath;
+
   @override
   State<PromptPractice> createState() => _PromptPracticeState();
 }
 
 class _PromptPracticeState extends State<PromptPractice> {
   final ScrollController _scrollController = ScrollController();
-  final Map<String, File?> _wavFiles = Get.find<UserController>().wavFiles;
 
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(milliseconds: 1000), (Timer timer) {
+    Timer.periodic(Duration(milliseconds: 500), (Timer timer) {
       // 스크롤이 더 내려갈 수 있는지 확인
-      if (_scrollController.offset <
-          _scrollController.position.maxScrollExtent) {
+      if (_scrollController.hasClients) {
         // 한 픽셀씩 아래로 스크롤
         _scrollController.animateTo(
-          _scrollController.offset + 50,
-          duration: Duration(milliseconds: 300),
-          curve: Curves.ease,
+          _scrollController.position.maxScrollExtent,
+          duration: Duration(seconds: 8),
+          curve: Curves.easeIn,
         );
       }
     });
