@@ -23,7 +23,8 @@ Future<String?> sendDataToServerAndDownLoadGuideVoice(
   // WAV 파일들 추가
   for (var entry in wavFiles.entries) {
     var wavFile = entry.value;
-    if (wavFile != null) {
+    print("Wav File Path : ${wavFile!.path}");
+    if (wavFile.existsSync()) {
       var wavStream = http.ByteStream(wavFile.openRead());
       var length = await wavFile.length();
       var multipartFile = http.MultipartFile(
@@ -34,8 +35,9 @@ Future<String?> sendDataToServerAndDownLoadGuideVoice(
       );
       request.files.add(multipartFile);
     }
-    break;
   }
+
+  print('request: ${request}');
 
   // 리퀘스트 보내기
   var response = await request.send();

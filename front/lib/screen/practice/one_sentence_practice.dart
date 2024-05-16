@@ -36,6 +36,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
 
   double _currentProgressValue = 5;
   bool showPlayer = false;
+  bool showGuideVoicePlayer = false;
   String? audioPath;
   String? currnetPracticeAudioPath;
   int? currentPrecision;
@@ -44,6 +45,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   @override
   void initState() {
     showPlayer = false;
+    showGuideVoicePlayer = false;
     sentenceLength = widget.script.content.length;
     _currentSentenceIndex = 0;
     _currentProgressValue = (_currentSentenceIndex == 0)
@@ -97,6 +99,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   nextButtonPressed() async {
     setState(() {
       showPlayer = false;
+      showGuideVoicePlayer = false;
       _currentSentenceIndex += 1;
       currnetPracticeAudioPath = audioPath!;
       _currentProgressValue = 100 * _currentSentenceIndex / sentenceLength!;
@@ -178,7 +181,10 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
       currentPrecision = await getVoicesSimilarity(
           widget.script.content[_currentSentenceIndex],
           currnetPracticeAudioPath!);
-      return Text('정확도 : $currentPrecision');
+      return Container(
+        child: Text('정확도 : $currentPrecision'),
+        padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
+      );
     }
     return Container();
   }
@@ -237,12 +243,11 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   Future<Widget> guideVoicePlayer(String text) async {
     String? audioPath =
         await sendDataToServerAndDownLoadGuideVoice(text, _wavFiles);
-    return (audioPath != null)
-        ? AudioPlayer(
-            source: audioPath,
-            onDelete: () {},
-          )
-        : Text('가이드 음성 : $audioPath');
+    return Container(
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        child: (audioPath != null)
+            ? AudioPlayer(source: audioPath, onDelete: () {})
+            : Text('가이드 음성 : $audioPath'));
   }
 
   Widget waitingGetGuideVoicePlayer(snapshot) {
@@ -271,17 +276,19 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   Widget waitingGetPrecisionSection(snapshot) {
     if (snapshot.connectionState == ConnectionState.waiting) {
       // 데이터 로딩 중일 때 표시할 위젯
-      return const Column(children: [
-        CircularProgressIndicator(
-          color: colors.recordButtonColor,
-        ),
-        SizedBox(height: 20),
-        Text(
-          '유사도 계산하는 중',
-          style: TextStyle(
-              color: colors.recordButtonColor, fontWeight: FontWeight.bold),
-        )
-      ]);
+      return Container(
+          padding: const EdgeInsets.all(20),
+          child: const Column(children: [
+            CircularProgressIndicator(
+              color: colors.recordButtonColor,
+            ),
+            SizedBox(height: 20),
+            Text(
+              '유사도 계산하는 중',
+              style: TextStyle(
+                  color: colors.recordButtonColor, fontWeight: FontWeight.bold),
+            )
+          ]));
     } else if (snapshot.hasError) {
       // 오류 발생 시 표시할 위젯
       return Text('Error: ${snapshot.error}');
