@@ -28,7 +28,10 @@ Widget readRecordScripts(dynamic streamFunc, String scriptType){
           } else { 
             return const SelectionArea(
               child: Center(
-                child: Icon(Icons.hourglass_bottom)
+                child: Icon(
+                  Icons.hourglass_bottom,
+                  color: Colors.white,
+                )
               )
             );
           }

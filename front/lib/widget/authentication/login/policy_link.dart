@@ -20,7 +20,6 @@ class PolicyLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var deviceHeight = getDeviceHeight(context);
-    var marginValue = deviceHeight * 0.004;
 
     return TextButton(
       onPressed: () {
@@ -32,7 +31,7 @@ class PolicyLink extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: marginValue),
+            margin: EdgeInsets.only(bottom: deviceHeight * 0.004),
             child: Text(
               text,
               style: TextStyle(

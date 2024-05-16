@@ -28,32 +28,38 @@ class _ScriptListState extends State<ScriptList> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+
     return Scaffold(
         body: Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
             color: colors.bgrDarkColor,
             child: Column(children: [
               Container(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                padding: const EdgeInsets.fromLTRB(20, 10, 0, 15),
                 child: CategoryButtons(
                     onCategorySelected: _handleCategorySelected),
               ),
               widget.index == 0
                   ? Expanded(
+                      child: Padding(
+                      padding: EdgeInsets.only(left: deviceWidth * 0.075),
                       child: readScripts(
-                          loadData.readExampleScripts(selectedCategoryValue),
-                          'example'))
+                            loadData.readExampleScripts(selectedCategoryValue),
+                            'example'))
+                    )
                   : Expanded(
+                      child: Padding(
+                      padding: EdgeInsets.only(left: deviceWidth * 0.075),
                       child: Stack(children: [
-                      readScripts(
-                          loadData.readUserScripts(selectedCategoryValue),
-                          'user'),
-                      Positioned(
-                          bottom: 2,
-                          left: getDeviceWidth(context) * 0.05,
-                          right: getDeviceWidth(context) * 0.05,
-                          child: createUserScriptButton())
-                    ]))
+                        readScripts(
+                            loadData.readUserScripts(selectedCategoryValue),
+                            'user'),
+                        Positioned(
+                            bottom: 3,
+                            width: deviceWidth * 0.85,
+                            child: createUserScriptButton())
+                      ]))
+                  )
             ])));
   }
 }

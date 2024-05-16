@@ -69,6 +69,9 @@ class _ScriptDetailState extends State<ScriptDetail> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+    var deviceHeight = getDeviceHeight(context);
+    
     return Scaffold(
         appBar: basicAppBar(backgroundColor: colors.bgrBrightColor, title: ''),
         body: Stack(children: [
@@ -76,15 +79,15 @@ class _ScriptDetailState extends State<ScriptDetail> {
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: ListView(children: [
                 _buildCategory(widget.script.category),
-                const SizedBox(height: 15),
+                SizedBox(height: deviceHeight * 0.01),
                 _buildTitle(widget.script.title),
-                const SizedBox(height: 20),
+                SizedBox(height: deviceHeight * 0.03),
                 Column(
                     children: widget.script.content
                         .map((sentence) => scriptContentBlock(
-                            sentence, getDeviceWidth(context)))
+                            sentence, deviceWidth))
                         .toList()),
-                const SizedBox(height: 30),
+                SizedBox(height: deviceHeight * 0.06),
               ])),
           Positioned(
               left: 0,
@@ -107,7 +110,7 @@ class _ScriptDetailState extends State<ScriptDetail> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                   Container(
-                                      width: getDeviceWidth(context) * 0.4,
+                                      width: deviceWidth * 0.4,
                                       child: outlinedRoundedRectangleButton(
                                           '기록보기', () async {
                                         Get.to(() => RecordDetail(
@@ -117,7 +120,7 @@ class _ScriptDetailState extends State<ScriptDetail> {
                                         ));
                                       })),
                                   Container(
-                                      width: getDeviceWidth(context) * 0.4,
+                                      width: deviceWidth * 0.4,
                                       child: fullyRoundedRectangleButton(
                                           colors.buttonColor, '연습하기', () {
                                         Get.to(() => SelectPractice(

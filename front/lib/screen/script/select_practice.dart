@@ -24,10 +24,13 @@ class SelectPractice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+    var deviceHeight = getDeviceHeight(context);
+
     return Scaffold(
         body: Container(
-            width: getDeviceWidth(context),
-            height: getDeviceHeight(context),
+            width: deviceWidth,
+            height: deviceHeight,
             color: colors.selectPracticebgrColor,
             child: Column(children: [
               Align(
@@ -39,15 +42,15 @@ class SelectPractice extends StatelessWidget {
                       tapCloseButton();
                     },
                   )),
-              SizedBox(height: getDeviceHeight(context) * 0.3),
+              SizedBox(height: deviceHeight * 0.25),
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     notice(),
-                    const SizedBox(height: 25),
+                    SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '프롬프트', () {}),
-                    const SizedBox(height: 25),
+                    SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '문장단위연습', () {
                       Get.to(() => OneSentencePratice(
                             script: script,
