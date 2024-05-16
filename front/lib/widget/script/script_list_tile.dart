@@ -63,7 +63,6 @@ Text _buildPrecision(int? precision) {
 Widget scriptListTile(
     BuildContext context, ScriptModel script, String route, String scriptType,
     {RecordModel? record}) {
-  
   var deviceWidth = getDeviceWidth(context);
 
   return GestureDetector(
@@ -86,24 +85,19 @@ Widget scriptListTile(
                 borderRadius: BorderRadius.circular(13),
               )),
           child: route == 'record'
-              ? Column(
-                  children: [
-                    record!.promptResult!.isNotEmpty
+              ? Column(children: [
+                  record!.promptResult!.isNotEmpty
                       ? Align(
                           alignment: Alignment.topRight,
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
-                            child: _buildPrecision(
-                              record.promptResult!.last['precision'])
-                        ))
-                      : const Padding(
-                          padding: EdgeInsets.only(bottom: 30)
-                        ),
-                    Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
+                              child: _buildPrecision(
+                                  record.promptResult!.last['precision'])))
+                      : const Padding(padding: EdgeInsets.only(bottom: 30)),
+                  Padding(
                       padding: const EdgeInsets.fromLTRB(15, 35, 15, 0),
-                      child: _buildTitle(script.title)
-                    )
-                  ])
+                      child: _buildTitle(script.title))
+                ])
               : Padding(
                   padding: const EdgeInsets.fromLTRB(15, 65, 15, 0),
                   child: _buildTitle(script.title)),
