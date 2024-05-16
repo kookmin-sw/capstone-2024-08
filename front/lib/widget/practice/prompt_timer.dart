@@ -49,11 +49,9 @@ class _PromptTimerState extends State<PromptTimer> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              // builder: (context) => (widget.route == 'play_guide')
-              //     ? PromptGuide()
-              //     : PromptPractice(script: widget.script),
-
-              builder: (context) => PromptPractice(script: widget.script),
+              builder: (context) => (widget.route == 'play_guide')
+                  ? PromptGuide(script: widget.script)
+                  : PromptPractice(script: widget.script),
             ),
           );
         }

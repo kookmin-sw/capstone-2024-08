@@ -8,10 +8,9 @@ import 'package:capstone/constants/color.dart' as colors;
 import 'package:get/get.dart';
 
 class PromptPractice extends StatefulWidget {
-  PromptPractice({super.key, required this.script, this.guideVoicePath});
+  PromptPractice({super.key, required this.script});
 
   final ScriptModel script;
-  final String? guideVoicePath;
 
   @override
   State<PromptPractice> createState() => _PromptPracticeState();
