@@ -40,6 +40,12 @@ Map<String, double> getUserProgressValues = {
   'end': 100
 };
 
+String promptStartMessage =
+    "가이드 음성 듣기 버튼을 눌러 가이드 음성을 들을 수 있습니다. 바로 연습하길 원하신다면 연습하기 버튼을 눌러주세요.";
+
+String orientationMessage =
+    '화면 자동 회전을 켠 후 화면을 가로로 돌려주세요. 가로로 화면을 전환하면 3초 카운트 다운 후 시작됩니다! ';
+
 Map<String, String> warningMessage = {
   'category': '카테고리는 비워둘 수 없습니다. \n카테고리를 선택해주세요.',
   'content': '비어있는 문장이 있습니다. 내용을 작성하거나 삭제해주세요.',

@@ -327,7 +327,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
           Container(
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(20),
-              child: isEnd() ? nextButton() : Container())
+              child: isEnd() ? Container() : nextButton())
         ]));
   }
 }
