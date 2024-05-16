@@ -20,12 +20,14 @@ from text.symbols import symbols
 import torch
 
 # Load model
-pipeline = FlaxWhisperPipline("openai/whisper-medium", dtype=jnp.bfloat16)
 current_file_path = os.path.abspath(__file__)
 current_dir = os.path.dirname(current_file_path)
 tts_dir = os.path.join(current_dir, "tts")
 config_path = os.path.join(tts_dir, "config", "nia22.json")
 model_path = os.path.join(tts_dir, "vits_nia22.pth")
+dummy_path = os.path.join(current_dir, "voice_conversion", "SPK014KBSCU004F002.wav")
+pipeline = FlaxWhisperPipline("openai/whisper-medium", dtype=jnp.bfloat16)
+_ = pipeline(dummy_path, task="transcribe")
 hps = utils.get_hparams_from_file(config_path)
 net_g = SynthesizerTrn(
     len(symbols),
