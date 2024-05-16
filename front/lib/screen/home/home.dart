@@ -88,8 +88,9 @@ class _HomeState extends State<Home> {
             // 데이터가 로드되면 스크립트를 표시
             final script = snapshot.data;
             if (script != null) {
-              return scriptListTile(context, script, 'script', scriptType);
-              ;
+              return Container(
+                  padding: EdgeInsets.only(left: 20),
+                  child: scriptListTile(context, script, 'script', scriptType));
             } else {
               return Text('No script found'); // 스크립트가 없으면 해당 메시지 표시
             }

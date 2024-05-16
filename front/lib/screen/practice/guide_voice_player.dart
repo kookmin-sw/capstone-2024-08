@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 Future<String?> sendDataToServerAndDownLoadGuideVoice(
     String text, Map<String, File?> wavFiles) async {
-  var url = Uri.parse('${texts.baseUrl}/test/');
+  var url = Uri.parse('${texts.baseUrl}/voice_guide/');
 
   print("함수 내에서의 사용자 음성 파일들 : $wavFiles");
 
@@ -18,12 +18,13 @@ Future<String?> sendDataToServerAndDownLoadGuideVoice(
   var request = http.MultipartRequest('POST', url);
 
   // 텍스트 필드 추가
-  request.fields['text'] = text;
+  request.fields['sentence'] = text;
 
   // WAV 파일들 추가
   for (var entry in wavFiles.entries) {
     var wavFile = entry.value;
-    if (wavFile != null) {
+    print("Wav File Path : ${wavFile!.path}");
+    if (wavFile.existsSync()) {
       var wavStream = http.ByteStream(wavFile.openRead());
       var length = await wavFile.length();
       var multipartFile = http.MultipartFile(
@@ -34,8 +35,9 @@ Future<String?> sendDataToServerAndDownLoadGuideVoice(
       );
       request.files.add(multipartFile);
     }
-    break;
   }
+
+  print('request: ${request}');
 
   // 리퀘스트 보내기
   var response = await request.send();

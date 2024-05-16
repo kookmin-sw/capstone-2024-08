@@ -29,7 +29,7 @@ class _PromptGuideState extends State<PromptGuide> {
         // 한 픽셀씩 아래로 스크롤
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: Duration(seconds: 8),
+          duration: Duration(seconds: 3),
           curve: Curves.easeIn,
         );
       }
