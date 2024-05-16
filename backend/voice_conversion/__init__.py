@@ -3,7 +3,7 @@ from typing import List
 import os
 
 
-def change_voice(src: str, ref: List[str]):
+def change_voice(knn_vc, src: str, ref: List[str]):
     """
     src: path to 16kHz, single-channel, source waveform
     ref: list of paths to all reference waveforms (each must be 16kHz, single-channel) from the target speaker
@@ -11,7 +11,6 @@ def change_voice(src: str, ref: List[str]):
     current_file_path = os.path.abspath(__file__)
     current_dir = os.path.dirname(current_file_path)
     vc_out_path = os.path.join(current_dir, "vc_out.wav")
-    knn_vc = torch.hub.load('bshall/knn-vc', 'knn_vc', prematched=True, trust_repo=True, pretrained=True, device='cuda')
     query_seq = knn_vc.get_features(src)
     matching_set = knn_vc.get_matching_set(ref)
     out_wav = knn_vc.match(query_seq, matching_set, topk=4)

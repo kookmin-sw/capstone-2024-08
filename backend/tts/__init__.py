@@ -25,24 +25,10 @@ def get_text(text, hps):
     return text_norm
 
 
-def infer(script: str):
+def infer(script: str, hps, net_g):
     current_file_path = os.path.abspath(__file__)
     current_dir = os.path.dirname(current_file_path)
-    config_path = os.path.join(current_dir, "config", "nia22.json")
-    model_path = os.path.join(current_dir, "vits_nia22.pth")
     output_path = os.path.join(current_dir, "output_audio.wav")
-    print(config_path)
-    print(model_path)
-    print(output_path)
-    hps = utils.get_hparams_from_file(config_path)
-    net_g = SynthesizerTrn(
-        len(symbols),
-        hps.data.filter_length // 2 + 1,
-        hps.train.segment_size // hps.data.hop_length,
-        n_speakers=hps.data.n_speakers,
-        **hps.model).cpu()
-    _ = net_g.eval()
-    _ = utils.load_checkpoint(model_path, net_g, None)
     stn_tst = get_text(script, hps)
     with torch.no_grad():
         x_tst = stn_tst.cpu().unsqueeze(0)
