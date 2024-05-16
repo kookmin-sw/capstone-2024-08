@@ -27,7 +27,7 @@ class _SearchScriptState extends State<SearchScript> {
   Flexible keywordSection() {
     return Flexible(
       child: Container(
-        padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+        padding: EdgeInsets.only(right: getDeviceWidth(context) * 0.075),
         child: TextFormField(
           onChanged: (text) {
             setState(() {});
@@ -52,14 +52,15 @@ class _SearchScriptState extends State<SearchScript> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+    
     return Scaffold(
-      body: Container(
-        color: colors.bgrDarkColor,
-        child: Column(
+      body: Column(
           children: [
             Container(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              width: getDeviceWidth(context),
+              color: colors.bgrDarkColor,
+              padding: EdgeInsets.fromLTRB(deviceWidth * 0.04, deviceWidth * 0.07, deviceWidth * 0.03, 0),
+              width: deviceWidth,
               child: Row(
                 children: [
                   backToPreviousPage(),
@@ -75,6 +76,6 @@ class _SearchScriptState extends State<SearchScript> {
               )
             )
         ])
-    ));
+    );
   }
 }

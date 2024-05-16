@@ -1,12 +1,8 @@
 import 'package:capstone/model/user.dart';
-import 'package:capstone/screen/authentication/controller/auth_controller.dart';
-import 'package:capstone/screen/bottom_navigation.dart';
-import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:capstone/screen/authentication/get_user_voice.dart';
 import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/widget/utils/device_size.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:capstone/constants/color.dart' as colors;
@@ -118,33 +114,34 @@ class _SetupUserState extends State<SetupUser> {
           },
           child: ListView(children: [
             Center(
-                child: Column(children: [
-              const SizedBox(height: 20),
-              _nicknameSection(),
-              const SizedBox(height: 20),
-              _buildSelectedCharacter(),
-              const SizedBox(height: 20),
-              _buildCharacterList(),
-              const SizedBox(height: 20),
-              Container(
-                  width: getDeviceWidth(context) * 0.9,
-                  child: fullyRoundedRectangleButton(colors.blockColor, '완료',
-                      () async {
-                    if (_formKey.currentState!.validate()) {
-                      UserModel userData = UserModel(
-                          id: user!.uid,
-                          nickname: _nickname.text,
-                          character:
-                              _selectedCharacter!.split('/')[3].split('.')[0],
-                          attendanceStreak: null,
-                          lastAccessDate: null,
-                          lastPracticeScript: null,
-                          voiceUrls: {'long': "", 'middle': "", 'short': ""});
-                      Get.to(() => GetUserVoice(userData: userData));
-                    }
-                  }))
-            ]))
-          ]),
-        ));
+              child: Column(
+                children: [
+                  SizedBox(height: getDeviceHeight(context) * 0.04),
+                  _nicknameSection(),
+                  SizedBox(height: getDeviceHeight(context) * 0.04),
+                  _buildSelectedCharacter(),
+                  SizedBox(height: getDeviceHeight(context) * 0.04),
+                  _buildCharacterList(),
+                  SizedBox(height: getDeviceHeight(context) * 0.04),
+                  Container(
+                    width: getDeviceWidth(context) * 0.9,
+                    child:
+                        fullyRoundedRectangleButton(colors.blockColor, '완료', () async {
+                      if (_formKey.currentState!.validate()) {
+                        UserModel userData = UserModel(
+                            id: user!.uid,
+                            nickname: _nickname.text,
+                            character: _selectedCharacter!.split('/')[3].split('.')[0],
+                            attendanceStreak: null,
+                            lastAccessDate: null,
+                            lastPracticeScript: null,
+                            voiceUrls: {'long': "", 'middle': "", 'short': ""});
+                        Get.to(() => GetUserVoice(userData: userData));
+                      }
+                    }))
+                ])
+            )
+        ]),
+    ));
   }
 }

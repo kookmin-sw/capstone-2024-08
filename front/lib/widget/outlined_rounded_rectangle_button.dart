@@ -8,7 +8,10 @@ OutlinedButton outlinedRoundedRectangleButton(String buttonText, Function presse
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(69),
       ),
-      side: const BorderSide(color: colors.buttonSideColor),
+      side: const BorderSide(
+        color: colors.textColor,
+        width: 0.4
+      ),
   ),
   onPressed: () {
     HapticFeedback.lightImpact();

@@ -22,17 +22,20 @@ class _ScrapSentenceSliderState extends State<ScrapSentenceSlider> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+    var deviceHeight = getDeviceHeight(context);
+    
     return Column(
       children: [
         Container(
-          width: getDeviceWidth(context),
-          height: getDeviceHeight(context) * 0.25,
+          width: deviceWidth,
+          height: deviceHeight * 0.2,
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
           child: CarouselSlider(
             items: widget.scrapSentenceList.map((sentence) {
               return Builder(
                 builder: (BuildContext context){
-                  return scriptContentBlock(sentence, getDeviceWidth(context));
+                  return scriptContentBlock(sentence, deviceWidth);
               });
             }).toList(),
             options: CarouselOptions(

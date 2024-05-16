@@ -32,10 +32,12 @@ Widget readRecordScripts(dynamic streamFunc, String scriptType) {
         } else {
           return SelectionArea(
               child: Center(
-                  child: Text(
-            texts.lastPracticeScriptEmptyMessage,
-            style: const TextStyle(color: colors.themeWhiteColor, fontSize: 18),
-          )));
-        }
-      });
+                child: Icon(
+                  Icons.hourglass_bottom,
+                  color: Colors.white,
+                )
+              )
+            );
+          }
+    });
 }
