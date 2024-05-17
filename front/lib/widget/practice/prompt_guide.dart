@@ -1,17 +1,27 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/authentication/controller/user_controller.dart';
+import 'package:capstone/widget/practice/prompt_timer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/text.dart' as texts;
 import 'package:get/get.dart';
 
 class PromptGuide extends StatefulWidget {
-  PromptGuide({super.key, required this.script, this.guideVoicePath});
+  PromptGuide(
+      {super.key,
+      required this.script,
+      required this.scriptType,
+      required this.record,
+      this.guideVoicePath});
 
   final ScriptModel script;
   final String? guideVoicePath;
+  final String scriptType;
+  final RecordModel? record;
 
   @override
   State<PromptGuide> createState() => _PromptGuideState();
@@ -34,6 +44,81 @@ class _PromptGuideState extends State<PromptGuide> {
         );
       }
     });
+
+    Timer(Duration(seconds: 3), () {
+      promptSelectDialog(context);
+    });
+  }
+
+  Future<dynamic> promptSelectDialog(context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            '잠시만요!',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          content: Text(texts.promptStartMessage),
+          actionsAlignment: MainAxisAlignment.spaceAround,
+          actions: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PromptGuide(
+                            script: widget.script,
+                            scriptType: widget.scriptType,
+                            record: widget.record,
+                            guideVoicePath: widget.guideVoicePath,
+                          )),
+                );
+              },
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(colors.recordButtonColor),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+              child: Text(texts.goToPromtGuideText,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: colors.themeWhiteColor)),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PromptTimer(
+                          script: widget.script,
+                          scriptType: widget.scriptType,
+                          record: widget.record,
+                          route: 'prompt_practice')),
+                );
+              },
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(colors.recordButtonColor),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
+              child: Text(texts.goToPromtPracticeText,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: colors.themeWhiteColor)),
+            )
+          ],
+        );
+      },
+    );
   }
 
   @override

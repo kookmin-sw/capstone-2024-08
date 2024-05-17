@@ -77,8 +77,9 @@ Future<String?> sendDataToServerAndDownLoadGuideVoice(
   return null;
 }
 
-Future<int?> getVoicesSimilarity(
+Future<Map<String?, String?>?> getVoicesSimilarity(
     String text, String currentSentencePracticeWavFilePath) async {
+  Map<String?, String?> result = {'precision': null, 'pronunciation': null};
   try {
     var url = Uri.parse('${texts.baseUrl}/feedback/');
 
@@ -115,10 +116,17 @@ Future<int?> getVoicesSimilarity(
       int precision =
           jsonDecode(responseData)['similarity_percentage'].truncate();
 
+      result['precision'] = precision.toString();
+
+      String pronunciation =
+          jsonDecode(responseData)['pronunciation'].toString();
+
+      result['pronunciation'] = pronunciation;
+
       print(responseData);
 
       // 응답 데이터를 정수로 변환하여 반환
-      return precision;
+      return result;
     } else {
       print('서버 요청에 실패했습니다. 상태 코드: ${response.statusCode}');
       return null;

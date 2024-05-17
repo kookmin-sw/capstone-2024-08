@@ -39,8 +39,10 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   bool showGuideVoicePlayer = false;
   String? audioPath;
   String? currnetPracticeAudioPath;
-  int? currentPrecision;
+  Map<String?, String?>? practiceResult;
   List<int>? scrapSentences;
+
+  Map<int, Widget> _guideVoicePlayers = {};
 
   @override
   void initState() {
@@ -122,6 +124,15 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   }
 
   Widget sentenceSection(int sentenceIndex) {
+    // 이미 호출된 guideVoicePlayer() 함수의 결과를 저장하고 있다가 재사용
+    if (!_guideVoicePlayers.containsKey(sentenceIndex)) {
+      _guideVoicePlayers[sentenceIndex] = FutureBuilder<Widget>(
+        future: guideVoicePlayer(widget.script.content[sentenceIndex]),
+        builder: (context, snapshot) {
+          return waitingGetGuideVoicePlayer(snapshot);
+        },
+      );
+    }
     return AnimatedSwitcher(
         duration: Duration(milliseconds: 300),
         child: Container(
@@ -153,12 +164,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                 style: TextStyle(fontSize: 14.0),
               ),
             ),
-            FutureBuilder<Widget>(
-              future: guideVoicePlayer(widget.script.content[sentenceIndex]),
-              builder: (context, snapshot) {
-                return waitingGetGuideVoicePlayer(snapshot);
-              },
-            ),
+            _guideVoicePlayers[sentenceIndex]!,
             RecordingSection(
               showPlayer: showPlayer,
               audioPath: '',
@@ -178,13 +184,19 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
       setState(() {
         currnetPracticeAudioPath = audioPath!;
       });
-      currentPrecision = await getVoicesSimilarity(
+      practiceResult = await getVoicesSimilarity(
           widget.script.content[_currentSentenceIndex],
           currnetPracticeAudioPath!);
-      return Container(
-        child: Text('정확도 : $currentPrecision'),
-        padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
-      );
+      return Column(children: [
+        Container(
+          child: Text('정확도 : ${practiceResult!['precision']}'),
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
+        ),
+        Container(
+          child: Text('발음 기호 : ${practiceResult!['pronunciation']}'),
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+        ),
+      ]);
     }
     return Container();
   }
@@ -204,7 +216,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: const Text(
-                      '잠시만요!',
+                      '어떤 걸 원하시나요?',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     content: Text(texts.warningMessage['getUserVoice']!),
