@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:flutter/foundation.dart';
@@ -8,9 +9,12 @@ import 'package:capstone/constants/color.dart' as colors;
 import 'package:get/get.dart';
 
 class PromptPractice extends StatefulWidget {
-  PromptPractice({super.key, required this.script});
+  PromptPractice(
+      {super.key, required this.script, required this.scriptType, this.record});
 
   final ScriptModel script;
+  final String scriptType;
+  final RecordModel? record;
 
   @override
   State<PromptPractice> createState() => _PromptPracticeState();

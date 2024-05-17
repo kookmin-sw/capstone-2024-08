@@ -56,8 +56,15 @@ class _PromptTimerState extends State<PromptTimer> {
             MaterialPageRoute(
               builder: (context) => isPromptGuide()
                   ? PromptGuide(
-                      script: widget.script, guideVoicePath: guideVoicePath)
-                  : PromptPractice(script: widget.script),
+                      script: widget.script,
+                      scriptType: widget.scriptType,
+                      record: widget.record,
+                      guideVoicePath: guideVoicePath)
+                  : PromptPractice(
+                      script: widget.script,
+                      scriptType: widget.scriptType,
+                      record: widget.record,
+                    ),
             ),
           );
         }
@@ -72,8 +79,9 @@ class _PromptTimerState extends State<PromptTimer> {
   }
 
   Future<Widget> afterGetGuidVoiceWidget(String text) async {
-    String? guideVoicePath =
+    guideVoicePath =
         await sendDataToServerAndDownLoadGuideVoice(text, _wavFiles);
+    print("프롬프트에서 생성한 가이드 음성 : $guideVoicePath");
     return timerCommonWidget();
   }
 
