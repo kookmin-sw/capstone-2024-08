@@ -39,7 +39,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   bool showGuideVoicePlayer = false;
   String? audioPath;
   String? currnetPracticeAudioPath;
-  int? currentPrecision;
+  Map<String?, String?>? practiceResult;
   List<int>? scrapSentences;
 
   Map<int, Widget> _guideVoicePlayers = {};
@@ -184,13 +184,19 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
       setState(() {
         currnetPracticeAudioPath = audioPath!;
       });
-      currentPrecision = await getVoicesSimilarity(
+      practiceResult = await getVoicesSimilarity(
           widget.script.content[_currentSentenceIndex],
           currnetPracticeAudioPath!);
-      return Container(
-        child: Text('정확도 : $currentPrecision'),
-        padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
-      );
+      return Column(children: [
+        Container(
+          child: Text('정확도 : ${practiceResult!['precision']}'),
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
+        ),
+        Container(
+          child: Text('발음 기호 : ${practiceResult!['pronunciation']}'),
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+        ),
+      ]);
     }
     return Container();
   }
