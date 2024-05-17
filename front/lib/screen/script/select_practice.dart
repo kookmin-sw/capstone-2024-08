@@ -8,6 +8,7 @@ import 'package:capstone/widget/practice/prompt_timer.dart';
 import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/text.dart' as texts;
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -58,14 +59,7 @@ class SelectPractice extends StatelessWidget {
                     practiceButton(context, '프롬프트', () {
                       saveData.updateLastPracticeScript(
                           uid, scriptType, script.id!);
-                      Get.to(() => PromptTimer(
-                          script: script,
-                          scriptType: scriptType,
-                          record: record,
-                          route: 'play_guide'));
-                      // PromptPractice(
-                      //       script: script,
-                      //     ));
+                      promptSelectDialog(context, script, scriptType, record);
                     }),
                     SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '문장단위연습', () {
@@ -89,6 +83,76 @@ Text notice() {
         fontSize: 13,
         fontWeight: FontWeight.w500,
       ));
+}
+
+Future<dynamic> promptSelectDialog(context, script, scriptType, record) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          '잠시만요!',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        content: Text(texts.promptStartMessage),
+        actionsAlignment: MainAxisAlignment.spaceAround,
+        actions: <Widget>[
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PromptTimer(
+                        script: script,
+                        scriptType: scriptType,
+                        record: record,
+                        route: 'play_guide')),
+              );
+            },
+            style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(colors.recordButtonColor),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+              ),
+            ),
+            child: Text(texts.goToPromtGuideText,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: colors.themeWhiteColor)),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PromptTimer(
+                        script: script,
+                        scriptType: scriptType,
+                        record: record,
+                        route: 'prompt_practice')),
+              );
+            },
+            style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(colors.recordButtonColor),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+              ),
+            ),
+            child: Text(texts.goToPromtPracticeText,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: colors.themeWhiteColor)),
+          )
+        ],
+      );
+    },
+  );
 }
 
 Container practiceButton(
