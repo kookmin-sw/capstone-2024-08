@@ -43,14 +43,10 @@ class SaveData {
     }
   }
 
-  Future<void> addPractice({
-    required String scriptId,
-    required String scriptType,
-    List<int>? scrapSentence,
-    List<Map<String, dynamic>>? promptResult,
-    Timestamp? practiceDate,
-    int? precision,
-  }) async {
+  Future<void> updateOneSentencePracticeResult(
+      {required String scriptId,
+      required String scriptType,
+      List<int>? scrapSentence}) async {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
@@ -59,7 +55,43 @@ class SaveData {
           .doc(user.uid)
           .collection('${scriptType}_practice')
           .doc(scriptId)
-          .set({'scrapSentence': scrapSentence, 'promptResult': promptResult});
+          .set({'scrapSentence': scrapSentence});
+    }
+  }
+
+  Future<void> updatePromptPracticeResult(
+      {required String scriptId,
+      required String scriptType,
+      Timestamp? practiceDate,
+      int? precision}) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    Map<String, dynamic> promptResult = {
+      'practiceDate': practiceDate,
+      'precision': precision
+    };
+
+    if (user != null) {
+      DocumentReference docRef = FirebaseFirestore.instance
+          .collection('user')
+          .doc(user.uid)
+          .collection('${scriptType}_practice')
+          .doc(scriptId);
+
+      // Fetch the document
+      DocumentSnapshot docSnapshot = await docRef.get();
+
+      if (docSnapshot.exists) {
+        // If document exists, update the field
+        List<Map<String, dynamic>> existingPromptResult =
+            List<Map<String, dynamic>>.from(
+                docSnapshot.get('promptResult') ?? []);
+        existingPromptResult.add(promptResult);
+        await docRef.update(
+            {'promptResult': FieldValue.arrayUnion(existingPromptResult)});
+      } else {
+        // If document does not exist, create the document with the field
+        await docRef.set({'promptResult': promptResult});
+      }
     }
   }
 
