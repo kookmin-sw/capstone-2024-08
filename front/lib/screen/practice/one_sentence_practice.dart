@@ -216,7 +216,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: const Text(
-                      '어떤 걸 원하시나요?',
+                      '잠시만요!',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     content: Text(texts.warningMessage['getUserVoice']!),

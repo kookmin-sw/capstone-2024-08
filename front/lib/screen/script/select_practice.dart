@@ -91,7 +91,7 @@ Future<dynamic> promptSelectDialog(context, script, scriptType, record) {
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text(
-          '잠시만요!',
+          '어떤 걸 원하시나요?',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         content: Text(texts.promptStartMessage),
