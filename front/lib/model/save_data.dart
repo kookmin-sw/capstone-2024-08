@@ -10,11 +10,15 @@ class SaveData {
   final User? user = FirebaseAuth.instance.currentUser;
 
   addUserScript(ScriptModel script) async {
-    firestore
+    DocumentReference docRef = await firestore
         .collection('user_script')
         .doc(user!.uid)
         .collection('script')
         .add(script.convertToDocument());
+
+    // Get the document ID
+    String documentId = docRef.id;
+    script.id = documentId;
   }
 
   Future<void> saveUserInfo({
