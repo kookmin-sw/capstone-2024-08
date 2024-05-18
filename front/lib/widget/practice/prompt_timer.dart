@@ -179,13 +179,13 @@ class _PromptTimerState extends State<PromptTimer> {
         backgroundColor: colors.textColor,
         body: Center(
             child: isGuideAudioExist()
-                ? FutureBuilder<Widget>(
+                ? timerCommonWidget()
+                : FutureBuilder<Widget>(
                     future: afterGetGuidVoiceWidget(
                         widget.script.content.join(' ')),
                     builder: (context, snapshot) {
                       return waitingGetGuideVoice(snapshot);
                     },
-                  )
-                : timerCommonWidget()));
+                  )));
   }
 }

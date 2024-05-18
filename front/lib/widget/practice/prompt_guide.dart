@@ -143,12 +143,18 @@ class _PromptGuideState extends State<PromptGuide> {
               );
             },
           ),
-          GuideVoicePlayer(source: widget.guideVoicePath!, onDelete: () {})
-        ])
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: _playPause,
-        //   child: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
-        // ),
-        );
+          // Container(
+          //     alignment: Alignment.bottomRight, child:GuideVoicePlayer(
+          //     source: widget.guideVoicePath!,
+          //     onStop: () {
+          //       promptSelectDialog(context);
+          //     })),
+          Container(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                "오디오 재생 바 들어갈 자리",
+                style: TextStyle(color: colors.themeWhiteColor, fontSize: 50),
+              ))
+        ]));
   }
 }

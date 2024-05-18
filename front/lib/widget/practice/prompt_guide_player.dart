@@ -11,12 +11,12 @@ class GuideVoicePlayer extends StatefulWidget {
 
   /// Callback when audio file should be removed
   /// Setting this to null hides the delete button
-  final VoidCallback onDelete;
+  final VoidCallback onStop;
 
   const GuideVoicePlayer({
     super.key,
     required this.source,
-    required this.onDelete,
+    required this.onStop,
   });
 
   @override
@@ -100,6 +100,7 @@ class GuideVoicePlayerState extends State<GuideVoicePlayer> {
           onTap: () {
             if (_audioPlayer.state == ap.PlayerState.playing) {
               pause();
+              widget.onStop();
             } else {
               play();
             }
