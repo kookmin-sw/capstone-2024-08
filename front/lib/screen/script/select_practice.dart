@@ -58,11 +58,6 @@ class SelectPractice extends StatelessWidget {
                       Get.find<UserController>().updateLastPracticeScript(
                           uid, scriptType, script.id!);
                       promptSelectDialog(context, script, scriptType, record);
-                      Get.to(() => PromptPractice(
-                            script: script,
-                            scriptType: scriptType,
-                            record: record,
-                          ));
                     }),
                     SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '문장단위연습', () {

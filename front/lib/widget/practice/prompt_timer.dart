@@ -19,10 +19,12 @@ class PromptTimer extends StatefulWidget {
       required this.script,
       required this.scriptType,
       required this.route,
+      this.guideVoicePath,
       this.record});
 
   final ScriptModel script;
   final String scriptType;
+  String? guideVoicePath;
   RecordModel? record;
   final String route;
 
@@ -34,12 +36,15 @@ class _PromptTimerState extends State<PromptTimer> {
   Timer? _timer;
   int _second = 3;
   bool _isLandscape = false;
-  String? guideVoicePath;
 
   final Map<String, File?> _wavFiles = Get.find<UserController>().wavFiles;
 
   bool isPromptGuide() {
     return (widget.route == 'play_guide');
+  }
+
+  bool isGuideAudioExist() {
+    return (widget.guideVoicePath != null);
   }
 
   // 가이드 음성 다운로드 후 파일 경로 가져오는 코드 작성
@@ -59,12 +64,12 @@ class _PromptTimerState extends State<PromptTimer> {
                       script: widget.script,
                       scriptType: widget.scriptType,
                       record: widget.record,
-                      guideVoicePath: guideVoicePath)
+                      guideVoicePath: widget.guideVoicePath)
                   : PromptPractice(
                       script: widget.script,
                       scriptType: widget.scriptType,
                       record: widget.record,
-                    ),
+                      guideVoicePath: widget.guideVoicePath),
             ),
           );
         }
@@ -79,9 +84,9 @@ class _PromptTimerState extends State<PromptTimer> {
   }
 
   Future<Widget> afterGetGuidVoiceWidget(String text) async {
-    guideVoicePath =
+    widget.guideVoicePath =
         await sendDataToServerAndDownLoadGuideVoice(text, _wavFiles);
-    print("프롬프트에서 생성한 가이드 음성 : $guideVoicePath");
+    print("프롬프트에서 생성한 가이드 음성 : ${widget.guideVoicePath}");
     return timerCommonWidget();
   }
 
@@ -173,7 +178,7 @@ class _PromptTimerState extends State<PromptTimer> {
     return Scaffold(
         backgroundColor: colors.textColor,
         body: Center(
-            child: isPromptGuide()
+            child: isGuideAudioExist()
                 ? FutureBuilder<Widget>(
                     future: afterGetGuidVoiceWidget(
                         widget.script.content.join(' ')),
