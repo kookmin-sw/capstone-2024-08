@@ -1,14 +1,11 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
-import 'package:capstone/screen/authentication/controller/user_controller.dart';
+import 'package:capstone/widget/practice/prompt_guide_player.dart';
 import 'package:capstone/widget/practice/prompt_timer.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
-import 'package:get/get.dart';
 
 class PromptGuide extends StatefulWidget {
   PromptGuide(
@@ -29,10 +26,11 @@ class PromptGuide extends StatefulWidget {
 
 class _PromptGuideState extends State<PromptGuide> {
   final ScrollController _scrollController = ScrollController();
-
+  bool _isPlaying = true;
   @override
   void initState() {
     super.initState();
+
     Timer.periodic(Duration(milliseconds: 500), (Timer timer) {
       // 스크롤이 더 내려갈 수 있는지 확인
       if (_scrollController.hasClients) {
@@ -47,6 +45,12 @@ class _PromptGuideState extends State<PromptGuide> {
 
     Timer(Duration(seconds: 3), () {
       promptSelectDialog(context);
+    });
+  }
+
+  void _playPause() {
+    setState(() {
+      _isPlaying = !_isPlaying;
     });
   }
 
@@ -124,20 +128,27 @@ class _PromptGuideState extends State<PromptGuide> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colors.textColor,
-      body: ListView.builder(
-        controller: _scrollController,
-        itemCount: widget.script.content.length, // 텍스트 아이템의 개수
-        itemBuilder: (BuildContext context, int index) {
-          // 텍스트 아이템 생성
-          return ListTile(
-            title: Text(
-              widget.script.content[index],
-              style: TextStyle(color: colors.themeWhiteColor, fontSize: 40),
-            ),
-          );
-        },
-      ),
-    );
+        backgroundColor: colors.textColor,
+        body: Stack(children: [
+          ListView.builder(
+            controller: _scrollController,
+            itemCount: widget.script.content.length, // 텍스트 아이템의 개수
+            itemBuilder: (BuildContext context, int index) {
+              // 텍스트 아이템 생성
+              return ListTile(
+                title: Text(
+                  widget.script.content[index],
+                  style: TextStyle(color: colors.themeWhiteColor, fontSize: 40),
+                ),
+              );
+            },
+          ),
+          GuideVoicePlayer(source: widget.guideVoicePath!, onDelete: () {})
+        ])
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: _playPause,
+        //   child: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
+        // ),
+        );
   }
 }
