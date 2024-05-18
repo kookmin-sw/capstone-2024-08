@@ -60,11 +60,18 @@ class SelectPractice extends StatelessWidget {
                       saveData.updateLastPracticeScript(
                           uid, scriptType, script.id!);
                       promptSelectDialog(context, script, scriptType, record);
+                      // 가장 나중에 연습한 대본 업데이트
+                      Get.to(() => PromptPractice(
+                            script: script,
+                            scriptType: scriptType,
+                            record: record,
+                          ));
                     }),
                     SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '문장단위연습', () {
                       saveData.updateLastPracticeScript(
                           uid, scriptType, script.id!);
+                      // 가장 나중에 연습한 대본 업데이트
                       Get.to(() => OneSentencePratice(
                             script: script,
                             scriptType: scriptType,
@@ -111,7 +118,7 @@ Future<dynamic> promptSelectDialog(context, script, scriptType, record) {
             },
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all<Color>(colors.recordButtonColor),
+                  MaterialStateProperty.all<Color>(colors.buttonColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
@@ -137,7 +144,7 @@ Future<dynamic> promptSelectDialog(context, script, scriptType, record) {
             },
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all<Color>(colors.recordButtonColor),
+                  MaterialStateProperty.all<Color>(colors.buttonColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),

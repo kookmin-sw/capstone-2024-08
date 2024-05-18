@@ -317,7 +317,8 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         body: Stack(children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-              child: Column(children: [
+              child: SingleChildScrollView(
+                  child: Column(children: [
                 Column(children: [
                   _buildCategory(widget.script.category),
                   const SizedBox(height: 15),
@@ -342,7 +343,10 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                     return waitingGetPrecisionSection(snapshot);
                   },
                 ),
-              ])),
+                const SizedBox(
+                  height: 50,
+                )
+              ]))),
           Container(
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(20),
