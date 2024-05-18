@@ -91,7 +91,7 @@ class SaveData {
     });
   }
 
-  updateLastPracticeScript(
+  Future<DocumentReference> updateLastPracticeScript(
       String uid, String scriptType, String scriptId) async {
     DocumentReference scriptRef = FirebaseFirestore.instance
         .collection('${scriptType}_script')
@@ -100,6 +100,8 @@ class SaveData {
         .collection('user')
         .doc(uid)
         .update({'lastPracticeScript': scriptRef});
+
+    return scriptRef;
   }
 
   Future<List<int>?> scrap(

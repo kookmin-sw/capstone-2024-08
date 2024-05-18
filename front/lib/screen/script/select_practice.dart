@@ -23,9 +23,7 @@ class SelectPractice extends StatelessWidget {
 
   final ScriptModel script;
   final Function tapCloseButton;
-  final SaveData saveData = SaveData();
   String uid = Get.find<UserController>().userModel.id!;
-
   final String scriptType;
   RecordModel? record;
 
@@ -57,10 +55,9 @@ class SelectPractice extends StatelessWidget {
                     notice(),
                     SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '프롬프트', () {
-                      saveData.updateLastPracticeScript(
+                      Get.find<UserController>().updateLastPracticeScript(
                           uid, scriptType, script.id!);
                       promptSelectDialog(context, script, scriptType, record);
-                      // 가장 나중에 연습한 대본 업데이트
                       Get.to(() => PromptPractice(
                             script: script,
                             scriptType: scriptType,
@@ -69,9 +66,8 @@ class SelectPractice extends StatelessWidget {
                     }),
                     SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '문장단위연습', () {
-                      saveData.updateLastPracticeScript(
+                      Get.find<UserController>().updateLastPracticeScript(
                           uid, scriptType, script.id!);
-                      // 가장 나중에 연습한 대본 업데이트
                       Get.to(() => OneSentencePratice(
                             script: script,
                             scriptType: scriptType,
