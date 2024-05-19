@@ -105,7 +105,7 @@ class _PromptResultState extends State<PromptResult> {
             style: TextStyle(fontSize: 14.0),
           ),
         ),
-        guideVoicePlayer()!,
+        guideVoicePlayer(),
         practiceVoicePlayer()
       ]),
     );
@@ -115,9 +115,13 @@ class _PromptResultState extends State<PromptResult> {
     practiceResult = await getVoicesSimilarity(
         widget.script.content.join(' '), widget.practiceVoicePath!);
     setState(() {
-      (practiceResult!['precision'] == null)
-          ? _precision = null
-          : _precision = int.parse(practiceResult!['precision']!);
+      if (practiceResult == null) {
+        _precision = null;
+      } else {
+        (practiceResult!['precision'] == null)
+            ? _precision = null
+            : _precision = int.parse(practiceResult!['precision']!);
+      }
     });
     return Column(children: [
       Container(
@@ -225,36 +229,40 @@ class _PromptResultState extends State<PromptResult> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: colors.bgrBrightColor,
+          elevation: 0,
+        ),
         body: Stack(children: [
-      Container(
-          padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-          child: SingleChildScrollView(
-              child: Column(children: [
-            Column(children: [
-              _buildCategory(widget.script.category),
-              const SizedBox(height: 15),
-              _buildTitle(widget.script.title),
-              const SizedBox(height: 20)
-            ]),
-            Container(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [sentenceSection()])),
-            FutureBuilder<Widget>(
-              future:
-                  precisionSection(), // precisionSection 함수를 호출하여 Future<Widget>을 얻음
-              builder: (context, snapshot) {
-                return waitingGetPrecisionSection(snapshot);
-              },
-            ),
-            const SizedBox(
-              height: 50,
-            )
-          ]))),
-      Container(
-          alignment: Alignment.bottomCenter,
-          padding: const EdgeInsets.all(20),
-          child: nextButton())
-    ]));
+          Container(
+              padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+              child: SingleChildScrollView(
+                  child: Column(children: [
+                Column(children: [
+                  _buildCategory(widget.script.category),
+                  const SizedBox(height: 15),
+                  _buildTitle(widget.script.title),
+                  const SizedBox(height: 20)
+                ]),
+                Container(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [sentenceSection()])),
+                FutureBuilder<Widget>(
+                  future:
+                      precisionSection(), // precisionSection 함수를 호출하여 Future<Widget>을 얻음
+                  builder: (context, snapshot) {
+                    return waitingGetPrecisionSection(snapshot);
+                  },
+                ),
+                const SizedBox(
+                  height: 50,
+                )
+              ]))),
+          Container(
+              alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.all(20),
+              child: nextButton())
+        ]));
   }
 }

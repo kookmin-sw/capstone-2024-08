@@ -42,7 +42,7 @@ class _PromptPracticeState extends State<PromptPractice> {
         // 한 픽셀씩 아래로 스크롤
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: Duration(seconds: 8),
+          duration: Duration(seconds: 3),
           curve: Curves.easeIn,
         );
       }
@@ -58,17 +58,16 @@ class _PromptPracticeState extends State<PromptPractice> {
       context,
       MaterialPageRoute(
           builder: (context) => PromptResult(
-                script: widget.script,
-                scriptType: widget.scriptType,
-                guideVoicePath: widget.guideVoicePath,
-              )),
+              script: widget.script,
+              scriptType: widget.scriptType,
+              guideVoicePath: widget.guideVoicePath,
+              practiceVoicePath: practiceVoicePath)),
       (route) => false, // 모든 이전 화면을 스택에서 제거
     );
   }
 
   Widget nextButton() {
     return Container(
-        width: MediaQuery.of(context).size.width / 1.2,
         margin: const EdgeInsets.all(10),
         child: ElevatedButton(
           onPressed: () {
@@ -140,9 +139,10 @@ class _PromptPracticeState extends State<PromptPractice> {
               )),
           Container(
               alignment: Alignment.bottomCenter,
-              padding: EdgeInsets.all(20),
-              child: Row(children: [
-                RecordingSection(
+              padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+              child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                Container(
+                    child: RecordingSection(
                   showPlayer: showPlayer,
                   audioPath: '',
                   onDone: (bool isShowPlayer, String? path) {
@@ -151,10 +151,9 @@ class _PromptPracticeState extends State<PromptPractice> {
                       practiceVoicePath = path;
                     });
                   },
-                ),
+                )),
                 Container(
-                    alignment: Alignment.bottomCenter,
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(10),
                     child: !showPlayer ? Container() : nextButton())
               ]))
         ]));
