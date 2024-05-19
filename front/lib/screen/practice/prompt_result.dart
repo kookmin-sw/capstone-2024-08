@@ -40,7 +40,7 @@ class _PromptResultState extends State<PromptResult> {
   bool showPlayer = false;
   bool showGuideVoicePlayer = false;
   Map<String?, String?>? practiceResult;
-  int? precision;
+  int? _precision;
 
   late Widget? _guideVoicePlayers;
 
@@ -76,14 +76,11 @@ class _PromptResultState extends State<PromptResult> {
       showPlayer = false;
       showGuideVoicePlayer = false;
     });
-
-    if (isEnd()) {
-      saveData.updatePromptPracticeResult(
-          scriptId: widget.script.id!,
-          scriptType: widget.scriptType,
-          precision: _precision);
-      backToHomePage();
-    }
+    saveData.updatePromptPracticeResult(
+        scriptId: widget.script.id!,
+        scriptType: widget.scriptType,
+        precision: _precision);
+    backToHomePage();
   }
 
   backToHomePage() {
@@ -149,9 +146,14 @@ class _PromptResultState extends State<PromptResult> {
     if (showPlayer) {
       practiceResult = await getVoicesSimilarity(
           widget.script.content.join(' '), practiceAudioPath!);
+      setState(() {
+        (practiceResult!['precision'] == null)
+            ? _precision = null
+            : _precision = int.parse(practiceResult!['precision']!);
+      });
       return Column(children: [
         Container(
-          child: Text('정확도 : ${practiceResult!['precision']}'),
+          child: Text('정확도 : ${_precision}'),
           padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
         ),
         Container(
