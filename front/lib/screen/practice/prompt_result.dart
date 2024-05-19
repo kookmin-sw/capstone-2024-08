@@ -37,8 +37,6 @@ class _PromptResultState extends State<PromptResult> {
   Map<String?, String?>? practiceResult;
   int? _precision;
 
-  late Widget? _guideVoicePlayers;
-
   @override
   void initState() {
     super.initState();
@@ -84,15 +82,6 @@ class _PromptResultState extends State<PromptResult> {
   }
 
   Widget sentenceSection() {
-    // 이미 호출된 guideVoicePlayer() 함수의 결과를 저장하고 있다가 재사용
-    if (_guideVoicePlayers != null) {
-      _guideVoicePlayers = FutureBuilder<Widget>(
-        future: guideVoicePlayer(),
-        builder: (context, snapshot) {
-          return waitingGetGuideVoicePlayer(snapshot);
-        },
-      );
-    }
     return Container(
       width: MediaQuery.of(context).size.width / 1.2,
       padding: EdgeInsets.all(20.0),
@@ -116,7 +105,7 @@ class _PromptResultState extends State<PromptResult> {
             style: TextStyle(fontSize: 14.0),
           ),
         ),
-        _guideVoicePlayers!,
+        guideVoicePlayer()!,
         practiceVoicePlayer()
       ]),
     );
@@ -169,7 +158,7 @@ class _PromptResultState extends State<PromptResult> {
         ));
   }
 
-  Future<Widget> guideVoicePlayer() async {
+  Widget guideVoicePlayer() {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: (widget.guideVoicePath != null)

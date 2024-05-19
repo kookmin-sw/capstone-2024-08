@@ -122,21 +122,25 @@ class _PromptPracticeState extends State<PromptPractice> {
     return Scaffold(
         backgroundColor: colors.textColor,
         body: Stack(children: [
-          ListView.builder(
-            controller: _scrollController,
-            itemCount: widget.script.content.length, // 텍스트 아이템의 개수
-            itemBuilder: (BuildContext context, int index) {
-              // 텍스트 아이템 생성
-              return ListTile(
-                title: Text(
-                  widget.script.content[index],
-                  style: TextStyle(color: colors.themeWhiteColor, fontSize: 40),
-                ),
-              );
-            },
-          ),
+          Container(
+              padding: EdgeInsets.fromLTRB(20, 40, 20, 60),
+              child: ListView.builder(
+                controller: _scrollController,
+                itemCount: widget.script.content.length, // 텍스트 아이템의 개수
+                itemBuilder: (BuildContext context, int index) {
+                  // 텍스트 아이템 생성
+                  return ListTile(
+                    title: Text(
+                      widget.script.content[index],
+                      style: TextStyle(
+                          color: colors.themeWhiteColor, fontSize: 40),
+                    ),
+                  );
+                },
+              )),
           Container(
               alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.all(20),
               child: Row(children: [
                 RecordingSection(
                   showPlayer: showPlayer,
@@ -149,6 +153,7 @@ class _PromptPracticeState extends State<PromptPractice> {
                   },
                 ),
                 Container(
+                    alignment: Alignment.bottomCenter,
                     padding: const EdgeInsets.all(20),
                     child: !showPlayer ? Container() : nextButton())
               ]))
