@@ -82,7 +82,7 @@ def train(rank, a, h):
 
     trainset = MelDataset(training_filelist, h.segment_size, h.n_fft, h.num_mels,
                           h.hop_size, h.win_size, h.sampling_rate, h.fmin, h.fmax, n_cache_reuse=0,
-                          shuffle=False if h.num_gpus > 1 else True, fmax_loss=h.fmax_for_loss, device=device,
+                          shuffle=False if h.num_gpus > 1 else True, fmax_loss=h.fmax_loss, device=device,
                           fine_tuning=a.fine_tuning, base_mels_path=a.input_mels_dir)
 
     train_sampler = DistributedSampler(trainset) if h.num_gpus > 1 else None
@@ -96,7 +96,7 @@ def train(rank, a, h):
     if rank == 0:
         validset = MelDataset(validation_filelist, h.segment_size, h.n_fft, h.num_mels,
                               h.hop_size, h.win_size, h.sampling_rate, h.fmin, h.fmax, False, False, n_cache_reuse=0,
-                              fmax_loss=h.fmax_for_loss, device=device, fine_tuning=a.fine_tuning,
+                              fmax_loss=h.fmax_loss, device=device, fine_tuning=a.fine_tuning,
                               base_mels_path=a.input_mels_dir)
         validation_loader = DataLoader(validset, num_workers=1, shuffle=False,
                                        sampler=None,
@@ -131,7 +131,7 @@ def train(rank, a, h):
             # Forward pass through VAE
             y_g_hat, mu, logvar = vae(x)
             y_g_hat = y_g_hat.squeeze(1)
-            y_g_hat_mel = mel_spectrogram(y_g_hat, h.n_fft, h.num_mels, h.sampling_rate, h.hop_size, h.win_size, h.fmin, h.fmax_for_loss)
+            y_g_hat_mel = mel_spectrogram(y_g_hat, h.n_fft, h.num_mels, h.sampling_rate, h.hop_size, h.win_size, h.fmin, h.fmax_loss)
 
             optim_d.zero_grad()
 
@@ -207,7 +207,7 @@ def train(rank, a, h):
                             y_mel = torch.autograd.Variable(y_mel.to(device, non_blocking=True))
                             y_g_hat_mel = mel_spectrogram(y_g_hat.squeeze(1), h.n_fft, h.num_mels, h.sampling_rate,
                                                           h.hop_size, h.win_size,
-                                                          h.fmin, h.fmax_for_loss)
+                                                          h.fmin, h.fmax_loss)
                             val_err_tot += F.l1_loss(y_mel, y_g_hat_mel).item()
 
                             if j <= 4:
