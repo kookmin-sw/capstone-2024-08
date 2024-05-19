@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/practice/prompt_result.dart';
+import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/text.dart' as texts;
 
 class PromptPractice extends StatefulWidget {
   PromptPractice(
@@ -24,6 +26,8 @@ class PromptPractice extends StatefulWidget {
 
 class _PromptPracticeState extends State<PromptPractice> {
   final ScrollController _scrollController = ScrollController();
+  String? practiceVoicePath;
+  bool showPlayer = false;
 
   @override
   void initState() {
@@ -43,42 +47,111 @@ class _PromptPracticeState extends State<PromptPractice> {
         );
       }
     });
+  }
 
-    // .then((_) {
-    //       // 5초 후에 PromptResult 페이지로 이동
-    //       Timer(Duration(seconds: 5), () {
-    //         // 녹음 중단 및 결과 페이지로 넘어가기 (결과 페이지에는 녹음 저장 위치 넘기기)
-    //         Navigator.pushAndRemoveUntil(
-    //           context,
-    //           MaterialPageRoute(
-    //               builder: (context) => PromptResult(
-    //                     script: widget.script,
-    //                     scriptType: widget.scriptType,
-    //                     guideVoicePath: widget.guideVoicePath,
-    //                   )),
-    //           (route) => false, // 모든 이전 화면을 스택에서 제거
-    //         );
-    //       });
-    //     })
+  nextButtonPressed() async {
+    setState(() {
+      showPlayer = false;
+    });
+
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+          builder: (context) => PromptResult(
+                script: widget.script,
+                scriptType: widget.scriptType,
+                guideVoicePath: widget.guideVoicePath,
+              )),
+      (route) => false, // 모든 이전 화면을 스택에서 제거
+    );
+  }
+
+  Widget nextButton() {
+    return Container(
+        width: MediaQuery.of(context).size.width / 1.2,
+        margin: const EdgeInsets.all(10),
+        child: ElevatedButton(
+          onPressed: () {
+            debugPrint('녹음 완료 상태 : $showPlayer');
+            if (showPlayer) {
+              nextButtonPressed();
+            } else {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text(
+                      '잠시만요!',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    content: Text(texts.warningMessage['getUserVoice']!),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(texts.okButtonText),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+          },
+          style: ButtonStyle(
+              elevation: MaterialStateProperty.all<double>(5),
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  colors.buttonColor)), // 값을 변경하도록 수정
+          child: Text(
+            '완료',
+            style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: colors.themeWhiteColor),
+          ), // 버튼 텍스트 추가
+        ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colors.textColor,
-      body: ListView.builder(
-        controller: _scrollController,
-        itemCount: widget.script.content.length, // 텍스트 아이템의 개수
-        itemBuilder: (BuildContext context, int index) {
-          // 텍스트 아이템 생성
-          return ListTile(
-            title: Text(
-              widget.script.content[index],
-              style: TextStyle(color: colors.themeWhiteColor, fontSize: 40),
-            ),
-          );
-        },
-      ),
-    );
+        backgroundColor: colors.textColor,
+        body: Stack(children: [
+          ListView.builder(
+            controller: _scrollController,
+            itemCount: widget.script.content.length, // 텍스트 아이템의 개수
+            itemBuilder: (BuildContext context, int index) {
+              // 텍스트 아이템 생성
+              return ListTile(
+                title: Text(
+                  widget.script.content[index],
+                  style: TextStyle(color: colors.themeWhiteColor, fontSize: 40),
+                ),
+              );
+            },
+          ),
+          Container(
+              alignment: Alignment.bottomCenter,
+              child: Row(children: [
+                RecordingSection(
+                  showPlayer: showPlayer,
+                  audioPath: '',
+                  onDone: (bool isShowPlayer, String? path) {
+                    setState(() {
+                      showPlayer = isShowPlayer;
+                      practiceVoicePath = path;
+                    });
+                  },
+                ),
+                Container(
+                    padding: const EdgeInsets.all(20),
+                    child: !showPlayer ? Container() : nextButton())
+              ]))
+        ]));
   }
 }

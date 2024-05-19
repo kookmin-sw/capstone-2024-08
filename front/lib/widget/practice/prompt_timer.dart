@@ -50,6 +50,7 @@ class _PromptTimerState extends State<PromptTimer> {
   // 가이드 음성 다운로드 후 파일 경로 가져오는 코드 작성
   void startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      print("@@@@@@@ guideVoicePath : ${widget.guideVoicePath}");
       setState(() {
         if (_second > 0) {
           _second--;

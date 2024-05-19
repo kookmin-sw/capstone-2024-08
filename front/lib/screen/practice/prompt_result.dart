@@ -19,11 +19,13 @@ class PromptResult extends StatefulWidget {
       required this.script,
       required this.scriptType,
       this.guideVoicePath,
+      this.practiceVoicePath,
       this.record});
 
   final ScriptModel script;
   final String scriptType;
   final String? guideVoicePath;
+  final String? practiceVoicePath;
   RecordModel? record;
 
   @override
@@ -31,14 +33,7 @@ class PromptResult extends StatefulWidget {
 }
 
 class _PromptResultState extends State<PromptResult> {
-  final Map<String, File?> _wavFiles = Get.find<UserController>().wavFiles;
   final SaveData saveData = SaveData();
-  int? sentenceLength;
-  String uid = Get.find<UserController>().userModel.id!;
-  String? practiceAudioPath;
-
-  bool showPlayer = false;
-  bool showGuideVoicePlayer = false;
   Map<String?, String?>? practiceResult;
   int? _precision;
 
@@ -46,8 +41,6 @@ class _PromptResultState extends State<PromptResult> {
 
   @override
   void initState() {
-    showPlayer = false;
-    showGuideVoicePlayer = false;
     super.initState();
   }
 
@@ -72,10 +65,6 @@ class _PromptResultState extends State<PromptResult> {
   }
 
   nextButtonPressed() async {
-    setState(() {
-      showPlayer = false;
-      showGuideVoicePlayer = false;
-    });
     saveData.updatePromptPracticeResult(
         scriptId: widget.script.id!,
         scriptType: widget.scriptType,
@@ -98,7 +87,7 @@ class _PromptResultState extends State<PromptResult> {
     // 이미 호출된 guideVoicePlayer() 함수의 결과를 저장하고 있다가 재사용
     if (_guideVoicePlayers != null) {
       _guideVoicePlayers = FutureBuilder<Widget>(
-        future: guideVoicePlayer(widget.script.content.join(' ')),
+        future: guideVoicePlayer(),
         builder: (context, snapshot) {
           return waitingGetGuideVoicePlayer(snapshot);
         },
@@ -128,41 +117,29 @@ class _PromptResultState extends State<PromptResult> {
           ),
         ),
         _guideVoicePlayers!,
-        RecordingSection(
-          showPlayer: showPlayer,
-          audioPath: '',
-          onDone: (bool isShowPlayer, String? path) {
-            setState(() {
-              showPlayer = isShowPlayer;
-              practiceAudioPath = path;
-            });
-          },
-        )
+        practiceVoicePlayer()
       ]),
     );
   }
 
   Future<Widget> precisionSection() async {
-    if (showPlayer) {
-      practiceResult = await getVoicesSimilarity(
-          widget.script.content.join(' '), practiceAudioPath!);
-      setState(() {
-        (practiceResult!['precision'] == null)
-            ? _precision = null
-            : _precision = int.parse(practiceResult!['precision']!);
-      });
-      return Column(children: [
-        Container(
-          child: Text('정확도 : ${_precision}'),
-          padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
-        ),
-        Container(
-          child: Text('발음 기호 : ${practiceResult!['pronunciation']}'),
-          padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-        ),
-      ]);
-    }
-    return Container();
+    practiceResult = await getVoicesSimilarity(
+        widget.script.content.join(' '), widget.practiceVoicePath!);
+    setState(() {
+      (practiceResult!['precision'] == null)
+          ? _precision = null
+          : _precision = int.parse(practiceResult!['precision']!);
+    });
+    return Column(children: [
+      Container(
+        child: Text('정확도 : ${_precision}'),
+        padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
+      ),
+      Container(
+        child: Text('발음 기호 : ${practiceResult!['pronunciation']}'),
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+      ),
+    ]);
   }
 
   Widget nextButton() {
@@ -171,31 +148,7 @@ class _PromptResultState extends State<PromptResult> {
         margin: const EdgeInsets.all(10),
         child: ElevatedButton(
           onPressed: () {
-            debugPrint('녹음 완료 상태 : $showPlayer');
-            if (showPlayer) {
-              nextButtonPressed();
-            } else {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text(
-                      '잠시만요!',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    content: Text(texts.warningMessage['getUserVoice']!),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(texts.okButtonText),
-                      ),
-                    ],
-                  );
-                },
-              );
-            }
+            nextButtonPressed();
           },
           style: ButtonStyle(
               elevation: MaterialStateProperty.all<double>(5),
@@ -216,12 +169,20 @@ class _PromptResultState extends State<PromptResult> {
         ));
   }
 
-  Future<Widget> guideVoicePlayer(String text) async {
+  Future<Widget> guideVoicePlayer() async {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: (widget.guideVoicePath != null)
             ? AudioPlayer(source: widget.guideVoicePath!, onDelete: () {})
             : Text('가이드 음성 : ${widget.guideVoicePath}'));
+  }
+
+  Widget practiceVoicePlayer() {
+    return Container(
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        child: (widget.guideVoicePath != null)
+            ? AudioPlayer(source: widget.guideVoicePath!, onDelete: () {})
+            : Text('사용자 음성 : ${widget.guideVoicePath}'));
   }
 
   Widget waitingGetGuideVoicePlayer(snapshot) {

@@ -42,10 +42,6 @@ class _PromptGuideState extends State<PromptGuide> {
         );
       }
     });
-
-    Timer(Duration(seconds: 3), () {
-      promptSelectDialog(context);
-    });
   }
 
   void _playPause() {
@@ -102,6 +98,7 @@ class _PromptGuideState extends State<PromptGuide> {
                           script: widget.script,
                           scriptType: widget.scriptType,
                           record: widget.record,
+                          guideVoicePath: widget.guideVoicePath,
                           route: 'prompt_practice')),
                 );
               },
@@ -143,18 +140,13 @@ class _PromptGuideState extends State<PromptGuide> {
               );
             },
           ),
-          // Container(
-          //     alignment: Alignment.bottomRight, child:GuideVoicePlayer(
-          //     source: widget.guideVoicePath!,
-          //     onStop: () {
-          //       promptSelectDialog(context);
-          //     })),
           Container(
               alignment: Alignment.bottomRight,
-              child: Text(
-                "오디오 재생 바 들어갈 자리",
-                style: TextStyle(color: colors.themeWhiteColor, fontSize: 50),
-              ))
+              child: GuideVoicePlayer(
+                  source: widget.guideVoicePath!,
+                  onStop: () {
+                    promptSelectDialog(context);
+                  })),
         ]));
   }
 }
