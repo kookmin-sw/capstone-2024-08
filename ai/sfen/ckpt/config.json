@@ -14,7 +14,7 @@
     "input_shape": [28, 28, 1],
     "conv_filters": [512, 256, 128, 64, 32],
     "conv_kernels" : [3, 3, 3, 3, 3],
-    "conv_strides": [2, 2, 2, 2, [2,1]],
+    "conv_strides": [2, 2, 2, 2, 1],
     "latent_space_dim": 64,
     "lambda_sf": 45,
     
