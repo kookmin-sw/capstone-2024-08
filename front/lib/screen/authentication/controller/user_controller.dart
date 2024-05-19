@@ -30,6 +30,13 @@ class UserController extends GetxController {
     print('wavFiles : $wavFiles');
   }
 
+  Future<void> updateLastPracticeScript(
+      String uid, String scriptType, String scriptId) async {
+    DocumentReference scriptRef =
+        await saveData.updateLastPracticeScript(uid, scriptType, scriptId);
+    userModel.lastPracticeScript = scriptRef;
+  }
+
   Future<void> updateAttendance() async {
     if (userModel.lastAccessDate != null) {
       DateTime lastAccessDate = userModel.lastAccessDate!.toDate();

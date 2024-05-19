@@ -77,8 +77,8 @@ class _SetupUserState extends State<SetupUser> {
       height: getDeviceHeight(context) * 0.2,
       decoration: _boxDecoration(10),
       child: Padding(
-        padding: EdgeInsets.all(getDeviceWidth(context) * 0.05),
-        child: Image.asset(_selectedCharacter!)),
+          padding: EdgeInsets.all(getDeviceWidth(context) * 0.05),
+          child: Image.asset(_selectedCharacter!)),
     );
   }
 
@@ -114,34 +114,33 @@ class _SetupUserState extends State<SetupUser> {
           },
           child: ListView(children: [
             Center(
-              child: Column(
-                children: [
-                  SizedBox(height: getDeviceHeight(context) * 0.04),
-                  _nicknameSection(),
-                  SizedBox(height: getDeviceHeight(context) * 0.04),
-                  _buildSelectedCharacter(),
-                  SizedBox(height: getDeviceHeight(context) * 0.04),
-                  _buildCharacterList(),
-                  SizedBox(height: getDeviceHeight(context) * 0.04),
-                  Container(
-                    width: getDeviceWidth(context) * 0.9,
-                    child:
-                        fullyRoundedRectangleButton(colors.blockColor, '완료', () async {
-                      if (_formKey.currentState!.validate()) {
-                        UserModel userData = UserModel(
-                            id: user!.uid,
-                            nickname: _nickname.text,
-                            character: _selectedCharacter!.split('/')[3].split('.')[0],
-                            attendanceStreak: null,
-                            lastAccessDate: null,
-                            lastPracticeScript: null,
-                            voiceUrls: {'long': "", 'middle': "", 'short': ""});
-                        Get.to(() => GetUserVoice(userData: userData));
-                      }
-                    }))
-                ])
-            )
-        ]),
-    ));
+                child: Column(children: [
+              SizedBox(height: getDeviceHeight(context) * 0.04),
+              _nicknameSection(),
+              SizedBox(height: getDeviceHeight(context) * 0.04),
+              _buildSelectedCharacter(),
+              SizedBox(height: getDeviceHeight(context) * 0.04),
+              _buildCharacterList(),
+              SizedBox(height: getDeviceHeight(context) * 0.04),
+              Container(
+                  width: getDeviceWidth(context) * 0.9,
+                  child: fullyRoundedRectangleButton(colors.blockColor, '완료',
+                      () async {
+                    if (_formKey.currentState!.validate()) {
+                      UserModel userData = UserModel(
+                          id: user!.uid,
+                          nickname: _nickname.text,
+                          character:
+                              _selectedCharacter!.split('/')[3].split('.')[0],
+                          attendanceStreak: null,
+                          lastAccessDate: null,
+                          lastPracticeScript: null,
+                          voiceUrls: {'long': "", 'middle': "", 'short': ""});
+                      Get.to(() => GetUserVoice(userData: userData));
+                    }
+                  }))
+            ]))
+          ]),
+        ));
   }
 }

@@ -3,7 +3,6 @@ import 'package:capstone/screen/authentication/setup_user.dart';
 import 'package:capstone/screen/authentication/social_login.dart';
 import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/screen/bottom_navigation.dart';
-import 'package:capstone/screen/record/record_taps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
