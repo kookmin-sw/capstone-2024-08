@@ -16,7 +16,7 @@ class RecordModel {
   RecordModel.fromDocument(
       {required DocumentSnapshot<Map<String, dynamic>> doc})
       : id = doc.id,
-        scrapSentence = doc.data()!['scrapSentence'],
+        scrapSentence = doc.data()!['scrapSentence'].cast<int>(),
         promptResult = doc.data()!['promptResult'] == null
             ? []
             : doc.data()!['promptResult'].cast<Map<String, dynamic>>();
