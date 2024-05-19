@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:io';

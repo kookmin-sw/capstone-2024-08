@@ -62,11 +62,10 @@ class SaveData {
   Future<void> updatePromptPracticeResult(
       {required String scriptId,
       required String scriptType,
-      Timestamp? practiceDate,
       int? precision}) async {
     User? user = FirebaseAuth.instance.currentUser;
     Map<String, dynamic> promptResult = {
-      'practiceDate': practiceDate,
+      'practiceDate': Timestamp.now(),
       'precision': precision
     };
 
