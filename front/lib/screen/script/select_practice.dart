@@ -23,9 +23,7 @@ class SelectPractice extends StatelessWidget {
 
   final ScriptModel script;
   final Function tapCloseButton;
-  final SaveData saveData = SaveData();
   String uid = Get.find<UserController>().userModel.id!;
-
   final String scriptType;
   RecordModel? record;
 
@@ -57,13 +55,13 @@ class SelectPractice extends StatelessWidget {
                     notice(),
                     SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '프롬프트', () {
-                      saveData.updateLastPracticeScript(
+                      Get.find<UserController>().updateLastPracticeScript(
                           uid, scriptType, script.id!);
                       promptSelectDialog(context, script, scriptType, record);
                     }),
                     SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '문장단위연습', () {
-                      saveData.updateLastPracticeScript(
+                      Get.find<UserController>().updateLastPracticeScript(
                           uid, scriptType, script.id!);
                       Get.to(() => OneSentencePratice(
                             script: script,
@@ -91,7 +89,7 @@ Future<dynamic> promptSelectDialog(context, script, scriptType, record) {
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text(
-          '잠시만요!',
+          '어떤 걸 원하시나요?',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         content: Text(texts.promptStartMessage),
@@ -111,7 +109,7 @@ Future<dynamic> promptSelectDialog(context, script, scriptType, record) {
             },
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all<Color>(colors.recordButtonColor),
+                  MaterialStateProperty.all<Color>(colors.buttonColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
@@ -137,7 +135,7 @@ Future<dynamic> promptSelectDialog(context, script, scriptType, record) {
             },
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all<Color>(colors.recordButtonColor),
+                  MaterialStateProperty.all<Color>(colors.buttonColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),

@@ -3,6 +3,7 @@ import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/record.dart';
+import 'package:capstone/model/save_data.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:capstone/screen/practice/guide_voice_player.dart';
@@ -29,6 +30,7 @@ class OneSentencePratice extends StatefulWidget {
 
 class _OneSentencePraticeState extends State<OneSentencePratice> {
   final Map<String, File?> _wavFiles = Get.find<UserController>().wavFiles;
+  final SaveData saveData = SaveData();
   LoadData loadData = LoadData();
   int _currentSentenceIndex = 0;
   int? sentenceLength;
@@ -108,6 +110,10 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     });
 
     if (isEnd()) {
+      saveData.updateOneSentencePracticeResult(
+          scriptId: widget.script.id!,
+          scriptType: widget.scriptType,
+          scrapSentence: scrapSentences);
       backToHomePage();
     }
   }
@@ -216,7 +222,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: const Text(
-                      '어떤 걸 원하시나요?',
+                      '잠시만요!',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     content: Text(texts.warningMessage['getUserVoice']!),
@@ -317,7 +323,8 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
         body: Stack(children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-              child: Column(children: [
+              child: SingleChildScrollView(
+                  child: Column(children: [
                 Column(children: [
                   _buildCategory(widget.script.category),
                   const SizedBox(height: 15),
@@ -342,7 +349,10 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
                     return waitingGetPrecisionSection(snapshot);
                   },
                 ),
-              ])),
+                const SizedBox(
+                  height: 50,
+                )
+              ]))),
           Container(
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(20),
