@@ -17,7 +17,7 @@ class VAE(nn.Module):
         self.encoder = self._build_encoder()
         self.fc_mu = nn.Linear(self.encoder_conv_output_size, h.latent_space_dim)
         self.fc_logvar = nn.Linear(self.encoder_conv_output_size, h.latent_space_dim)
-        self.decoder = self._build_decoder()
+        self.decoder = self._build_decoder(h)
 
     def _build_encoder(self):
         layers = []
@@ -37,8 +37,8 @@ class VAE(nn.Module):
         self.encoder_conv_output_size = self._get_conv_output_size(layers)
         return nn.Sequential(*layers)
 
-    def _build_decoder(self):
-        return Generator(h=self)
+    def _build_decoder(self, h):
+        return Generator(h=h)
 
     def _get_conv_output_size(self, layers):
         with torch.no_grad():
