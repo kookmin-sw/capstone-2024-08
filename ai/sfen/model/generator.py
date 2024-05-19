@@ -30,6 +30,13 @@ class Generator(nn.Module):
         self.conv_post = weight_norm(nn.Conv1d(ch, 1, 7, 1, padding=3))
         self.ups.apply(init_weights)
         self.conv_post.apply(init_weights)
+        print('---------------------------------Generator layers---------------------------------')
+        for i in self.ups:
+            print(i)
+        print()
+        print(self.conv_pre)
+        print(self.conv_post)
+        print("------------------------------------------------------------------------------------")
 
     def forward(self, x):
         x = self.conv_pre(x)
