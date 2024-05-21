@@ -48,7 +48,7 @@ def mel_spectrogram(y, n_fft, num_mels, sampling_rate, hop_size, win_size, fmin,
         print('max value is ', torch.max(y))
 
     global mel_basis, hann_window
-    
+
     if fmax not in mel_basis:
         mel = librosa_mel_fn(sampling_rate, n_fft, num_mels, fmin, fmax)
         mel_basis[str(fmax)+'_'+str(y.device)] = torch.from_numpy(mel).float().to(y.device)
@@ -58,18 +58,24 @@ def mel_spectrogram(y, n_fft, num_mels, sampling_rate, hop_size, win_size, fmin,
     if pad_amount[0] > y.size(0):
         pad_amount = (y.size(0) - 1, y.size(0) - 1)
 
-    y = torch.nn.functional.pad(y.unsqueeze(1), pad_amount, mode='reflect').squeeze(1)
+    print("pad_amount", pad_amount)
+    print("before pad", y.size())
+    y = torch.nn.functional.pad(y.unsqueeze(0), pad_amount, mode='reflect')
+    y = y.squeeze(1)
     print("pad", y.size())
     # torch.Size([1, 8192])
+    
     print("n_fft: ", n_fft, " hop_size: ", hop_size, " win_size: ", win_size, " center: ", center)
     # n_fft:  1024  hop_size:  256  win_size:  1024  center:  False
     spec = torch.stft(y, n_fft, hop_length=hop_size, win_length=win_size, window=hann_window[str(y.device)],
-                      center=center, pad_mode='reflect', normalized=False, onesided=True, return_complex=False)
+                      center=center, pad_mode='reflect', normalized=False, onesided=True, return_complex=True)
     print("after stft", spec.size())
     # after stft torch.Size([1, 513, 29])
-    spec = torch.sqrt(spec.pow(2).sum(-1) + (1e-9))
+    
+    spec = torch.sqrt(spec.real.pow(2) + spec.imag.pow(2) + (1e-9))
     print("after sqrt", spec.size())
     print("mel_basis", mel_basis[str(fmax)+'_'+str(y.device)].size())
+
     spec = torch.matmul(mel_basis[str(fmax)+'_'+str(y.device)], spec)
     spec = spectral_normalize_torch(spec)
     return spec
