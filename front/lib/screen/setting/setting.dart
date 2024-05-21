@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/route.dart' as routes;
+import 'package:capstone/constants/fonts.dart' as fonts;
 
 class Setting extends StatelessWidget {
   const Setting({Key? key}) : super(key: key);
@@ -57,7 +58,7 @@ class Setting extends StatelessWidget {
                     item['name'],
                     semanticsLabel: item['name'],
                     style: const TextStyle(
-                      fontSize: 15,
+                      fontSize: fonts.plainText,
                       fontWeight: FontWeight.w800,
                       color: colors.textColor
                     ),

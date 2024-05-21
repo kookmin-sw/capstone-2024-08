@@ -1,5 +1,6 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/setting/setting.dart';
@@ -72,7 +73,7 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.fromLTRB(10, 40, 10, 0),
           child: Text(texts.lastPracticeScriptEmptyMessage,
               style: const TextStyle(
-                  color: colors.themeWhiteColor, fontSize: 16)));
+                  color: colors.themeWhiteColor, fontSize: fonts.plainText)));
     } else {
       String scriptType = documentRef.path.split('_')[0];
       return FutureBuilder<ScriptModel?>(

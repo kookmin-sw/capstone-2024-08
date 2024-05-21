@@ -1,4 +1,5 @@
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
@@ -53,7 +54,10 @@ class _ScriptDetailState extends State<ScriptDetail> {
       semanticsLabel: category,
       textAlign: TextAlign.start,
       style: const TextStyle(
-          fontSize: 12, fontWeight: FontWeight.w500, color: colors.textColor),
+          fontSize: fonts.category, 
+          fontWeight: FontWeight.w500, 
+          color: colors.textColor
+      ),
     );
   }
 
@@ -63,7 +67,10 @@ class _ScriptDetailState extends State<ScriptDetail> {
       semanticsLabel: title,
       textAlign: TextAlign.start,
       style: const TextStyle(
-          fontSize: 15, fontWeight: FontWeight.w800, color: colors.textColor),
+          fontSize: fonts.title, 
+          fontWeight: FontWeight.w700, 
+          color: colors.textColor
+        ),
     );
   }
 

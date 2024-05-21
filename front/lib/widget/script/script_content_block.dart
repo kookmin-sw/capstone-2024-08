@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 
 Container scriptContentBlock(String sentence, var width) {
   return Container(
@@ -21,7 +22,7 @@ Container scriptContentBlock(String sentence, var width) {
         semanticsLabel: sentence,
         textAlign: TextAlign.start,
         style: const TextStyle(
-          fontSize: 13,
+          fontSize: fonts.plainText,
           fontWeight: FontWeight.w500,
           color: colors.textColor
         ),

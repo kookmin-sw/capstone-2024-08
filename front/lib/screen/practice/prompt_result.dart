@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/save_data.dart';
 import 'package:capstone/model/script.dart';
@@ -48,7 +49,7 @@ class _PromptResultState extends State<PromptResult> {
       semanticsLabel: category,
       textAlign: TextAlign.start,
       style: const TextStyle(
-          fontSize: 12, fontWeight: FontWeight.w500, color: colors.textColor),
+          fontSize: fonts.category, fontWeight: FontWeight.w500, color: colors.textColor),
     );
   }
 
@@ -58,7 +59,7 @@ class _PromptResultState extends State<PromptResult> {
       semanticsLabel: title,
       textAlign: TextAlign.start,
       style: const TextStyle(
-          fontSize: 15, fontWeight: FontWeight.w800, color: colors.textColor),
+          fontSize: fonts.title, fontWeight: FontWeight.w800, color: colors.textColor),
     );
   }
 
@@ -102,7 +103,7 @@ class _PromptResultState extends State<PromptResult> {
           child: Text(
             widget.script.content.join(' '),
             textAlign: TextAlign.start,
-            style: TextStyle(fontSize: 14.0),
+            style: TextStyle(fontSize: fonts.plainText),
           ),
         ),
         guideVoicePlayer(),
@@ -155,7 +156,7 @@ class _PromptResultState extends State<PromptResult> {
           child: Text(
             texts.nextButtonText,
             style: const TextStyle(
-                fontSize: 18,
+                fontSize: fonts.button,
                 fontWeight: FontWeight.bold,
                 color: colors.themeWhiteColor),
           ), // 버튼 텍스트 추가

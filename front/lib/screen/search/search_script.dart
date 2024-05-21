@@ -2,6 +2,7 @@ import 'package:capstone/screen/search/search_taps.dart';
 import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:get/get.dart';
 
 class SearchScript extends StatefulWidget {
@@ -41,7 +42,7 @@ class _SearchScriptState extends State<SearchScript> {
             filled: true,
             labelStyle: const TextStyle(
               color: colors.textColor,
-              fontSize: 12,
+              fontSize: fonts.plainText,
               fontWeight: FontWeight.w500),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(28),

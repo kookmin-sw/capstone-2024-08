@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 
 class PromptPrecisionGraph extends StatefulWidget {
   const PromptPrecisionGraph({
@@ -38,7 +39,7 @@ class _PromptPrecisionGraphState extends State<PromptPrecisionGraph> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 10),
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.fromLTRB(10, 15, 15, 15),
       decoration: BoxDecoration(
         color: colors.blockColor,
         borderRadius: BorderRadius.circular(10),
@@ -61,8 +62,8 @@ class _PromptPrecisionGraphState extends State<PromptPrecisionGraph> {
 
   Widget leftTitleWidget(double value, TitleMeta meta) {
     const style = TextStyle(
-      fontWeight: FontWeight.w600,
-      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      fontSize: fonts.plainText,
       color: colors.textColor
     );
     String precision;
@@ -79,8 +80,16 @@ class _PromptPrecisionGraphState extends State<PromptPrecisionGraph> {
         precision = '75';
         break;
       case 100:
-        precision = '100';
-        break;
+        return SideTitleWidget(
+          axisSide: meta.axisSide,
+          child: const Text('100', 
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+            color: colors.textColor
+          ), 
+          textAlign: TextAlign.center),
+        );
       default:
         return Container();
     }
@@ -147,7 +156,7 @@ class _PromptPrecisionGraphState extends State<PromptPrecisionGraph> {
                 ),
                 children: [
                   TextSpan(
-                    text: flSpot.y.toString(),
+                    text: flSpot.y.toInt().toString(),
                     style: const TextStyle(
                       color: colors.precisionGraphBgrColor,
                       fontWeight: FontWeight.w800,

@@ -7,6 +7,7 @@ import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:capstone/constants/fonts.dart' as fonts;
 
 Text _buildTitle(String title) {
   return Text(
@@ -18,8 +19,8 @@ Text _buildTitle(String title) {
     softWrap: false,
     style: const TextStyle(
       color: colors.textColor,
-      fontSize: 14,
-      fontWeight: FontWeight.w500,
+      fontSize: fonts.title,
+      fontWeight: FontWeight.w300,
     ),
   );
 }
@@ -29,7 +30,10 @@ Text _buildCategory(String category) {
     category,
     semanticsLabel: category,
     style: const TextStyle(
-        color: colors.textColor, fontSize: 13, fontWeight: FontWeight.w800),
+        color: colors.textColor, 
+        fontSize: fonts.category, 
+        fontWeight: FontWeight.w600
+      ),
   );
 }
 
@@ -42,7 +46,7 @@ Text _buildContent(String content) {
     softWrap: false,
     style: const TextStyle(
       color: colors.textColor,
-      fontSize: 12,
+      fontSize: fonts.plainText,
       fontWeight: FontWeight.w300,
     ),
   );
@@ -54,7 +58,7 @@ Text _buildPrecision(int? precision) {
     softWrap: false,
     style: const TextStyle(
       color: colors.buttonColor,
-      fontSize: 14,
+      fontSize: fonts.plainText,
       fontWeight: FontWeight.w800,
     ),
   );

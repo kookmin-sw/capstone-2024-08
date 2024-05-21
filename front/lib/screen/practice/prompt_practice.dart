@@ -6,6 +6,7 @@ import 'package:capstone/widget/audio_recoder/recording_section.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
+import 'package:capstone/constants/fonts.dart' as fonts;
 
 class PromptPractice extends StatefulWidget {
   PromptPractice(
@@ -109,7 +110,7 @@ class _PromptPracticeState extends State<PromptPractice> {
           child: Text(
             '완료',
             style: const TextStyle(
-                fontSize: 18,
+                fontSize: fonts.button,
                 fontWeight: FontWeight.bold,
                 color: colors.themeWhiteColor),
           ), // 버튼 텍스트 추가

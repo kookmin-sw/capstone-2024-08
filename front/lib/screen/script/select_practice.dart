@@ -9,6 +9,7 @@ import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -38,11 +39,12 @@ class SelectPractice extends StatelessWidget {
             height: deviceHeight,
             color: colors.selectPracticebgrColor,
             child: Column(children: [
+              SizedBox(height: deviceHeight * 0.02),
               Align(
                   alignment: Alignment.topRight,
                   child: IconButton(
-                    icon: const Icon(Icons.close_rounded,
-                        color: colors.blockColor, size: 40),
+                    icon: Icon(Icons.close_rounded,
+                        color: colors.blockColor, size: deviceWidth * 0.1),
                     onPressed: () {
                       tapCloseButton();
                     },
@@ -78,7 +80,7 @@ Text notice() {
   return const Text('연습 방법을 선택해주세요.',
       style: TextStyle(
         color: colors.blockColor,
-        fontSize: 13,
+        fontSize: fonts.plainText,
         fontWeight: FontWeight.w500,
       ));
 }
@@ -90,7 +92,10 @@ Future<dynamic> promptSelectDialog(context, script, scriptType, record) {
       return AlertDialog(
         title: const Text(
           '어떤 걸 원하시나요?',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: fonts.plainText, 
+            fontWeight: FontWeight.w800
+          ),
         ),
         content: Text(texts.promptStartMessage),
         actionsAlignment: MainAxisAlignment.spaceAround,
@@ -174,7 +179,7 @@ Container practiceButton(
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: colors.textColor,
-              fontSize: 13,
+              fontSize: fonts.plainText,
               fontWeight: FontWeight.w800,
             ),
           )));

@@ -1,4 +1,5 @@
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/model/save_data.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/script/create_user_script/controller/content_controller.dart';
@@ -38,7 +39,7 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
       semanticsLabel: category,
       textAlign: TextAlign.start,
       style: const TextStyle(
-          fontSize: 12, fontWeight: FontWeight.w500, color: colors.textColor),
+          fontSize: fonts.category, fontWeight: FontWeight.w500, color: colors.textColor),
     );
   }
 
@@ -48,7 +49,7 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
       semanticsLabel: title,
       textAlign: TextAlign.start,
       style: const TextStyle(
-          fontSize: 15, fontWeight: FontWeight.w500, color: colors.textColor),
+          fontSize: fonts.title, fontWeight: FontWeight.w700, color: colors.textColor),
     );
   }
 
