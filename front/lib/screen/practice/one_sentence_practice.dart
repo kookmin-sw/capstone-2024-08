@@ -46,6 +46,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   List<int>? scrapSentences;
 
   Map<int, Widget> _guideVoicePlayers = {};
+  Map<int, Widget> _precisionSections = {};
 
   @override
   void initState() {
@@ -193,6 +194,18 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
           ]),
         ));
   }
+
+  // Widget precisionWidget() {
+  //   if (!_precisionSections.containsKey(_currentSentenceIndex)) {
+  //     _precisionSections[_currentSentenceIndex] = FutureBuilder<Widget>(
+  //       future: precisionSection(),
+  //       builder: (context, snapshot) {
+  //         return waitingGetPrecisionSection(snapshot);
+  //       },
+  //     );
+  //   }
+  //   return _precisionSections[_currentSentenceIndex]!;
+  // }
 
   Future<Widget> precisionSection() async {
     if (showPlayer) {
