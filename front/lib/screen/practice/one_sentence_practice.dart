@@ -264,7 +264,8 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: (audioPath != null)
-            ? AudioPlayer(source: audioPath, onDelete: () {})
+            ? AudioPlayer(
+                source: audioPath, onDelete: () {}, hideDeleteButton: true)
             : Text('가이드 음성 : $audioPath'));
   }
 

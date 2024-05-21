@@ -166,7 +166,10 @@ class _PromptResultState extends State<PromptResult> {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: (widget.guideVoicePath != null)
-            ? AudioPlayer(source: widget.guideVoicePath!, onDelete: () {})
+            ? AudioPlayer(
+                source: widget.guideVoicePath!,
+                onDelete: () {},
+                hideDeleteButton: true)
             : Text('가이드 음성 : ${widget.guideVoicePath}'));
   }
 
@@ -174,7 +177,10 @@ class _PromptResultState extends State<PromptResult> {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: (widget.guideVoicePath != null)
-            ? AudioPlayer(source: widget.guideVoicePath!, onDelete: () {})
+            ? AudioPlayer(
+                source: widget.guideVoicePath!,
+                onDelete: () {},
+                hideDeleteButton: true)
             : Text('사용자 음성 : ${widget.guideVoicePath}'));
   }
 
