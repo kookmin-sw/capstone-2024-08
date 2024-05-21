@@ -1,5 +1,6 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:flutter/material.dart';
 
 class CategoryButtons extends StatefulWidget {
@@ -31,13 +32,14 @@ class _CategoryButtonsState extends State<CategoryButtons> {
                 padding: const EdgeInsets.fromLTRB(0, 0, 6, 0),
                 child: ChoiceChip(
                   visualDensity:
-                      const VisualDensity(horizontal: -4, vertical: -4),
+                      const VisualDensity(horizontal: -2, vertical: -2),
                   showCheckmark: false,
                   label: Text(widget.category[i],
                       semanticsLabel: widget.category[i],
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: colors.textColor,
-                        fontSize: 18,
+                        fontSize: fonts.category(context),
+                        fontWeight: FontWeight.w500
                       )),
                   selected: selectedCategory == widget.category[i],
                   onSelected: (bool selected) {

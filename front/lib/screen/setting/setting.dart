@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/route.dart' as routes;
+import 'package:capstone/constants/fonts.dart' as fonts;
 
 class Setting extends StatelessWidget {
   const Setting({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class Setting extends StatelessWidget {
     var deviceHeight = getDeviceHeight(context);
 
     return Scaffold(
-      appBar: basicAppBar(title: '설정'),
+      appBar: basicAppBar(context, title: '설정'),
       body: Container(
         padding: EdgeInsets.all(deviceWidth * 0.05),
         child: Column(
@@ -56,9 +57,9 @@ class Setting extends StatelessWidget {
                   child: Text(
                     item['name'],
                     semanticsLabel: item['name'],
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w800,
+                    style: TextStyle(
+                      fontSize: fonts.plainText(context),
+                      fontWeight: FontWeight.w600,
                       color: colors.textColor
                     ),
                   )

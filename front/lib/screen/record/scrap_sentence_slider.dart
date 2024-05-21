@@ -35,7 +35,7 @@ class _ScrapSentenceSliderState extends State<ScrapSentenceSlider> {
             items: widget.scrapSentenceList.map((sentence) {
               return Builder(
                 builder: (BuildContext context){
-                  return scriptContentBlock(sentence, deviceWidth);
+                  return scriptContentBlock(context, sentence);
               });
             }).toList(),
             options: CarouselOptions(

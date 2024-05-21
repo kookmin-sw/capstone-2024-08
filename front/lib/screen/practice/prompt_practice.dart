@@ -6,6 +6,7 @@ import 'package:capstone/widget/practice/prompt/prompt_recording_section.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
+import 'package:capstone/constants/fonts.dart' as fonts;
 
 class PromptPractice extends StatefulWidget {
   PromptPractice(
@@ -113,8 +114,8 @@ class _PromptPracticeState extends State<PromptPractice> {
                   colors.buttonColor)), // 값을 변경하도록 수정
           child: Text(
             '완료',
-            style: const TextStyle(
-                fontSize: 18,
+            style: TextStyle(
+                fontSize: fonts.button,
                 fontWeight: FontWeight.bold,
                 color: colors.themeWhiteColor),
           ), // 버튼 텍스트 추가
