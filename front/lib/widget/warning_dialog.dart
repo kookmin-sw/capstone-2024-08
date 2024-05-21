@@ -1,5 +1,6 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/widget/outlined_rounded_rectangle_button.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,9 @@ class WarningDialog extends StatelessWidget {
         semanticLabel: texts.warningMessage[warningObject],
         title: Text(
           texts.warningMessage[warningObject]!,
-          style: const TextStyle(
+          style: TextStyle(
               color: colors.textColor,
-              fontSize: 13,
+              fontSize: fonts.plainText(context),
               fontWeight: FontWeight.w500),
         ),
         actions: [

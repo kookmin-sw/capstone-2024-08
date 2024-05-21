@@ -1,5 +1,6 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/model/record.dart';
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/model/save_data.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/script/create_user_script/controller/content_controller.dart';
@@ -38,8 +39,8 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
       category,
       semanticsLabel: category,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: 12, fontWeight: FontWeight.w500, color: colors.textColor),
+      style: TextStyle(
+          fontSize: fonts.category(context), fontWeight: FontWeight.w500, color: colors.textColor),
     );
   }
 
@@ -48,8 +49,8 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
       title,
       semanticsLabel: title,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: 15, fontWeight: FontWeight.w500, color: colors.textColor),
+      style: TextStyle(
+          fontSize: fonts.title(context), fontWeight: FontWeight.w700, color: colors.textColor),
     );
   }
 
@@ -59,7 +60,7 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
     var deviceHeight = getDeviceHeight(context);
 
     return Scaffold(
-        appBar: basicAppBar(title: '나만의 대본 만들기'),
+        appBar: basicAppBar(context, title: '나만의 대본 만들기'),
         body: Stack(children: [
           GestureDetector(
               onTap: () {

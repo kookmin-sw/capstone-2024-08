@@ -1,4 +1,5 @@
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/record/prompt_precision_graph.dart';
@@ -58,15 +59,23 @@ class _RecordDetailState extends State<RecordDetail> {
   }
 
   Text _buildCategory(String category) {
-    return _buildText(category, 12);
+    return _buildText(category, fonts.category(context));
   }
 
   Text _buildTitle(String title) {
-    return _buildText(title, 15);
+    return Text(
+      title,
+      semanticsLabel: title,
+      textAlign: TextAlign.start,
+      style: TextStyle(
+          fontSize: fonts.title(context),
+          fontWeight: FontWeight.w600,
+          color: colors.textColor),
+    );
   }
 
   Text _buildRecordItemTitle(String title) {
-    return _buildText(title, 12);
+    return _buildText(title, fonts.plainText(context));
   }
 
   Container _notExistsRecord(String item) {
@@ -74,7 +83,7 @@ class _RecordDetailState extends State<RecordDetail> {
         padding: EdgeInsets.only(
             top: getDeviceHeight(context) * 0.1,
             bottom: getDeviceHeight(context) * 0.1),
-        child: Align(alignment: Alignment.center, child: _buildText(item, 14)));
+        child: Align(alignment: Alignment.center, child: _buildText(item, fonts.plainText(context))));
   }
 
   @override
@@ -83,7 +92,7 @@ class _RecordDetailState extends State<RecordDetail> {
     var deviceHeight = getDeviceHeight(context);
 
     return Scaffold(
-        appBar: basicAppBar(title: '기록'),
+        appBar: basicAppBar(context, title: '기록'),
         body: Stack(children: [
           ListView(children: [
             Container(
@@ -95,19 +104,19 @@ class _RecordDetailState extends State<RecordDetail> {
                       _buildCategory(widget.script.category),
                       SizedBox(height: deviceHeight * 0.01),
                       _buildTitle(widget.script.title),
-                      SizedBox(height: deviceHeight * 0.025),
+                      SizedBox(height: deviceHeight * 0.04),
                       _buildRecordItemTitle('스크랩한 문장 목록'),
                       scrapSentenceList.isNotEmpty
                           ? ScrapSentenceSlider(
                               scrapSentenceList: scrapSentenceList)
                           : _notExistsRecord('스크랩한 문장이 존재하지 않습니다.'),
-                      SizedBox(height: deviceHeight * 0.03),
+                      SizedBox(height: deviceHeight * 0.04),
                       _buildRecordItemTitle('프롬프트 정확도 추이 그래프'),
                       widget.record!.promptResult!.isNotEmpty
                           ? PromptPrecisionGraph(
                               promptResult: widget.record!.promptResult!)
                           : _notExistsRecord('프롬프트 연습 기록이 존재하지 않습니다.'),
-                      SizedBox(height: deviceHeight * 0.07),
+                      SizedBox(height: deviceHeight * 0.05),
                     ]))
           ]),
           Positioned(

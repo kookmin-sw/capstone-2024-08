@@ -1,6 +1,7 @@
 import 'package:capstone/screen/search/search_script.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:get/get.dart';
 
 final List<Tab> _tabs = [
@@ -9,7 +10,7 @@ final List<Tab> _tabs = [
         'News',
         semanticsLabel: 'News',
         style: TextStyle(
-          fontSize: 20,
+          fontSize: fonts.tab,
           fontWeight: FontWeight.w800
         )
       ),
@@ -19,7 +20,7 @@ final List<Tab> _tabs = [
         'User',
         semanticsLabel: 'User',
         style: TextStyle(
-          fontSize: 20,
+          fontSize: fonts.tab,
           fontWeight: FontWeight.w800
         )
       )

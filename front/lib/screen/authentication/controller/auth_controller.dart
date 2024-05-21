@@ -133,7 +133,7 @@ class AuthController extends GetxController {
       titleText: const Text(text.registrationFailedText,
           style: TextStyle(color: Colors.white)),
       messageText:
-          Text(e.toString(), style: const TextStyle(color: Colors.white)),
+          Text(e.toString(), style: TextStyle(color: Colors.white)),
     );
   }
 }

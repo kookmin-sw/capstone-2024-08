@@ -65,7 +65,7 @@ class _CreateUserScriptState extends State<CreateUserScript> {
     final contentController = Get.put(UserScriptContentController());
 
     return Scaffold(
-      appBar: basicAppBar(title: '나만의 대본 만들기'),
+      appBar: basicAppBar(context, title: '나만의 대본 만들기'),
       body: Stack(
         children: [
           GestureDetector(

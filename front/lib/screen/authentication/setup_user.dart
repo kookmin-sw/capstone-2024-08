@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/image.dart' as images;
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class SetupUser extends StatefulWidget {
@@ -35,6 +36,9 @@ class _SetupUserState extends State<SetupUser> {
             width: getDeviceWidth(context) * 0.9,
             decoration: _boxDecoration(28),
             child: TextFormField(
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9a-zA-Zㄱ-ㅎ가-힣]')),
+              ],
               maxLength: 8,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -44,7 +48,7 @@ class _SetupUserState extends State<SetupUser> {
               },
               decoration: InputDecoration(
                 labelText: '닉네임을 입력해주세요.',
-                labelStyle: const TextStyle(
+                labelStyle: TextStyle(
                     color: colors.textColor, fontWeight: FontWeight.w500),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 fillColor: colors.blockColor,
@@ -107,7 +111,7 @@ class _SetupUserState extends State<SetupUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: basicAppBar(title: '회원가입', backButton: false),
+        appBar: basicAppBar(context, title: '회원가입', backButton: false),
         body: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
