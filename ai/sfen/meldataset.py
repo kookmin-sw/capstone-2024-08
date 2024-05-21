@@ -70,8 +70,11 @@ def mel_spectrogram(y, n_fft, num_mels, sampling_rate, hop_size, win_size, fmin,
 
     spec = torch.stft(y, n_fft, hop_length=hop_size, win_length=win_size, window=hann_window[str(y.device)],
                       center=center, pad_mode='reflect', normalized=False, onesided=True, return_complex=True)
-    
+    spec = torch.abs(spec)
     # spec shape : [1, 513, 32]
+
+    print("STFT spec shape:", spec.shape)  # (batch, frequency_bins, time_steps)
+    print("Mel basis shape:", mel_basis[str(fmax) + '_' + str(y.device)].shape)  # (num_mels, n_fft//2+1)
 
     spec = torch.sqrt(spec.pow(2).sum(-1) + (1e-9))
     
@@ -81,8 +84,7 @@ def mel_spectrogram(y, n_fft, num_mels, sampling_rate, hop_size, win_size, fmin,
     
     spec = torch.matmul(mel_basis[str(fmax)+'_'+str(y.device)], spec)
 
-    # spec shape : [1, 80]
-    print(spec.shape)
+    # spec shape : [80, 1]
     spec = spectral_normalize_torch(spec)
 
     return spec
