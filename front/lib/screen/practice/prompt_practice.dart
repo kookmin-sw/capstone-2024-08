@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/practice/prompt_result.dart';
-import 'package:capstone/widget/audio_recoder/recording_section.dart';
+import 'package:capstone/widget/practice/prompt_recording_section.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
@@ -142,7 +142,7 @@ class _PromptPracticeState extends State<PromptPractice> {
               padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
                 Container(
-                    child: RecordingSection(
+                    child: PromptRecordingSection(
                   showPlayer: showPlayer,
                   audioPath: '',
                   onDone: (bool isShowPlayer, String? path) {
