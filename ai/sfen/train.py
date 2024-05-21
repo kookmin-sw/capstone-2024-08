@@ -101,7 +101,7 @@ def train(rank, a, h):
                               base_mels_path=a.input_mels_dir)
         validation_loader = DataLoader(validset, num_workers=1, shuffle=False,
                                        sampler=None,
-                                       batch_size=1,
+                                       batch_size=h.batch_size,
                                        pin_memory=True,
                                        drop_last=True)
 
@@ -130,6 +130,7 @@ def train(rank, a, h):
             y = y.unsqueeze(1)
 
             # Forward pass through VAE
+            print("mel shape", x.shape)
             y_g_hat, mu, logvar = vae(x)
             y_g_hat = y_g_hat.squeeze(1)
             y_g_hat_mel = mel_spectrogram(y_g_hat, h.n_fft, h.num_mels, h.sampling_rate, h.hop_size, h.win_size, h.fmin, h.fmax_loss)

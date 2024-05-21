@@ -2,12 +2,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from model.generator import Generator
-
 class VAE(nn.Module):
     def __init__(self, h):
         super(VAE, self).__init__()
 
-        self.input_shape = [h.hop_size, h.shape * h.spec_split, 1]
+        self.input_shape = [1, h.num_mels, 32]
         self.conv_filters = h.conv_filters
         self.conv_kernels = h.conv_kernels
         self.conv_strides = h.conv_strides
@@ -21,7 +20,8 @@ class VAE(nn.Module):
 
     def _build_encoder(self):
         layers = []
-        in_channels = self.input_shape[0]
+        in_channels = self.input_shape[0]  # Should be 1 for grayscale input
+        print(in_channels, "input channels")
         for out_channels, kernel_size, stride in zip(self.conv_filters, self.conv_kernels, self.conv_strides):
             layers.append(nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding=1))
             layers.append(nn.ReLU())
@@ -42,11 +42,9 @@ class VAE(nn.Module):
 
     def _get_conv_output_size(self, layers):
         with torch.no_grad():
-            dummy_input = torch.zeros(1, *self.input_shape)
-            # [1, 256, 128, 1]
+            dummy_input = torch.zeros(1, *self.input_shape)  # [1, 1, 80, 29]
             print("encoder convolution input shape:", dummy_input.size())
             dummy_output = nn.Sequential(*layers)(dummy_input)
-            # [1, 256]
             print("encoder convolution output shape:", dummy_output.size(), end='\n\n')
             return dummy_output.view(1, -1).size(1)
 
@@ -66,6 +64,8 @@ class VAE(nn.Module):
         return self.decoder(z)
 
     def forward(self, x):
+        # Add a channel dimension
+        x = x.unsqueeze(1)  # Shape: [batch_size, 1, num_mels, spec_frames]
         mu, logvar = self.encode(x)
         z = self.reparameterize(mu, logvar)
         x_recon = self.decode(z)
