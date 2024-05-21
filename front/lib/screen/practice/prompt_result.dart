@@ -211,7 +211,7 @@ class _PromptResultState extends State<PromptResult> {
     if (snapshot.connectionState == ConnectionState.waiting) {
       // 데이터 로딩 중일 때 표시할 위젯
       return Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(30),
           child: const Column(children: [
             CircularProgressIndicator(
               color: colors.recordButtonColor,
@@ -239,11 +239,10 @@ class _PromptResultState extends State<PromptResult> {
           backgroundColor: colors.bgrBrightColor,
           elevation: 0,
         ),
-        body: Stack(children: [
-          Container(
-              padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-              child: SingleChildScrollView(
-                  child: Column(children: [
+        body: Stack(alignment: Alignment.topCenter, children: [
+          SingleChildScrollView(
+              padding: EdgeInsets.all(20),
+              child: Column(children: [
                 Column(children: [
                   _buildCategory(widget.script.category),
                   const SizedBox(height: 15),
@@ -264,7 +263,7 @@ class _PromptResultState extends State<PromptResult> {
                 const SizedBox(
                   height: 50,
                 )
-              ]))),
+              ])),
           Container(
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(20),
