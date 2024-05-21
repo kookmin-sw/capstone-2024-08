@@ -1,5 +1,5 @@
-import 'package:capstone/widget/practice/prompt_guide_player.dart';
-import 'package:capstone/widget/practice/prompt_recoder.dart';
+import 'package:capstone/widget/practice/prompt/prompt_guide_player.dart';
+import 'package:capstone/widget/practice/prompt/prompt_recoder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
