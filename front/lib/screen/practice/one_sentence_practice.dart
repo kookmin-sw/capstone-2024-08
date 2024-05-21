@@ -321,7 +321,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: practiceAppBar(),
-        body: Stack(children: [
+        body: Stack(alignment: Alignment.topCenter, children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: SingleChildScrollView(
