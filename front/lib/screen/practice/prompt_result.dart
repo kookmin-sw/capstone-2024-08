@@ -18,8 +18,8 @@ class PromptResult extends StatefulWidget {
       {super.key,
       required this.script,
       required this.scriptType,
-      this.guideVoicePath,
-      this.practiceVoicePath,
+      required this.guideVoicePath,
+      required this.practiceVoicePath,
       this.record});
 
   final ScriptModel script;
@@ -176,12 +176,12 @@ class _PromptResultState extends State<PromptResult> {
   Widget practiceVoicePlayer() {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-        child: (widget.guideVoicePath != null)
+        child: (widget.practiceVoicePath != null)
             ? AudioPlayer(
-                source: widget.guideVoicePath!,
+                source: widget.practiceVoicePath!,
                 onDelete: () {},
                 hideDeleteButton: true)
-            : Text('사용자 음성 : ${widget.guideVoicePath}'));
+            : Text('사용자 음성 : ${widget.practiceVoicePath}'));
   }
 
   Widget waitingGetGuideVoicePlayer(snapshot) {
