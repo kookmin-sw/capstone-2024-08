@@ -159,14 +159,17 @@ class SaveData {
 
       // Fetch the document
       DocumentSnapshot docSnapshot = await docRef.get();
+      List<int>? scrapSentence = [];
 
       if (docSnapshot.exists) {
-        List<int>? scrapSentence =
-            List.from(docSnapshot.get('scrapSentence') ?? []);
+        scrapSentence = List.from(docSnapshot.get('scrapSentence') ?? []);
         scrapSentence.add(sentenceIndex);
-        docRef.update({'scrapSentence': scrapSentence});
-        return scrapSentence;
+        await docRef.update({'scrapSentence': scrapSentence});
+      } else {
+        scrapSentence.add(sentenceIndex);
+        await docRef.set({'scrapSentence': scrapSentence, 'promptResult': []});
       }
+      return scrapSentence;
     }
     return null;
   }
@@ -184,14 +187,16 @@ class SaveData {
 
       // Fetch the document
       DocumentSnapshot docSnapshot = await docRef.get();
+      List<int>? scrapSentence = [];
 
       if (docSnapshot.exists) {
-        List<int>? scrapSentence =
-            List.from(docSnapshot.get('scrapSentence') ?? []);
+        scrapSentence = List.from(docSnapshot.get('scrapSentence') ?? []);
         scrapSentence.remove(sentenceIndex);
-        docRef.update({'scrapSentence': scrapSentence});
-        return scrapSentence;
+        await docRef.update({'scrapSentence': scrapSentence});
+      } else {
+        await docRef.set({'scrapSentence': scrapSentence, 'promptResult': []});
       }
+      return scrapSentence;
     }
     return null;
   }
