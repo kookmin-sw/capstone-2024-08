@@ -82,7 +82,7 @@ class AudioPlayerState extends State<AudioPlayer> {
               children: <Widget>[
                 _buildControl(),
                 _buildSlider(constraints.maxWidth),
-                if (widget.hideDeleteButton != null)
+                if (widget.hideDeleteButton == null)
                   IconButton(
                     icon: const Icon(Icons.delete,
                         color: colors.deleteButtonColor, size: _deleteBtnSize),
