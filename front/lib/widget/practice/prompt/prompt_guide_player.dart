@@ -77,24 +77,21 @@ class GuideVoicePlayerState extends State<GuideVoicePlayer> {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(
-            child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-              _buildControl(),
-              if (widget.hideDeleteButton != null)
-                IconButton(
-                  icon: const Icon(Icons.delete,
-                      color: colors.deleteButtonColor, size: _deleteBtnSize),
-                  onPressed: () {
-                    if (_audioPlayer.state == ap.PlayerState.playing) {
-                      stop().then((value) => widget.onDelete());
-                    } else {
-                      widget.onDelete();
-                    }
-                  },
-                ),
-            ]));
+            child: Row(children: <Widget>[
+          _buildControl(),
+          if (widget.hideDeleteButton == null)
+            IconButton(
+              icon: const Icon(Icons.delete,
+                  color: colors.deleteButtonColor, size: _deleteBtnSize),
+              onPressed: () {
+                if (_audioPlayer.state == ap.PlayerState.playing) {
+                  stop().then((value) => widget.onDelete());
+                } else {
+                  widget.onDelete();
+                }
+              },
+            ),
+        ]));
       },
     );
   }

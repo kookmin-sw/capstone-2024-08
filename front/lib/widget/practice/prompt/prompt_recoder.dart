@@ -124,13 +124,8 @@ class _PromptRecoderState extends State<PromptRecoder> with AudioRecorderMixin {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _buildRecordStopControl(),
-            _buildPauseResumeControl()
-          ],
-        );
+        return Container(
+            alignment: Alignment.bottomRight, child: _buildRecordStopControl());
       },
     );
   }

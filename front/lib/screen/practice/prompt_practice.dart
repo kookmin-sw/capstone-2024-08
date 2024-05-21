@@ -31,6 +31,7 @@ class _PromptPracticeState extends State<PromptPractice> {
 
   @override
   void initState() {
+    showPlayer = false;
     super.initState();
 
     if (widget.guideVoicePath == null) {}
@@ -64,6 +65,10 @@ class _PromptPracticeState extends State<PromptPractice> {
               practiceVoicePath: practiceVoicePath)),
       (route) => false, // 모든 이전 화면을 스택에서 제거
     );
+  }
+
+  bool isEnd() {
+    return (practiceVoicePath != null);
   }
 
   Widget nextButton() {
@@ -140,7 +145,7 @@ class _PromptPracticeState extends State<PromptPractice> {
           Container(
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-              child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 Container(
                     child: PromptRecordingSection(
                   showPlayer: showPlayer,
@@ -154,7 +159,7 @@ class _PromptPracticeState extends State<PromptPractice> {
                 )),
                 Container(
                     padding: const EdgeInsets.all(10),
-                    child: !showPlayer ? Container() : nextButton())
+                    child: isEnd() ? nextButton() : Container())
               ]))
         ]));
   }

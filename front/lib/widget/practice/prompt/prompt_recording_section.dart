@@ -32,13 +32,18 @@ class _PromptRecordingSectionState extends State<PromptRecordingSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width / 1.2,
       padding: EdgeInsets.all(20),
       child: showPlayer
           ? GuideVoicePlayer(
               source: audioPath!,
               onStop: () {},
-              onDelete: () {},
+              onDelete: () {
+                setState(() {
+                  showPlayer = false;
+                  audioPath = null;
+                  widget.onDone(showPlayer, audioPath);
+                });
+              },
             )
           : PromptRecoder(
               onStop: (path) {
