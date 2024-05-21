@@ -38,6 +38,7 @@ class _PromptRecordingSectionState extends State<PromptRecordingSection> {
           ? GuideVoicePlayer(
               source: audioPath!,
               onStop: () {},
+              onDelete: () {},
             )
           : PromptRecoder(
               onStop: (path) {
