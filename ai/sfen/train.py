@@ -21,7 +21,7 @@ from meldataset import MelDataset, mel_spectrogram
 from model.discriminator import MultiPeriodDiscriminator, MultiScaleDiscriminator
 from model.vae import VAE
 from model.loss import feature_loss, generator_loss, discriminator_loss, vae_loss
-from utils import plot_spectrogram, scan_checkpoint, load_checkpoint, save_checkpoint, get_dataset_filelist
+from utils import plot_spectrogram, scan_checkpoint, load_checkpoint, save_checkpoint, load_filepaths_and_text
 
 
 torch.backends.cudnn.benchmark = True
@@ -78,7 +78,8 @@ def train(rank, a, h):
     scheduler_g = torch.optim.lr_scheduler.ExponentialLR(optim_g, gamma=h.lr_decay, last_epoch=last_epoch)
     scheduler_d = torch.optim.lr_scheduler.ExponentialLR(optim_d, gamma=h.lr_decay, last_epoch=last_epoch)
 
-    training_filelist, validation_filelist = get_dataset_filelist(a)
+    training_filelist = load_filepaths_and_text(a.input_training_file)
+    validation_filelist = load_filepaths_and_text(a.input_validation_file)
 
     trainset = MelDataset(training_filelist, h.segment_size, h.n_fft, h.latent_space_dim,
                           h.hop_size, h.win_size, h.sampling_rate, h.fmin, h.fmax, n_cache_reuse=0,
