@@ -19,8 +19,8 @@ class PromptResult extends StatefulWidget {
       {super.key,
       required this.script,
       required this.scriptType,
-      this.guideVoicePath,
-      this.practiceVoicePath,
+      required this.guideVoicePath,
+      required this.practiceVoicePath,
       this.record});
 
   final ScriptModel script;
@@ -167,16 +167,22 @@ class _PromptResultState extends State<PromptResult> {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: (widget.guideVoicePath != null)
-            ? AudioPlayer(source: widget.guideVoicePath!, onDelete: () {})
+            ? AudioPlayer(
+                source: widget.guideVoicePath!,
+                onDelete: () {},
+                hideDeleteButton: true)
             : Text('가이드 음성 : ${widget.guideVoicePath}'));
   }
 
   Widget practiceVoicePlayer() {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-        child: (widget.guideVoicePath != null)
-            ? AudioPlayer(source: widget.guideVoicePath!, onDelete: () {})
-            : Text('사용자 음성 : ${widget.guideVoicePath}'));
+        child: (widget.practiceVoicePath != null)
+            ? AudioPlayer(
+                source: widget.practiceVoicePath!,
+                onDelete: () {},
+                hideDeleteButton: true)
+            : Text('사용자 음성 : ${widget.practiceVoicePath}'));
   }
 
   Widget waitingGetGuideVoicePlayer(snapshot) {
@@ -206,7 +212,7 @@ class _PromptResultState extends State<PromptResult> {
     if (snapshot.connectionState == ConnectionState.waiting) {
       // 데이터 로딩 중일 때 표시할 위젯
       return Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(30),
           child: const Column(children: [
             CircularProgressIndicator(
               color: colors.recordButtonColor,
@@ -234,11 +240,10 @@ class _PromptResultState extends State<PromptResult> {
           backgroundColor: colors.bgrBrightColor,
           elevation: 0,
         ),
-        body: Stack(children: [
-          Container(
-              padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-              child: SingleChildScrollView(
-                  child: Column(children: [
+        body: Stack(alignment: Alignment.topCenter, children: [
+          SingleChildScrollView(
+              padding: EdgeInsets.all(20),
+              child: Column(children: [
                 Column(children: [
                   _buildCategory(widget.script.category),
                   const SizedBox(height: 15),
@@ -259,7 +264,7 @@ class _PromptResultState extends State<PromptResult> {
                 const SizedBox(
                   height: 50,
                 )
-              ]))),
+              ])),
           Container(
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(20),

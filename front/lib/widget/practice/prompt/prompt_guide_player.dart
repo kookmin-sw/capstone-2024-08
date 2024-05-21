@@ -12,12 +12,16 @@ class GuideVoicePlayer extends StatefulWidget {
   /// Callback when audio file should be removed
   /// Setting this to null hides the delete button
   final VoidCallback onStop;
+  final VoidCallback onDelete;
 
-  const GuideVoicePlayer({
-    super.key,
-    required this.source,
-    required this.onStop,
-  });
+  final bool? hideDeleteButton;
+
+  const GuideVoicePlayer(
+      {super.key,
+      required this.source,
+      required this.onStop,
+      required this.onDelete,
+      this.hideDeleteButton});
 
   @override
   GuideVoicePlayerState createState() => GuideVoicePlayerState();
@@ -72,7 +76,22 @@ class GuideVoicePlayerState extends State<GuideVoicePlayer> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Container(child: _buildControl());
+        return Container(
+            child: Row(children: <Widget>[
+          _buildControl(),
+          if (widget.hideDeleteButton == null)
+            IconButton(
+              icon: const Icon(Icons.delete,
+                  color: colors.deleteButtonColor, size: _deleteBtnSize),
+              onPressed: () {
+                if (_audioPlayer.state == ap.PlayerState.playing) {
+                  stop().then((value) => widget.onDelete());
+                } else {
+                  widget.onDelete();
+                }
+              },
+            ),
+        ]));
       },
     );
   }
