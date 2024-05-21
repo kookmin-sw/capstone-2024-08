@@ -11,33 +11,44 @@ mixin AudioRecorderMixin {
   ) async {
     final path = await _getPath();
 
-    await recorder.start(config, path: path);
+    try {
+      await recorder.start(config, path: path);
+    } catch (e) {
+      print('Error starting recorder: $e');
+    }
   }
 
   Future<void> recordStream(AudioRecorder recorder, RecordConfig config) async {
     final path = await _getPath();
-
     final file = File(path);
 
-    final stream = await recorder.startStream(config);
+    try {
+      final stream = await recorder.startStream(config);
 
-    stream.listen(
-      (data) {
-        // ignore: avoid_print
-        print(
-          recorder.convertBytesToInt16(Uint8List.fromList(data)),
-        );
-        file.writeAsBytesSync(data, mode: FileMode.append);
-      },
-      // ignore: avoid_print
-      onDone: () {
-        // ignore: avoid_print
-        print('End of stream. File written to $path.');
-      },
-    );
+      stream.listen(
+        (data) {
+          try {
+            print(recorder.convertBytesToInt16(Uint8List.fromList(data)));
+            file.writeAsBytesSync(data, mode: FileMode.append);
+          } catch (e) {
+            print('Error writing to file: $e');
+          }
+        },
+        onDone: () {
+          print('End of stream. File written to $path.');
+        },
+        onError: (error) {
+          print('Stream error: $error');
+        },
+      );
+    } catch (e) {
+      print('Error starting stream: $e');
+    }
   }
 
-  void downloadWebData(String path) {}
+  void downloadWebData(String path) {
+    // Implement your web data download logic here
+  }
 
   Future<String> _getPath() async {
     final dir = await getTemporaryDirectory();

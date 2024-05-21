@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/practice/prompt_result.dart';
-import 'package:capstone/widget/audio_recoder/recording_section.dart';
+import 'package:capstone/widget/practice/prompt/prompt_recording_section.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
@@ -31,6 +31,7 @@ class _PromptPracticeState extends State<PromptPractice> {
 
   @override
   void initState() {
+    showPlayer = false;
     super.initState();
 
     if (widget.guideVoicePath == null) {}
@@ -64,6 +65,10 @@ class _PromptPracticeState extends State<PromptPractice> {
               practiceVoicePath: practiceVoicePath)),
       (route) => false, // 모든 이전 화면을 스택에서 제거
     );
+  }
+
+  bool isEnd() {
+    return (practiceVoicePath != null);
   }
 
   Widget nextButton() {
@@ -140,9 +145,9 @@ class _PromptPracticeState extends State<PromptPractice> {
           Container(
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
-              child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 Container(
-                    child: RecordingSection(
+                    child: PromptRecordingSection(
                   showPlayer: showPlayer,
                   audioPath: '',
                   onDone: (bool isShowPlayer, String? path) {
@@ -154,7 +159,7 @@ class _PromptPracticeState extends State<PromptPractice> {
                 )),
                 Container(
                     padding: const EdgeInsets.all(10),
-                    child: !showPlayer ? Container() : nextButton())
+                    child: isEnd() ? nextButton() : Container())
               ]))
         ]));
   }

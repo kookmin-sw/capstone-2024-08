@@ -7,7 +7,7 @@ import 'package:capstone/model/script.dart';
 import 'package:capstone/screen/authentication/controller/user_controller.dart';
 import 'package:capstone/screen/practice/guide_voice_player.dart';
 import 'package:capstone/screen/practice/prompt_practice.dart';
-import 'package:capstone/widget/practice/prompt_guide.dart';
+import 'package:capstone/widget/practice/prompt/prompt_guide.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

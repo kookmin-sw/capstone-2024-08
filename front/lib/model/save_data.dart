@@ -50,12 +50,20 @@ class SaveData {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      await FirebaseFirestore.instance
+      DocumentReference docRef = await FirebaseFirestore.instance
           .collection('user')
           .doc(user.uid)
           .collection('${scriptType}_practice')
-          .doc(scriptId)
-          .set({'scrapSentence': scrapSentence});
+          .doc(scriptId);
+
+      // Fetch the document
+      DocumentSnapshot docSnapshot = await docRef.get();
+
+      if (docSnapshot.exists) {
+        docRef.set({'scrapSentence': scrapSentence});
+      } else {
+        await docRef.set({'promptResult': [], 'scrapSentence': scrapSentence});
+      }
     }
   }
 
@@ -89,7 +97,10 @@ class SaveData {
             {'promptResult': FieldValue.arrayUnion(existingPromptResult)});
       } else {
         // If document does not exist, create the document with the field
-        await docRef.set({'promptResult': promptResult});
+        await docRef.set({
+          'promptResult': [promptResult],
+          'scrapSentence': []
+        });
       }
     }
   }
