@@ -45,6 +45,9 @@ class _ScriptDetailState extends State<ScriptDetail> {
         record = RecordModel.fromDocument(doc: recordDocument);
         recordExists = true;
       });
+    } else {
+      record = RecordModel(
+          id: widget.script.id, scrapSentence: [], promptResult: []);
     }
   }
 
@@ -78,7 +81,7 @@ class _ScriptDetailState extends State<ScriptDetail> {
   Widget build(BuildContext context) {
     var deviceWidth = getDeviceWidth(context);
     var deviceHeight = getDeviceHeight(context);
-    
+
     return Scaffold(
         appBar: basicAppBar(context, backgroundColor: colors.bgrBrightColor, title: ''),
         body: Stack(children: [
@@ -121,10 +124,10 @@ class _ScriptDetailState extends State<ScriptDetail> {
                                       child: outlinedRoundedRectangleButton(
                                           '기록보기', () async {
                                         Get.to(() => RecordDetail(
-                                            script: widget.script,
-                                            record: record,
-                                            scriptType: widget.scriptType,
-                                        ));
+                                              script: widget.script,
+                                              record: record,
+                                              scriptType: widget.scriptType,
+                                            ));
                                       })),
                                   Container(
                                       width: deviceWidth * 0.4,
@@ -148,6 +151,7 @@ class _ScriptDetailState extends State<ScriptDetail> {
                                       Get.back();
                                     },
                                     scriptType: widget.scriptType,
+                                    record: record,
                                   ));
                             }))))
         ]));

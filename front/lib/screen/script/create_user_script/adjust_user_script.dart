@@ -1,4 +1,5 @@
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/model/record.dart';
 import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/model/save_data.dart';
 import 'package:capstone/model/script.dart';
@@ -74,8 +75,7 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
                     SizedBox(height: deviceHeight * 0.03),
                     GetBuilder<UserScriptContentController>(
                         builder: (controller) {
-                      return scriptContentAdjustBlock(
-                          controller, deviceWidth);
+                      return scriptContentAdjustBlock(controller, deviceWidth);
                     }),
                     SizedBox(height: deviceHeight * 0.08),
                   ]))),
@@ -90,12 +90,15 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
               fullyRoundedRectangleButton(colors.buttonColor, '연습하기', () {
                 if (checkValidContent()) {
                   ScriptModel userScript = saveUserScript();
+                  RecordModel record = RecordModel(
+                      id: userScript.id, scrapSentence: [], promptResult: []);
                   Get.to(() => SelectPractice(
                         script: userScript,
                         scriptType: 'user',
                         tapCloseButton: () {
                           Get.close(3);
                         },
+                        record: record,
                       ));
                 }
               }))
@@ -114,7 +117,7 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
         Get.find<UserScriptContentController>().textEditingControllerList!;
     sentenceList.clear();
 
-    if(controllers.isEmpty){
+    if (controllers.isEmpty) {
       showInvalidContentWarning('emptyContent');
       return false;
     }

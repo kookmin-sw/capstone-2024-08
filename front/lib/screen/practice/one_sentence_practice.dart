@@ -63,6 +63,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   void updateScrap(List<int>? updatedScrapSentences) {
     setState(() {
       scrapSentences = updatedScrapSentences;
+      widget.record!.scrapSentence = scrapSentences;
     });
   }
 
@@ -159,7 +160,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
               ]),
           child: Column(children: [
             Container(
-                alignment: Alignment.topLeft,
+                alignment: Alignment.topRight,
                 padding: EdgeInsets.fromLTRB(5, 20, 5, 10),
                 child: scrapsButton(widget.scriptType, widget.script.id!, uid,
                     sentenceIndex, isClicked(sentenceIndex), updateScrap)),
