@@ -59,7 +59,7 @@ class _RecordDetailState extends State<RecordDetail> {
   }
 
   Text _buildCategory(String category) {
-    return _buildText(category, fonts.category);
+    return _buildText(category, fonts.category(context));
   }
 
   Text _buildTitle(String title) {
@@ -67,15 +67,15 @@ class _RecordDetailState extends State<RecordDetail> {
       title,
       semanticsLabel: title,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: fonts.title,
+      style: TextStyle(
+          fontSize: fonts.title(context),
           fontWeight: FontWeight.w600,
           color: colors.textColor),
     );
   }
 
   Text _buildRecordItemTitle(String title) {
-    return _buildText(title, fonts.plainText);
+    return _buildText(title, fonts.plainText(context));
   }
 
   Container _notExistsRecord(String item) {
@@ -83,7 +83,7 @@ class _RecordDetailState extends State<RecordDetail> {
         padding: EdgeInsets.only(
             top: getDeviceHeight(context) * 0.1,
             bottom: getDeviceHeight(context) * 0.1),
-        child: Align(alignment: Alignment.center, child: _buildText(item, fonts.plainText)));
+        child: Align(alignment: Alignment.center, child: _buildText(item, fonts.plainText(context))));
   }
 
   @override
@@ -92,7 +92,7 @@ class _RecordDetailState extends State<RecordDetail> {
     var deviceHeight = getDeviceHeight(context);
 
     return Scaffold(
-        appBar: basicAppBar(title: '기록'),
+        appBar: basicAppBar(context, title: '기록'),
         body: Stack(children: [
           ListView(children: [
             Container(

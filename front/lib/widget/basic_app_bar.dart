@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/fonts.dart' as fonts;
 
-AppBar basicAppBar(
+AppBar basicAppBar(BuildContext context,
     {String title = '',
     Color backgroundColor = colors.bgrDarkColor,
     bool backButton = true}) {
@@ -18,7 +18,7 @@ AppBar basicAppBar(
         title,
         semanticsLabel: title,
         style: TextStyle(
-            color: itemColor, fontSize: fonts.title, fontWeight: FontWeight.w700),
+            color: itemColor, fontSize: fonts.title(context), fontWeight: FontWeight.w700),
       ),
       leading: backButton
           ? IconButton(

@@ -40,9 +40,9 @@ class _SearchScriptState extends State<SearchScript> {
             floatingLabelBehavior: FloatingLabelBehavior.never,
             fillColor: colors.blockColor,
             filled: true,
-            labelStyle: const TextStyle(
+            labelStyle: TextStyle(
               color: colors.textColor,
-              fontSize: fonts.plainText,
+              fontSize: fonts.plainText(context),
               fontWeight: FontWeight.w500),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(28),

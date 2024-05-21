@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
       backgroundColor: colors.bgrDarkColor,
       // text overflow 반영 필요 : libary로 화면 비율에 따른 조정 반영 필요
       title: Text("${texts.homeWelcomeMessage} $nickname님 !",
-          style: const TextStyle(
+          style: TextStyle(
               color: colors.themeWhiteColor, fontWeight: FontWeight.bold)),
       actions: [
         IconButton(
@@ -72,8 +72,8 @@ class _HomeState extends State<Home> {
       return Container(
           padding: EdgeInsets.fromLTRB(10, 40, 10, 0),
           child: Text(texts.lastPracticeScriptEmptyMessage,
-              style: const TextStyle(
-                  color: colors.themeWhiteColor, fontSize: fonts.plainText)));
+              style: TextStyle(
+                  color: colors.themeWhiteColor, fontSize: fonts.plainText(context))));
     } else {
       String scriptType = documentRef.path.split('_')[0];
       return FutureBuilder<ScriptModel?>(

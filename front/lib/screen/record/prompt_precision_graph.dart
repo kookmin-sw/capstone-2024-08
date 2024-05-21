@@ -61,9 +61,9 @@ class _PromptPrecisionGraphState extends State<PromptPrecisionGraph> {
   }
 
   Widget leftTitleWidget(double value, TitleMeta meta) {
-    const style = TextStyle(
+    TextStyle style = TextStyle(
       fontWeight: FontWeight.w500,
-      fontSize: fonts.plainText,
+      fontSize: fonts.plainText(context),
       color: colors.textColor
     );
     String precision;
@@ -82,10 +82,10 @@ class _PromptPrecisionGraphState extends State<PromptPrecisionGraph> {
       case 100:
         return SideTitleWidget(
           axisSide: meta.axisSide,
-          child: const Text('100', 
+          child: Text('100', 
           style: TextStyle(
             fontWeight: FontWeight.w500,
-            fontSize: 14,
+            fontSize: fonts.plainText(context) * 0.9,
             color: colors.textColor
           ), 
           textAlign: TextAlign.center),
@@ -150,14 +150,14 @@ class _PromptPrecisionGraphState extends State<PromptPrecisionGraph> {
             return touchedBarSpots.map((flSpot) {
               return LineTooltipItem(
                 getPracticeDate(flSpot.x),
-                const TextStyle(
+                TextStyle(
                   color: colors.precisionGraphBgrColor,
                   fontWeight: FontWeight.w500,
                 ),
                 children: [
                   TextSpan(
                     text: flSpot.y.toInt().toString(),
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: colors.precisionGraphBgrColor,
                       fontWeight: FontWeight.w800,
                     ),

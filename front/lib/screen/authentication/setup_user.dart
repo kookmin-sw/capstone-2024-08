@@ -48,7 +48,7 @@ class _SetupUserState extends State<SetupUser> {
               },
               decoration: InputDecoration(
                 labelText: '닉네임을 입력해주세요.',
-                labelStyle: const TextStyle(
+                labelStyle: TextStyle(
                     color: colors.textColor, fontWeight: FontWeight.w500),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 fillColor: colors.blockColor,
@@ -111,7 +111,7 @@ class _SetupUserState extends State<SetupUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: basicAppBar(title: '회원가입', backButton: false),
+        appBar: basicAppBar(context, title: '회원가입', backButton: false),
         body: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();

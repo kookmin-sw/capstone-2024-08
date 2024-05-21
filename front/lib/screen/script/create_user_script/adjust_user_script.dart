@@ -38,8 +38,8 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
       category,
       semanticsLabel: category,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: fonts.category, fontWeight: FontWeight.w500, color: colors.textColor),
+      style: TextStyle(
+          fontSize: fonts.category(context), fontWeight: FontWeight.w500, color: colors.textColor),
     );
   }
 
@@ -48,8 +48,8 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
       title,
       semanticsLabel: title,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: fonts.title, fontWeight: FontWeight.w700, color: colors.textColor),
+      style: TextStyle(
+          fontSize: fonts.title(context), fontWeight: FontWeight.w700, color: colors.textColor),
     );
   }
 
@@ -59,7 +59,7 @@ class _AdjustUserScriptState extends State<AdjustUserScript> {
     var deviceHeight = getDeviceHeight(context);
 
     return Scaffold(
-        appBar: basicAppBar(title: '나만의 대본 만들기'),
+        appBar: basicAppBar(context, title: '나만의 대본 만들기'),
         body: Stack(children: [
           GestureDetector(
               onTap: () {

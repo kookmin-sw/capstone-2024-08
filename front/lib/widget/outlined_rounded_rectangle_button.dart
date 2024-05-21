@@ -22,7 +22,7 @@ OutlinedButton outlinedRoundedRectangleButton(String buttonText, Function presse
     buttonText,
     semanticsLabel: buttonText,
     textAlign: TextAlign.center,
-    style: const TextStyle(
+    style: TextStyle(
       color: colors.textColor,
       fontSize: fonts.button,
       fontWeight: FontWeight.w700,

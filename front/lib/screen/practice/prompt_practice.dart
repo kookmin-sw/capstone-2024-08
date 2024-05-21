@@ -109,7 +109,7 @@ class _PromptPracticeState extends State<PromptPractice> {
                   colors.buttonColor)), // 값을 변경하도록 수정
           child: Text(
             '완료',
-            style: const TextStyle(
+            style: TextStyle(
                 fontSize: fonts.button,
                 fontWeight: FontWeight.bold,
                 color: colors.themeWhiteColor),

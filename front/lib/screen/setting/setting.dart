@@ -18,7 +18,7 @@ class Setting extends StatelessWidget {
     var deviceHeight = getDeviceHeight(context);
 
     return Scaffold(
-      appBar: basicAppBar(title: '설정'),
+      appBar: basicAppBar(context, title: '설정'),
       body: Container(
         padding: EdgeInsets.all(deviceWidth * 0.05),
         child: Column(
@@ -57,9 +57,9 @@ class Setting extends StatelessWidget {
                   child: Text(
                     item['name'],
                     semanticsLabel: item['name'],
-                    style: const TextStyle(
-                      fontSize: fonts.plainText,
-                      fontWeight: FontWeight.w800,
+                    style: TextStyle(
+                      fontSize: fonts.plainText(context),
+                      fontWeight: FontWeight.w600,
                       color: colors.textColor
                     ),
                   )

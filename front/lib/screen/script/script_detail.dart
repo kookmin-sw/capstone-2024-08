@@ -53,8 +53,8 @@ class _ScriptDetailState extends State<ScriptDetail> {
       category,
       semanticsLabel: category,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: fonts.category, 
+      style: TextStyle(
+          fontSize: fonts.category(context), 
           fontWeight: FontWeight.w500, 
           color: colors.textColor
       ),
@@ -66,8 +66,8 @@ class _ScriptDetailState extends State<ScriptDetail> {
       title,
       semanticsLabel: title,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: fonts.title, 
+      style: TextStyle(
+          fontSize: fonts.title(context), 
           fontWeight: FontWeight.w700, 
           color: colors.textColor
         ),
@@ -80,19 +80,19 @@ class _ScriptDetailState extends State<ScriptDetail> {
     var deviceHeight = getDeviceHeight(context);
     
     return Scaffold(
-        appBar: basicAppBar(backgroundColor: colors.bgrBrightColor, title: ''),
+        appBar: basicAppBar(context, backgroundColor: colors.bgrBrightColor, title: ''),
         body: Stack(children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: ListView(children: [
                 _buildCategory(widget.script.category),
-                SizedBox(height: deviceHeight * 0.01),
+                SizedBox(height: deviceHeight * 0.012),
                 _buildTitle(widget.script.title),
-                SizedBox(height: deviceHeight * 0.03),
+                SizedBox(height: deviceHeight * 0.04),
                 Column(
                     children: widget.script.content
-                        .map((sentence) => scriptContentBlock(
-                            sentence, deviceWidth))
+                        .map((sentence) => scriptContentBlock(context, 
+                            sentence))
                         .toList()),
                 SizedBox(height: deviceHeight * 0.06),
               ])),

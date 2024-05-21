@@ -54,7 +54,7 @@ class SelectPractice extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    notice(),
+                    notice(context),
                     SizedBox(height: deviceHeight * 0.05),
                     practiceButton(context, '프롬프트', () {
                       Get.find<UserController>().updateLastPracticeScript(
@@ -76,11 +76,11 @@ class SelectPractice extends StatelessWidget {
   }
 }
 
-Text notice() {
-  return const Text('연습 방법을 선택해주세요.',
+Text notice(BuildContext context) {
+  return Text('연습 방법을 선택해주세요.',
       style: TextStyle(
         color: colors.blockColor,
-        fontSize: fonts.plainText,
+        fontSize: fonts.plainText(context),
         fontWeight: FontWeight.w500,
       ));
 }
@@ -90,10 +90,10 @@ Future<dynamic> promptSelectDialog(context, script, scriptType, record) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text(
+        title: Text(
           '어떤 걸 원하시나요?',
           style: TextStyle(
-            fontSize: fonts.plainText, 
+            fontSize: fonts.plainText(context), 
             fontWeight: FontWeight.w800
           ),
         ),
@@ -177,9 +177,9 @@ Container practiceButton(
             buttonText,
             semanticsLabel: buttonText,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               color: colors.textColor,
-              fontSize: fonts.plainText,
+              fontSize: fonts.plainText(context),
               fontWeight: FontWeight.w800,
             ),
           )));

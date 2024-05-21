@@ -218,7 +218,7 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
 
     return Text(
       '$minutes : $seconds',
-      style: const TextStyle(color: colors.buttonColor),
+      style: TextStyle(color: colors.buttonColor),
     );
   }
 

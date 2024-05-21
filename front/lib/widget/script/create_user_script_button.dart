@@ -5,7 +5,7 @@ import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-ElevatedButton createUserScriptButton() {
+ElevatedButton createUserScriptButton(BuildContext context) {
   return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: colors.buttonColor,
@@ -17,13 +17,13 @@ ElevatedButton createUserScriptButton() {
     HapticFeedback.lightImpact();
     Get.to(() => const CreateUserScript());
   },
-  child: const Text(
+  child: Text(
     '나만의 대본 만들기',
     semanticsLabel: '나만의 대본 만들기',
     textAlign: TextAlign.center,
     style: TextStyle(
       color: colors.blockColor,
-      fontSize: fonts.plainText,
+      fontSize: fonts.plainText(context),
       fontWeight: FontWeight.w700,
     ),
   )

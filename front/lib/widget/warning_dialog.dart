@@ -19,9 +19,9 @@ class WarningDialog extends StatelessWidget {
         semanticLabel: texts.warningMessage[warningObject],
         title: Text(
           texts.warningMessage[warningObject]!,
-          style: const TextStyle(
+          style: TextStyle(
               color: colors.textColor,
-              fontSize: fonts.plainText,
+              fontSize: fonts.plainText(context),
               fontWeight: FontWeight.w500),
         ),
         actions: [

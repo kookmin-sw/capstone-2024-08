@@ -36,9 +36,9 @@ class _CategoryButtonsState extends State<CategoryButtons> {
                   showCheckmark: false,
                   label: Text(widget.category[i],
                       semanticsLabel: widget.category[i],
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: colors.textColor,
-                        fontSize: fonts.category,
+                        fontSize: fonts.category(context),
                         fontWeight: FontWeight.w500
                       )),
                   selected: selectedCategory == widget.category[i],

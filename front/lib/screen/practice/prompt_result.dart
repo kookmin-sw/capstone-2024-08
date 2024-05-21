@@ -48,8 +48,8 @@ class _PromptResultState extends State<PromptResult> {
       category,
       semanticsLabel: category,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: fonts.category, fontWeight: FontWeight.w500, color: colors.textColor),
+      style: TextStyle(
+          fontSize: fonts.category(context), fontWeight: FontWeight.w500, color: colors.textColor),
     );
   }
 
@@ -58,8 +58,8 @@ class _PromptResultState extends State<PromptResult> {
       title,
       semanticsLabel: title,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: fonts.title, fontWeight: FontWeight.w800, color: colors.textColor),
+      style: TextStyle(
+          fontSize: fonts.title(context), fontWeight: FontWeight.w800, color: colors.textColor),
     );
   }
 
@@ -103,7 +103,7 @@ class _PromptResultState extends State<PromptResult> {
           child: Text(
             widget.script.content.join(' '),
             textAlign: TextAlign.start,
-            style: TextStyle(fontSize: fonts.plainText),
+            style: TextStyle(fontSize: fonts.plainText(context)),
           ),
         ),
         guideVoicePlayer(),
@@ -155,7 +155,7 @@ class _PromptResultState extends State<PromptResult> {
                   colors.buttonColor)), // 값을 변경하도록 수정
           child: Text(
             texts.nextButtonText,
-            style: const TextStyle(
+            style: TextStyle(
                 fontSize: fonts.button,
                 fontWeight: FontWeight.bold,
                 color: colors.themeWhiteColor),
