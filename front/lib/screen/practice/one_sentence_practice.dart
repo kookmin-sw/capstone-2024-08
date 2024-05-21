@@ -264,7 +264,8 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
     return Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: (audioPath != null)
-            ? AudioPlayer(source: audioPath, onDelete: () {})
+            ? AudioPlayer(
+                source: audioPath, onDelete: () {}, hideDeleteButton: true)
             : Text('가이드 음성 : $audioPath'));
   }
 
@@ -320,7 +321,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: practiceAppBar(),
-        body: Stack(children: [
+        body: Stack(alignment: Alignment.topCenter, children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: SingleChildScrollView(
