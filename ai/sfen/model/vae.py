@@ -50,10 +50,13 @@ class VAE(nn.Module):
             dummy_output = nn.Sequential(*layers)(dummy_input)
             print("encoder convolution output shape:", dummy_output.size(), end='\n\n')
             return dummy_output.view(1, -1).size(1)
+        # encoder convolution input shape: torch.Size([1, 80, 128])
+        # encoder convolution output shape: torch.Size([1, 1024])
 
     def encode(self, x):
         print("input shape:", x.size())
         conv_out = self.encoder(x)
+        print("conv_out shape:", conv_out.size())
         mu = self.fc_mu(conv_out)
         logvar = self.fc_logvar(conv_out)
         return mu, logvar

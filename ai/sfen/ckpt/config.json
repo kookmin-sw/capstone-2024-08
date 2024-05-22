@@ -8,14 +8,14 @@
     "lr_decay": 0.999,
     "seed": 1234,
 
-    "shape" : 128,
+    "shape" : 32,
     "spec_split": 1,
 
     "input_shape": [28, 28, 1],
-    "conv_filters": [512, 256, 128, 64, 32],
-    "conv_kernels" : [3, 3, 3, 3, 3],
-    "conv_strides": [2, 2, 2, 2, 1],
-    "latent_space_dim": 64,
+    "conv_filters": [128, 64, 32],
+    "conv_kernels" : [3, 3, 3],
+    "conv_strides": [2, 2, 1],
+    "latent_space_dim": 16,
     "lambda_sf": 45,
     
 
@@ -23,7 +23,7 @@
     "upsample_kernel_sizes": [16,16,8],
     "upsample_initial_channel": 256,
     "resblock_kernel_sizes": [3,5,7],
-    "resblock_dilation_sizes": [[1,2], [2,6], [3,12]],
+    "resblock_dilation_sizes": [[1,1], [2,6], [3,12]],
     "resblock_initial_channel": 128,
 
     "segment_size": 8192,
