@@ -32,7 +32,12 @@ def apply_weight_norm(m):
 
 
 def get_padding(kernel_size, dilation=1):
-    return int((kernel_size*dilation - dilation)/2)
+    if isinstance(dilation, list):
+        padding = [(kernel_size * d - d) // 2 for d in dilation]
+    else:
+        padding = (kernel_size * dilation - dilation) // 2
+    return padding
+
 
 
 def load_checkpoint(filepath, device):
