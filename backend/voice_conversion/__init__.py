@@ -12,7 +12,15 @@ def change_voice(knn_vc, src: str, ref: List[str]):
     current_dir = os.path.dirname(current_file_path)
     vc_out_path = os.path.join(current_dir, "vc_out.wav")
     query_seq = knn_vc.get_features(src)
-    matching_set = knn_vc.get_matching_set(ref)
+    matching_set = knn_vc.get_matching_set(["/home/ubuntu/capstone-2024-08/backend/voice_conversion/SPK082SBSCU081M001.wav",
+                                            "/home/ubuntu/capstone-2024-08/backend/voice_conversion/SPK082SBSCU081M002.wav",
+                                            "/home/ubuntu/capstone-2024-08/backend/voice_conversion/SPK082SBSCU081M003.wav",
+                                            "/home/ubuntu/capstone-2024-08/backend/voice_conversion/SPK082SBSCU081M004.wav",
+                                            "/home/ubuntu/capstone-2024-08/backend/voice_conversion/SPK082SBSCU081M005.wav",
+                                            "/home/ubuntu/capstone-2024-08/backend/voice_conversion/SPK082SBSCU081M006.wav",
+                                            "/home/ubuntu/capstone-2024-08/backend/voice_conversion/SPK082SBSCU081M007.wav"
+                                            "/home/ubuntu/capstone-2024-08/backend/voice_conversion/SPK082SBSCU081M008.wav"
+                                            "/home/ubuntu/capstone-2024-08/backend/voice_conversion/SPK082SBSCU081M009.wav"])
     out_wav = knn_vc.match(query_seq, matching_set, topk=4)
     torchaudio.save(vc_out_path, out_wav[None], 16000)
     return "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/vc_out.wav"
