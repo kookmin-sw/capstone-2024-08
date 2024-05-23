@@ -35,9 +35,12 @@ class _HomeState extends State<Home> {
     return AppBar(
       backgroundColor: colors.bgrDarkColor,
       // text overflow 반영 필요 : libary로 화면 비율에 따른 조정 반영 필요
-      title: Text("${texts.homeWelcomeMessage} $nickname님 !",
-          style: TextStyle(
-              color: colors.themeWhiteColor, fontWeight: FontWeight.bold)),
+      title: Text(
+        "${texts.homeWelcomeMessage} $nickname님 !",
+        style: TextStyle(
+            color: colors.themeWhiteColor, fontWeight: FontWeight.bold),
+        textAlign: TextAlign.left,
+      ),
       actions: [
         IconButton(
           icon:
@@ -73,7 +76,8 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.fromLTRB(10, 40, 10, 0),
           child: Text(texts.lastPracticeScriptEmptyMessage,
               style: TextStyle(
-                  color: colors.themeWhiteColor, fontSize: fonts.plainText(context))));
+                  color: colors.themeWhiteColor,
+                  fontSize: fonts.plainText(context))));
     } else {
       String scriptType = documentRef.path.split('_')[0];
       return FutureBuilder<ScriptModel?>(
