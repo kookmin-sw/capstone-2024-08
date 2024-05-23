@@ -38,14 +38,12 @@ Future<bool> getPermission() async {
   Map<Permission, PermissionStatus> permissions;
   if (Platform.isIOS) {
     permissions = await [
-      Permission.accessNotificationPolicy,
       Permission.microphone,
       Permission.speech,
       Permission.storage
     ].request();
   } else {
     permissions = await [
-      Permission.notification,
       Permission.microphone,
       Permission.speech,
       Permission.storage

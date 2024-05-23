@@ -960,7 +960,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.32):
     - BoringSSL-GRPC/Interface (= 0.0.32)
   - BoringSSL-GRPC/Interface (0.0.32)
-  - cloud_firestore (4.17.3):
+  - cloud_firestore (4.17.4):
     - Firebase/Firestore (= 10.25.0)
     - firebase_core
     - Flutter
@@ -978,18 +978,18 @@ PODS:
   - Firebase/Storage (10.25.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 10.25.0)
-  - firebase_auth (4.19.5):
+  - firebase_auth (4.19.6):
     - Firebase/Auth (= 10.25.0)
     - firebase_core
     - Flutter
-  - firebase_core (2.31.0):
+  - firebase_core (2.31.1):
     - Firebase/CoreOnly (= 10.25.0)
     - Flutter
-  - firebase_messaging (14.9.2):
+  - firebase_messaging (14.9.3):
     - Firebase/Messaging (= 10.25.0)
     - firebase_core
     - Flutter
-  - firebase_storage (11.7.5):
+  - firebase_storage (11.7.6):
     - Firebase/Storage (= 10.25.0)
     - firebase_core
     - Flutter
@@ -1210,6 +1210,7 @@ DEPENDENCIES:
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
+  - GoogleSignIn (~> 7.0)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - record_darwin (from `.symlinks/plugins/record_darwin/ios`)
@@ -1277,12 +1278,12 @@ SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   audioplayers_darwin: 877d9a4d06331c5c374595e46e16453ac7eafa40
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
-  cloud_firestore: 792f773e5e8c080ffcbadd49f9fb397927f29af6
+  cloud_firestore: bf5f14c0a7d1e9f5f831015d9ae9f738e92065b4
   Firebase: 0312a2352584f782ea56f66d91606891d4607f06
-  firebase_auth: 76ea642e91a9e914b3af751a416046ce1a965cf4
-  firebase_core: 0b39f4f424e02eecabb2356ddf331fa07b772af8
-  firebase_messaging: 8999827b6efc9c3ab4b1f9dc246deaa7f13dbf88
-  firebase_storage: e8b44d3f47e35f60dde2a119da11dc6e8962bef3
+  firebase_auth: 193301a23be35329120526c6a83672ea40676472
+  firebase_core: 22e117a2e0dec3cb318c8f53f2dd01c140375617
+  firebase_messaging: 7c04a2151f0da85796b41e01ad7da870af6a27e2
+  firebase_storage: f370e615a09cce01a5d5bc31c45b1adeff3e9453
   FirebaseAppCheckInterop: 5da5ce93e8797a215e3f677fb0654b74e736c8b8
   FirebaseAuth: c0f93dcc570c9da2bffb576969d793e95c344fbb
   FirebaseAuthInterop: 2753ef68cb3cd5aefebe0f58082671cede78350f
@@ -1314,6 +1315,6 @@ SPEC CHECKSUMS:
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   record_darwin: 1f6619f2abac4d1ca91d3eeab038c980d76f1517
 
-PODFILE CHECKSUM: dd7402a4907535f110d3a34d4a69d90130d5bf1f
+PODFILE CHECKSUM: 24ffc16cf0eb7b8e521f655643ecbfc6a10d1a9c
 
 COCOAPODS: 1.15.2
