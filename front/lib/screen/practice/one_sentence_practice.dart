@@ -46,6 +46,7 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
   List<int>? scrapSentences;
 
   Map<int, Widget> _guideVoicePlayers = {};
+  Map<int, Widget> _precisionSections = {};
 
   @override
   void initState() {
@@ -65,6 +66,9 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
       scrapSentences = updatedScrapSentences;
       widget.record!.scrapSentence = scrapSentences;
     });
+    print("스크랩 리스트 : $scrapSentences");
+    print(
+        "스크랩 리스트(widget.record!.scrapSentence) : ${widget.record!.scrapSentence}");
   }
 
   bool isClicked(int sentenceIndex) {
@@ -88,7 +92,9 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
       semanticsLabel: category,
       textAlign: TextAlign.start,
       style: TextStyle(
-          fontSize: fonts.category(context), fontWeight: FontWeight.w500, color: colors.textColor),
+          fontSize: fonts.category(context),
+          fontWeight: FontWeight.w500,
+          color: colors.textColor),
     );
   }
 
@@ -98,7 +104,9 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
       semanticsLabel: title,
       textAlign: TextAlign.start,
       style: TextStyle(
-          fontSize: fonts.title(context), fontWeight: FontWeight.w800, color: colors.textColor),
+          fontSize: fonts.title(context),
+          fontWeight: FontWeight.w800,
+          color: colors.textColor),
     );
   }
 
@@ -186,6 +194,18 @@ class _OneSentencePraticeState extends State<OneSentencePratice> {
           ]),
         ));
   }
+
+  // Widget precisionWidget() {
+  //   if (!_precisionSections.containsKey(_currentSentenceIndex)) {
+  //     _precisionSections[_currentSentenceIndex] = FutureBuilder<Widget>(
+  //       future: precisionSection(),
+  //       builder: (context, snapshot) {
+  //         return waitingGetPrecisionSection(snapshot);
+  //       },
+  //     );
+  //   }
+  //   return _precisionSections[_currentSentenceIndex]!;
+  // }
 
   Future<Widget> precisionSection() async {
     if (showPlayer) {

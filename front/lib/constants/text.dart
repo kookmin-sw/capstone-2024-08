@@ -61,6 +61,7 @@ Map<String, String> warningMessage = {
 
 const String baseUrl =
     "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com";
+// "http://10.30.114.8:8000";
 
 Map<String, String> usingPolicy = {
   'policyName': '이용약관',
