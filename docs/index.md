@@ -138,17 +138,17 @@ SFEN에서 만들어진 화자의 speech feature codebook을 텍스트 인코더
 
 Project is created with:
 
-|                             | NAME                                                                                                   |
-| --------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Language                    | `Dart` `Python`                                                                                        |
-| Speech Processing Libraries | `librosa` `jamo` `phonemizer` `unidecode` `g2pk` `kiwipiepy` `whisper-jax` `espeakng` `scipy`          |
-| Framework                   | `Flutter`  `FastAPI`  `Pytorch` `LangChain`                                                            |
-| Cloud Services              | `Firebase`  `Amazon EC2` `AWS S3`                                                                      |
-| Design Tools                | `Figma` `Adobe Illustrator`                                                                            |
-| Project Document Management | `Jira` `Confluence` `Wakatime`                                                                         |
-| IDE                         | `VScode` `Pycharm` `Android Studio`                                                                    |
-| Collaboration Tools         | `Discord`                                                                                              |
-
+| Category                   | Tools                                                                                                           |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------|
+| **Language**               | `Dart`, `Python`                                                                                                |
+| **Speech Processing Libraries** | `librosa`, `jamo`, `phonemizer`, `unidecode`, `g2pk`, `kiwipiepy`, `whisper-jax`, `espeakng`, `scipy`             |
+| **Framework**              | `Flutter`, `FastAPI`, `Pytorch`, `LangChain`                                                                    |
+| **Cloud Services**         | `Amazon EC2`, `AWS S3`, `Firebase`                                                                              |
+| **Design Tools**           | `Figma`, `Adobe Illustrator`                                                                                    |
+| **Project Document Management** | `Jira`, `Confluence`, `Wakatime`                                                                                |
+| **IDE**                    | `VScode`, `Pycharm`, `Android Studio`                                                                           |
+| **Collaboration Tools**    | `Discord`                                                                                                       |
+                                                                              
 <br/><br/><br/>
 
 
@@ -160,7 +160,7 @@ Project is created with:
 | [<img src="https://avatars.githubusercontent.com/u/66212424?v=4" width="150">](https://github.com/anjiwon319) | [<img src="https://avatars.githubusercontent.com/u/66138381?v=4" width="150">](https://github.com/Shin-MG) | [<img src="https://avatars.githubusercontent.com/u/63325450?v=4" width="150">](https://github.com/YunHaaaa) | [<img src="https://avatars.githubusercontent.com/u/68311908?v=4" width="150">](https://github.com/why-arong) |
 | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | 안지원                                                                                                        | 신민경                                                                                                      | 윤하은                                                                                                       | 김필모                                                                                                        |
-| Leader, Backend                                                                                               | Frontend                                                                                                    | AI                                                                                                           | AI                                                                                                            |
+| Leader, Frontend, Backend | Frontend, Backend | AI | AI, Backend |
 
 <br/><br/><br/>
 

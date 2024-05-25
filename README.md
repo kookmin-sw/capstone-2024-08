@@ -12,7 +12,6 @@
 
 <br/>
 <br/>
-<br/>
 
 
 
@@ -23,7 +22,6 @@
 - 시연 영상 : [https://www.youtube.com/watch?v=Qv_xKFkwHUQ](https://www.youtube.com/watch?v=Qv_xKFkwHUQ)
 
 
-<br/>
 <br/>
 <br/>
 
@@ -65,14 +63,12 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 
 <br/>
 <br/>
-<br/>
 
 
 ## Poster
 
 ![Poster](./docs/resources/capstone-08-final-poster.png)
 
-<br/>
 <br/>
 <br/>
 
@@ -82,7 +78,6 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 
 ![Architecture](./docs/resources/capstone-08-architecture.png)
 
-<br/>
 <br/>
 <br/>
 
@@ -125,7 +120,6 @@ SFEN에서 만들어진 화자의 speech feature codebook을 텍스트 인코더
 
 <br/>
 <br/>
-<br/>
 
 
 
@@ -145,7 +139,7 @@ Project is created with:
 | IDE                         | `VScode` `Pycharm` `Android Studio`                                                                    |
 | Collaboration Tools         | `Discord`                                                                                              |
 
-<br/><br/><br/>
+<br/><br/>
 
 
 
@@ -155,9 +149,9 @@ Project is created with:
 | [<img src="https://avatars.githubusercontent.com/u/66212424?v=4" width="150">](https://github.com/anjiwon319) | [<img src="https://avatars.githubusercontent.com/u/66138381?v=4" width="150">](https://github.com/Shin-MG) | [<img src="https://avatars.githubusercontent.com/u/63325450?v=4" width="150">](https://github.com/YunHaaaa) | [<img src="https://avatars.githubusercontent.com/u/68311908?v=4" width="150">](https://github.com/why-arong) |
 | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | 안지원                                                                                                        | 신민경                                                                                                      | 윤하은                                                                                                       | 김필모                                                                                                        |
-| Leader, Backend                                                                                               | Frontend                                                                                                    | AI                                                                                                           | AI                                                                                                            |
+| Leader, Frontend, Backend | Frontend, Backend | AI | AI, Backend |
 
-<br/><br/><br/>
+<br/><br/>
 
 
 
