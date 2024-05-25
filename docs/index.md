@@ -9,6 +9,8 @@
 따라서 저희는 앱을 통해 비용적, 지리적 부담 없이 언제, 어디서나 아나운서의 발성을 연습하고 피드백 받을 수 있도록 하고자 합니다.
 
 이때 사용자마다 사용자의 음성을 기반으로 한 아나운서 억양 개인화 TTS 모델을 만들어 이를 바탕으로 실제 학원에서 배우는 것과 유사하게 발성을 연습하고 피드백 받을 수 있습니다.
+<br/><br/><br/>
+
 
 ---
 
@@ -16,6 +18,8 @@
 
 - 프로젝트 지속기간 : 2024.02 ~ 2024.05
 - 시연 영상 링크 :  [https://www.youtube.com/watch?v=e1HEo-PZgQ8&feature=youtu.be](https://www.youtube.com/watch?v=e1HEo-PZgQ8&feature=youtu.be)
+<br/><br/><br/>
+
 
 ---
 
@@ -45,18 +49,25 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 
 📈 프롬프트 연습 정확도 추이 그래프 제공<br>
 프롬프트 연습 결과를 자동으로 저장해 정확도 추이 그래프를 제공합니다. 사용자는 자신의 성장 추세를 한눈에 확인할 수 있습니다.
+<br/><br/><br/>
 
 ---
 
 ## Poster
 
 ![Poster](./resources/capstone-08-final-poster.png)
+<br/>
+<br/>
+<br/>
 
 ---
 
 ## Architecture
 
 ![Architecture](./resources/capstone-08-architecture.png)
+<br/>
+<br/>
+<br/>
 
 ---
 
@@ -64,21 +75,40 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 
 ![Model](./resources/capstone-08-model.png)
 
+<br/>
+
 Loro는 **사용자의 음성 특성을 반영한 가이드 음성을 제공**합니다. 
 
 화자의 음성 특성을 반영하기 위해서 speech feature를 인코딩하고, 이를 음성 합성 모델인 VITS2에 conditioning하여 가이드 음성을 생성합니다. 
+<br/><br/>
 
-[SFEN : Speech Feature Encoding Network](https://arxiv.org/abs/2311.11745)
+### SFEN : Speech Feature Encoding Network
+
 화자의 음성은 콘텐츠에 따라 음색과 운율이 매우 다르게 표현될 수 있기 때문에, SFEN은 화자의 음성을 작은 단위로 분할해서 분포에 매핑시킨 후, 이러한 음성 특징들을 클러스터링 하여 이산화된 대표 지점을 얻습니다. 이러한 클러스터의 센트로이드들로 speech feature codebook을 만들어 화자의 전반적인 음성 특성을 모델링합니다.
+
+참고 논문 : [Encoding Speaker-Specific Latent Speech Feature for Speech Synthesis](https://arxiv.org/abs/2311.11745)
 
 - Variational AutoEncoder
 - HiFi-GAN
 - K-means++ Clustering
 
-[VITS2 : Text-to-Speech](https://arxiv.org/abs/2307.16430)
+<br/>
+
+
+### VITS2 : Text-to-Speech
+
+
 SFEN에서 만들어진 화자의 speech feature codebook을 텍스트 인코더의 세 번째 트랜스포머 블록에서 화자 벡터에 conditioning합니다. 이러한 특징은 유한 개수의 비연속 벡터입니다. 그러나 이러한 벡터들은 음성 합성 모델에 조건을 걸 때 query 및 key로서 VITS2의 text encoder의 intermediate feature와 Multi-head Attention을 통해 선형 결합되어 연속 공간에서 점을 샘플링하는 것과 유사한 효과를 낳습니다.
 
+참고 논문 : [VITS2: Improving Quality and Efficiency of Single-Stage Text-to-Speech with Adversarial Learning and Architecture Design](https://arxiv.org/abs/2307.16430)
+
+<br/>
+
 ❗**그림에서 점선 박스 내에 있는 부분을 직접 구현하였습니다.**
+
+<br/>
+<br/>
+<br/>
 
 
 ---
@@ -98,7 +128,10 @@ Project is created with:
 | Project Document Management | `Jira` `Confluence` `Wakatime`                                                                         |
 | Collaboration Tools         | `Discord`                                                                                              |
 
----
+<br/><br/><br/>
+
+
+
 
 ## Developers
 
@@ -106,6 +139,9 @@ Project is created with:
 | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | 안지원                                                                                           | 신민경                                                                                        | 윤하은                                                                                         | 김필모                                                                                          |
 | Leader, Frontend, Backend                                                                                  | Frontend, Backend                                                                                      | AI                                                                                             | AI, Backend                                                                                              |
+
+<br/><br/><br/>
+
 
 ---
 
