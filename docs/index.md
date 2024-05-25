@@ -1,6 +1,7 @@
 # Loro
+---
 
-아나운서 준비생을 위한 맞춤형 AI 스피치 연습 애플리케이션, Loro(로로)입니다.
+**아나운서 준비생을 위한 맞춤형 AI 스피치 연습 애플리케이션, Loro(로로)** 입니다.
 
 현재 대한민국에 존재하는 대부분의 아나운서 학원은 높은 등록비와 수업료를 요구합니다. 이로 인해 경제적으로 부담이 있는 학생들은 학원 수강을 포기하거나, 부모님의 경제력에 따라 선택을 할 수밖에 없는 경우도 있습니다.
 
@@ -15,10 +16,10 @@
 <br/>
 
 
----
+
 
 ## Demo
-
+---
 
 {% include youtube.html id="Qv_xKFkwHUQ" %}
 
@@ -26,9 +27,11 @@
 <br/>
 <br/>
 
----
+
 
 ## Feature Description
+---
+
 ![Feature Description](./resources/capstone-08-main_feature.png)
 <br><br>
 
@@ -60,9 +63,9 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 <br/>
 <br/>
 
----
 
 ## Poster
+---
 
 ![Poster](./resources/capstone-08-final-poster.png)
 
@@ -70,9 +73,10 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 <br/>
 <br/>
 
----
+
 
 ## Architecture
+---
 
 ![Architecture](./resources/capstone-08-architecture.png)
 
@@ -80,10 +84,10 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 <br/>
 <br/>
 
----
+
 
 ## Model
-
+---
 ![Model](./resources/capstone-08-model.png)
 
 <br/>
@@ -122,9 +126,10 @@ SFEN에서 만들어진 화자의 speech feature codebook을 텍스트 인코더
 <br/>
 
 
----
+
 
 ## Technologies
+---
 
 Project is created with:
 
@@ -145,6 +150,7 @@ Project is created with:
 
 
 ## Developers
+---
 
 | [<img src="https://avatars.githubusercontent.com/u/66212424?v=4" width="150">](https://github.com/anjiwon319) | [<img src="https://avatars.githubusercontent.com/u/66138381?v=4" width="150">](https://github.com/Shin-MG) | [<img src="https://avatars.githubusercontent.com/u/63325450?v=4" width="150">](https://github.com/YunHaaaa) | [<img src="https://avatars.githubusercontent.com/u/68311908?v=4" width="150">](https://github.com/why-arong) |
 | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
@@ -154,9 +160,10 @@ Project is created with:
 <br/><br/><br/>
 
 
----
+
 
 ## Resources
+---
 
 - [중간 보고서](./resources/cd_midterm-report.docx)
 - [중간 발표](./resources/cd_midterm_ppt.pdf)
