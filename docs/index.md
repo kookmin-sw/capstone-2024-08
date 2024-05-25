@@ -60,6 +60,29 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 
 ---
 
+## Model
+
+![Model](./resources/capstone-08-model.png)
+
+Loro는 **사용자의 음성 특성을 반영한 가이드 음성을 제공**합니다. 
+
+화자의 음성 특성을 반영하기 위해서 speech feature를 인코딩하고, 이를 음성 합성 모델인 VITS2에 conditioning하여 가이드 음성을 생성합니다. 
+
+[SFEN : Speech Feature Encoding Network](https://arxiv.org/abs/2311.11745)
+화자의 음성은 콘텐츠에 따라 음색과 운율이 매우 다르게 표현될 수 있기 때문에, SFEN은 화자의 음성을 작은 단위로 분할해서 분포에 매핑시킨 후, 이러한 음성 특징들을 클러스터링 하여 이산화된 대표 지점을 얻습니다. 이러한 클러스터의 센트로이드들로 speech feature codebook을 만들어 화자의 전반적인 음성 특성을 모델링합니다.
+
+- Variational AutoEncoder
+- HiFi-GAN
+- K-means++ Clustering
+
+[VITS2 : Text-to-Speech](https://arxiv.org/abs/2307.16430)
+SFEN에서 만들어진 화자의 speech feature codebook을 텍스트 인코더의 세 번째 트랜스포머 블록에서 화자 벡터에 conditioning합니다. 이러한 특징은 유한 개수의 비연속 벡터입니다. 그러나 이러한 벡터들은 음성 합성 모델에 조건을 걸 때 query 및 key로서 VITS2의 text encoder의 intermediate feature와 Multi-head Attention을 통해 선형 결합되어 연속 공간에서 점을 샘플링하는 것과 유사한 효과를 낳습니다.
+
+❗**그림에서 점선 박스 내에 있는 부분을 직접 구현하였습니다.**
+
+
+---
+
 ## Technologies
 
 Project is created with:
