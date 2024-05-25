@@ -1,5 +1,8 @@
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/model/load_data.dart';
+import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
+import 'package:capstone/screen/record/record_detail.dart';
 import 'package:capstone/widget/script/script_content_block.dart';
 import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
@@ -11,17 +14,19 @@ import 'package:get/get.dart';
 
 class ScriptDetail extends StatefulWidget {
   const ScriptDetail({Key? key,
-    required this.script
+    required this.script,
+    required this.scriptType
   }) : super(key: key);
 
   final ScriptModel script;
-  final Color backgroundColor = colors.bgrBrightColor;
+  final String scriptType;
 
   @override
   State<ScriptDetail> createState() => _ScriptDetailState();
 }
 
 class _ScriptDetailState extends State<ScriptDetail> {
+  LoadData loadData = LoadData();
 
   Text _buildCategory(String category){
     return Text(
@@ -49,17 +54,15 @@ class _ScriptDetailState extends State<ScriptDetail> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        appBar: basicAppBar(backgroundColor: widget.backgroundColor, title: ''),
+        appBar: basicAppBar(backgroundColor: colors.bgrBrightColor, title: ''),
         body: Stack(
               children: [
                 Container(
-                  color: widget.backgroundColor,
                   padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
                   child: ListView(
                     children: [
@@ -92,13 +95,25 @@ class _ScriptDetailState extends State<ScriptDetail> {
                     child: Container(
                       padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
                       child: false ?
-                      fullyRoundedRectangleButton(colors.textColor, '연습하기', () {})
+                      fullyRoundedRectangleButton(colors.textColor, '연습하기', () {
+                        Get.to(() => SelectPractice(
+                          script: widget.script,
+                          tapCloseButton: () { Get.back(); },
+                        ));
+                      })
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                                width: width * 0.4,
-                                child: outlinedRoundedRectangleButton('기록보기', () {})),
+                              width: width * 0.4,
+                              child: outlinedRoundedRectangleButton('기록보기', () async {
+                                RecordModel record = await loadData.readRecordDocument(widget.scriptType, widget.script.id!);
+                                Get.to(() => RecordDetail(
+                                  script: widget.script, 
+                                  record: record
+                                ));
+                              })
+                            ),
                             Container(
                               width: width * 0.4,
                               child: fullyRoundedRectangleButton(colors.buttonColor, '연습하기', () {

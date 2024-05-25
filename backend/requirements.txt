@@ -8,9 +8,14 @@ unidecode
 g2pk
 kiwipiepy
 openai-whisper
+python-Levenshtein
+setuptools
+levenshtein
 
 # script
 pydantic
+langchain
+langchain_openai
 
 # server
 fastapi
