@@ -143,7 +143,8 @@ Loro는 아나운서 준비생에게 정확하고 객관적인 피드백을 주�
 Error Rate)을 사용합니다. WER과 CER의 계산 식은 아래와 같이 동일합니다. 띄어쓰기로
 구분되는 토큰들의 총개수에 대비되는 insertion, deletion, substitution의 수가 얼마나 많은 지를
 계산하는 것입니다.
-<img width="596" alt="Screenshot 2024-05-25 at 5 20 02 PM" src="https://github.com/kookmin-sw/capstone-2024-08/assets/68311908/6b454461-5abb-4711-8240-d6736661d689">
+
+$\mathit{WER} = \frac{S+D+I}{N} = \frac{S+D+I}{S+D+C}$ , $\mathit{CER} = \frac{S+D+I}{N} = \frac{S+D+I}{S+D+C}$
 
 토큰의 단위가 단어이냐 아니면 문자이냐의 차이입니다. 왜 한국어에서 CER을 사용하는 지 알기
 위해 A: “나는 로로의 친구” 와 B: “나는 뽀로로친구" 라는 두 문장이 있다고 할 때, WER은 에러율
