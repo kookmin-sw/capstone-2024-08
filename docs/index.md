@@ -138,17 +138,17 @@ SFEN에서 만들어진 화자의 speech feature codebook을 텍스트 인코더
 
 Project is created with:
 
-|                             | NAME                                                                                                   |
-| --------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Language                    | `Dart` `Python`                                                                                        |
-| Speech Processing Libraries | `librosa` `jamo` `phonemizer` `unidecode` `g2pk` `kiwipiepy` `whisper-jax` `espeakng` `scipy`          |
-| Framework                   | `Flutter`  `FastAPI`  `Pytorch` `LangChain`                                                            |
-| Cloud Services              | `Firebase`  `Amazon EC2` `AWS S3`                                                                      |
-| Design Tools                | `Figma` `Adobe Illustrator`                                                                            |
-| Project Document Management | `Jira` `Confluence` `Wakatime`                                                                         |
-| IDE                         | `VScode` `Pycharm` `Android Studio`                                                                    |
-| Collaboration Tools         | `Discord`                                                                                              |
-
+| Category                   | Tools                                                                                                           |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------|
+| **Language**               | `Dart`, `Python`                                                                                                |
+| **Speech Processing Libraries** | `librosa`, `jamo`, `phonemizer`, `unidecode`, `g2pk`, `kiwipiepy`, `whisper-jax`, `espeakng`, `scipy`             |
+| **Framework**              | `Flutter`, `FastAPI`, `Pytorch`, `LangChain`                                                                    |
+| **Cloud Services**         | `Amazon EC2`, `AWS S3`, `Firebase`                                                                              |
+| **Design Tools**           | `Figma`, `Adobe Illustrator`                                                                                    |
+| **Project Document Management** | `Jira`, `Confluence`, `Wakatime`                                                                                |
+| **IDE**                    | `VScode`, `Pycharm`, `Android Studio`                                                                           |
+| **Collaboration Tools**    | `Discord`                                                                                                       |
+                                                                              
 <br/><br/><br/>
 
 
