@@ -9,7 +9,10 @@
 따라서 저희는 앱을 통해 비용적, 지리적 부담 없이 언제, 어디서나 아나운서의 발성을 연습하고 피드백 받을 수 있도록 하고자 합니다.
 
 이때 사용자마다 사용자의 음성을 기반으로 한 아나운서 억양 개인화 TTS 모델을 만들어 이를 바탕으로 실제 학원에서 배우는 것과 유사하게 발성을 연습하고 피드백 받을 수 있습니다.
-<br/><br/><br/>
+
+<br/>
+<br/>
+<br/>
 
 
 ---
@@ -21,13 +24,16 @@
 
 {% include youtube.html id="Qv_xKFkwHUQ" %}
 
-<br/><br/><br/>
+<br/>
+<br/>
+<br/>
 
 ---
 
 ## Feature Description
 ![Feature Description](./resources/capstone-08-main_feature.png)
 <br><br>
+
 📃 예시 대본 제공 및 사용자 대본 생성 지원<br>
 사용자가 연습할 수 있는 다양한 예시 대본을 제공합니다. 또한 사용자가 직접 대본을
 업로드하거나 실시간으로 원하는 대본을 생성할 수 있는 기능도 제공합니다.
@@ -51,13 +57,17 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 
 📈 프롬프트 연습 정확도 추이 그래프 제공<br>
 프롬프트 연습 결과를 자동으로 저장해 정확도 추이 그래프를 제공합니다. 사용자는 자신의 성장 추세를 한눈에 확인할 수 있습니다.
-<br/><br/><br/>
+
+<br/>
+<br/>
+<br/>
 
 ---
 
 ## Poster
 
 ![Poster](./resources/capstone-08-final-poster.png)
+
 <br/>
 <br/>
 <br/>
@@ -67,6 +77,7 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 ## Architecture
 
 ![Architecture](./resources/capstone-08-architecture.png)
+
 <br/>
 <br/>
 <br/>
