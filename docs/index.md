@@ -17,9 +17,7 @@
 
 ---
 
-## General Intro
-
-- 프로젝트 지속기간 : 2024.02 ~ 2024.05
+## Demo
 
 
 {% include youtube.html id="Qv_xKFkwHUQ" %}
