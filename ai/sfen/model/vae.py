@@ -1,14 +1,13 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from model.generator import Generator
 
-from generator import Generator
 class VAE(nn.Module):
     def __init__(self, h):
         super(VAE, self).__init__()
 
-        # TODO: Add class attributes to h
-        self.input_shape = h.input_shape
+        self.input_shape = [h.hop_size, h.shape * h.spec_split, 1]
         self.conv_filters = h.conv_filters
         self.conv_kernels = h.conv_kernels
         self.conv_strides = h.conv_strides
@@ -18,7 +17,7 @@ class VAE(nn.Module):
         self.encoder = self._build_encoder()
         self.fc_mu = nn.Linear(self.encoder_conv_output_size, h.latent_space_dim)
         self.fc_logvar = nn.Linear(self.encoder_conv_output_size, h.latent_space_dim)
-        self.decoder = self._build_decoder()
+        self.decoder = self._build_decoder(h)
 
     def _build_encoder(self):
         layers = []
@@ -29,19 +28,30 @@ class VAE(nn.Module):
             layers.append(nn.BatchNorm2d(out_channels))
             in_channels = out_channels
         layers.append(nn.Flatten())
+
+        print('---------------------------------Encoder layers---------------------------------')
+        for i in layers:
+            print(i)
+        print()
+
         self.encoder_conv_output_size = self._get_conv_output_size(layers)
         return nn.Sequential(*layers)
 
-    def _build_decoder(self):
-        return Generator(h=self)
+    def _build_decoder(self, h):
+        return Generator(h=h)
 
     def _get_conv_output_size(self, layers):
         with torch.no_grad():
             dummy_input = torch.zeros(1, *self.input_shape)
+            # [1, 256, 128, 1]
+            print("encoder convolution input shape:", dummy_input.size())
             dummy_output = nn.Sequential(*layers)(dummy_input)
+            # [1, 256]
+            print("encoder convolution output shape:", dummy_output.size(), end='\n\n')
             return dummy_output.view(1, -1).size(1)
 
     def encode(self, x):
+        print("input shape:", x.size())
         conv_out = self.encoder(x)
         mu = self.fc_mu(conv_out)
         logvar = self.fc_logvar(conv_out)
