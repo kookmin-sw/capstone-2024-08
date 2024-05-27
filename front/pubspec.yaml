@@ -1,8 +1,8 @@
 name: capstone
-description: "A new Flutter project."
+description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: none # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -31,19 +31,30 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   get: ^4.6.5
-  cloud_firestore: ^4.15.8
+  cloud_firestore: ^4.17.3
   flutter_dotenv:
-  firebase_core: ^2.27.0
+  firebase_auth: ^4.19.5
+  firebase_core: ^2.31.0
+  audioplayers: ^6.0.0
+  permission_handler:
+  record: ^5.0.5
+  firebase_messaging: ^14.9.2
+  flutter_local_notifications: ^17.1.1
+  path_provider: ^2.1.3
+  flutter_animation_progress_bar: ^2.3.1
+  firebase_storage: ^11.7.5
   carousel_slider: ^4.2.1
   dots_indicator: ^3.0.0
   multiple_stream_builder: ^3.0.2
-  fl_chart: ^0.67.0
+  fl_chart: ^0.68.0
   http: ^1.2.0
+  google_sign_in: ^6.2.1
+  flutter_svg: ^2.0.10+1
+  flutter_native_splash:
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +65,27 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+
+flutter_native_splash:
+  color: "#1F2544"
+  image: assets/images/splash_default.png
+
+  android_12:
+    color: "#1F2544"
+    image: assets/images/splash_android12.png
+  
+  android: true
+  ios: true
+  fullscreen: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -70,6 +101,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
+    - assets/images/authentication/
+    - assets/images/characters/
+    - assets/wavs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

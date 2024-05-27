@@ -1,6 +1,8 @@
 import 'package:capstone/screen/search/search_taps.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:get/get.dart';
 
 class SearchScript extends StatefulWidget {
@@ -26,7 +28,7 @@ class _SearchScriptState extends State<SearchScript> {
   Flexible keywordSection() {
     return Flexible(
       child: Container(
-        padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+        padding: EdgeInsets.only(right: getDeviceWidth(context) * 0.075),
         child: TextFormField(
           onChanged: (text) {
             setState(() {});
@@ -38,9 +40,9 @@ class _SearchScriptState extends State<SearchScript> {
             floatingLabelBehavior: FloatingLabelBehavior.never,
             fillColor: colors.blockColor,
             filled: true,
-            labelStyle: const TextStyle(
+            labelStyle: TextStyle(
               color: colors.textColor,
-              fontSize: 12,
+              fontSize: fonts.plainText(context),
               fontWeight: FontWeight.w500),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(28),
@@ -51,14 +53,15 @@ class _SearchScriptState extends State<SearchScript> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+    
     return Scaffold(
-      body: Container(
-        color: colors.bgrDarkColor,
-        child: Column(
+      body: Column(
           children: [
             Container(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              width: MediaQuery.of(context).size.width,
+              color: colors.bgrDarkColor,
+              padding: EdgeInsets.fromLTRB(deviceWidth * 0.04, deviceWidth * 0.07, deviceWidth * 0.03, 0),
+              width: deviceWidth,
               child: Row(
                 children: [
                   backToPreviousPage(),
@@ -66,9 +69,14 @@ class _SearchScriptState extends State<SearchScript> {
               ])
             ),
             Flexible(
-              child: SearchTabs(query: query.text),
+              child: GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                },
+                child: SearchTabs(query: query.text),
+              )
             )
         ])
-    ));
+    );
   }
 }

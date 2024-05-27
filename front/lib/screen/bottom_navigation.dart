@@ -4,7 +4,6 @@ import 'package:capstone/screen/record/record_taps.dart';
 import 'package:capstone/screen/script/script_taps.dart';
 import 'package:flutter/material.dart';
 
-
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
 
@@ -34,7 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.save),
             label: '기록',

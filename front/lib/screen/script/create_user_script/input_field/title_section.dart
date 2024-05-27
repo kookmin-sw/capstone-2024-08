@@ -1,3 +1,4 @@
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 
@@ -22,7 +23,7 @@ class _TitleSectionState extends State<TitleSection> {
       key: widget.formKey,
         child: Container(
         margin: const EdgeInsets.fromLTRB(30, 30, 30, 10),
-        width: MediaQuery.of(context).size.width,
+        width: getDeviceWidth(context),
         decoration: BoxDecoration(
           color: colors.blockColor,
           borderRadius: BorderRadius.circular(10),

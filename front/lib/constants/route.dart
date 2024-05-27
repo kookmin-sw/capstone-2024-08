@@ -1,11 +1,8 @@
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/screen/setting/policy.dart';
+import 'package:capstone/screen/setting/setting.dart';
 
 List<Map<String, dynamic>> settingItems = [
-  {
-    'name': '사용자 음성정보 재설정', 
-    'route': Policy(policy: texts.personalData)
-  },
   {
     'name': '이용약관', 
     'route': Policy(policy: texts.usingPolicy)
@@ -16,10 +13,10 @@ List<Map<String, dynamic>> settingItems = [
   },
   {
     'name': '로그아웃',
-    'route': Policy(policy: texts.personalData)
+    'action': handleLogoutAction,
   },
   {
     'name': '탈퇴하기',
-    'route': Policy(policy: texts.personalData)
+    'action': handleDeleteAction,
   }
 ];
