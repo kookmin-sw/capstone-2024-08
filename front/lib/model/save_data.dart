@@ -10,11 +10,15 @@ class SaveData {
   final User? user = FirebaseAuth.instance.currentUser;
 
   addUserScript(ScriptModel script) async {
-    firestore
+    DocumentReference docRef = await firestore
         .collection('user_script')
         .doc(user!.uid)
         .collection('script')
         .add(script.convertToDocument());
+
+    // Get the document ID
+    String documentId = docRef.id;
+    script.id = documentId;
   }
 
   Future<void> saveUserInfo({
@@ -39,23 +43,65 @@ class SaveData {
     }
   }
 
-  Future<void> addPractice({
-    required String scriptId,
-    required String scriptType,
-    List<int>? scrapSentence,
-    List<Map<String, dynamic>>? promptResult,
-    Timestamp? practiceDate,
-    int? precision,
-  }) async {
+  Future<void> updateOneSentencePracticeResult(
+      {required String scriptId,
+      required String scriptType,
+      List<int>? scrapSentence}) async {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      await FirebaseFirestore.instance
+      DocumentReference docRef = await FirebaseFirestore.instance
           .collection('user')
           .doc(user.uid)
           .collection('${scriptType}_practice')
-          .doc(scriptId)
-          .set({'scrapSentence': scrapSentence, 'promptResult': promptResult});
+          .doc(scriptId);
+
+      // Fetch the document
+      DocumentSnapshot docSnapshot = await docRef.get();
+
+      if (docSnapshot.exists) {
+        docRef.set({'scrapSentence': scrapSentence});
+      } else {
+        await docRef.set({'promptResult': [], 'scrapSentence': scrapSentence});
+      }
+    }
+  }
+
+  Future<void> updatePromptPracticeResult(
+      {required String scriptId,
+      required String scriptType,
+      int? precision}) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    Map<String, dynamic> promptResult = {
+      'practiceDate': Timestamp.now(),
+      'precision': precision
+    };
+
+    if (user != null) {
+      DocumentReference docRef = FirebaseFirestore.instance
+          .collection('user')
+          .doc(user.uid)
+          .collection('${scriptType}_practice')
+          .doc(scriptId);
+
+      // Fetch the document
+      DocumentSnapshot docSnapshot = await docRef.get();
+
+      if (docSnapshot.exists) {
+        // If document exists, update the field
+        List<Map<String, dynamic>> existingPromptResult =
+            List<Map<String, dynamic>>.from(
+                docSnapshot.get('promptResult') ?? []);
+        existingPromptResult.add(promptResult);
+        await docRef.update(
+            {'promptResult': FieldValue.arrayUnion(existingPromptResult)});
+      } else {
+        // If document does not exist, create the document with the field
+        await docRef.set({
+          'promptResult': [promptResult],
+          'scrapSentence': []
+        });
+      }
     }
   }
 
@@ -71,8 +117,10 @@ class SaveData {
         await wavRef.putFile(file);
         String url = await wavRef.getDownloadURL();
         urls[element.key] = url;
-        // ignore: empty_catches
-      } on FirebaseException {}
+      } on FirebaseException catch (e) {
+        print("========================");
+        print("Failed with error '${e.code}': ${e.message}");
+      }
     }
 
     return urls;
@@ -85,63 +133,70 @@ class SaveData {
     });
   }
 
-  updateLastPracticeScript(String uid, DocumentReference documentRef) async {
+  Future<DocumentReference> updateLastPracticeScript(
+      String uid, String scriptType, String scriptId) async {
+    DocumentReference scriptRef = FirebaseFirestore.instance
+        .collection('${scriptType}_script')
+        .doc(scriptId);
     await firestore
         .collection('user')
         .doc(uid)
-        .update({'lastPracticeScript': documentRef});
+        .update({'lastPracticeScript': scriptRef});
+
+    return scriptRef;
   }
 
   Future<List<int>?> scrap(
-      String scriptType, String scriptId, String uid, int sentenceIndex) async {
-    try {
-      DocumentReference scriptRef = FirebaseFirestore.instance
+      String scriptType, String scriptId, int sentenceIndex) async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      DocumentReference docRef = FirebaseFirestore.instance
           .collection('user')
-          .doc(uid)
+          .doc(user.uid)
           .collection('${scriptType}_practice')
           .doc(scriptId);
 
-      await FirebaseFirestore.instance.runTransaction((transaction) async {
-        DocumentSnapshot scriptDoc = await transaction.get(scriptRef);
+      // Fetch the document
+      DocumentSnapshot docSnapshot = await docRef.get();
+      List<int>? scrapSentence = [];
 
-        if (scriptDoc.exists) {
-          List<int>? scrapSentence =
-              List.from(scriptDoc.get('scrapSentence') ?? []);
-          scrapSentence.add(sentenceIndex);
-          transaction.update(scriptRef, {'scrapSentence': scrapSentence});
-
-          return scrapSentence;
-        }
-      });
-    } catch (e) {
-      print('Error adding value to scrap sentence: $e');
+      if (docSnapshot.exists) {
+        scrapSentence = List.from(docSnapshot.get('scrapSentence') ?? []);
+        scrapSentence.add(sentenceIndex);
+        await docRef.update({'scrapSentence': scrapSentence});
+      } else {
+        scrapSentence.add(sentenceIndex);
+        await docRef.set({'scrapSentence': scrapSentence, 'promptResult': []});
+      }
+      return scrapSentence;
     }
     return null;
   }
 
   Future<List<int>?> cancelScrap(
-      String scriptType, String scriptId, String uid, int sentenceIndex) async {
-    try {
-      DocumentReference scriptRef = FirebaseFirestore.instance
+      String scriptType, String scriptId, int sentenceIndex) async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      DocumentReference docRef = FirebaseFirestore.instance
           .collection('user')
-          .doc(uid)
+          .doc(user.uid)
           .collection('${scriptType}_practice')
           .doc(scriptId);
 
-      await FirebaseFirestore.instance.runTransaction((transaction) async {
-        DocumentSnapshot scriptDoc = await transaction.get(scriptRef);
+      // Fetch the document
+      DocumentSnapshot docSnapshot = await docRef.get();
+      List<int>? scrapSentence = [];
 
-        if (scriptDoc.exists) {
-          List<int>? scrapSentence =
-              List.from(scriptDoc.get('scrapSentence') ?? []);
-          scrapSentence.remove(sentenceIndex);
-          transaction.update(scriptRef, {'scrapSentence': scrapSentence});
-
-          return scrapSentence;
-        }
-      });
-    } catch (e) {
-      print('Error adding value to scrap sentence: $e');
+      if (docSnapshot.exists) {
+        scrapSentence = List.from(docSnapshot.get('scrapSentence') ?? []);
+        scrapSentence.remove(sentenceIndex);
+        await docRef.update({'scrapSentence': scrapSentence});
+      } else {
+        await docRef.set({'scrapSentence': scrapSentence, 'promptResult': []});
+      }
+      return scrapSentence;
     }
     return null;
   }

@@ -6,12 +6,8 @@ import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/widget/category_buttons.dart';
 
-
 class RecordList extends StatefulWidget {
-  const RecordList({
-    Key? key,
-    required this.index
-  }) : super(key: key);
+  const RecordList({Key? key, required this.index}) : super(key: key);
 
   final int index;
 

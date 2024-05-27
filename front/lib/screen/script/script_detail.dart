@@ -1,4 +1,5 @@
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/model/record.dart';
 import 'package:capstone/model/script.dart';
@@ -44,6 +45,9 @@ class _ScriptDetailState extends State<ScriptDetail> {
         record = RecordModel.fromDocument(doc: recordDocument);
         recordExists = true;
       });
+    } else {
+      record = RecordModel(
+          id: widget.script.id, scrapSentence: [], promptResult: []);
     }
   }
 
@@ -52,8 +56,11 @@ class _ScriptDetailState extends State<ScriptDetail> {
       category,
       semanticsLabel: category,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: 12, fontWeight: FontWeight.w500, color: colors.textColor),
+      style: TextStyle(
+          fontSize: fonts.category(context), 
+          fontWeight: FontWeight.w500, 
+          color: colors.textColor
+      ),
     );
   }
 
@@ -62,8 +69,11 @@ class _ScriptDetailState extends State<ScriptDetail> {
       title,
       semanticsLabel: title,
       textAlign: TextAlign.start,
-      style: const TextStyle(
-          fontSize: 15, fontWeight: FontWeight.w800, color: colors.textColor),
+      style: TextStyle(
+          fontSize: fonts.title(context), 
+          fontWeight: FontWeight.w700, 
+          color: colors.textColor
+        ),
     );
   }
 
@@ -71,21 +81,21 @@ class _ScriptDetailState extends State<ScriptDetail> {
   Widget build(BuildContext context) {
     var deviceWidth = getDeviceWidth(context);
     var deviceHeight = getDeviceHeight(context);
-    
+
     return Scaffold(
-        appBar: basicAppBar(backgroundColor: colors.bgrBrightColor, title: ''),
+        appBar: basicAppBar(context, backgroundColor: colors.bgrBrightColor, title: ''),
         body: Stack(children: [
           Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: ListView(children: [
                 _buildCategory(widget.script.category),
-                SizedBox(height: deviceHeight * 0.01),
+                SizedBox(height: deviceHeight * 0.012),
                 _buildTitle(widget.script.title),
-                SizedBox(height: deviceHeight * 0.03),
+                SizedBox(height: deviceHeight * 0.04),
                 Column(
                     children: widget.script.content
-                        .map((sentence) => scriptContentBlock(
-                            sentence, deviceWidth))
+                        .map((sentence) => scriptContentBlock(context, 
+                            sentence))
                         .toList()),
                 SizedBox(height: deviceHeight * 0.06),
               ])),
@@ -114,10 +124,10 @@ class _ScriptDetailState extends State<ScriptDetail> {
                                       child: outlinedRoundedRectangleButton(
                                           '기록보기', () async {
                                         Get.to(() => RecordDetail(
-                                            script: widget.script,
-                                            record: record,
-                                            scriptType: widget.scriptType,
-                                        ));
+                                              script: widget.script,
+                                              record: record,
+                                              scriptType: widget.scriptType,
+                                            ));
                                       })),
                                   Container(
                                       width: deviceWidth * 0.4,
@@ -141,6 +151,7 @@ class _ScriptDetailState extends State<ScriptDetail> {
                                       Get.back();
                                     },
                                     scriptType: widget.scriptType,
+                                    record: record,
                                   ));
                             }))))
         ]));

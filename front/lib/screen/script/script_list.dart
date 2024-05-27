@@ -57,7 +57,7 @@ class _ScriptListState extends State<ScriptList> {
                         Positioned(
                             bottom: 3,
                             width: deviceWidth * 0.85,
-                            child: createUserScriptButton())
+                            child: createUserScriptButton(context))
                       ]))
                   )
             ])));

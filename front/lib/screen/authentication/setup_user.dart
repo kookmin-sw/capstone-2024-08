@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/image.dart' as images;
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class SetupUser extends StatefulWidget {
@@ -35,6 +36,9 @@ class _SetupUserState extends State<SetupUser> {
             width: getDeviceWidth(context) * 0.9,
             decoration: _boxDecoration(28),
             child: TextFormField(
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9a-zA-Zㄱ-ㅎ가-힣]')),
+              ],
               maxLength: 8,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -44,7 +48,7 @@ class _SetupUserState extends State<SetupUser> {
               },
               decoration: InputDecoration(
                 labelText: '닉네임을 입력해주세요.',
-                labelStyle: const TextStyle(
+                labelStyle: TextStyle(
                     color: colors.textColor, fontWeight: FontWeight.w500),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 fillColor: colors.blockColor,
@@ -77,8 +81,8 @@ class _SetupUserState extends State<SetupUser> {
       height: getDeviceHeight(context) * 0.2,
       decoration: _boxDecoration(10),
       child: Padding(
-        padding: EdgeInsets.all(getDeviceWidth(context) * 0.05),
-        child: Image.asset(_selectedCharacter!)),
+          padding: EdgeInsets.all(getDeviceWidth(context) * 0.05),
+          child: Image.asset(_selectedCharacter!)),
     );
   }
 
@@ -107,42 +111,40 @@ class _SetupUserState extends State<SetupUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: basicAppBar(title: '회원가입', backButton: false),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: ListView(
-          children: [
+        appBar: basicAppBar(context, title: '회원가입', backButton: false),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: ListView(children: [
             Center(
-              child: Column(
-                children: [
-                  SizedBox(height: getDeviceHeight(context) * 0.04),
-                  _nicknameSection(),
-                  SizedBox(height: getDeviceHeight(context) * 0.04),
-                  _buildSelectedCharacter(),
-                  SizedBox(height: getDeviceHeight(context) * 0.04),
-                  _buildCharacterList(),
-                  SizedBox(height: getDeviceHeight(context) * 0.04),
-                  Container(
-                    width: getDeviceWidth(context) * 0.9,
-                    child:
-                        fullyRoundedRectangleButton(colors.blockColor, '완료', () async {
-                      if (_formKey.currentState!.validate()) {
-                        UserModel userData = UserModel(
-                            id: user!.uid,
-                            nickname: _nickname.text,
-                            character: _selectedCharacter!.split('/')[3].split('.')[0],
-                            attendanceStreak: null,
-                            lastAccessDate: null,
-                            lastPracticeScript: null,
-                            voiceUrls: {'long': "", 'middle': "", 'short': ""});
-                        Get.to(() => GetUserVoice(userData: userData));
-                      }
-                    }))
-                ])
-            )
-        ]),
-    ));
+                child: Column(children: [
+              SizedBox(height: getDeviceHeight(context) * 0.04),
+              _nicknameSection(),
+              SizedBox(height: getDeviceHeight(context) * 0.04),
+              _buildSelectedCharacter(),
+              SizedBox(height: getDeviceHeight(context) * 0.04),
+              _buildCharacterList(),
+              SizedBox(height: getDeviceHeight(context) * 0.04),
+              Container(
+                  width: getDeviceWidth(context) * 0.9,
+                  child: fullyRoundedRectangleButton(colors.blockColor, '완료',
+                      () async {
+                    if (_formKey.currentState!.validate()) {
+                      UserModel userData = UserModel(
+                          id: user!.uid,
+                          nickname: _nickname.text,
+                          character:
+                              _selectedCharacter!.split('/')[3].split('.')[0],
+                          attendanceStreak: null,
+                          lastAccessDate: null,
+                          lastPracticeScript: null,
+                          voiceUrls: {'long': "", 'middle': "", 'short': ""});
+                      Get.to(() => GetUserVoice(userData: userData));
+                    }
+                  }))
+            ]))
+          ]),
+        ));
   }
 }

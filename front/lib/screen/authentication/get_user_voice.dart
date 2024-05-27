@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/constants/text.dart' as texts;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:flutter/widgets.dart';
 
 class GetUserVoice extends StatefulWidget {
@@ -100,7 +101,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
               child: Text(
                 texts.getUserVoiceExampleSentences[exampleSentenceType]!,
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 14.0),
+                style: TextStyle(fontSize: fonts.plainText(context)),
               ),
               padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
             ),
@@ -161,8 +162,8 @@ class _GetUserVoiceState extends State<GetUserVoice> {
                   colors.bgrDarkColor)), // 값을 변경하도록 수정
           child: Text(
             texts.nextButtonText,
-            style: const TextStyle(
-                fontSize: 18,
+            style: TextStyle(
+                fontSize: fonts.button,
                 fontWeight: FontWeight.bold,
                 color: colors.themeWhiteColor),
           ), // 버튼 텍스트 추가
@@ -175,7 +176,7 @@ class _GetUserVoiceState extends State<GetUserVoice> {
       automaticallyImplyLeading: false,
       centerTitle: true,
       title: Text(texts.getUserVoiceAppBarTitle,
-          style: const TextStyle(
+          style: TextStyle(
               color: colors.themeWhiteColor, fontWeight: FontWeight.bold)),
     );
   }
@@ -214,14 +215,16 @@ class _GetUserVoiceState extends State<GetUserVoice> {
                                 texts.getUserVoiceExampleSentences[
                                     _currentState]!,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 14.0),
+                                style: TextStyle(fontSize: fonts.plainText(context)),
                               ),
                               padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
                             ),
                           ),
                   ]),
                   Padding(
-                      padding: const EdgeInsets.all(20), child: nextButton())
+                      padding: const EdgeInsets.all(20),
+                      child:
+                          (_currentState != 'end') ? nextButton() : Container())
                 ])));
   }
 }

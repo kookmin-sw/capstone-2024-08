@@ -13,15 +13,24 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:io';
 import 'package:capstone/constants/color.dart' as colors;
+// import 'package:firebase_app_check/firebase_app_check.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
   getPermission();
+
+  // WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   ).then((value) async {
     Get.put(AuthController());
   });
+  // FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.instance;
+  // await firebaseAppCheck.activate(
+  //   androidProvider: AndroidProvider.playIntegrity,
+  // );
+
   runApp(const MyApp());
 }
 
@@ -29,14 +38,12 @@ Future<bool> getPermission() async {
   Map<Permission, PermissionStatus> permissions;
   if (Platform.isIOS) {
     permissions = await [
-      Permission.accessNotificationPolicy,
       Permission.microphone,
       Permission.speech,
       Permission.storage
     ].request();
   } else {
     permissions = await [
-      Permission.notification,
       Permission.microphone,
       Permission.speech,
       Permission.storage

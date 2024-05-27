@@ -1,32 +1,33 @@
 import 'dart:async';
-
 import 'package:audioplayers/audioplayers.dart' as ap;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
 
-class AudioPlayer extends StatefulWidget {
+class GuideVoicePlayer extends StatefulWidget {
   /// Path from where to play recorded audio
   final String source;
 
   /// Callback when audio file should be removed
   /// Setting this to null hides the delete button
+  final VoidCallback onStop;
   final VoidCallback onDelete;
+
   final bool? hideDeleteButton;
 
-  const AudioPlayer({
-    super.key,
-    required this.source,
-    required this.onDelete,
-    this.hideDeleteButton,
-  });
+  const GuideVoicePlayer(
+      {super.key,
+      required this.source,
+      required this.onStop,
+      required this.onDelete,
+      this.hideDeleteButton});
 
   @override
-  AudioPlayerState createState() => AudioPlayerState();
+  GuideVoicePlayerState createState() => GuideVoicePlayerState();
 }
 
-class AudioPlayerState extends State<AudioPlayer> {
+class GuideVoicePlayerState extends State<GuideVoicePlayer> {
   static const double _controlSize = 56;
   static const double _deleteBtnSize = 25;
   static const double _recordBtnSize = 35;
@@ -57,6 +58,8 @@ class AudioPlayerState extends State<AudioPlayer> {
 
     _audioPlayer.setSource(_source);
 
+    _audioPlayer.play(_source);
+
     super.initState();
   }
 
@@ -73,32 +76,22 @@ class AudioPlayerState extends State<AudioPlayer> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildControl(),
-                _buildSlider(constraints.maxWidth),
-                if (widget.hideDeleteButton == null)
-                  IconButton(
-                    icon: const Icon(Icons.delete,
-                        color: colors.deleteButtonColor, size: _deleteBtnSize),
-                    onPressed: () {
-                      if (_audioPlayer.state == ap.PlayerState.playing) {
-                        stop().then((value) => widget.onDelete());
-                      } else {
-                        widget.onDelete();
-                      }
-                    },
-                  ),
-              ],
+        return Container(
+            child: Row(children: <Widget>[
+          _buildControl(),
+          if (widget.hideDeleteButton == null)
+            IconButton(
+              icon: const Icon(Icons.delete,
+                  color: colors.deleteButtonColor, size: _deleteBtnSize),
+              onPressed: () {
+                if (_audioPlayer.state == ap.PlayerState.playing) {
+                  stop().then((value) => widget.onDelete());
+                } else {
+                  widget.onDelete();
+                }
+              },
             ),
-            Text('${_duration ?? 0.0}'),
-          ],
-        );
+        ]));
       },
     );
   }
@@ -126,6 +119,7 @@ class AudioPlayerState extends State<AudioPlayer> {
           onTap: () {
             if (_audioPlayer.state == ap.PlayerState.playing) {
               pause();
+              widget.onStop();
             } else {
               play();
             }

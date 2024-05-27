@@ -9,7 +9,10 @@ const String check = '확인';
 const String googleLoginText = 'Google 계정으로 로그인';
 const String termsOfService = '이용약관';
 const String privacyPolicy = '개인정보 처리방침';
+
 String attendaceStreakMessage = "님의 연속 연습 일 수";
+
+String characterEmptyMessage = '선택한 캐릭터가 없습니다.';
 
 String lastPracticeScriptEmptyMessage = "연습한 이력이 없습니다.";
 
@@ -37,6 +40,16 @@ Map<String, double> getUserProgressValues = {
   'end': 100
 };
 
+String promptStartMessage =
+    "가이드 음성 듣기 버튼을 눌러 가이드 음성을 들을 수 있습니다. 바로 연습하길 원하신다면 연습하기 버튼을 눌러주세요.";
+
+String goToPromtGuideText = "가이드 음성 듣기";
+
+String goToPromtPracticeText = "연습하기";
+
+String orientationMessage =
+    '화면 자동 회전을 켠 후 화면을 가로로 돌려주세요. 가로로 화면을 전환하면 3초 카운트 다운 후 시작됩니다! ';
+
 Map<String, String> warningMessage = {
   'category': '카테고리는 비워둘 수 없습니다. \n카테고리를 선택해주세요.',
   'emptySentenceBlock': '비어있는 문장이 있습니다.\n내용을 작성하거나 삭제해주세요.',
@@ -48,6 +61,7 @@ Map<String, String> warningMessage = {
 
 const String baseUrl =
     "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com";
+// "http://10.30.114.8:8000";
 
 Map<String, String> usingPolicy = {
   'policyName': '이용약관',

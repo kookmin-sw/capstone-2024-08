@@ -5,16 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:record/record.dart';
 import 'package:capstone/constants/color.dart' as colors;
 
-class Recorder extends StatefulWidget {
+class PromptRecoder extends StatefulWidget {
   final void Function(String path) onStop;
-
-  const Recorder({super.key, required this.onStop});
+  const PromptRecoder({super.key, required this.onStop});
 
   @override
-  State<Recorder> createState() => _RecorderState();
+  State<PromptRecoder> createState() => _PromptRecoderState();
 }
 
-class _RecorderState extends State<Recorder> with AudioRecorderMixin {
+class _PromptRecoderState extends State<PromptRecoder> with AudioRecorderMixin {
   int _recordDuration = 0;
   Timer? _timer;
   late final AudioRecorder _audioRecorder;
@@ -43,7 +42,7 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
   Future<void> _start() async {
     try {
       if (await _audioRecorder.hasPermission()) {
-        const encoder = AudioEncoder.wav;
+        const encoder = AudioEncoder.aacLc;
 
         if (!await _isEncoderSupported(encoder)) {
           return;
@@ -123,18 +122,11 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _buildRecordStopControl(),
-            _buildPauseResumeControl(),
-            _buildText(),
-          ],
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+            alignment: Alignment.bottomRight, child: _buildRecordStopControl());
+      },
     );
   }
 
@@ -218,7 +210,7 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
 
     return Text(
       '$minutes : $seconds',
-      style: TextStyle(color: colors.buttonColor),
+      style: const TextStyle(color: colors.buttonColor),
     );
   }
 

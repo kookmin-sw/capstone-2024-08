@@ -16,8 +16,6 @@ class LoadData {
       {required String uid}) async {
     var userDocumentSnapshot =
         await firestore.collection('user').doc(uid).get();
-    print("-----------");
-    print(userDocumentSnapshot);
     return userDocumentSnapshot;
   }
 
@@ -26,7 +24,6 @@ class LoadData {
     try {
       DocumentSnapshot<Map<String, dynamic>> snapshot =
           await documentRef.get() as DocumentSnapshot<Map<String, dynamic>>;
-
       if (snapshot.exists) {
         return ScriptModel.fromDocument(doc: snapshot);
       } else {
@@ -106,44 +103,45 @@ class LoadData {
 
   Stream<List<RecordModel>> readUserPracticeRecord(String scriptType) {
     return firestore
-          .collection('user')
-          .doc(user!.uid)
-          .collection('${scriptType}_practice')
-          .snapshots()
-          .map((snapshot) => snapshot.docs
-              .map((doc) => RecordModel.fromDocument(doc: doc))
-              .toList());
+        .collection('user')
+        .doc(user!.uid)
+        .collection('${scriptType}_practice')
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => RecordModel.fromDocument(doc: doc))
+            .toList());
   }
 
-  Future<DocumentSnapshot<Map<String, dynamic>>> readRecordDocument(String scriptType, String documentId) async {
+  Future<DocumentSnapshot<Map<String, dynamic>>> readRecordDocument(
+      String scriptType, String documentId) async {
     return await firestore
-      .collection('user')
-      .doc(user!.uid)
-      .collection('${scriptType}_practice')
-      .doc(documentId)
-      .get();
+        .collection('user')
+        .doc(user!.uid)
+        .collection('${scriptType}_practice')
+        .doc(documentId)
+        .get();
   }
 
-  Future<File?> downloadWavFile(String filePath, String fileNanme) async {
+  Future<File?> downloadWavFile(String filePath, String fileName) async {
     try {
       // 파일 경로를 기반으로 Firebase Storage에서 파일을 다운로드
-      Reference ref = FirebaseStorage.instance.ref().child(filePath);
+      Reference ref = FirebaseStorage.instance.refFromURL(filePath);
       Uint8List? data = await ref.getData();
       Directory dir = await getTemporaryDirectory();
-      String localPath = '${dir.path}/user_voices/$fileNanme.wav';
+      String localPath = '${dir.path}/$fileName.wav';
 
       if (data != null) {
         // 다운로드한 데이터를 사용하여 파일을 생성하거나 저장할 수 있음
         // 여기서는 예시로 로컬 파일에 저장하도록 함
         File file = File(localPath);
         await file.writeAsBytes(data);
-        print('File downloaded successfully');
+        print('File downloaded successfully: ${file.path}');
         return file;
       } else {
         print('Failed to download file: Data is null');
       }
-    } catch (e) {
-      print('Error downloading file: $e');
+    } on FirebaseException catch (e) {
+      print('Error downloading file: ${e.code} ${e.message}');
     }
     return null;
   }

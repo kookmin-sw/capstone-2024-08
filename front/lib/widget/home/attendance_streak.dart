@@ -7,15 +7,15 @@ Widget attendanceStreakSection(name, day) {
   return Container(
     decoration: BoxDecoration(
         color: colors.themeWhiteColor, borderRadius: BorderRadius.circular(20)),
-    margin: const EdgeInsets.all(10),
+    margin: const EdgeInsets.fromLTRB(30, 15, 30, 15),
     child: ListTile(
       title: Text(
         '$day일',
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
       subtitle: Text(
         '$name ${texts.attendaceStreakMessage}',
-        style: const TextStyle(fontWeight: FontWeight.normal),
+        style: TextStyle(fontWeight: FontWeight.normal),
       ),
       leading: const Icon(
         CupertinoIcons.heart_circle_fill,

@@ -7,54 +7,58 @@ import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:capstone/constants/fonts.dart' as fonts;
 
-Text _buildTitle(String title) {
+Text _buildTitle(BuildContext context, String title) {
   return Text(
     title,
     semanticsLabel: title,
     textAlign: TextAlign.center,
     overflow: TextOverflow.ellipsis,
-    maxLines: 2,
+    maxLines: 1,
     softWrap: false,
-    style: const TextStyle(
+    style: TextStyle(
       color: colors.textColor,
-      fontSize: 14,
-      fontWeight: FontWeight.w500,
+      fontSize: fonts.title(context),
+      fontWeight: FontWeight.w300,
     ),
   );
 }
 
-Text _buildCategory(String category) {
+Text _buildCategory(BuildContext context, String category) {
   return Text(
     category,
     semanticsLabel: category,
-    style: const TextStyle(
-        color: colors.textColor, fontSize: 13, fontWeight: FontWeight.w800),
+    style: TextStyle(
+        color: colors.textColor, 
+        fontSize: fonts.category(context) * 0.95, 
+        fontWeight: FontWeight.w600
+      ),
   );
 }
 
-Text _buildContent(String content) {
+Text _buildContent(BuildContext context, String content) {
   return Text(
     '+ $content',
     semanticsLabel: content,
     overflow: TextOverflow.ellipsis,
     maxLines: 1,
     softWrap: false,
-    style: const TextStyle(
+    style: TextStyle(
       color: colors.textColor,
-      fontSize: 12,
+      fontSize: fonts.plainText(context) * 0.9,
       fontWeight: FontWeight.w300,
     ),
   );
 }
 
-Text _buildPrecision(int? precision) {
+Text _buildPrecision(BuildContext context, int? precision) {
   return Text(
     '$precision',
     softWrap: false,
-    style: const TextStyle(
+    style: TextStyle(
       color: colors.buttonColor,
-      fontSize: 14,
+      fontSize: fonts.plainText(context),
       fontWeight: FontWeight.w800,
     ),
   );
@@ -63,14 +67,14 @@ Text _buildPrecision(int? precision) {
 Widget scriptListTile(
     BuildContext context, ScriptModel script, String route, String scriptType,
     {RecordModel? record}) {
-  
   var deviceWidth = getDeviceWidth(context);
 
   return GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
         route == 'record'
-            ? Get.to(() => RecordDetail(script: script, record: record, scriptType: scriptType))
+            ? Get.to(() => RecordDetail(
+                script: script, record: record, scriptType: scriptType))
             : Get.to(
                 () => ScriptDetail(script: script, scriptType: scriptType));
       },
@@ -85,27 +89,22 @@ Widget scriptListTile(
                 borderRadius: BorderRadius.circular(13),
               )),
           child: route == 'record'
-              ? Column(
-                  children: [
-                    record!.promptResult!.isNotEmpty
+              ? Column(children: [
+                  record!.promptResult!.isNotEmpty
                       ? Align(
                           alignment: Alignment.topRight,
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
-                            child: _buildPrecision(
-                              record.promptResult!.last['precision'])
-                        ))
-                      : const Padding(
-                          padding: EdgeInsets.only(bottom: 30)
-                        ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 35, 15, 0),
-                      child: _buildTitle(script.title)
-                    )
-                  ])
+                              padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
+                              child: _buildPrecision(context,
+                                  record.promptResult!.last['precision'])))
+                      : const Padding(padding: EdgeInsets.only(bottom: 30)),
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(15, deviceWidth * 0.07, 15, 0),
+                      child: _buildTitle(context, script.title))
+                ])
               : Padding(
-                  padding: const EdgeInsets.fromLTRB(15, 65, 15, 0),
-                  child: _buildTitle(script.title)),
+                  padding: EdgeInsets.fromLTRB(15, deviceWidth * 0.12, 15, 0),
+                  child: _buildTitle(context, script.title)),
         ),
         Positioned(
             bottom: 0,
@@ -125,8 +124,8 @@ Widget scriptListTile(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _buildCategory(script.category),
-                          _buildContent(script.content.join(' '))
+                          _buildCategory(context, script.category),
+                          _buildContent(context, script.content.join(' '))
                         ]))))
       ]));
 }
