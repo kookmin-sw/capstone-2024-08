@@ -18,11 +18,12 @@ class VAE(nn.Module):
         self.encoder = self._build_encoder()
         self.fc_mu = nn.Linear(self.encoder_conv_output_size, h.latent_space_dim)
         self.fc_logvar = nn.Linear(self.encoder_conv_output_size, h.latent_space_dim)
-        self.decoder = self._build_decoder(h)
+        self.decoder = self._build_decoder()
 
     def _build_encoder(self):
         layers = []
         in_channels = self.input_shape[0]  # num_mels
+
         for out_channels, kernel_size, stride in zip(self.conv_filters, self.conv_kernels, self.conv_strides):
             layers.append(nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding=kernel_size//2))
             layers.append(nn.ReLU())
@@ -38,8 +39,30 @@ class VAE(nn.Module):
         self.encoder_conv_output_size = self._get_conv_output_size(layers)
         return nn.Sequential(*layers)
 
-    def _build_decoder(self, h):
-        return Generator(h=h)
+    def _build_decoder(self):
+        layers = []
+
+        # Initial dense layer
+        layers.append(nn.Linear(self.latent_space_dim, self.encoder_conv_output_size))
+        layers.append(nn.ReLU())
+        layers.append(nn.BatchNorm1d(self.encoder_conv_output_size))
+        layers.append(nn.Unflatten(1, (self.conv_filters[-1], self.input_shape[1] // (2 ** (len(self.conv_filters) - 1)), self.input_shape[2] // (2 ** (len(self.conv_filters) - 1)))))
+
+        # Transposed Conv2D layers
+        for i in range(len(self.conv_filters) - 1, 0, -1):
+            layers.append(nn.ConvTranspose2d(self.conv_filters[i], self.conv_filters[i - 1], self.conv_kernels[i], self.conv_strides[i], padding=self.conv_kernels[i] // 2))
+            layers.append(nn.ReLU())
+            layers.append(nn.BatchNorm2d(self.conv_filters[i - 1]))
+
+        layers.append(nn.ConvTranspose2d(self.conv_filters[0], self.input_shape[0], self.conv_kernels[0], self.conv_strides[0], padding=self.conv_kernels[0] // 2))
+        layers.append(nn.Sigmoid())
+
+        print('---------------------------------Decoder layers---------------------------------')
+        for i in layers:
+            print(i)
+        print()
+
+        return nn.Sequential(*layers)
 
     def _get_conv_output_size(self, layers):
         with torch.no_grad():

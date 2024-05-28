@@ -124,16 +124,14 @@ def train(rank, a, h):
             if rank == 0:
                 start_b = time.time()
             x, y, _, y_mel = batch
+            # torch.Size([64, 80, 29]) torch.Size([64, 8192]) torch.Size([64, 80, 32]) shapes
             x = torch.autograd.Variable(x.to(device, non_blocking=True))
             y = torch.autograd.Variable(y.to(device, non_blocking=True))
             y_mel = torch.autograd.Variable(y_mel.to(device, non_blocking=True))
             y = y.unsqueeze(1)
 
             # Forward pass through VAE
-            print("mel shape", x.shape)
             y_g_hat, mu, logvar = vae(x)
-            y_g_hat = y_g_hat.squeeze(1)
-            y_g_hat_mel = mel_spectrogram(y_g_hat, h.n_fft, h.num_mels, h.sampling_rate, h.hop_size, h.win_size, h.fmin, h.fmax_loss)
 
             optim_d.zero_grad()
 
@@ -154,7 +152,7 @@ def train(rank, a, h):
             optim_g.zero_grad()
 
             # L1 Mel-Spectrogram Loss, KL Divergence Loss
-            loss_mel = vae_loss(y_g_hat_mel, y_mel, mu, logvar, vae.reconstruction_loss_weight)  # Using mel spectrograms for VAE loss
+            loss_mel = vae_loss(y_g_hat, y_mel, mu, logvar, vae.reconstruction_loss_weight)  # Using mel spectrograms for VAE loss
 
             y_df_hat_r, y_df_hat_g, fmap_f_r, fmap_f_g = mpd(y, y_g_hat)
             y_ds_hat_r, y_ds_hat_g, fmap_s_r, fmap_s_g = msd(y, y_g_hat)

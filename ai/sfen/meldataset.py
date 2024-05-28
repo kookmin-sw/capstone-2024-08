@@ -58,30 +58,19 @@ def mel_spectrogram(y, n_fft, num_mels, sampling_rate, hop_size, win_size, fmin,
     if pad_amount[0] > y.size(0):
         pad_amount = (y.size(0) - 1, y.size(0) - 1)
 
-    # print("pad_amount", pad_amount)
-    # print("before pad", y.size())
     y = torch.nn.functional.pad(y.unsqueeze(0), pad_amount, mode='reflect')
     y = y.squeeze(1)
-    # print("pad", y.size())
-    # torch.Size([1, 8192])
     
     # print("n_fft: ", n_fft, " hop_size: ", hop_size, " win_size: ", win_size, " center: ", center)
     # n_fft:  1024  hop_size:  256  win_size:  1024  center:  False
     spec = torch.stft(y, n_fft, hop_length=hop_size, win_length=win_size, window=hann_window[str(y.device)],
                       center=center, pad_mode='reflect', normalized=False, onesided=True, return_complex=True)
-    # print("after stft", spec.size())
-    # after stft torch.Size([1, 513, 29])
     
     spec = torch.sqrt(spec.real.pow(2) + spec.imag.pow(2) + (1e-9))
-    # print("after sqrt", spec.size())
-    # print("mel_basis", mel_basis[str(fmax)+'_'+str(y.device)].size())
 
     spec = torch.matmul(mel_basis[str(fmax)+'_'+str(y.device)], spec)
-    # print("after matmul", spec.size())
-    # after matmul torch.Size([1, 80, 29])
     spec = spectral_normalize_torch(spec)
-    # print("-------------after spectral_normalize_torch", spec.size())
-    # -------------after spectral_normalize_torch torch.Size([1, 80, 29])
+
     return spec
 
 class MelDataset(torch.utils.data.Dataset):
@@ -160,10 +149,7 @@ class MelDataset(torch.utils.data.Dataset):
         mel_loss = mel_spectrogram(audio_norm.squeeze(0), self.n_fft, self.num_mels,
                                    self.sampling_rate, self.hop_size, self.win_size, self.fmin, self.fmax_loss,
                                    center=False)
-        # print(mel.squeeze().size(), audio_norm.squeeze(0).size(), mel_loss.squeeze().size())
-        # torch.Size([80, 29]) torch.Size([8192]) torch.Size([80, 32])
-        # print("MelDataset", mel.size(), audio_norm.size(), mel_loss.size())
-        # MelDataset torch.Size([1, 80, 29]) torch.Size([1, 8192]) torch.Size([1, 80, 32])
+       
         return (mel, audio_norm, filename, mel_loss)
 
     def __len__(self):
