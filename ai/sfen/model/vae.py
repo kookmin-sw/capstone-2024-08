@@ -1,8 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from model.generator import Generator
-
 
 class VAE(nn.Module):
     def __init__(self, h):
@@ -96,4 +94,5 @@ class VAE(nn.Module):
         mu, logvar = self.encode(x)
         z = self.reparameterize(mu, logvar)
         x_recon = self.decode(z)
+        print(x_recon.size(), "output shape")
         return x_recon, mu, logvar

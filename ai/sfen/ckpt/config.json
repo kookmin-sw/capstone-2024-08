@@ -8,9 +8,10 @@
     "lr_decay": 0.999,
     "seed": 1234,
 
-    "shape" : 32,
+    "num_mels": 80,
+    "shape": 32,
     "spec_split": 1,
-
+    
     "conv_filters": [256, 128, 64, 32],
     "conv_kernels" : [3, 3, 3, 3],
     "conv_strides": [2, 2, 2, 1],
@@ -26,7 +27,6 @@
     "resblock_initial_channel": 128,
 
     "segment_size": 8192,
-    "num_mels": 80,
     "num_freq": 1025,
     "n_fft": 1024,
     "hop_size": 256,
