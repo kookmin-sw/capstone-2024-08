@@ -65,6 +65,40 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 <br/>
 
 
+## Application Screenshots
+### 구글 로그인 및 사용자 음성 데이터 수집
+<p align="left">
+  <img src="./docs/resources/feature_1.gif" width="350"/>
+</p>
+<br/>
+
+### 예시 대본 제공 및 사용자 대본 생성
+<p align="left">
+  <img src="./docs/resources/feature_2.gif" width="350"/>
+</p>
+<br/>
+
+### 문장 단위 연습
+<p align="left">
+  <img src="./docs/resources/feature_3.gif" width="350"/>
+</p>
+<br/>
+
+### 프롬프트 연습
+<p align="left">
+  <img src="./docs/resources/feature_4.gif" width="350"/>
+</p>
+<br/>
+
+### 연습 기록 확인
+<p align="left">
+  <img src="./docs/resources/feature_5.gif" width="350"/>
+</p>
+
+<br/>
+<br/>
+
+
 ## Poster
 
 ![Poster](./docs/resources/capstone-08-final-poster.png)
