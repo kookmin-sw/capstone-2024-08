@@ -25,9 +25,9 @@ class VAE(nn.Module):
         in_channels = self.input_shape[1]  # num_mels
         print(in_channels, "input channels")
         for out_channels, kernel_size, stride in zip(self.conv_filters, self.conv_kernels, self.conv_strides):
-            layers.append(nn.Conv1d(in_channels, out_channels, kernel_size, stride, padding=kernel_size//2))
+            layers.append(nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding=kernel_size//2))
             layers.append(nn.ReLU())
-            layers.append(nn.BatchNorm1d(out_channels))
+            layers.append(nn.BatchNorm2d(out_channels))
             in_channels = out_channels
         layers.append(nn.Flatten())
 
@@ -74,6 +74,5 @@ class VAE(nn.Module):
         print(x.size(), "input shape")
         mu, logvar = self.encode(x)
         z = self.reparameterize(mu, logvar)
-        z = z.unsqueeze(2)  # Add dimension for Conv1d input [batch_size, latent_dim, 1]
         x_recon = self.decode(z)
         return x_recon, mu, logvar
