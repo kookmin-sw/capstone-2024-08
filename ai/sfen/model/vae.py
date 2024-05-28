@@ -52,11 +52,11 @@ class VAE(nn.Module):
         layers.append(nn.ReLU())
         layers.append(nn.BatchNorm2d(self.conv_filters[-2]))
 
-        layers.append(nn.ConvTranspose2d(self.conv_filters[-2], self.conv_filters[-3], self.conv_kernels[-2], self.conv_strides[1], padding=self.conv_kernels[-2]//2, output_padding=(1, 0)))
+        layers.append(nn.ConvTranspose2d(self.conv_filters[-2], self.conv_filters[-3], self.conv_kernels[-2], self.conv_strides[1], padding=self.conv_kernels[-2]//2, output_padding=(1, 1)))
         layers.append(nn.ReLU())
         layers.append(nn.BatchNorm2d(self.conv_filters[-3]))
 
-        layers.append(nn.ConvTranspose2d(self.conv_filters[-3], self.conv_filters[-4], self.conv_kernels[-3], self.conv_strides[2], padding=self.conv_kernels[-3]//2, output_padding=(1, 0)))
+        layers.append(nn.ConvTranspose2d(self.conv_filters[-3], self.conv_filters[-4], self.conv_kernels[-3], self.conv_strides[2], padding=self.conv_kernels[-3]//2, output_padding=(1, 1)))
         layers.append(nn.ReLU())
         layers.append(nn.BatchNorm2d(self.conv_filters[-4]))
 

@@ -123,7 +123,7 @@ class MelDataset(torch.utils.data.Dataset):
                     audio_norm = torch.nn.functional.pad(audio_norm, (0, self.segment_size - audio_norm.size(1)), 'constant')
             # print("norm ---------------",audio_norm.size())
             # norm --------------- torch.Size([1, 8192])
-            mel = mel_spectrogram(audio_norm, self.n_fft, self.num_mels,
+            mel = mel_spectrogram(audio_norm.squeeze(0), self.n_fft, self.num_mels,
                                   self.sampling_rate, self.hop_size, self.win_size, self.fmin, self.fmax,
                                   center=False)
             # TODO: save mel spectrogram
@@ -150,7 +150,7 @@ class MelDataset(torch.utils.data.Dataset):
                                    self.sampling_rate, self.hop_size, self.win_size, self.fmin, self.fmax_loss,
                                    center=False)
        
-        return (mel, audio_norm, filename, mel_loss)
+        return (mel.unsqueeze(0), audio_norm, filename, mel_loss)
 
     def __len__(self):
         return len(self.audio_files)
