@@ -103,6 +103,7 @@ def spectrogram_torch(y, n_fft, sampling_rate, hop_size, win_size, center=False)
         )
 
     spec = torch.sqrt(spec.pow(2).sum(-1) + 1e-6)
+    print(spec.shape, "spectrogram torch ------------------------")
     return spec
 
 
@@ -119,6 +120,7 @@ def spec_to_mel_torch(spec, n_fft, num_mels, sampling_rate, fmin, fmax):
         )
     spec = torch.matmul(mel_basis[fmax_dtype_device], spec)
     spec = spectral_normalize_torch(spec)
+    print(spec.shape, "spec to mel torch ------------------------")
     return spec
 
 
@@ -145,14 +147,24 @@ def mel_spectrogram_torch(
         hann_window[wnsize_dtype_device] = torch.hann_window(win_size).to(
             dtype=y.dtype, device=y.device
         )
+    print("before pad", y.shape)
+    print("pad_amount", int((n_fft - hop_size) / 2))
 
+    # pad_amount 384
+    # mel_spectrogram_torch---------------------------------
+    # before pad torch.Size([1, 306422])
+    # pad_amount 384
+    # 9 torch.Size([16, 80, 2213])
     y = torch.nn.functional.pad(
         y.unsqueeze(1),
         (int((n_fft - hop_size) / 2), int((n_fft - hop_size) / 2)),
         mode="reflect",
     )
+    # shape before squeeze: torch.Size([1, 1, 307190])
     y = y.squeeze(1)
 
+    # print(y.shape, "y shape before stft-------------------")
+    # torch.Size([1, 307190]) y shape before stft-------------------
     if version.parse(torch.__version__) >= version.parse("2"):
         spec = torch.stft(
             y,
@@ -178,10 +190,14 @@ def mel_spectrogram_torch(
             normalized=False,
             onesided=True,
         )
-
+    # print(spec.shape, " before sqrt-------------------")
+    # torch.Size([1, 513, 1307, 2])  before sqrt-------------------
     spec = torch.sqrt(spec.pow(2).sum(-1) + 1e-6)
-
+    
+    # print(mel_basis[fmax_dtype_device].shape, spec.shape, "mel_basis[fmax_dtype_device].shape, spec.shape")
+    # torch.Size([80, 513]) torch.Size([1, 513, 840]) mel_basis[fmax_dtype_device].shape, spec.shape
     spec = torch.matmul(mel_basis[fmax_dtype_device], spec)
     spec = spectral_normalize_torch(spec)
-
+    # print(spec.shape)
+    # torch.Size([1, 80, 1565])
     return spec
