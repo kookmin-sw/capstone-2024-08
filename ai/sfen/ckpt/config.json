@@ -1,7 +1,7 @@
 {
     "resblock": "2",
     "num_gpus": 0,
-    "batch_size": 32,
+    "batch_size": 64,
     "learning_rate": 0.0002,
     "adam_b1": 0.8,
     "adam_b2": 0.99,
@@ -11,10 +11,9 @@
     "shape" : 32,
     "spec_split": 1,
 
-    "input_shape": [28, 28, 1],
-    "conv_filters": [128, 64, 32],
-    "conv_kernels" : [3, 3, 3],
-    "conv_strides": [2, 2, 1],
+    "conv_filters": [256, 128, 64, 32],
+    "conv_kernels" : [3, 3, 3, 3],
+    "conv_strides": [2, 2, 2, 1],
     "latent_space_dim": 16,
     "lambda_sf": 45,
     

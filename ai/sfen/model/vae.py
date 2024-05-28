@@ -22,7 +22,7 @@ class VAE(nn.Module):
 
     def _build_encoder(self):
         layers = []
-        in_channels = self.input_shape[1]  # num_mels
+        in_channels = self.input_shape[0]  # num_mels
         print(in_channels, "input channels")
         for out_channels, kernel_size, stride in zip(self.conv_filters, self.conv_kernels, self.conv_strides):
             layers.append(nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding=kernel_size//2))
@@ -46,6 +46,7 @@ class VAE(nn.Module):
     def _get_conv_output_size(self, layers):
         with torch.no_grad():
             dummy_input = torch.zeros(*self.input_shape)
+            dummy_input = dummy_input.unsqueeze(0)
             print("encoder convolution input shape:", dummy_input.size())
             dummy_output = nn.Sequential(*layers)(dummy_input)
             print("encoder convolution output shape:", dummy_output.size(), end='\n\n')
@@ -70,7 +71,7 @@ class VAE(nn.Module):
         return self.decoder(z)
 
     def forward(self, x):
-        x = x.squeeze(1)  # Shape: [batch_size, num_mels, spec_frames]
+        # Shape: [batch_size, num_mels, spec_frames]
         print(x.size(), "input shape")
         mu, logvar = self.encode(x)
         z = self.reparameterize(mu, logvar)

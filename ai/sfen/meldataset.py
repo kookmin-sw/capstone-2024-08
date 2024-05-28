@@ -160,9 +160,11 @@ class MelDataset(torch.utils.data.Dataset):
         mel_loss = mel_spectrogram(audio_norm.squeeze(0), self.n_fft, self.num_mels,
                                    self.sampling_rate, self.hop_size, self.win_size, self.fmin, self.fmax_loss,
                                    center=False)
-        # print(mel.squeeze().size(), audio_norm.squeeze(0).size(), filename, mel_loss.squeeze().size())
-        # torch.Size([80, 29]) torch.Size([8192]) ../dataset/VS/SPK087/SPK087YTNSO976/SPK087YTNSO976M003.wav torch.Size([80, 32])
-        return (mel.squeeze(), audio_norm.squeeze(0), filename, mel_loss.squeeze())
+        # print(mel.squeeze().size(), audio_norm.squeeze(0).size(), mel_loss.squeeze().size())
+        # torch.Size([80, 29]) torch.Size([8192]) torch.Size([80, 32])
+        # print("MelDataset", mel.size(), audio_norm.size(), mel_loss.size())
+        # MelDataset torch.Size([1, 80, 29]) torch.Size([1, 8192]) torch.Size([1, 80, 32])
+        return (mel, audio_norm, filename, mel_loss)
 
     def __len__(self):
         return len(self.audio_files)
