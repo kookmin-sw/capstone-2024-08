@@ -23,7 +23,6 @@ class VAE(nn.Module):
     def _build_encoder(self):
         layers = []
         in_channels = self.input_shape[0]  # num_mels
-        print(in_channels, "input channels")
         for out_channels, kernel_size, stride in zip(self.conv_filters, self.conv_kernels, self.conv_strides):
             layers.append(nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding=kernel_size//2))
             layers.append(nn.ReLU())
@@ -37,7 +36,6 @@ class VAE(nn.Module):
         print()
 
         self.encoder_conv_output_size = self._get_conv_output_size(layers)
-        print("encoder_conv_output_size:", self.encoder_conv_output_size)
         return nn.Sequential(*layers)
 
     def _build_decoder(self, h):
@@ -47,19 +45,18 @@ class VAE(nn.Module):
         with torch.no_grad():
             dummy_input = torch.zeros(*self.input_shape)
             dummy_input = dummy_input.unsqueeze(0)
-            print("encoder convolution input shape:", dummy_input.size())
+            # encoder convolution input shape: torch.Size([1, 1, 80, 32])
             dummy_output = nn.Sequential(*layers)(dummy_input)
-            print("encoder convolution output shape:", dummy_output.size(), end='\n\n')
+            # encoder convolution output shape: torch.Size([1, 1280])
             return dummy_output.view(1, -1).size(1)
-        # encoder convolution input shape: torch.Size([1, 80, 128])
-        # encoder convolution output shape: torch.Size([1, 1024])
 
     def encode(self, x):
-        print("input shape:", x.size())
+        # input shape: torch.Size([64, 1, 80, 29])
         conv_out = self.encoder(x)
-        print("conv_out shape:", conv_out.size())
+        # conv_out shape: torch.Size([64, 1280])
         mu = self.fc_mu(conv_out)
         logvar = self.fc_logvar(conv_out)
+        # torch.Size([64, 16]) torch.Size([64, 16])
         return mu, logvar
 
     def reparameterize(self, mu, logvar):
