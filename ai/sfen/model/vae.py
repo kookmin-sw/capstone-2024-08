@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+
 class VAE(nn.Module):
     def __init__(self, h):
         super(VAE, self).__init__()
@@ -44,15 +45,23 @@ class VAE(nn.Module):
         layers.append(nn.Linear(self.latent_space_dim, self.encoder_conv_output_size))
         layers.append(nn.ReLU())
         layers.append(nn.BatchNorm1d(self.encoder_conv_output_size))
-        layers.append(nn.Unflatten(1, (self.conv_filters[-1], self.input_shape[1] // (2 ** (len(self.conv_filters) - 1)), self.input_shape[2] // (2 ** (len(self.conv_filters) - 1)))))
+        layers.append(nn.Unflatten(1, (self.conv_filters[-1], 10, 4)))
 
         # Transposed Conv2D layers
-        for i in range(len(self.conv_filters) - 1, 0, -1):
-            layers.append(nn.ConvTranspose2d(self.conv_filters[i], self.conv_filters[i - 1], self.conv_kernels[i], self.conv_strides[i], padding=self.conv_kernels[i] // 2))
-            layers.append(nn.ReLU())
-            layers.append(nn.BatchNorm2d(self.conv_filters[i - 1]))
+        layers.append(nn.ConvTranspose2d(self.conv_filters[-1], self.conv_filters[-2], self.conv_kernels[-1]+1, self.conv_strides[0], padding=self.conv_kernels[-1]//2))
+        layers.append(nn.ReLU())
+        layers.append(nn.BatchNorm2d(self.conv_filters[-2]))
 
-        layers.append(nn.ConvTranspose2d(self.conv_filters[0], self.input_shape[0], self.conv_kernels[0], self.conv_strides[0], padding=self.conv_kernels[0] // 2))
+        layers.append(nn.ConvTranspose2d(self.conv_filters[-2], self.conv_filters[-3], self.conv_kernels[-2], self.conv_strides[1], padding=self.conv_kernels[-2]//2, output_padding=(1, 0)))
+        layers.append(nn.ReLU())
+        layers.append(nn.BatchNorm2d(self.conv_filters[-3]))
+
+        layers.append(nn.ConvTranspose2d(self.conv_filters[-3], self.conv_filters[-4], self.conv_kernels[-3], self.conv_strides[2], padding=self.conv_kernels[-3]//2, output_padding=(1, 0)))
+        layers.append(nn.ReLU())
+        layers.append(nn.BatchNorm2d(self.conv_filters[-4]))
+
+        # Last ConvTranspose2D layer with adjusted output_padding
+        layers.append(nn.ConvTranspose2d(self.conv_filters[-4], self.input_shape[0], self.conv_kernels[-4], self.conv_strides[3], padding=self.conv_kernels[-4]//2))
         layers.append(nn.Sigmoid())
 
         print('---------------------------------Decoder layers---------------------------------')
@@ -66,18 +75,13 @@ class VAE(nn.Module):
         with torch.no_grad():
             dummy_input = torch.zeros(*self.input_shape)
             dummy_input = dummy_input.unsqueeze(0)
-            # encoder convolution input shape: torch.Size([1, 1, 80, 32])
             dummy_output = nn.Sequential(*layers)(dummy_input)
-            # encoder convolution output shape: torch.Size([1, 1280])
             return dummy_output.view(1, -1).size(1)
 
     def encode(self, x):
-        # input shape: torch.Size([64, 1, 80, 29])
         conv_out = self.encoder(x)
-        # conv_out shape: torch.Size([64, 1280])
         mu = self.fc_mu(conv_out)
         logvar = self.fc_logvar(conv_out)
-        # torch.Size([64, 16]) torch.Size([64, 16])
         return mu, logvar
 
     def reparameterize(self, mu, logvar):
