@@ -24,8 +24,9 @@ from model.vae import VAE
 from model.loss import feature_loss, generator_loss, discriminator_loss, vae_loss
 from utils import plot_spectrogram, scan_checkpoint, load_checkpoint, save_checkpoint, load_filepaths_and_text
 
-
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 torch.backends.cudnn.benchmark = True
+torch.cuda.empty_cache()
 
 
 
@@ -129,6 +130,8 @@ def train(rank, a, h):
 
         # batch = (mel.squeeze(), audio.squeeze(0), filename, mel_loss.squeeze())
         for i, batch in enumerate(train_loader):
+            torch.cuda.empty_cache()
+
             if rank == 0:
                 start_b = time.time()
             x, y, _, y_mel = batch
@@ -136,13 +139,12 @@ def train(rank, a, h):
             x = torch.autograd.Variable(x.to(device, non_blocking=True))
             y = torch.autograd.Variable(y.to(device, non_blocking=True))
             y_mel = torch.autograd.Variable(y_mel.to(device, non_blocking=True))
-            y = y.unsqueeze(1)
 
             # Forward pass through VAE
             x_mel, mu, logvar = vae(x)
             y_g_hat = generator(x_mel)
             y_g_hat_mel = mel_spectrogram(y_g_hat.squeeze(1), h.n_fft, h.num_mels, h.sampling_rate, h.hop_size, h.win_size,
-                                          h.fmin, h.fmax_for_loss)
+                                          h.fmin, h.fmax_loss)
 
             optim_d.zero_grad()
             optim_g.zero_grad()

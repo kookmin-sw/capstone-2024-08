@@ -59,8 +59,8 @@ def mel_spectrogram(y, n_fft, num_mels, sampling_rate, hop_size, win_size, fmin,
         pad_amount = (y.size(0) - 1, y.size(0) - 1)
 
     y = torch.nn.functional.pad(y.unsqueeze(0), pad_amount, mode='reflect')
-    y = y.squeeze(1)
-    
+    y = y.squeeze(0)
+
     # print("n_fft: ", n_fft, " hop_size: ", hop_size, " win_size: ", win_size, " center: ", center)
     # n_fft:  1024  hop_size:  256  win_size:  1024  center:  False
     spec = torch.stft(y, n_fft, hop_length=hop_size, win_length=win_size, window=hann_window[str(y.device)],
