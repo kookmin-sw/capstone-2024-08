@@ -3,16 +3,12 @@ import 'package:get/get.dart';
 
 class UserScriptContentController extends GetxController {
   List<TextEditingController>? textEditingControllerList;
-  final List<String> sentenceList;
-  UserScriptContentController(this.sentenceList);
 
-  @override
-  void onInit() {
+  void updateContent(List<String> sentenceList) {
     textEditingControllerList = [
       for (String sentence in sentenceList)
         TextEditingController(text: sentence)
     ];
-    super.onInit();
   }
 
   void addController() {

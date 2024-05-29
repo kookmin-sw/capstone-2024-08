@@ -6,6 +6,9 @@ conda activate loro
 cd vits2_pytorch
 sudo apt-get install espeak
 sudo pip3 install --ignore-installed -r requirements.txt
+
+cd sfen
+sudo pip3 install -r requirements.txt
 ```
 <br/>
 

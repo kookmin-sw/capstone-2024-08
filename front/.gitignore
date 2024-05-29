@@ -61,6 +61,7 @@
 migrate_working_dir/
 .github/
 .dart_tool/
+.metadata
 
 # not used directory
 web/
