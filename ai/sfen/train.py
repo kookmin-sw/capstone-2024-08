@@ -143,7 +143,7 @@ def train(rank, a, h):
             # Forward pass through VAE
             x_mel, mu, logvar = vae(x)
             y_g_hat = generator(x_mel)
-            y_g_hat_mel = mel_spectrogram(y_g_hat.squeeze(1), h.n_fft, h.num_mels, h.sampling_rate, h.hop_size, h.win_size,
+            y_g_hat_mel = mel_spectrogram(y_g_hat.squeeze(), h.n_fft, h.num_mels, h.sampling_rate, h.hop_size, h.win_size,
                                           h.fmin, h.fmax_loss)
 
             optim_d.zero_grad()
@@ -170,6 +170,7 @@ def train(rank, a, h):
             loss_vae_mel = vae_loss(x_mel, y_mel, mu, logvar, vae.reconstruction_loss_weight)  # Using mel spectrograms for VAE loss
             
             # Generator Mel-Spectrogram Loss
+            print(y_mel.size(), y_g_hat_mel.size())
             loss_gen_mel = F.l1_loss(y_mel, y_g_hat_mel) * 45
 
             y_df_hat_r, y_df_hat_g, fmap_f_r, fmap_f_g = mpd(y, y_g_hat)
