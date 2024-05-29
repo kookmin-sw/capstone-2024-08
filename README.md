@@ -31,6 +31,9 @@
 
 ![Feature Description](./docs/resources/capstone-08-main_feature.png)
 <br><br>
+Loro의 사용 흐름은 다음과 같습니다.
+우선 사용자는 연습하고자 하는 대본을 선택합니다. 이후 개인별로 맞춤화된 음성가이드를 제공받습니다. 음성가이드를 참고하며 실제 연습을 진행하고, 연습이 끝난 후 음성가이드와 실제 사용자가 연습한 음성을 비교하여 피드백을 받습니다.
+<br><br>
 
 📃 **예시 대본 제공 및 사용자 대본 생성 지원** <br>
 
@@ -66,38 +69,16 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 
 
 ## Application Screenshots
-### 구글 로그인 및 사용자 음성 데이터 수집
-<p align="left">
-  <img src="./docs/resources/feature_1.gif" width="350"/>
-</p>
-<br/>
 
-### 예시 대본 제공 및 사용자 대본 생성
-<p align="left">
-  <img src="./docs/resources/feature_2.gif" width="350"/>
-</p>
-<br/>
+| 기능 | 설명 | 시연 화면 |
+|------|------|--------|
+| **회원가입** | 사용자는 구글 계정을 통해 로그인하고, 사용자 맞춤형 가이드 음성을 생성하기 위해 음성 데이터를 수집합니다. | <img src="./docs/resources/feature_1.gif" width="400"/> |
+| **예시 대본 제공 및 사용자 대본 생성** | 연습할 예시 대본이 제공되지만 사용자가 직접 대본을 생성할 수도 있습니다. | <img src="./docs/resources/feature_2.gif" width="400"/> |
+| **문장 단위 연습** | 한 문장씩 꼼꼼히 발성을 연습할 수 있는 기능을 제공합니다. | <img src="./docs/resources/feature_3.gif" width="400"/> |
+| **프롬프트 연습** | 실제 방송 환경처럼 구성한 프롬프터 화면을 이용해 연습할 수 있습니다. | <img src="./docs/resources/feature_4.gif" width="400"/> |
+| **연습 기록 확인** | 사용자는 자신의 프롬프트 연습 기록을 그래프로 확인할 수 있습니다. | <img src="./docs/resources/feature_5.gif" width="400"/> |
 
-### 문장 단위 연습
-<p align="left">
-  <img src="./docs/resources/feature_3.gif" width="350"/>
-</p>
-<br/>
-
-### 프롬프트 연습
-<p align="left">
-  <img src="./docs/resources/feature_4.gif" width="350"/>
-</p>
-<br/>
-
-### 연습 기록 확인
-<p align="left">
-  <img src="./docs/resources/feature_5.gif" width="350"/>
-</p>
-
-<br/>
-<br/>
-
+위 표는 프로젝트의 주요 기능을 정리한 것이며, 각 기능에 대한 설명과 함께 해당 기능의 이미지를 포함하고 있습니다. 각 이미지의 크기는 350픽셀로 조정되었습니다.
 
 ## Poster
 
