@@ -15,11 +15,10 @@
 
 
 
-## General Intro
+## Demo
 
-- 프로젝트 지속기간 : 2024.02 ~ 2024.05
-- 배포 링크 : 
-- 시연 영상 : [https://www.youtube.com/watch?v=Qv_xKFkwHUQ](https://www.youtube.com/watch?v=Qv_xKFkwHUQ)
+{% include youtube.html id="Qv_xKFkwHUQ" %}
+
 
 
 <br/>
