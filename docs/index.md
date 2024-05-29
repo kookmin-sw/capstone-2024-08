@@ -34,6 +34,9 @@
 
 ![Feature Description](./resources/capstone-08-main_feature.png)
 <br><br>
+Loro의 사용 흐름은 다음과 같습니다.
+우선 사용자는 연습하고자 하는 대본을 선택합니다. 이후 개인별로 맞춤화된 음성가이드를 제공받습니다. 음성가이드를 참고하며 실제 연습을 진행하고, 연습이 끝난 후 음성가이드와 실제 사용자가 연습한 음성을 비교하여 피드백을 받습니다.
+<br><br>
 
 📃 **예시 대본 제공 및 사용자 대본 생성 지원** <br>
 
@@ -63,6 +66,22 @@ STT 모델을 활용해 사용자의 발음과 억양에 대한 실시간 피드
 📈 **프롬프트 연습 정확도 추이 그래프 제공** <br>
 
 프롬프트 연습 결과를 자동으로 저장해 정확도 추이 그래프를 제공합니다. 사용자는 자신의 성장 추세를 한눈에 확인할 수 있습니다.
+
+<br/>
+<br/>
+<br/>
+
+
+
+## Application Screenshots
+
+| 기능 | 시연 화면 |
+|:------:|:--------:|
+| **구글 로그인 및 사용자 음성 데이터 수집** | <img src="./resources/feature_1.gif" width="400"/> |
+| **예시 대본 제공 및 사용자 대본 생성** | <img src="./resources/feature_2.gif" width="400"/> |
+| **문장 단위 연습** | <img src="./resources/feature_3.gif" width="400"/> |
+| **프롬프트 연습** | <img src="./resources/feature_4.gif" width="400"/> |
+| **연습 기록 확인** | <img src="./resources/feature_5.gif" width="400"/> |
 
 <br/>
 <br/>
