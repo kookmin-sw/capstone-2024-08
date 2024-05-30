@@ -103,7 +103,7 @@ async def provide_voice_guide(sentence: str = Form(...), wavs: list[UploadFile] 
     file_name = os.path.basename(guide_audio_path)
     full_url = os.path.join(base_url, file_name)
 
-    return JSONResponse(status_code=200, content={"wav_url": full_url})
+    return JSONResponse(status_code=200, content={"wav_url": output_voice_path})
 
 
 if __name__ == "__main__":
