@@ -135,9 +135,18 @@ class SaveData {
 
   Future<DocumentReference> updateLastPracticeScript(
       String uid, String scriptType, String scriptId) async {
-    DocumentReference scriptRef = FirebaseFirestore.instance
-        .collection('${scriptType}_script')
-        .doc(scriptId);
+    DocumentReference scriptRef;
+    if (scriptType == "example") {
+      scriptRef = FirebaseFirestore.instance
+          .collection('${scriptType}_script')
+          .doc(scriptId);
+    } else {
+      scriptRef = FirebaseFirestore.instance
+          .collection('${scriptType}_script')
+          .doc(uid)
+          .collection('script')
+          .doc(scriptId);
+    }
     await firestore
         .collection('user')
         .doc(uid)
