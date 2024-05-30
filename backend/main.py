@@ -17,13 +17,10 @@ import jax.numpy as jnp
 from tts import utils
 from tts.models import SynthesizerTrn
 from text.symbols import symbols
-import torch
 from TTS.api import TTS
 
-from pathlib import Path
 
 
-# Load model
 current_file_path = os.path.abspath(__file__)
 current_dir = os.path.dirname(current_file_path)
 tts_dir = os.path.join(current_dir, "tts")
@@ -43,7 +40,6 @@ _ = net_g.eval()
 _ = utils.load_checkpoint(model_path, net_g, None)
 kkaguragzi = TTS(model_name="voice_conversion_models/multilingual/vctk/freevc24", progress_bar=False).to("cuda")
 
-# knn_vc = torch.hub.load('bshall/knn-vc', 'knn_vc', prematched=True, trust_repo=True, pretrained=True, device='cuda')
 
 app = FastAPI()
 
@@ -77,7 +73,6 @@ async def create_upload_file(sentence: str = Form(...), user_wav: UploadFile = F
         tmp.seek(0)
         user_trans = stt.transcribe_korean_audio(tmp_path, pipeline)
 
-    print(user_trans, sentence)
     cleaned_guide = text._clean_text(sentence, None)
     cleaned_user = text._clean_text(user_trans, None)
     similarity_percentage = levenshtein.dist(cleaned_guide, cleaned_user)
@@ -87,23 +82,16 @@ async def create_upload_file(sentence: str = Form(...), user_wav: UploadFile = F
 @app.post("/voice_guide/")
 async def provide_voice_guide(sentence: str = Form(...), wavs: list[UploadFile] = File(...)):
     temp_dir = tempfile.mkdtemp()
-    user_voices_paths = []  # 저장된 파일 경로를 추적
+    user_voices_paths = []
     for wav in wavs:
         temp_file_path = os.path.join(temp_dir, wav.filename)
-        with open(temp_file_path, 'wb+') as out_file:  # 임시 파일 생성 및 쓰기
+        with open(temp_file_path, 'wb+') as out_file:
             shutil.copyfileobj(wav.file, out_file)
         user_voices_paths.append(temp_file_path)
-    # part-1: tts
     guide_audio_path = infer(sentence, hps, net_g)
-    print(f"guide_audio_path: {guide_audio_path}")
-    # part-2: voice conversion
     output_voice_path = change_voice(kkaguragzi, guide_audio_path, user_voices_paths[0])
     shutil.rmtree(temp_dir)
-    base_url = "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/tts"
-    file_name = os.path.basename(guide_audio_path)
-    full_url = os.path.join(base_url, file_name)
-
-    return JSONResponse(status_code=200, content={"wav_url": output_voice_path, "origin_url": full_url})
+    return JSONResponse(status_code=200, content={"wav_url": output_voice_path})
 
 
 if __name__ == "__main__":
