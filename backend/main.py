@@ -56,7 +56,7 @@ app.add_middleware(
 )
 
 # Upload statics
-app.mount("/static", StaticFiles(directory="/home/ubuntu/capstone-2024-08/backend/tts"), name="static")
+app.mount("/static", StaticFiles(directory="/home/ubuntu/capstone-2024-08/backend/voice_conversion"), name="static")
 
 
 @app.post("/script", response_model= GptResponseSch)
