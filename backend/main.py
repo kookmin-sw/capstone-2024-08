@@ -1,5 +1,7 @@
-from fastapi import FastAPI, File, UploadFile
-
+from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException
+import os
+import shutil
 from feedback import levenshtein
 from fastapi.responses import JSONResponse, FileResponse
 import tempfile
@@ -7,18 +9,51 @@ from feedback import stt
 from create_script.user_script import create_user_script 
 from create_script.user_script.schemas.gpt_sch import GptRequestSch, GptResponseSch
 from fastapi.middleware.cors import CORSMiddleware
-from voice_converison import change_voice
+from voice_conversion import change_voice
 from tts import infer
 import text
+from whisper_jax import FlaxWhisperPipline
+import jax.numpy as jnp
+from tts import utils
+from tts.models import SynthesizerTrn
+from text.symbols import symbols
+import torch
+from pathlib import Path
 
+
+# Load model
+current_file_path = os.path.abspath(__file__)
+current_dir = os.path.dirname(current_file_path)
+tts_dir = os.path.join(current_dir, "tts")
+config_path = os.path.join(tts_dir, "config", "nia22.json")
+model_path = os.path.join(tts_dir, "vits_nia22.pth")
+dummy_path = os.path.join(current_dir, "voice_conversion", "SPK014KBSCU004F002.wav")
+pipeline = FlaxWhisperPipline("openai/whisper-medium", dtype=jnp.bfloat16)
+_ = pipeline(dummy_path, task="transcribe")
+hps = utils.get_hparams_from_file(config_path)
+net_g = SynthesizerTrn(
+    len(symbols),
+    hps.data.filter_length // 2 + 1,
+    hps.train.segment_size // hps.data.hop_length,
+    n_speakers=hps.data.n_speakers,
+    **hps.model).cpu()
+_ = net_g.eval()
+_ = utils.load_checkpoint(model_path, net_g, None)
+
+knn_vc = torch.hub.load('bshall/knn-vc', 'knn_vc', prematched=True, trust_repo=True, pretrained=True, device='cuda')
 
 app = FastAPI()
-# CORS 설정
+
+
+# CORS configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["GET", "POST", "OPTIONS"],
 )
+
+# Upload statics
+app.mount("/static", StaticFiles(directory="/home/ubuntu/capstone-2024-08/backend/tts"), name="static")
 
 
 @app.post("/script", response_model= GptResponseSch)
@@ -28,42 +63,46 @@ async def create_script(req: GptRequestSch):
 
 
 @app.post("/feedback/")
-async def create_upload_file(guide_trans: str, user_wav: UploadFile = File(...)):
+async def create_upload_file(sentence: str = Form(...), user_wav: UploadFile = File(...)):
     if not user_wav.filename.endswith('.wav'):
         return JSONResponse(status_code=400, content={"message": "Please upload WAV files only."})
 
-    # Create a temporary file
     with tempfile.NamedTemporaryFile(delete=False, suffix='.wav') as tmp:
-        # Write the uploaded file content to the temporary file
         content = await user_wav.read()
         tmp.write(content)
         tmp_path = tmp.name
         tmp.seek(0)
-        user_trans = stt.transcribe_korean_audio(tmp_path)
+        user_trans = stt.transcribe_korean_audio(tmp_path, pipeline)
 
-    # TODO: Add guide audio later
-
-    print(user_trans, guide_trans)
-
-    cleaned_guide = text._clean_text(guide_trans, None)
+    print(user_trans, sentence)
+    cleaned_guide = text._clean_text(sentence, None)
     cleaned_user = text._clean_text(user_trans, None)
     similarity_percentage = levenshtein.dist(cleaned_guide, cleaned_user)
-    # similarity_percentage = levenshtein.dist(guide, user)
-    return {"similarity_percentage": similarity_percentage}
+    return {"similarity_percentage": similarity_percentage, "pronunciation": user_trans}
 
 
 @app.post("/voice_guide/")
-async def provide_voice_guide(prompt: str):
-    # test
-
+async def provide_voice_guide(sentence: str = Form(...), wavs: list[UploadFile] = File(...)):
+    temp_dir = tempfile.mkdtemp()
+    user_voices_paths = []  # 저장된 파일 경로를 추적
+    for wav in wavs:
+        temp_file_path = os.path.join(temp_dir, wav.filename)
+        with open(temp_file_path, 'wb+') as out_file:  # 임시 파일 생성 및 쓰기
+            shutil.copyfileobj(wav.file, out_file)
+        user_voices_paths.append(temp_file_path)
     # part-1: tts
-    guide_audio = infer(prompt)
-
-
+    guide_audio_path = infer(sentence, hps, net_g)
+    print(f"guide_audio_path: {guide_audio_path}")
     # part-2: voice conversion
-    change_voice("voice_converison/SPK064KBSCU001M001.wav", ["/home/ubuntu/forked/capstone-2024-08/backend/voice_converison/output_audio.wav"])
-    print("conversion complete!!")
-    return FileResponse("/home/ubuntu/forked/capstone-2024-08/backend/voice_converison/vc_out.wav", media_type="audio/wav")
+    output_voice_path = change_voice(knn_vc, guide_audio_path, user_voices_paths)
+    # print(f"output_voice_path: {output_voice_path}")
+    # print("conversion complete!!")
+    shutil.rmtree(temp_dir)
+    base_url = "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/"
+    file_name = os.path.basename(guide_audio_path)
+    full_url = os.path.join(base_url, file_name)
+
+    return JSONResponse(status_code=200, content={"wav_url": full_url})
 
 
 if __name__ == "__main__":
