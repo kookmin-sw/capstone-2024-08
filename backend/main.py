@@ -99,9 +99,6 @@ async def provide_voice_guide(sentence: str = Form(...), wavs: list[UploadFile] 
     # part-2: voice conversion
     output_voice_path = change_voice(kkaguragzi, guide_audio_path, user_voices_paths[0])
     shutil.rmtree(temp_dir)
-    base_url = "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/"
-    file_name = os.path.basename(guide_audio_path)
-    full_url = os.path.join(base_url, file_name)
 
     return JSONResponse(status_code=200, content={"wav_url": output_voice_path})
 
