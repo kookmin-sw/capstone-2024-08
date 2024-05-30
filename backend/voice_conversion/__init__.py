@@ -20,4 +20,4 @@ def change_voice(tts, src: str, ref: str):
     tts.voice_conversion_to_file(source_wav=src, target_wav=ref, file_path=vc_out_path)
 
     # torchaudio.save(vc_out_path, out_wav[None], 16000)
-    return "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/vc_out.wav"
+    return "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/voice_conversion/vc_out.wav"

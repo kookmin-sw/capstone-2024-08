@@ -56,7 +56,7 @@ app.add_middleware(
 )
 
 # Upload statics
-app.mount("/static", StaticFiles(directory="/home/ubuntu/capstone-2024-08/backend/voice_conversion"), name="static")
+app.mount("/static", StaticFiles(directory="/home/ubuntu/capstone-2024-08/backend"), name="static")
 
 
 @app.post("/script", response_model= GptResponseSch)
@@ -99,8 +99,11 @@ async def provide_voice_guide(sentence: str = Form(...), wavs: list[UploadFile] 
     # part-2: voice conversion
     output_voice_path = change_voice(kkaguragzi, guide_audio_path, user_voices_paths[0])
     shutil.rmtree(temp_dir)
+    base_url = "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/tts"
+    file_name = os.path.basename(guide_audio_path)
+    full_url = os.path.join(base_url, file_name)
 
-    return JSONResponse(status_code=200, content={"wav_url": output_voice_path})
+    return JSONResponse(status_code=200, content={"wav_url": output_voice_path, "origin_url": full_url})
 
 
 if __name__ == "__main__":
