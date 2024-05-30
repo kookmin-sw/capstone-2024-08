@@ -3,12 +3,12 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "name": "monotonic_align.core",
+        "name": "tts.monotonic_align.core",
         "sources": [
             "core.pyx"
         ]
     },
-    "module_name": "monotonic_align.core"
+    "module_name": "tts.monotonic_align.core"
 }
 END: Cython Metadata */
 
@@ -1228,8 +1228,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__monotonic_align__core
-#define __PYX_HAVE_API__monotonic_align__core
+#define __PYX_HAVE__tts__monotonic_align__core
+#define __PYX_HAVE_API__tts__monotonic_align__core
 /* Early includes */
 #include "pythread.h"
 #include <string.h>
@@ -1636,16 +1636,16 @@ struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
 struct __pyx_memoryviewslice_obj;
-struct __pyx_opt_args_15monotonic_align_4core_maximum_path_each;
+struct __pyx_opt_args_3tts_15monotonic_align_4core_maximum_path_each;
 
-/* "monotonic_align/core.pyx":7
+/* "tts/monotonic_align/core.pyx":7
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void maximum_path_each(int[:,::1] path, float[:,::1] value, int t_y, int t_x, float max_neg_val=-1e9) nogil:             # <<<<<<<<<<<<<<
  *   cdef int x
  *   cdef int y
  */
-struct __pyx_opt_args_15monotonic_align_4core_maximum_path_each {
+struct __pyx_opt_args_3tts_15monotonic_align_4core_maximum_path_each {
   int __pyx_n;
   float max_neg_val;
 };
@@ -1654,7 +1654,7 @@ struct __pyx_opt_args_15monotonic_align_4core_maximum_path_each {
  * @cython.collection_type("sequence")
  * @cname("__pyx_array")
  * cdef class array:             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef:
  */
 struct __pyx_array_obj {
@@ -1676,7 +1676,7 @@ struct __pyx_array_obj {
 
 
 /* "View.MemoryView":302
- *
+ * 
  * @cname('__pyx_MemviewEnum')
  * cdef class Enum(object):             # <<<<<<<<<<<<<<
  *     cdef object name
@@ -1689,10 +1689,10 @@ struct __pyx_MemviewEnum_obj {
 
 
 /* "View.MemoryView":337
- *
+ * 
  * @cname('__pyx_memoryview')
  * cdef class memoryview:             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef object obj
  */
 struct __pyx_memoryview_obj {
@@ -1715,7 +1715,7 @@ struct __pyx_memoryview_obj {
  * @cname('__pyx_memoryviewslice')
  * cdef class _memoryviewslice(memoryview):             # <<<<<<<<<<<<<<
  *     "Internal class for passing memoryview slices to Python"
- *
+ * 
  */
 struct __pyx_memoryviewslice_obj {
   struct __pyx_memoryview_obj __pyx_base;
@@ -1731,7 +1731,7 @@ struct __pyx_memoryviewslice_obj {
  * @cython.collection_type("sequence")
  * @cname("__pyx_array")
  * cdef class array:             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef:
  */
 
@@ -1742,10 +1742,10 @@ static struct __pyx_vtabstruct_array *__pyx_vtabptr_array;
 
 
 /* "View.MemoryView":337
- *
+ * 
  * @cname('__pyx_memoryview')
  * cdef class memoryview:             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef object obj
  */
 
@@ -1767,7 +1767,7 @@ static struct __pyx_vtabstruct_memoryview *__pyx_vtabptr_memoryview;
  * @cname('__pyx_memoryviewslice')
  * cdef class _memoryviewslice(memoryview):             # <<<<<<<<<<<<<<
  *     "Internal class for passing memoryview slices to Python"
- *
+ * 
  */
 
 struct __pyx_vtabstruct__memoryviewslice {
@@ -2740,7 +2740,7 @@ static PyObject *__pyx_memoryviewslice__get_base(struct __pyx_memoryviewslice_ob
 
 /* Module declarations from "cython" */
 
-/* Module declarations from "monotonic_align.core" */
+/* Module declarations from "tts.monotonic_align.core" */
 static PyObject *__pyx_collections_abc_Sequence = 0;
 static PyObject *generic = 0;
 static PyObject *strided = 0;
@@ -2749,8 +2749,8 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
-static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice, __Pyx_memviewslice, int, int, struct __pyx_opt_args_15monotonic_align_4core_maximum_path_each *__pyx_optional_args); /*proto*/
-static void __pyx_f_15monotonic_align_4core_maximum_path_c(__Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
+static void __pyx_f_3tts_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice, __Pyx_memviewslice, int, int, struct __pyx_opt_args_3tts_15monotonic_align_4core_maximum_path_each *__pyx_optional_args); /*proto*/
+static void __pyx_f_3tts_15monotonic_align_4core_maximum_path_c(__Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static int __pyx_array_allocate_buffer(struct __pyx_array_obj *); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char *, char *); /*proto*/
 static PyObject *__pyx_memoryview_new(PyObject *, int, int, __Pyx_TypeInfo *); /*proto*/
@@ -2789,11 +2789,11 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, 
 static __Pyx_TypeInfo __Pyx_TypeInfo_int = { "int", NULL, sizeof(int), { 0 }, 0, __PYX_IS_UNSIGNED(int) ? 'U' : 'I', __PYX_IS_UNSIGNED(int), 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo_float = { "float", NULL, sizeof(float), { 0 }, 0, 'R', 0, 0 };
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "monotonic_align.core"
-extern int __pyx_module_is_main_monotonic_align__core;
-int __pyx_module_is_main_monotonic_align__core = 0;
+#define __Pyx_MODULE_NAME "tts.monotonic_align.core"
+extern int __pyx_module_is_main_tts__monotonic_align__core;
+int __pyx_module_is_main_tts__monotonic_align__core = 0;
 
-/* Implementation of "monotonic_align.core" */
+/* Implementation of "tts.monotonic_align.core" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin___import__;
@@ -2899,7 +2899,6 @@ static const char __pyx_k_pyx_unpickle_Enum[] = "__pyx_unpickle_Enum";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_strided_and_direct[] = "<strided and direct>";
-static const char __pyx_k_monotonic_align_core[] = "monotonic_align.core";
 static const char __pyx_k_strided_and_indirect[] = "<strided and indirect>";
 static const char __pyx_k_Invalid_shape_in_axis[] = "Invalid shape in axis ";
 static const char __pyx_k_contiguous_and_direct[] = "<contiguous and direct>";
@@ -2907,6 +2906,7 @@ static const char __pyx_k_Cannot_index_with_type[] = "Cannot index with type '";
 static const char __pyx_k_MemoryView_of_r_object[] = "<MemoryView of %r object>";
 static const char __pyx_k_MemoryView_of_r_at_0x_x[] = "<MemoryView of %r at 0x%x>";
 static const char __pyx_k_contiguous_and_indirect[] = "<contiguous and indirect>";
+static const char __pyx_k_tts_monotonic_align_core[] = "tts.monotonic_align.core";
 static const char __pyx_k_Dimension_d_is_not_direct[] = "Dimension %d is not direct";
 static const char __pyx_k_Index_out_of_bounds_axis_d[] = "Index out of bounds (axis %d)";
 static const char __pyx_k_Step_may_not_be_zero_axis_d[] = "Step may not be zero (axis %d)";
@@ -2970,7 +2970,7 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_15monotonic_align_4core_maximum_path_c(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_paths, __Pyx_memviewslice __pyx_v_values, __Pyx_memviewslice __pyx_v_t_ys, __Pyx_memviewslice __pyx_v_t_xs); /* proto */
+static PyObject *__pyx_pf_3tts_15monotonic_align_4core_maximum_path_c(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_paths, __Pyx_memviewslice __pyx_v_values, __Pyx_memviewslice __pyx_v_t_ys, __Pyx_memviewslice __pyx_v_t_xs); /* proto */
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -3097,7 +3097,6 @@ typedef struct {
   PyObject *__pyx_n_s_maximum_path_c;
   PyObject *__pyx_n_s_memview;
   PyObject *__pyx_n_s_mode;
-  PyObject *__pyx_n_s_monotonic_align_core;
   PyObject *__pyx_n_s_name;
   PyObject *__pyx_n_s_name_2;
   PyObject *__pyx_n_s_ndim;
@@ -3136,6 +3135,7 @@ typedef struct {
   PyObject *__pyx_n_s_t_xs;
   PyObject *__pyx_n_s_t_ys;
   PyObject *__pyx_n_s_test;
+  PyObject *__pyx_n_s_tts_monotonic_align_core;
   PyObject *__pyx_kp_s_unable_to_allocate_array_data;
   PyObject *__pyx_kp_s_unable_to_allocate_shape_and_str;
   PyObject *__pyx_n_s_unpack;
@@ -3295,7 +3295,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_maximum_path_c);
   Py_CLEAR(clear_module_state->__pyx_n_s_memview);
   Py_CLEAR(clear_module_state->__pyx_n_s_mode);
-  Py_CLEAR(clear_module_state->__pyx_n_s_monotonic_align_core);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
   Py_CLEAR(clear_module_state->__pyx_n_s_name_2);
   Py_CLEAR(clear_module_state->__pyx_n_s_ndim);
@@ -3334,6 +3333,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_t_xs);
   Py_CLEAR(clear_module_state->__pyx_n_s_t_ys);
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
+  Py_CLEAR(clear_module_state->__pyx_n_s_tts_monotonic_align_core);
   Py_CLEAR(clear_module_state->__pyx_kp_s_unable_to_allocate_array_data);
   Py_CLEAR(clear_module_state->__pyx_kp_s_unable_to_allocate_shape_and_str);
   Py_CLEAR(clear_module_state->__pyx_n_s_unpack);
@@ -3470,7 +3470,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_maximum_path_c);
   Py_VISIT(traverse_module_state->__pyx_n_s_memview);
   Py_VISIT(traverse_module_state->__pyx_n_s_mode);
-  Py_VISIT(traverse_module_state->__pyx_n_s_monotonic_align_core);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
   Py_VISIT(traverse_module_state->__pyx_n_s_name_2);
   Py_VISIT(traverse_module_state->__pyx_n_s_ndim);
@@ -3509,6 +3508,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_t_xs);
   Py_VISIT(traverse_module_state->__pyx_n_s_t_ys);
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
+  Py_VISIT(traverse_module_state->__pyx_n_s_tts_monotonic_align_core);
   Py_VISIT(traverse_module_state->__pyx_kp_s_unable_to_allocate_array_data);
   Py_VISIT(traverse_module_state->__pyx_kp_s_unable_to_allocate_shape_and_str);
   Py_VISIT(traverse_module_state->__pyx_n_s_unpack);
@@ -3661,7 +3661,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_maximum_path_c __pyx_mstate_global->__pyx_n_s_maximum_path_c
 #define __pyx_n_s_memview __pyx_mstate_global->__pyx_n_s_memview
 #define __pyx_n_s_mode __pyx_mstate_global->__pyx_n_s_mode
-#define __pyx_n_s_monotonic_align_core __pyx_mstate_global->__pyx_n_s_monotonic_align_core
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
 #define __pyx_n_s_name_2 __pyx_mstate_global->__pyx_n_s_name_2
 #define __pyx_n_s_ndim __pyx_mstate_global->__pyx_n_s_ndim
@@ -3700,6 +3699,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_t_xs __pyx_mstate_global->__pyx_n_s_t_xs
 #define __pyx_n_s_t_ys __pyx_mstate_global->__pyx_n_s_t_ys
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
+#define __pyx_n_s_tts_monotonic_align_core __pyx_mstate_global->__pyx_n_s_tts_monotonic_align_core
 #define __pyx_kp_s_unable_to_allocate_array_data __pyx_mstate_global->__pyx_kp_s_unable_to_allocate_array_data
 #define __pyx_kp_s_unable_to_allocate_shape_and_str __pyx_mstate_global->__pyx_kp_s_unable_to_allocate_shape_and_str
 #define __pyx_n_s_unpack __pyx_mstate_global->__pyx_n_s_unpack
@@ -3734,10 +3734,10 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 
 /* "View.MemoryView":131
  *         cdef bint dtype_is_object
- *
+ * 
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,             # <<<<<<<<<<<<<<
  *                   mode="c", bint allocate_buffer=True):
- *
+ * 
  */
 
 /* Python wrapper */
@@ -3852,10 +3852,10 @@ static int __pyx_array___cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, P
     } else {
 
       /* "View.MemoryView":132
- *
+ * 
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,
  *                   mode="c", bint allocate_buffer=True):             # <<<<<<<<<<<<<<
- *
+ * 
  *         cdef int idx
  */
       __pyx_v_allocate_buffer = ((int)1);
@@ -3885,10 +3885,10 @@ static int __pyx_array___cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, P
 
   /* "View.MemoryView":131
  *         cdef bint dtype_is_object
- *
+ * 
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,             # <<<<<<<<<<<<<<
  *                   mode="c", bint allocate_buffer=True):
- *
+ * 
  */
 
   /* function exit code */
@@ -3930,10 +3930,10 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
   /* "View.MemoryView":137
  *         cdef Py_ssize_t dim
- *
+ * 
  *         self.ndim = <int> len(shape)             # <<<<<<<<<<<<<<
  *         self.itemsize = itemsize
- *
+ * 
  */
   if (unlikely(__pyx_v_shape == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
@@ -3943,29 +3943,29 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __pyx_v_self->ndim = ((int)__pyx_t_1);
 
   /* "View.MemoryView":138
- *
+ * 
  *         self.ndim = <int> len(shape)
  *         self.itemsize = itemsize             # <<<<<<<<<<<<<<
- *
+ * 
  *         if not self.ndim:
  */
   __pyx_v_self->itemsize = __pyx_v_itemsize;
 
   /* "View.MemoryView":140
  *         self.itemsize = itemsize
- *
+ * 
  *         if not self.ndim:             # <<<<<<<<<<<<<<
  *             raise ValueError, "Empty shape tuple for cython.array"
- *
+ * 
  */
   __pyx_t_2 = (!(__pyx_v_self->ndim != 0));
   if (unlikely(__pyx_t_2)) {
 
     /* "View.MemoryView":141
- *
+ * 
  *         if not self.ndim:
  *             raise ValueError, "Empty shape tuple for cython.array"             # <<<<<<<<<<<<<<
- *
+ * 
  *         if itemsize <= 0:
  */
     __Pyx_Raise(__pyx_builtin_ValueError, __pyx_kp_s_Empty_shape_tuple_for_cython_arr, 0, 0);
@@ -3973,28 +3973,28 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":140
  *         self.itemsize = itemsize
- *
+ * 
  *         if not self.ndim:             # <<<<<<<<<<<<<<
  *             raise ValueError, "Empty shape tuple for cython.array"
- *
+ * 
  */
   }
 
   /* "View.MemoryView":143
  *             raise ValueError, "Empty shape tuple for cython.array"
- *
+ * 
  *         if itemsize <= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError, "itemsize <= 0 for cython.array"
- *
+ * 
  */
   __pyx_t_2 = (__pyx_v_itemsize <= 0);
   if (unlikely(__pyx_t_2)) {
 
     /* "View.MemoryView":144
- *
+ * 
  *         if itemsize <= 0:
  *             raise ValueError, "itemsize <= 0 for cython.array"             # <<<<<<<<<<<<<<
- *
+ * 
  *         if not isinstance(format, bytes):
  */
     __Pyx_Raise(__pyx_builtin_ValueError, __pyx_kp_s_itemsize_0_for_cython_array, 0, 0);
@@ -4002,26 +4002,26 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":143
  *             raise ValueError, "Empty shape tuple for cython.array"
- *
+ * 
  *         if itemsize <= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError, "itemsize <= 0 for cython.array"
- *
+ * 
  */
   }
 
   /* "View.MemoryView":146
  *             raise ValueError, "itemsize <= 0 for cython.array"
- *
+ * 
  *         if not isinstance(format, bytes):             # <<<<<<<<<<<<<<
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string
  */
-  __pyx_t_2 = PyBytes_Check(__pyx_v_format);
+  __pyx_t_2 = PyBytes_Check(__pyx_v_format); 
   __pyx_t_3 = (!__pyx_t_2);
   if (__pyx_t_3) {
 
     /* "View.MemoryView":147
- *
+ * 
  *         if not isinstance(format, bytes):
  *             format = format.encode('ASCII')             # <<<<<<<<<<<<<<
  *         self._format = format  # keep a reference to the byte string
@@ -4056,7 +4056,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":146
  *             raise ValueError, "itemsize <= 0 for cython.array"
- *
+ * 
  *         if not isinstance(format, bytes):             # <<<<<<<<<<<<<<
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string
@@ -4068,7 +4068,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string             # <<<<<<<<<<<<<<
  *         self.format = self._format
- *
+ * 
  */
   if (!(likely(PyBytes_CheckExact(__pyx_v_format))||((__pyx_v_format) == Py_None) || __Pyx_RaiseUnexpectedTypeError("bytes", __pyx_v_format))) __PYX_ERR(1, 148, __pyx_L1_error)
   __pyx_t_4 = __pyx_v_format;
@@ -4083,8 +4083,8 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string
  *         self.format = self._format             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   if (unlikely(__pyx_v_self->_format == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
@@ -4094,55 +4094,55 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __pyx_v_self->format = __pyx_t_8;
 
   /* "View.MemoryView":152
- *
- *
+ * 
+ * 
  *         self._shape = <Py_ssize_t *> PyObject_Malloc(sizeof(Py_ssize_t)*self.ndim*2)             # <<<<<<<<<<<<<<
  *         self._strides = self._shape + self.ndim
- *
+ * 
  */
   __pyx_v_self->_shape = ((Py_ssize_t *)PyObject_Malloc((((sizeof(Py_ssize_t)) * __pyx_v_self->ndim) * 2)));
 
   /* "View.MemoryView":153
- *
+ * 
  *         self._shape = <Py_ssize_t *> PyObject_Malloc(sizeof(Py_ssize_t)*self.ndim*2)
  *         self._strides = self._shape + self.ndim             # <<<<<<<<<<<<<<
- *
+ * 
  *         if not self._shape:
  */
   __pyx_v_self->_strides = (__pyx_v_self->_shape + __pyx_v_self->ndim);
 
   /* "View.MemoryView":155
  *         self._strides = self._shape + self.ndim
- *
+ * 
  *         if not self._shape:             # <<<<<<<<<<<<<<
  *             raise MemoryError, "unable to allocate shape and strides."
- *
+ * 
  */
   __pyx_t_3 = (!(__pyx_v_self->_shape != 0));
   if (unlikely(__pyx_t_3)) {
 
     /* "View.MemoryView":156
- *
+ * 
  *         if not self._shape:
  *             raise MemoryError, "unable to allocate shape and strides."             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
     __Pyx_Raise(__pyx_builtin_MemoryError, __pyx_kp_s_unable_to_allocate_shape_and_str, 0, 0);
     __PYX_ERR(1, 156, __pyx_L1_error)
 
     /* "View.MemoryView":155
  *         self._strides = self._shape + self.ndim
- *
+ * 
  *         if not self._shape:             # <<<<<<<<<<<<<<
  *             raise MemoryError, "unable to allocate shape and strides."
- *
+ * 
  */
   }
 
   /* "View.MemoryView":159
- *
- *
+ * 
+ * 
  *         for idx, dim in enumerate(shape):             # <<<<<<<<<<<<<<
  *             if dim <= 0:
  *                 raise ValueError, f"Invalid shape in axis {idx}: {dim}."
@@ -4171,7 +4171,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     __pyx_t_7 = (__pyx_t_7 + 1);
 
     /* "View.MemoryView":160
- *
+ * 
  *         for idx, dim in enumerate(shape):
  *             if dim <= 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError, f"Invalid shape in axis {idx}: {dim}."
@@ -4185,7 +4185,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             if dim <= 0:
  *                 raise ValueError, f"Invalid shape in axis {idx}: {dim}."             # <<<<<<<<<<<<<<
  *             self._shape[idx] = dim
- *
+ * 
  */
       __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 161, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
@@ -4223,7 +4223,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
       __PYX_ERR(1, 161, __pyx_L1_error)
 
       /* "View.MemoryView":160
- *
+ * 
  *         for idx, dim in enumerate(shape):
  *             if dim <= 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError, f"Invalid shape in axis {idx}: {dim}."
@@ -4235,14 +4235,14 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             if dim <= 0:
  *                 raise ValueError, f"Invalid shape in axis {idx}: {dim}."
  *             self._shape[idx] = dim             # <<<<<<<<<<<<<<
- *
+ * 
  *         cdef char order
  */
     (__pyx_v_self->_shape[__pyx_v_idx]) = __pyx_v_dim;
 
     /* "View.MemoryView":159
- *
- *
+ * 
+ * 
  *         for idx, dim in enumerate(shape):             # <<<<<<<<<<<<<<
  *             if dim <= 0:
  *                 raise ValueError, f"Invalid shape in axis {idx}: {dim}."
@@ -4251,7 +4251,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "View.MemoryView":165
- *
+ * 
  *         cdef char order
  *         if mode == 'c':             # <<<<<<<<<<<<<<
  *             order = b'C'
@@ -4283,7 +4283,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     __pyx_v_self->mode = __pyx_n_u_c;
 
     /* "View.MemoryView":165
- *
+ * 
  *         cdef char order
  *         if mode == 'c':             # <<<<<<<<<<<<<<
  *             order = b'C'
@@ -4338,7 +4338,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             self.mode = u'fortran'
  *         else:
  *             raise ValueError, f"Invalid mode, expected 'c' or 'fortran', got {mode}"             # <<<<<<<<<<<<<<
- *
+ * 
  *         self.len = fill_contig_strides_array(self._shape, self._strides, itemsize, self.ndim, order)
  */
   /*else*/ {
@@ -4355,27 +4355,27 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
   /* "View.MemoryView":174
  *             raise ValueError, f"Invalid mode, expected 'c' or 'fortran', got {mode}"
- *
+ * 
  *         self.len = fill_contig_strides_array(self._shape, self._strides, itemsize, self.ndim, order)             # <<<<<<<<<<<<<<
- *
+ * 
  *         self.free_data = allocate_buffer
  */
   __pyx_v_self->len = __pyx_fill_contig_strides_array(__pyx_v_self->_shape, __pyx_v_self->_strides, __pyx_v_itemsize, __pyx_v_self->ndim, __pyx_v_order);
 
   /* "View.MemoryView":176
  *         self.len = fill_contig_strides_array(self._shape, self._strides, itemsize, self.ndim, order)
- *
+ * 
  *         self.free_data = allocate_buffer             # <<<<<<<<<<<<<<
  *         self.dtype_is_object = format == b'O'
- *
+ * 
  */
   __pyx_v_self->free_data = __pyx_v_allocate_buffer;
 
   /* "View.MemoryView":177
- *
+ * 
  *         self.free_data = allocate_buffer
  *         self.dtype_is_object = format == b'O'             # <<<<<<<<<<<<<<
- *
+ * 
  *         if allocate_buffer:
  */
   __pyx_t_6 = PyObject_RichCompare(__pyx_v_format, __pyx_n_b_O, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 177, __pyx_L1_error)
@@ -4385,37 +4385,37 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
   /* "View.MemoryView":179
  *         self.dtype_is_object = format == b'O'
- *
+ * 
  *         if allocate_buffer:             # <<<<<<<<<<<<<<
  *             _allocate_buffer(self)
- *
+ * 
  */
   if (__pyx_v_allocate_buffer) {
 
     /* "View.MemoryView":180
- *
+ * 
  *         if allocate_buffer:
  *             _allocate_buffer(self)             # <<<<<<<<<<<<<<
- *
+ * 
  *     @cname('getbuffer')
  */
     __pyx_t_7 = __pyx_array_allocate_buffer(__pyx_v_self); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(1, 180, __pyx_L1_error)
 
     /* "View.MemoryView":179
  *         self.dtype_is_object = format == b'O'
- *
+ * 
  *         if allocate_buffer:             # <<<<<<<<<<<<<<
  *             _allocate_buffer(self)
- *
+ * 
  */
   }
 
   /* "View.MemoryView":131
  *         cdef bint dtype_is_object
- *
+ * 
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,             # <<<<<<<<<<<<<<
  *                   mode="c", bint allocate_buffer=True):
- *
+ * 
  */
 
   /* function exit code */
@@ -4435,7 +4435,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
 /* "View.MemoryView":182
  *             _allocate_buffer(self)
- *
+ * 
  *     @cname('getbuffer')             # <<<<<<<<<<<<<<
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         cdef int bufmode = -1
@@ -4596,7 +4596,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *                 raise ValueError, "Can only create a buffer that is contiguous in memory."
  *         info.buf = self.data             # <<<<<<<<<<<<<<
  *         info.len = self.len
- *
+ * 
  */
   __pyx_t_2 = __pyx_v_self->data;
   __pyx_v_info->buf = __pyx_t_2;
@@ -4605,7 +4605,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *                 raise ValueError, "Can only create a buffer that is contiguous in memory."
  *         info.buf = self.data
  *         info.len = self.len             # <<<<<<<<<<<<<<
- *
+ * 
  *         if flags & PyBUF_STRIDES:
  */
   __pyx_t_3 = __pyx_v_self->len;
@@ -4613,7 +4613,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
   /* "View.MemoryView":195
  *         info.len = self.len
- *
+ * 
  *         if flags & PyBUF_STRIDES:             # <<<<<<<<<<<<<<
  *             info.ndim = self.ndim
  *             info.shape = self._shape
@@ -4622,7 +4622,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
   if (__pyx_t_1) {
 
     /* "View.MemoryView":196
- *
+ * 
  *         if flags & PyBUF_STRIDES:
  *             info.ndim = self.ndim             # <<<<<<<<<<<<<<
  *             info.shape = self._shape
@@ -4653,7 +4653,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
     /* "View.MemoryView":195
  *         info.len = self.len
- *
+ * 
  *         if flags & PyBUF_STRIDES:             # <<<<<<<<<<<<<<
  *             info.ndim = self.ndim
  *             info.shape = self._shape
@@ -4676,7 +4676,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *             info.ndim = 1
  *             info.shape = &self.len if flags & PyBUF_ND else NULL             # <<<<<<<<<<<<<<
  *             info.strides = NULL
- *
+ * 
  */
     __pyx_t_1 = ((__pyx_v_flags & PyBUF_ND) != 0);
     if (__pyx_t_1) {
@@ -4690,7 +4690,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *             info.ndim = 1
  *             info.shape = &self.len if flags & PyBUF_ND else NULL
  *             info.strides = NULL             # <<<<<<<<<<<<<<
- *
+ * 
  *         info.suboffsets = NULL
  */
     __pyx_v_info->strides = NULL;
@@ -4699,7 +4699,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
   /* "View.MemoryView":204
  *             info.strides = NULL
- *
+ * 
  *         info.suboffsets = NULL             # <<<<<<<<<<<<<<
  *         info.itemsize = self.itemsize
  *         info.readonly = 0
@@ -4707,7 +4707,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
   __pyx_v_info->suboffsets = NULL;
 
   /* "View.MemoryView":205
- *
+ * 
  *         info.suboffsets = NULL
  *         info.itemsize = self.itemsize             # <<<<<<<<<<<<<<
  *         info.readonly = 0
@@ -4730,7 +4730,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *         info.readonly = 0
  *         info.format = self.format if flags & PyBUF_FORMAT else NULL             # <<<<<<<<<<<<<<
  *         info.obj = self
- *
+ * 
  */
   __pyx_t_1 = ((__pyx_v_flags & PyBUF_FORMAT) != 0);
   if (__pyx_t_1) {
@@ -4744,7 +4744,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *         info.readonly = 0
  *         info.format = self.format if flags & PyBUF_FORMAT else NULL
  *         info.obj = self             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __dealloc__(array self):
  */
   __Pyx_INCREF((PyObject *)__pyx_v_self);
@@ -4755,7 +4755,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
   /* "View.MemoryView":182
  *             _allocate_buffer(self)
- *
+ * 
  *     @cname('getbuffer')             # <<<<<<<<<<<<<<
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         cdef int bufmode = -1
@@ -4784,7 +4784,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
 /* "View.MemoryView":210
  *         info.obj = self
- *
+ * 
  *     def __dealloc__(array self):             # <<<<<<<<<<<<<<
  *         if self.callback_free_data != NULL:
  *             self.callback_free_data(self.data)
@@ -4808,7 +4808,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
   int __pyx_t_2;
 
   /* "View.MemoryView":211
- *
+ * 
  *     def __dealloc__(array self):
  *         if self.callback_free_data != NULL:             # <<<<<<<<<<<<<<
  *             self.callback_free_data(self.data)
@@ -4827,7 +4827,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
     __pyx_v_self->callback_free_data(__pyx_v_self->data);
 
     /* "View.MemoryView":211
- *
+ * 
  *     def __dealloc__(array self):
  *         if self.callback_free_data != NULL:             # <<<<<<<<<<<<<<
  *             self.callback_free_data(self.data)
@@ -4885,7 +4885,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
  *                 refcount_objects_in_slice(self.data, self._shape, self._strides, self.ndim, inc=False)
  *             free(self.data)             # <<<<<<<<<<<<<<
  *         PyObject_Free(self._shape)
- *
+ * 
  */
     free(__pyx_v_self->data);
 
@@ -4903,14 +4903,14 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
  *                 refcount_objects_in_slice(self.data, self._shape, self._strides, self.ndim, inc=False)
  *             free(self.data)
  *         PyObject_Free(self._shape)             # <<<<<<<<<<<<<<
- *
+ * 
  *     @property
  */
   PyObject_Free(__pyx_v_self->_shape);
 
   /* "View.MemoryView":210
  *         info.obj = self
- *
+ * 
  *     def __dealloc__(array self):             # <<<<<<<<<<<<<<
  *         if self.callback_free_data != NULL:
  *             self.callback_free_data(self.data)
@@ -4921,7 +4921,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
 
 /* "View.MemoryView":219
  *         PyObject_Free(self._shape)
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def memview(self):
  *         return self.get_memview()
@@ -4955,7 +4955,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_5array_7memview___get__(struct _
  *     @property
  *     def memview(self):
  *         return self.get_memview()             # <<<<<<<<<<<<<<
- *
+ * 
  *     @cname('get_memview')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -4967,7 +4967,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_5array_7memview___get__(struct _
 
   /* "View.MemoryView":219
  *         PyObject_Free(self._shape)
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def memview(self):
  *         return self.get_memview()
@@ -4985,7 +4985,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_5array_7memview___get__(struct _
 }
 
 /* "View.MemoryView":224
- *
+ * 
  *     @cname('get_memview')
  *     cdef get_memview(self):             # <<<<<<<<<<<<<<
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE
@@ -5009,7 +5009,7 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
  *     cdef get_memview(self):
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE             # <<<<<<<<<<<<<<
  *         return  memoryview(self, flags, self.dtype_is_object)
- *
+ * 
  */
   __pyx_v_flags = ((PyBUF_ANY_CONTIGUOUS | PyBUF_FORMAT) | PyBUF_WRITABLE);
 
@@ -5017,7 +5017,7 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
  *     cdef get_memview(self):
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE
  *         return  memoryview(self, flags, self.dtype_is_object)             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -5044,7 +5044,7 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
   goto __pyx_L0;
 
   /* "View.MemoryView":224
- *
+ * 
  *     @cname('get_memview')
  *     cdef get_memview(self):             # <<<<<<<<<<<<<<
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE
@@ -5066,10 +5066,10 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
 
 /* "View.MemoryView":228
  *         return  memoryview(self, flags, self.dtype_is_object)
- *
+ * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         return self._shape[0]
- *
+ * 
  */
 
 /* Python wrapper */
@@ -5091,10 +5091,10 @@ static Py_ssize_t __pyx_array___pyx_pf_15View_dot_MemoryView_5array_6__len__(str
   Py_ssize_t __pyx_r;
 
   /* "View.MemoryView":229
- *
+ * 
  *     def __len__(self):
  *         return self._shape[0]             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __getattr__(self, attr):
  */
   __pyx_r = (__pyx_v_self->_shape[0]);
@@ -5102,10 +5102,10 @@ static Py_ssize_t __pyx_array___pyx_pf_15View_dot_MemoryView_5array_6__len__(str
 
   /* "View.MemoryView":228
  *         return  memoryview(self, flags, self.dtype_is_object)
- *
+ * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         return self._shape[0]
- *
+ * 
  */
 
   /* function exit code */
@@ -5115,10 +5115,10 @@ static Py_ssize_t __pyx_array___pyx_pf_15View_dot_MemoryView_5array_6__len__(str
 
 /* "View.MemoryView":231
  *         return self._shape[0]
- *
+ * 
  *     def __getattr__(self, attr):             # <<<<<<<<<<<<<<
  *         return getattr(self.memview, attr)
- *
+ * 
  */
 
 /* Python wrapper */
@@ -5147,10 +5147,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_8__getattr__(
   __Pyx_RefNannySetupContext("__getattr__", 1);
 
   /* "View.MemoryView":232
- *
+ * 
  *     def __getattr__(self, attr):
  *         return getattr(self.memview, attr)             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __getitem__(self, item):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -5165,10 +5165,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_8__getattr__(
 
   /* "View.MemoryView":231
  *         return self._shape[0]
- *
+ * 
  *     def __getattr__(self, attr):             # <<<<<<<<<<<<<<
  *         return getattr(self.memview, attr)
- *
+ * 
  */
 
   /* function exit code */
@@ -5185,10 +5185,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_8__getattr__(
 
 /* "View.MemoryView":234
  *         return getattr(self.memview, attr)
- *
+ * 
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         return self.memview[item]
- *
+ * 
  */
 
 /* Python wrapper */
@@ -5217,10 +5217,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_10__getitem__
   __Pyx_RefNannySetupContext("__getitem__", 1);
 
   /* "View.MemoryView":235
- *
+ * 
  *     def __getitem__(self, item):
  *         return self.memview[item]             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __setitem__(self, item, value):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -5235,10 +5235,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_10__getitem__
 
   /* "View.MemoryView":234
  *         return getattr(self.memview, attr)
- *
+ * 
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         return self.memview[item]
- *
+ * 
  */
 
   /* function exit code */
@@ -5255,10 +5255,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_10__getitem__
 
 /* "View.MemoryView":237
  *         return self.memview[item]
- *
+ * 
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
  *         self.memview[item] = value
- *
+ * 
  */
 
 /* Python wrapper */
@@ -5286,11 +5286,11 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_12__setitem__(struc
   __Pyx_RefNannySetupContext("__setitem__", 1);
 
   /* "View.MemoryView":238
- *
+ * 
  *     def __setitem__(self, item, value):
  *         self.memview[item] = value             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_memview); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -5299,10 +5299,10 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_12__setitem__(struc
 
   /* "View.MemoryView":237
  *         return self.memview[item]
- *
+ * 
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
  *         self.memview[item] = value
- *
+ * 
  */
 
   /* function exit code */
@@ -5324,14 +5324,14 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_12__setitem__(struc
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw___pyx_array_1__reduce_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_array_1__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_pw___pyx_array_1__reduce_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_array_1__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5403,14 +5403,14 @@ static PyObject *__pyx_pf___pyx_array___reduce_cython__(CYTHON_UNUSED struct __p
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw___pyx_array_3__setstate_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_array_3__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_pw___pyx_array_3__setstate_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_array_3__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5530,11 +5530,11 @@ static PyObject *__pyx_pf___pyx_array_2__setstate_cython__(CYTHON_UNUSED struct 
 }
 
 /* "View.MemoryView":248
- *
+ * 
  * @cname("__pyx_array_allocate_buffer")
  * cdef int _allocate_buffer(array self) except -1:             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
 
 static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
@@ -5551,7 +5551,7 @@ static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
 
   /* "View.MemoryView":254
  *     cdef PyObject **p
- *
+ * 
  *     self.free_data = True             # <<<<<<<<<<<<<<
  *     self.data = <char *>malloc(self.len)
  *     if not self.data:
@@ -5559,7 +5559,7 @@ static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
   __pyx_v_self->free_data = 1;
 
   /* "View.MemoryView":255
- *
+ * 
  *     self.free_data = True
  *     self.data = <char *>malloc(self.len)             # <<<<<<<<<<<<<<
  *     if not self.data:
@@ -5572,7 +5572,7 @@ static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
  *     self.data = <char *>malloc(self.len)
  *     if not self.data:             # <<<<<<<<<<<<<<
  *         raise MemoryError, "unable to allocate array data."
- *
+ * 
  */
   __pyx_t_1 = (!(__pyx_v_self->data != 0));
   if (unlikely(__pyx_t_1)) {
@@ -5581,7 +5581,7 @@ static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
  *     self.data = <char *>malloc(self.len)
  *     if not self.data:
  *         raise MemoryError, "unable to allocate array data."             # <<<<<<<<<<<<<<
- *
+ * 
  *     if self.dtype_is_object:
  */
     __Pyx_Raise(__pyx_builtin_MemoryError, __pyx_kp_s_unable_to_allocate_array_data, 0, 0);
@@ -5592,13 +5592,13 @@ static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
  *     self.data = <char *>malloc(self.len)
  *     if not self.data:             # <<<<<<<<<<<<<<
  *         raise MemoryError, "unable to allocate array data."
- *
+ * 
  */
   }
 
   /* "View.MemoryView":259
  *         raise MemoryError, "unable to allocate array data."
- *
+ * 
  *     if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *         p = <PyObject **> self.data
  *         for i in range(self.len // self.itemsize):
@@ -5606,7 +5606,7 @@ static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
   if (__pyx_v_self->dtype_is_object) {
 
     /* "View.MemoryView":260
- *
+ * 
  *     if self.dtype_is_object:
  *         p = <PyObject **> self.data             # <<<<<<<<<<<<<<
  *         for i in range(self.len // self.itemsize):
@@ -5648,14 +5648,14 @@ static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
  *             p[i] = Py_None
  *             Py_INCREF(Py_None)             # <<<<<<<<<<<<<<
  *     return 0
- *
+ * 
  */
       Py_INCREF(Py_None);
     }
 
     /* "View.MemoryView":259
  *         raise MemoryError, "unable to allocate array data."
- *
+ * 
  *     if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *         p = <PyObject **> self.data
  *         for i in range(self.len // self.itemsize):
@@ -5666,18 +5666,18 @@ static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
  *             p[i] = Py_None
  *             Py_INCREF(Py_None)
  *     return 0             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "View.MemoryView":248
- *
+ * 
  * @cname("__pyx_array_allocate_buffer")
  * cdef int _allocate_buffer(array self) except -1:             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
 
   /* function exit code */
@@ -5689,7 +5689,7 @@ static int __pyx_array_allocate_buffer(struct __pyx_array_obj *__pyx_v_self) {
 }
 
 /* "View.MemoryView":268
- *
+ * 
  * @cname("__pyx_array_new")
  * cdef array array_cwrapper(tuple shape, Py_ssize_t itemsize, char *format, char *c_mode, char *buf):             # <<<<<<<<<<<<<<
  *     cdef array result
@@ -5714,7 +5714,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
  * cdef array array_cwrapper(tuple shape, Py_ssize_t itemsize, char *format, char *c_mode, char *buf):
  *     cdef array result
  *     cdef str mode = "fortran" if c_mode[0] == b'f' else "c"  # this often comes from a constant C string.             # <<<<<<<<<<<<<<
- *
+ * 
  *     if buf is NULL:
  */
   __pyx_t_2 = ((__pyx_v_c_mode[0]) == 'f');
@@ -5730,7 +5730,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
 
   /* "View.MemoryView":272
  *     cdef str mode = "fortran" if c_mode[0] == b'f' else "c"  # this often comes from a constant C string.
- *
+ * 
  *     if buf is NULL:             # <<<<<<<<<<<<<<
  *         result = array.__new__(array, shape, itemsize, format, mode)
  *     else:
@@ -5739,7 +5739,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
   if (__pyx_t_2) {
 
     /* "View.MemoryView":273
- *
+ * 
  *     if buf is NULL:
  *         result = array.__new__(array, shape, itemsize, format, mode)             # <<<<<<<<<<<<<<
  *     else:
@@ -5771,7 +5771,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
 
     /* "View.MemoryView":272
  *     cdef str mode = "fortran" if c_mode[0] == b'f' else "c"  # this often comes from a constant C string.
- *
+ * 
  *     if buf is NULL:             # <<<<<<<<<<<<<<
  *         result = array.__new__(array, shape, itemsize, format, mode)
  *     else:
@@ -5784,7 +5784,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
  *     else:
  *         result = array.__new__(array, shape, itemsize, format, mode, allocate_buffer=False)             # <<<<<<<<<<<<<<
  *         result.data = buf
- *
+ * 
  */
   /*else*/ {
     __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_itemsize); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 275, __pyx_L1_error)
@@ -5819,7 +5819,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
  *     else:
  *         result = array.__new__(array, shape, itemsize, format, mode, allocate_buffer=False)
  *         result.data = buf             # <<<<<<<<<<<<<<
- *
+ * 
  *     return result
  */
     __pyx_v_result->data = __pyx_v_buf;
@@ -5828,10 +5828,10 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
 
   /* "View.MemoryView":278
  *         result.data = buf
- *
+ * 
  *     return result             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_result);
@@ -5839,7 +5839,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
   goto __pyx_L0;
 
   /* "View.MemoryView":268
- *
+ * 
  * @cname("__pyx_array_new")
  * cdef array array_cwrapper(tuple shape, Py_ssize_t itemsize, char *format, char *c_mode, char *buf):             # <<<<<<<<<<<<<<
  *     cdef array result
@@ -5985,7 +5985,7 @@ static int __pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum___init__(struc
  *         self.name = name
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return self.name
- *
+ * 
  */
 
 /* Python wrapper */
@@ -6012,7 +6012,7 @@ static PyObject *__pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum_2__repr_
  *         self.name = name
  *     def __repr__(self):
  *         return self.name             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef generic = Enum("<strided and direct or indirect>")
  */
   __Pyx_XDECREF(__pyx_r);
@@ -6025,7 +6025,7 @@ static PyObject *__pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum_2__repr_
  *         self.name = name
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return self.name
- *
+ * 
  */
 
   /* function exit code */
@@ -6042,14 +6042,14 @@ static PyObject *__pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum_2__repr_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw___pyx_MemviewEnum_1__reduce_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_MemviewEnum_1__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_pw___pyx_MemviewEnum_1__reduce_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_MemviewEnum_1__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6301,14 +6301,14 @@ static PyObject *__pyx_pf___pyx_MemviewEnum___reduce_cython__(struct __pyx_Memvi
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw___pyx_MemviewEnum_3__setstate_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_MemviewEnum_3__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_pw___pyx_MemviewEnum_3__setstate_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_MemviewEnum_3__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6436,7 +6436,7 @@ static PyObject *__pyx_pf___pyx_MemviewEnum_2__setstate_cython__(struct __pyx_Me
 
 /* "View.MemoryView":349
  *     cdef __Pyx_TypeInfo *typeinfo
- *
+ * 
  *     def __cinit__(memoryview self, object obj, int flags, bint dtype_is_object=False):             # <<<<<<<<<<<<<<
  *         self.obj = obj
  *         self.flags = flags
@@ -6569,7 +6569,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
   __Pyx_RefNannySetupContext("__cinit__", 1);
 
   /* "View.MemoryView":350
- *
+ * 
  *     def __cinit__(memoryview self, object obj, int flags, bint dtype_is_object=False):
  *         self.obj = obj             # <<<<<<<<<<<<<<
  *         self.flags = flags
@@ -6632,7 +6632,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *             if <PyObject *> self.view.obj == NULL:
  *                 (<__pyx_buffer *> &self.view).obj = Py_None             # <<<<<<<<<<<<<<
  *                 Py_INCREF(Py_None)
- *
+ * 
  */
       ((Py_buffer *)(&__pyx_v_self->view))->obj = Py_None;
 
@@ -6640,7 +6640,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *             if <PyObject *> self.view.obj == NULL:
  *                 (<__pyx_buffer *> &self.view).obj = Py_None
  *                 Py_INCREF(Py_None)             # <<<<<<<<<<<<<<
- *
+ * 
  *         if not __PYX_CYTHON_ATOMICS_ENABLED():
  */
       Py_INCREF(Py_None);
@@ -6665,7 +6665,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
   /* "View.MemoryView":358
  *                 Py_INCREF(Py_None)
- *
+ * 
  *         if not __PYX_CYTHON_ATOMICS_ENABLED():             # <<<<<<<<<<<<<<
  *             global __pyx_memoryview_thread_locks_used
  *             if __pyx_memoryview_thread_locks_used < 8:
@@ -6734,7 +6734,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *                 self.lock = PyThread_allocate_lock()
  *                 if self.lock is NULL:             # <<<<<<<<<<<<<<
  *                     raise MemoryError
- *
+ * 
  */
       __pyx_t_1 = (__pyx_v_self->lock == NULL);
       if (unlikely(__pyx_t_1)) {
@@ -6743,7 +6743,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *                 self.lock = PyThread_allocate_lock()
  *                 if self.lock is NULL:
  *                     raise MemoryError             # <<<<<<<<<<<<<<
- *
+ * 
  *         if flags & PyBUF_FORMAT:
  */
         PyErr_NoMemory(); __PYX_ERR(1, 366, __pyx_L1_error)
@@ -6753,7 +6753,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *                 self.lock = PyThread_allocate_lock()
  *                 if self.lock is NULL:             # <<<<<<<<<<<<<<
  *                     raise MemoryError
- *
+ * 
  */
       }
 
@@ -6768,7 +6768,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
     /* "View.MemoryView":358
  *                 Py_INCREF(Py_None)
- *
+ * 
  *         if not __PYX_CYTHON_ATOMICS_ENABLED():             # <<<<<<<<<<<<<<
  *             global __pyx_memoryview_thread_locks_used
  *             if __pyx_memoryview_thread_locks_used < 8:
@@ -6777,7 +6777,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
   /* "View.MemoryView":368
  *                     raise MemoryError
- *
+ * 
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')
  *         else:
@@ -6786,7 +6786,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
   if (__pyx_t_1) {
 
     /* "View.MemoryView":369
- *
+ * 
  *         if flags & PyBUF_FORMAT:
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')             # <<<<<<<<<<<<<<
  *         else:
@@ -6805,7 +6805,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
     /* "View.MemoryView":368
  *                     raise MemoryError
- *
+ * 
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')
  *         else:
@@ -6817,7 +6817,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')
  *         else:
  *             self.dtype_is_object = dtype_is_object             # <<<<<<<<<<<<<<
- *
+ * 
  *         assert <Py_intptr_t><void*>(&self.acquisition_count) % sizeof(__pyx_atomic_int_type) == 0
  */
   /*else*/ {
@@ -6827,10 +6827,10 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
   /* "View.MemoryView":373
  *             self.dtype_is_object = dtype_is_object
- *
+ * 
  *         assert <Py_intptr_t><void*>(&self.acquisition_count) % sizeof(__pyx_atomic_int_type) == 0             # <<<<<<<<<<<<<<
  *         self.typeinfo = NULL
- *
+ * 
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(__pyx_assertions_enabled())) {
@@ -6851,17 +6851,17 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
   #endif
 
   /* "View.MemoryView":374
- *
+ * 
  *         assert <Py_intptr_t><void*>(&self.acquisition_count) % sizeof(__pyx_atomic_int_type) == 0
  *         self.typeinfo = NULL             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __dealloc__(memoryview self):
  */
   __pyx_v_self->typeinfo = NULL;
 
   /* "View.MemoryView":349
  *     cdef __Pyx_TypeInfo *typeinfo
- *
+ * 
  *     def __cinit__(memoryview self, object obj, int flags, bint dtype_is_object=False):             # <<<<<<<<<<<<<<
  *         self.obj = obj
  *         self.flags = flags
@@ -6880,7 +6880,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
 /* "View.MemoryView":376
  *         self.typeinfo = NULL
- *
+ * 
  *     def __dealloc__(memoryview self):             # <<<<<<<<<<<<<<
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -6909,7 +6909,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
   PyThread_type_lock __pyx_t_6;
 
   /* "View.MemoryView":377
- *
+ * 
  *     def __dealloc__(memoryview self):
  *         if self.obj is not None:             # <<<<<<<<<<<<<<
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -6923,12 +6923,12 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)             # <<<<<<<<<<<<<<
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:
- *
+ * 
  */
     __Pyx_ReleaseBuffer((&__pyx_v_self->view));
 
     /* "View.MemoryView":377
- *
+ * 
  *     def __dealloc__(memoryview self):
  *         if self.obj is not None:             # <<<<<<<<<<<<<<
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -6941,7 +6941,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:             # <<<<<<<<<<<<<<
- *
+ * 
  *             (<__pyx_buffer *> &self.view).obj = NULL
  */
   __pyx_t_1 = (((Py_buffer *)(&__pyx_v_self->view))->obj == Py_None);
@@ -6949,18 +6949,18 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
 
     /* "View.MemoryView":381
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:
- *
+ * 
  *             (<__pyx_buffer *> &self.view).obj = NULL             # <<<<<<<<<<<<<<
  *             Py_DECREF(Py_None)
- *
+ * 
  */
     ((Py_buffer *)(&__pyx_v_self->view))->obj = NULL;
 
     /* "View.MemoryView":382
- *
+ * 
  *             (<__pyx_buffer *> &self.view).obj = NULL
  *             Py_DECREF(Py_None)             # <<<<<<<<<<<<<<
- *
+ * 
  *         cdef int i
  */
     Py_DECREF(Py_None);
@@ -6969,7 +6969,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:             # <<<<<<<<<<<<<<
- *
+ * 
  *             (<__pyx_buffer *> &self.view).obj = NULL
  */
   }
@@ -7079,7 +7079,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *                     break
  *             else:
  *                 PyThread_free_lock(self.lock)             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:
  */
       PyThread_free_lock(__pyx_v_self->lock);
@@ -7097,7 +7097,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
 
   /* "View.MemoryView":376
  *         self.typeinfo = NULL
- *
+ * 
  *     def __dealloc__(memoryview self):             # <<<<<<<<<<<<<<
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -7108,7 +7108,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
 
 /* "View.MemoryView":397
  *                 PyThread_free_lock(self.lock)
- *
+ * 
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:             # <<<<<<<<<<<<<<
  *         cdef Py_ssize_t dim
  *         cdef char *itemp = <char *> self.view.buf
@@ -7136,17 +7136,17 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:
  *         cdef Py_ssize_t dim
  *         cdef char *itemp = <char *> self.view.buf             # <<<<<<<<<<<<<<
- *
+ * 
  *         for dim, idx in enumerate(index):
  */
   __pyx_v_itemp = ((char *)__pyx_v_self->view.buf);
 
   /* "View.MemoryView":401
  *         cdef char *itemp = <char *> self.view.buf
- *
+ * 
  *         for dim, idx in enumerate(index):             # <<<<<<<<<<<<<<
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)
- *
+ * 
  */
   __pyx_t_1 = 0;
   if (likely(PyList_CheckExact(__pyx_v_index)) || PyTuple_CheckExact(__pyx_v_index)) {
@@ -7207,10 +7207,10 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
     __pyx_t_1 = (__pyx_t_1 + 1);
 
     /* "View.MemoryView":402
- *
+ * 
  *         for dim, idx in enumerate(index):
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)             # <<<<<<<<<<<<<<
- *
+ * 
  *         return itemp
  */
     __pyx_t_6 = __Pyx_PyIndex_AsSsize_t(__pyx_v_idx); if (unlikely((__pyx_t_6 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 402, __pyx_L1_error)
@@ -7219,27 +7219,27 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
 
     /* "View.MemoryView":401
  *         cdef char *itemp = <char *> self.view.buf
- *
+ * 
  *         for dim, idx in enumerate(index):             # <<<<<<<<<<<<<<
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)
- *
+ * 
  */
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "View.MemoryView":404
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)
- *
+ * 
  *         return itemp             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = __pyx_v_itemp;
   goto __pyx_L0;
 
   /* "View.MemoryView":397
  *                 PyThread_free_lock(self.lock)
- *
+ * 
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:             # <<<<<<<<<<<<<<
  *         cdef Py_ssize_t dim
  *         cdef char *itemp = <char *> self.view.buf
@@ -7258,8 +7258,8 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
 }
 
 /* "View.MemoryView":407
- *
- *
+ * 
+ * 
  *     def __getitem__(memoryview self, object index):             # <<<<<<<<<<<<<<
  *         if index is Ellipsis:
  *             return self
@@ -7297,11 +7297,11 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
   __Pyx_RefNannySetupContext("__getitem__", 1);
 
   /* "View.MemoryView":408
- *
+ * 
  *     def __getitem__(memoryview self, object index):
  *         if index is Ellipsis:             # <<<<<<<<<<<<<<
  *             return self
- *
+ * 
  */
   __pyx_t_1 = (__pyx_v_index == __pyx_builtin_Ellipsis);
   if (__pyx_t_1) {
@@ -7310,7 +7310,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
  *     def __getitem__(memoryview self, object index):
  *         if index is Ellipsis:
  *             return self             # <<<<<<<<<<<<<<
- *
+ * 
  *         have_slices, indices = _unellipsify(index, self.view.ndim)
  */
     __Pyx_XDECREF(__pyx_r);
@@ -7319,19 +7319,19 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
     goto __pyx_L0;
 
     /* "View.MemoryView":408
- *
+ * 
  *     def __getitem__(memoryview self, object index):
  *         if index is Ellipsis:             # <<<<<<<<<<<<<<
  *             return self
- *
+ * 
  */
   }
 
   /* "View.MemoryView":411
  *             return self
- *
+ * 
  *         have_slices, indices = _unellipsify(index, self.view.ndim)             # <<<<<<<<<<<<<<
- *
+ * 
  *         cdef char *itemp
  */
   __pyx_t_2 = _unellipsify(__pyx_v_index, __pyx_v_self->view.ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 411, __pyx_L1_error)
@@ -7345,8 +7345,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
       __PYX_ERR(1, 411, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0);
-    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1);
+    __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
+    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1); 
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_4);
     #else
@@ -7365,7 +7365,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
   __pyx_t_4 = 0;
 
   /* "View.MemoryView":414
- *
+ * 
  *         cdef char *itemp
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             return memview_slice(self, indices)
@@ -7389,7 +7389,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
     goto __pyx_L0;
 
     /* "View.MemoryView":414
- *
+ * 
  *         cdef char *itemp
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             return memview_slice(self, indices)
@@ -7402,7 +7402,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
  *         else:
  *             itemp = self.get_item_pointer(indices)             # <<<<<<<<<<<<<<
  *             return self.convert_item_to_object(itemp)
- *
+ * 
  */
   /*else*/ {
     __pyx_t_5 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->get_item_pointer(__pyx_v_self, __pyx_v_indices); if (unlikely(__pyx_t_5 == ((char *)NULL))) __PYX_ERR(1, 417, __pyx_L1_error)
@@ -7412,7 +7412,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
  *         else:
  *             itemp = self.get_item_pointer(indices)
  *             return self.convert_item_to_object(itemp)             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __setitem__(memoryview self, object index, object value):
  */
     __Pyx_XDECREF(__pyx_r);
@@ -7424,8 +7424,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
   }
 
   /* "View.MemoryView":407
- *
- *
+ * 
+ * 
  *     def __getitem__(memoryview self, object index):             # <<<<<<<<<<<<<<
  *         if index is Ellipsis:
  *             return self
@@ -7448,7 +7448,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
 
 /* "View.MemoryView":420
  *             return self.convert_item_to_object(itemp)
- *
+ * 
  *     def __setitem__(memoryview self, object index, object value):             # <<<<<<<<<<<<<<
  *         if self.view.readonly:
  *             raise TypeError, "Cannot assign to read-only memoryview"
@@ -7485,11 +7485,11 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
   __Pyx_INCREF(__pyx_v_index);
 
   /* "View.MemoryView":421
- *
+ * 
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise TypeError, "Cannot assign to read-only memoryview"
- *
+ * 
  */
   if (unlikely(__pyx_v_self->view.readonly)) {
 
@@ -7497,26 +7497,26 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:
  *             raise TypeError, "Cannot assign to read-only memoryview"             # <<<<<<<<<<<<<<
- *
+ * 
  *         have_slices, index = _unellipsify(index, self.view.ndim)
  */
     __Pyx_Raise(__pyx_builtin_TypeError, __pyx_kp_s_Cannot_assign_to_read_only_memor, 0, 0);
     __PYX_ERR(1, 422, __pyx_L1_error)
 
     /* "View.MemoryView":421
- *
+ * 
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise TypeError, "Cannot assign to read-only memoryview"
- *
+ * 
  */
   }
 
   /* "View.MemoryView":424
  *             raise TypeError, "Cannot assign to read-only memoryview"
- *
+ * 
  *         have_slices, index = _unellipsify(index, self.view.ndim)             # <<<<<<<<<<<<<<
- *
+ * 
  *         if have_slices:
  */
   __pyx_t_1 = _unellipsify(__pyx_v_index, __pyx_v_self->view.ndim); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 424, __pyx_L1_error)
@@ -7530,8 +7530,8 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
       __PYX_ERR(1, 424, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0);
-    __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1);
+    __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0); 
+    __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_t_3);
     #else
@@ -7551,7 +7551,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
   /* "View.MemoryView":426
  *         have_slices, index = _unellipsify(index, self.view.ndim)
- *
+ * 
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             obj = self.is_slice(value)
  *             if obj:
@@ -7560,7 +7560,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
   if (__pyx_t_4) {
 
     /* "View.MemoryView":427
- *
+ * 
  *         if have_slices:
  *             obj = self.is_slice(value)             # <<<<<<<<<<<<<<
  *             if obj:
@@ -7625,7 +7625,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
     /* "View.MemoryView":426
  *         have_slices, index = _unellipsify(index, self.view.ndim)
- *
+ * 
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             obj = self.is_slice(value)
  *             if obj:
@@ -7637,7 +7637,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
  *                 self.setitem_slice_assign_scalar(self[index], value)
  *         else:
  *             self.setitem_indexed(index, value)             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef is_slice(self, obj):
  */
   /*else*/ {
@@ -7649,7 +7649,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
   /* "View.MemoryView":420
  *             return self.convert_item_to_object(itemp)
- *
+ * 
  *     def __setitem__(memoryview self, object index, object value):             # <<<<<<<<<<<<<<
  *         if self.view.readonly:
  *             raise TypeError, "Cannot assign to read-only memoryview"
@@ -7674,7 +7674,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
 /* "View.MemoryView":435
  *             self.setitem_indexed(index, value)
- *
+ * 
  *     cdef is_slice(self, obj):             # <<<<<<<<<<<<<<
  *         if not isinstance(obj, memoryview):
  *             try:
@@ -7699,13 +7699,13 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
   __Pyx_INCREF(__pyx_v_obj);
 
   /* "View.MemoryView":436
- *
+ * 
  *     cdef is_slice(self, obj):
  *         if not isinstance(obj, memoryview):             # <<<<<<<<<<<<<<
  *             try:
  *                 obj = memoryview(obj, self.flags & ~PyBUF_WRITABLE | PyBUF_ANY_CONTIGUOUS,
  */
-  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_obj, __pyx_memoryview_type);
+  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_obj, __pyx_memoryview_type); 
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
@@ -7791,7 +7791,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
  *                                  self.dtype_is_object)
  *             except TypeError:             # <<<<<<<<<<<<<<
  *                 return None
- *
+ * 
  */
       __pyx_t_9 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError);
       if (__pyx_t_9) {
@@ -7805,7 +7805,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
  *                                  self.dtype_is_object)
  *             except TypeError:
  *                 return None             # <<<<<<<<<<<<<<
- *
+ * 
  *         return obj
  */
         __Pyx_XDECREF(__pyx_r);
@@ -7840,7 +7840,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
     }
 
     /* "View.MemoryView":436
- *
+ * 
  *     cdef is_slice(self, obj):
  *         if not isinstance(obj, memoryview):             # <<<<<<<<<<<<<<
  *             try:
@@ -7850,9 +7850,9 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
 
   /* "View.MemoryView":443
  *                 return None
- *
+ * 
  *         return obj             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef setitem_slice_assignment(self, dst, src):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -7862,7 +7862,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
 
   /* "View.MemoryView":435
  *             self.setitem_indexed(index, value)
- *
+ * 
  *     cdef is_slice(self, obj):             # <<<<<<<<<<<<<<
  *         if not isinstance(obj, memoryview):
  *             try:
@@ -7884,7 +7884,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
 
 /* "View.MemoryView":445
  *         return obj
- *
+ * 
  *     cdef setitem_slice_assignment(self, dst, src):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice dst_slice
  *         cdef __Pyx_memviewslice src_slice
@@ -7912,7 +7912,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
  *         cdef __Pyx_memviewslice src_slice
  *         cdef __Pyx_memviewslice msrc = get_slice_from_memview(src, &src_slice)[0]             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice mdst = get_slice_from_memview(dst, &dst_slice)[0]
- *
+ * 
  */
   if (!(likely(((__pyx_v_src) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_src, __pyx_memoryview_type))))) __PYX_ERR(1, 448, __pyx_L1_error)
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(((struct __pyx_memoryview_obj *)__pyx_v_src), (&__pyx_v_src_slice)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(1, 448, __pyx_L1_error)
@@ -7922,7 +7922,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
  *         cdef __Pyx_memviewslice src_slice
  *         cdef __Pyx_memviewslice msrc = get_slice_from_memview(src, &src_slice)[0]
  *         cdef __Pyx_memviewslice mdst = get_slice_from_memview(dst, &dst_slice)[0]             # <<<<<<<<<<<<<<
- *
+ * 
  *         memoryview_copy_contents(msrc, mdst, src.ndim, dst.ndim, self.dtype_is_object)
  */
   if (!(likely(((__pyx_v_dst) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_dst, __pyx_memoryview_type))))) __PYX_ERR(1, 449, __pyx_L1_error)
@@ -7931,9 +7931,9 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
   /* "View.MemoryView":451
  *         cdef __Pyx_memviewslice mdst = get_slice_from_memview(dst, &dst_slice)[0]
- *
+ * 
  *         memoryview_copy_contents(msrc, mdst, src.ndim, dst.ndim, self.dtype_is_object)             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef setitem_slice_assign_scalar(self, memoryview dst, value):
  */
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_src, __pyx_n_s_ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 451, __pyx_L1_error)
@@ -7948,7 +7948,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
   /* "View.MemoryView":445
  *         return obj
- *
+ * 
  *     cdef setitem_slice_assignment(self, dst, src):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice dst_slice
  *         cdef __Pyx_memviewslice src_slice
@@ -7969,7 +7969,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
 /* "View.MemoryView":453
  *         memoryview_copy_contents(msrc, mdst, src.ndim, dst.ndim, self.dtype_is_object)
- *
+ * 
  *     cdef setitem_slice_assign_scalar(self, memoryview dst, value):             # <<<<<<<<<<<<<<
  *         cdef int array[128]
  *         cdef void *tmp = NULL
@@ -8005,7 +8005,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *         cdef int array[128]
  *         cdef void *tmp = NULL             # <<<<<<<<<<<<<<
  *         cdef void *item
- *
+ * 
  */
   __pyx_v_tmp = NULL;
 
@@ -8013,7 +8013,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *         cdef __Pyx_memviewslice *dst_slice
  *         cdef __Pyx_memviewslice tmp_slice
  *         dst_slice = get_slice_from_memview(dst, &tmp_slice)             # <<<<<<<<<<<<<<
- *
+ * 
  *         if <size_t>self.view.itemsize > sizeof(array):
  */
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(__pyx_v_dst, (&__pyx_v_tmp_slice)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(1, 460, __pyx_L1_error)
@@ -8021,7 +8021,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
   /* "View.MemoryView":462
  *         dst_slice = get_slice_from_memview(dst, &tmp_slice)
- *
+ * 
  *         if <size_t>self.view.itemsize > sizeof(array):             # <<<<<<<<<<<<<<
  *             tmp = PyMem_Malloc(self.view.itemsize)
  *             if tmp == NULL:
@@ -8030,7 +8030,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
   if (__pyx_t_2) {
 
     /* "View.MemoryView":463
- *
+ * 
  *         if <size_t>self.view.itemsize > sizeof(array):
  *             tmp = PyMem_Malloc(self.view.itemsize)             # <<<<<<<<<<<<<<
  *             if tmp == NULL:
@@ -8077,7 +8077,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
     /* "View.MemoryView":462
  *         dst_slice = get_slice_from_memview(dst, &tmp_slice)
- *
+ * 
  *         if <size_t>self.view.itemsize > sizeof(array):             # <<<<<<<<<<<<<<
  *             tmp = PyMem_Malloc(self.view.itemsize)
  *             if tmp == NULL:
@@ -8089,7 +8089,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *             item = tmp
  *         else:
  *             item = <void *> array             # <<<<<<<<<<<<<<
- *
+ * 
  *         try:
  */
   /*else*/ {
@@ -8099,7 +8099,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
   /* "View.MemoryView":470
  *             item = <void *> array
- *
+ * 
  *         try:             # <<<<<<<<<<<<<<
  *             if self.dtype_is_object:
  *                 (<PyObject **> item)[0] = <PyObject *> value
@@ -8107,7 +8107,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
   /*try:*/ {
 
     /* "View.MemoryView":471
- *
+ * 
  *         try:
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 (<PyObject **> item)[0] = <PyObject *> value
@@ -8125,7 +8125,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
       (((PyObject **)__pyx_v_item)[0]) = ((PyObject *)__pyx_v_value);
 
       /* "View.MemoryView":471
- *
+ * 
  *         try:
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 (<PyObject **> item)[0] = <PyObject *> value
@@ -8138,8 +8138,8 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *                 (<PyObject **> item)[0] = <PyObject *> value
  *             else:
  *                 self.assign_item_from_object(<char *> item, value)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
     /*else*/ {
       __pyx_t_3 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->assign_item_from_object(__pyx_v_self, ((char *)__pyx_v_item), __pyx_v_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 474, __pyx_L6_error)
@@ -8149,8 +8149,8 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
     __pyx_L8:;
 
     /* "View.MemoryView":478
- *
- *
+ * 
+ * 
  *             if self.view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *                 assert_direct_dimensions(self.view.suboffsets, self.view.ndim)
  *             slice_assign_scalar(dst_slice, dst.view.ndim, self.view.itemsize,
@@ -8159,7 +8159,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
     if (__pyx_t_2) {
 
       /* "View.MemoryView":479
- *
+ * 
  *             if self.view.suboffsets != NULL:
  *                 assert_direct_dimensions(self.view.suboffsets, self.view.ndim)             # <<<<<<<<<<<<<<
  *             slice_assign_scalar(dst_slice, dst.view.ndim, self.view.itemsize,
@@ -8168,8 +8168,8 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
       __pyx_t_4 = assert_direct_dimensions(__pyx_v_self->view.suboffsets, __pyx_v_self->view.ndim); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 479, __pyx_L6_error)
 
       /* "View.MemoryView":478
- *
- *
+ * 
+ * 
  *             if self.view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *                 assert_direct_dimensions(self.view.suboffsets, self.view.ndim)
  *             slice_assign_scalar(dst_slice, dst.view.ndim, self.view.itemsize,
@@ -8190,7 +8190,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *                                 item, self.dtype_is_object)
  *         finally:
  *             PyMem_Free(tmp)             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef setitem_indexed(self, index, value):
  */
   /*finally:*/ {
@@ -8235,7 +8235,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
   /* "View.MemoryView":453
  *         memoryview_copy_contents(msrc, mdst, src.ndim, dst.ndim, self.dtype_is_object)
- *
+ * 
  *     cdef setitem_slice_assign_scalar(self, memoryview dst, value):             # <<<<<<<<<<<<<<
  *         cdef int array[128]
  *         cdef void *tmp = NULL
@@ -8256,7 +8256,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
 /* "View.MemoryView":485
  *             PyMem_Free(tmp)
- *
+ * 
  *     cdef setitem_indexed(self, index, value):             # <<<<<<<<<<<<<<
  *         cdef char *itemp = self.get_item_pointer(index)
  *         self.assign_item_from_object(itemp, value)
@@ -8274,11 +8274,11 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
   __Pyx_RefNannySetupContext("setitem_indexed", 1);
 
   /* "View.MemoryView":486
- *
+ * 
  *     cdef setitem_indexed(self, index, value):
  *         cdef char *itemp = self.get_item_pointer(index)             # <<<<<<<<<<<<<<
  *         self.assign_item_from_object(itemp, value)
- *
+ * 
  */
   __pyx_t_1 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->get_item_pointer(__pyx_v_self, __pyx_v_index); if (unlikely(__pyx_t_1 == ((char *)NULL))) __PYX_ERR(1, 486, __pyx_L1_error)
   __pyx_v_itemp = __pyx_t_1;
@@ -8287,7 +8287,7 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
  *     cdef setitem_indexed(self, index, value):
  *         cdef char *itemp = self.get_item_pointer(index)
  *         self.assign_item_from_object(itemp, value)             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef convert_item_to_object(self, char *itemp):
  */
   __pyx_t_2 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->assign_item_from_object(__pyx_v_self, __pyx_v_itemp, __pyx_v_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 487, __pyx_L1_error)
@@ -8296,7 +8296,7 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
 
   /* "View.MemoryView":485
  *             PyMem_Free(tmp)
- *
+ * 
  *     cdef setitem_indexed(self, index, value):             # <<<<<<<<<<<<<<
  *         cdef char *itemp = self.get_item_pointer(index)
  *         self.assign_item_from_object(itemp, value)
@@ -8317,7 +8317,7 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
 
 /* "View.MemoryView":489
  *         self.assign_item_from_object(itemp, value)
- *
+ * 
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -8349,7 +8349,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *         know how to convert the type"""
  *         import struct             # <<<<<<<<<<<<<<
  *         cdef bytes bytesitem
- *
+ * 
  */
   __pyx_t_1 = __Pyx_ImportDottedModule(__pyx_n_s_struct, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 492, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -8358,7 +8358,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
 
   /* "View.MemoryView":495
  *         cdef bytes bytesitem
- *
+ * 
  *         bytesitem = itemp[:self.view.itemsize]             # <<<<<<<<<<<<<<
  *         try:
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -8369,7 +8369,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
   __pyx_t_1 = 0;
 
   /* "View.MemoryView":496
- *
+ * 
  *         bytesitem = itemp[:self.view.itemsize]
  *         try:             # <<<<<<<<<<<<<<
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -8422,7 +8422,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
       __pyx_t_1 = 0;
 
       /* "View.MemoryView":496
- *
+ * 
  *         bytesitem = itemp[:self.view.itemsize]
  *         try:             # <<<<<<<<<<<<<<
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -8447,7 +8447,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *             if len(self.view.format) == 1:
  *                 return result[0]             # <<<<<<<<<<<<<<
  *             return result
- *
+ * 
  */
         __Pyx_XDECREF(__pyx_r);
         __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_result, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 502, __pyx_L5_except_error)
@@ -8469,7 +8469,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *             if len(self.view.format) == 1:
  *                 return result[0]
  *             return result             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef assign_item_from_object(self, char *itemp, object value):
  */
       __Pyx_XDECREF(__pyx_r);
@@ -8517,7 +8517,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
     goto __pyx_L5_except_error;
 
     /* "View.MemoryView":496
- *
+ * 
  *         bytesitem = itemp[:self.view.itemsize]
  *         try:             # <<<<<<<<<<<<<<
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -8539,7 +8539,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
 
   /* "View.MemoryView":489
  *         self.assign_item_from_object(itemp, value)
- *
+ * 
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -8564,7 +8564,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
 
 /* "View.MemoryView":505
  *             return result
- *
+ * 
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -8608,16 +8608,16 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
   /* "View.MemoryView":513
  *         cdef Py_ssize_t i
- *
+ * 
  *         if isinstance(value, tuple):             # <<<<<<<<<<<<<<
  *             bytesvalue = struct.pack(self.view.format, *value)
  *         else:
  */
-  __pyx_t_2 = PyTuple_Check(__pyx_v_value);
+  __pyx_t_2 = PyTuple_Check(__pyx_v_value); 
   if (__pyx_t_2) {
 
     /* "View.MemoryView":514
- *
+ * 
  *         if isinstance(value, tuple):
  *             bytesvalue = struct.pack(self.view.format, *value)             # <<<<<<<<<<<<<<
  *         else:
@@ -8648,7 +8648,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
     /* "View.MemoryView":513
  *         cdef Py_ssize_t i
- *
+ * 
  *         if isinstance(value, tuple):             # <<<<<<<<<<<<<<
  *             bytesvalue = struct.pack(self.view.format, *value)
  *         else:
@@ -8660,7 +8660,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
  *             bytesvalue = struct.pack(self.view.format, *value)
  *         else:
  *             bytesvalue = struct.pack(self.view.format, value)             # <<<<<<<<<<<<<<
- *
+ * 
  *         for i, c in enumerate(bytesvalue):
  */
   /*else*/ {
@@ -8699,10 +8699,10 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
   /* "View.MemoryView":518
  *             bytesvalue = struct.pack(self.view.format, value)
- *
+ * 
  *         for i, c in enumerate(bytesvalue):             # <<<<<<<<<<<<<<
  *             itemp[i] = c
- *
+ * 
  */
   __pyx_t_7 = 0;
   if (unlikely(__pyx_v_bytesvalue == Py_None)) {
@@ -8718,28 +8718,28 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
     __pyx_v_c = (__pyx_t_9[0]);
 
     /* "View.MemoryView":519
- *
+ * 
  *         for i, c in enumerate(bytesvalue):
  *             itemp[i] = c             # <<<<<<<<<<<<<<
- *
+ * 
  *     @cname('getbuffer')
  */
     __pyx_v_i = __pyx_t_7;
 
     /* "View.MemoryView":518
  *             bytesvalue = struct.pack(self.view.format, value)
- *
+ * 
  *         for i, c in enumerate(bytesvalue):             # <<<<<<<<<<<<<<
  *             itemp[i] = c
- *
+ * 
  */
     __pyx_t_7 = (__pyx_t_7 + 1);
 
     /* "View.MemoryView":519
- *
+ * 
  *         for i, c in enumerate(bytesvalue):
  *             itemp[i] = c             # <<<<<<<<<<<<<<
- *
+ * 
  *     @cname('getbuffer')
  */
     (__pyx_v_itemp[__pyx_v_i]) = __pyx_v_c;
@@ -8748,7 +8748,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
   /* "View.MemoryView":505
  *             return result
- *
+ * 
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -8775,7 +8775,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
 /* "View.MemoryView":521
  *             itemp[i] = c
- *
+ * 
  *     @cname('getbuffer')             # <<<<<<<<<<<<<<
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
@@ -8822,7 +8822,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise ValueError, "Cannot create writable memory view from read-only memoryview"
- *
+ * 
  */
   __pyx_t_2 = ((__pyx_v_flags & PyBUF_WRITABLE) != 0);
   if (__pyx_t_2) {
@@ -8838,7 +8838,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
  *             raise ValueError, "Cannot create writable memory view from read-only memoryview"             # <<<<<<<<<<<<<<
- *
+ * 
  *         if flags & PyBUF_ND:
  */
     __Pyx_Raise(__pyx_builtin_ValueError, __pyx_kp_s_Cannot_create_writable_memory_vi, 0, 0);
@@ -8849,13 +8849,13 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise ValueError, "Cannot create writable memory view from read-only memoryview"
- *
+ * 
  */
   }
 
   /* "View.MemoryView":526
  *             raise ValueError, "Cannot create writable memory view from read-only memoryview"
- *
+ * 
  *         if flags & PyBUF_ND:             # <<<<<<<<<<<<<<
  *             info.shape = self.view.shape
  *         else:
@@ -8864,7 +8864,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":527
- *
+ * 
  *         if flags & PyBUF_ND:
  *             info.shape = self.view.shape             # <<<<<<<<<<<<<<
  *         else:
@@ -8875,7 +8875,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":526
  *             raise ValueError, "Cannot create writable memory view from read-only memoryview"
- *
+ * 
  *         if flags & PyBUF_ND:             # <<<<<<<<<<<<<<
  *             info.shape = self.view.shape
  *         else:
@@ -8887,7 +8887,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.shape = self.view.shape
  *         else:
  *             info.shape = NULL             # <<<<<<<<<<<<<<
- *
+ * 
  *         if flags & PyBUF_STRIDES:
  */
   /*else*/ {
@@ -8897,7 +8897,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":531
  *             info.shape = NULL
- *
+ * 
  *         if flags & PyBUF_STRIDES:             # <<<<<<<<<<<<<<
  *             info.strides = self.view.strides
  *         else:
@@ -8906,7 +8906,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":532
- *
+ * 
  *         if flags & PyBUF_STRIDES:
  *             info.strides = self.view.strides             # <<<<<<<<<<<<<<
  *         else:
@@ -8917,7 +8917,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":531
  *             info.shape = NULL
- *
+ * 
  *         if flags & PyBUF_STRIDES:             # <<<<<<<<<<<<<<
  *             info.strides = self.view.strides
  *         else:
@@ -8929,7 +8929,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.strides = self.view.strides
  *         else:
  *             info.strides = NULL             # <<<<<<<<<<<<<<
- *
+ * 
  *         if flags & PyBUF_INDIRECT:
  */
   /*else*/ {
@@ -8939,7 +8939,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":536
  *             info.strides = NULL
- *
+ * 
  *         if flags & PyBUF_INDIRECT:             # <<<<<<<<<<<<<<
  *             info.suboffsets = self.view.suboffsets
  *         else:
@@ -8948,7 +8948,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":537
- *
+ * 
  *         if flags & PyBUF_INDIRECT:
  *             info.suboffsets = self.view.suboffsets             # <<<<<<<<<<<<<<
  *         else:
@@ -8959,7 +8959,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":536
  *             info.strides = NULL
- *
+ * 
  *         if flags & PyBUF_INDIRECT:             # <<<<<<<<<<<<<<
  *             info.suboffsets = self.view.suboffsets
  *         else:
@@ -8971,7 +8971,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.suboffsets = self.view.suboffsets
  *         else:
  *             info.suboffsets = NULL             # <<<<<<<<<<<<<<
- *
+ * 
  *         if flags & PyBUF_FORMAT:
  */
   /*else*/ {
@@ -8981,7 +8981,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":541
  *             info.suboffsets = NULL
- *
+ * 
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.view.format
  *         else:
@@ -8990,7 +8990,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":542
- *
+ * 
  *         if flags & PyBUF_FORMAT:
  *             info.format = self.view.format             # <<<<<<<<<<<<<<
  *         else:
@@ -9001,7 +9001,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":541
  *             info.suboffsets = NULL
- *
+ * 
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.view.format
  *         else:
@@ -9013,7 +9013,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.format = self.view.format
  *         else:
  *             info.format = NULL             # <<<<<<<<<<<<<<
- *
+ * 
  *         info.buf = self.view.buf
  */
   /*else*/ {
@@ -9023,7 +9023,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":546
  *             info.format = NULL
- *
+ * 
  *         info.buf = self.view.buf             # <<<<<<<<<<<<<<
  *         info.ndim = self.view.ndim
  *         info.itemsize = self.view.itemsize
@@ -9032,7 +9032,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   __pyx_v_info->buf = __pyx_t_5;
 
   /* "View.MemoryView":547
- *
+ * 
  *         info.buf = self.view.buf
  *         info.ndim = self.view.ndim             # <<<<<<<<<<<<<<
  *         info.itemsize = self.view.itemsize
@@ -9066,7 +9066,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *         info.len = self.view.len
  *         info.readonly = self.view.readonly             # <<<<<<<<<<<<<<
  *         info.obj = self
- *
+ * 
  */
   __pyx_t_1 = __pyx_v_self->view.readonly;
   __pyx_v_info->readonly = __pyx_t_1;
@@ -9075,8 +9075,8 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *         info.len = self.view.len
  *         info.readonly = self.view.readonly
  *         info.obj = self             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
@@ -9086,7 +9086,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":521
  *             itemp[i] = c
- *
+ * 
  *     @cname('getbuffer')             # <<<<<<<<<<<<<<
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
@@ -9114,8 +9114,8 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 }
 
 /* "View.MemoryView":554
- *
- *
+ * 
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def T(self):
  *         cdef _memoryviewslice result = memoryview_copy(self)
@@ -9165,7 +9165,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
  *         cdef _memoryviewslice result = memoryview_copy(self)
  *         transpose_memslice(&result.from_slice)             # <<<<<<<<<<<<<<
  *         return result
- *
+ * 
  */
   __pyx_t_2 = __pyx_memslice_transpose((&__pyx_v_result->from_slice)); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(1, 557, __pyx_L1_error)
 
@@ -9173,7 +9173,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
  *         cdef _memoryviewslice result = memoryview_copy(self)
  *         transpose_memslice(&result.from_slice)
  *         return result             # <<<<<<<<<<<<<<
- *
+ * 
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9182,8 +9182,8 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
   goto __pyx_L0;
 
   /* "View.MemoryView":554
- *
- *
+ * 
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def T(self):
  *         cdef _memoryviewslice result = memoryview_copy(self)
@@ -9203,7 +9203,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
 
 /* "View.MemoryView":560
  *         return result
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def base(self):
  *         return self._get_base()
@@ -9237,7 +9237,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4base___get__(struc
  *     @property
  *     def base(self):
  *         return self._get_base()             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef _get_base(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9249,7 +9249,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4base___get__(struc
 
   /* "View.MemoryView":560
  *         return result
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def base(self):
  *         return self._get_base()
@@ -9268,10 +9268,10 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4base___get__(struc
 
 /* "View.MemoryView":564
  *         return self._get_base()
- *
+ * 
  *     cdef _get_base(self):             # <<<<<<<<<<<<<<
  *         return self.obj
- *
+ * 
  */
 
 static PyObject *__pyx_memoryview__get_base(struct __pyx_memoryview_obj *__pyx_v_self) {
@@ -9280,10 +9280,10 @@ static PyObject *__pyx_memoryview__get_base(struct __pyx_memoryview_obj *__pyx_v
   __Pyx_RefNannySetupContext("_get_base", 1);
 
   /* "View.MemoryView":565
- *
+ * 
  *     cdef _get_base(self):
  *         return self.obj             # <<<<<<<<<<<<<<
- *
+ * 
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9293,10 +9293,10 @@ static PyObject *__pyx_memoryview__get_base(struct __pyx_memoryview_obj *__pyx_v
 
   /* "View.MemoryView":564
  *         return self._get_base()
- *
+ * 
  *     cdef _get_base(self):             # <<<<<<<<<<<<<<
  *         return self.obj
- *
+ * 
  */
 
   /* function exit code */
@@ -9308,7 +9308,7 @@ static PyObject *__pyx_memoryview__get_base(struct __pyx_memoryview_obj *__pyx_v
 
 /* "View.MemoryView":567
  *         return self.obj
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def shape(self):
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])
@@ -9347,7 +9347,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_5shape___get__(stru
  *     @property
  *     def shape(self):
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])             # <<<<<<<<<<<<<<
- *
+ * 
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9373,7 +9373,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_5shape___get__(stru
 
   /* "View.MemoryView":567
  *         return self.obj
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def shape(self):
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])
@@ -9393,7 +9393,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_5shape___get__(stru
 
 /* "View.MemoryView":571
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def strides(self):
  *         if self.view.strides == NULL:
@@ -9433,7 +9433,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
  *     @property
  *     def strides(self):
  *         if self.view.strides == NULL:             # <<<<<<<<<<<<<<
- *
+ * 
  *             raise ValueError, "Buffer view does not expose strides"
  */
   __pyx_t_1 = (__pyx_v_self->view.strides == NULL);
@@ -9441,9 +9441,9 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
 
     /* "View.MemoryView":575
  *         if self.view.strides == NULL:
- *
+ * 
  *             raise ValueError, "Buffer view does not expose strides"             # <<<<<<<<<<<<<<
- *
+ * 
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
  */
     __Pyx_Raise(__pyx_builtin_ValueError, __pyx_kp_s_Buffer_view_does_not_expose_stri, 0, 0);
@@ -9453,16 +9453,16 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
  *     @property
  *     def strides(self):
  *         if self.view.strides == NULL:             # <<<<<<<<<<<<<<
- *
+ * 
  *             raise ValueError, "Buffer view does not expose strides"
  */
   }
 
   /* "View.MemoryView":577
  *             raise ValueError, "Buffer view does not expose strides"
- *
+ * 
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])             # <<<<<<<<<<<<<<
- *
+ * 
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9488,7 +9488,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
 
   /* "View.MemoryView":571
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def strides(self):
  *         if self.view.strides == NULL:
@@ -9508,7 +9508,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
 
 /* "View.MemoryView":579
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:
@@ -9549,7 +9549,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:             # <<<<<<<<<<<<<<
  *             return (-1,) * self.view.ndim
- *
+ * 
  */
   __pyx_t_1 = (__pyx_v_self->view.suboffsets == NULL);
   if (__pyx_t_1) {
@@ -9558,7 +9558,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:
  *             return (-1,) * self.view.ndim             # <<<<<<<<<<<<<<
- *
+ * 
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
  */
     __Pyx_XDECREF(__pyx_r);
@@ -9573,15 +9573,15 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:             # <<<<<<<<<<<<<<
  *             return (-1,) * self.view.ndim
- *
+ * 
  */
   }
 
   /* "View.MemoryView":584
  *             return (-1,) * self.view.ndim
- *
+ * 
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])             # <<<<<<<<<<<<<<
- *
+ * 
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9607,7 +9607,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
 
   /* "View.MemoryView":579
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:
@@ -9627,7 +9627,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
 
 /* "View.MemoryView":586
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def ndim(self):
  *         return self.view.ndim
@@ -9661,7 +9661,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4ndim___get__(struc
  *     @property
  *     def ndim(self):
  *         return self.view.ndim             # <<<<<<<<<<<<<<
- *
+ * 
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9673,7 +9673,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4ndim___get__(struc
 
   /* "View.MemoryView":586
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def ndim(self):
  *         return self.view.ndim
@@ -9692,7 +9692,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4ndim___get__(struc
 
 /* "View.MemoryView":590
  *         return self.view.ndim
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def itemsize(self):
  *         return self.view.itemsize
@@ -9726,7 +9726,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_8itemsize___get__(s
  *     @property
  *     def itemsize(self):
  *         return self.view.itemsize             # <<<<<<<<<<<<<<
- *
+ * 
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9738,7 +9738,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_8itemsize___get__(s
 
   /* "View.MemoryView":590
  *         return self.view.ndim
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def itemsize(self):
  *         return self.view.itemsize
@@ -9757,7 +9757,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_8itemsize___get__(s
 
 /* "View.MemoryView":594
  *         return self.view.itemsize
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def nbytes(self):
  *         return self.size * self.view.itemsize
@@ -9793,7 +9793,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_6nbytes___get__(str
  *     @property
  *     def nbytes(self):
  *         return self.size * self.view.itemsize             # <<<<<<<<<<<<<<
- *
+ * 
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9811,7 +9811,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_6nbytes___get__(str
 
   /* "View.MemoryView":594
  *         return self.view.itemsize
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def nbytes(self):
  *         return self.size * self.view.itemsize
@@ -9832,7 +9832,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_6nbytes___get__(str
 
 /* "View.MemoryView":598
  *         return self.size * self.view.itemsize
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def size(self):
  *         if self._size is None:
@@ -9873,7 +9873,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
  *     def size(self):
  *         if self._size is None:             # <<<<<<<<<<<<<<
  *             result = 1
- *
+ * 
  */
   __pyx_t_1 = (__pyx_v_self->_size == Py_None);
   if (__pyx_t_1) {
@@ -9882,7 +9882,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
  *     def size(self):
  *         if self._size is None:
  *             result = 1             # <<<<<<<<<<<<<<
- *
+ * 
  *             for length in self.view.shape[:self.view.ndim]:
  */
     __Pyx_INCREF(__pyx_int_1);
@@ -9890,10 +9890,10 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
     /* "View.MemoryView":603
  *             result = 1
- *
+ * 
  *             for length in self.view.shape[:self.view.ndim]:             # <<<<<<<<<<<<<<
  *                 result *= length
- *
+ * 
  */
     __pyx_t_3 = (__pyx_v_self->view.shape + __pyx_v_self->view.ndim);
     for (__pyx_t_4 = __pyx_v_self->view.shape; __pyx_t_4 < __pyx_t_3; __pyx_t_4++) {
@@ -9904,10 +9904,10 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
       __pyx_t_5 = 0;
 
       /* "View.MemoryView":604
- *
+ * 
  *             for length in self.view.shape[:self.view.ndim]:
  *                 result *= length             # <<<<<<<<<<<<<<
- *
+ * 
  *             self._size = result
  */
       __pyx_t_5 = PyNumber_InPlaceMultiply(__pyx_v_result, __pyx_v_length); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 604, __pyx_L1_error)
@@ -9918,9 +9918,9 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
     /* "View.MemoryView":606
  *                 result *= length
- *
+ * 
  *             self._size = result             # <<<<<<<<<<<<<<
- *
+ * 
  *         return self._size
  */
     __Pyx_INCREF(__pyx_v_result);
@@ -9934,15 +9934,15 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
  *     def size(self):
  *         if self._size is None:             # <<<<<<<<<<<<<<
  *             result = 1
- *
+ * 
  */
   }
 
   /* "View.MemoryView":608
  *             self._size = result
- *
+ * 
  *         return self._size             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9952,7 +9952,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
   /* "View.MemoryView":598
  *         return self.size * self.view.itemsize
- *
+ * 
  *     @property             # <<<<<<<<<<<<<<
  *     def size(self):
  *         if self._size is None:
@@ -9973,7 +9973,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
 /* "View.MemoryView":610
  *         return self._size
- *
+ * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         if self.view.ndim >= 1:
  *             return self.view.shape[0]
@@ -9999,11 +9999,11 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
   int __pyx_t_1;
 
   /* "View.MemoryView":611
- *
+ * 
  *     def __len__(self):
  *         if self.view.ndim >= 1:             # <<<<<<<<<<<<<<
  *             return self.view.shape[0]
- *
+ * 
  */
   __pyx_t_1 = (__pyx_v_self->view.ndim >= 1);
   if (__pyx_t_1) {
@@ -10012,26 +10012,26 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
  *     def __len__(self):
  *         if self.view.ndim >= 1:
  *             return self.view.shape[0]             # <<<<<<<<<<<<<<
- *
+ * 
  *         return 0
  */
     __pyx_r = (__pyx_v_self->view.shape[0]);
     goto __pyx_L0;
 
     /* "View.MemoryView":611
- *
+ * 
  *     def __len__(self):
  *         if self.view.ndim >= 1:             # <<<<<<<<<<<<<<
  *             return self.view.shape[0]
- *
+ * 
  */
   }
 
   /* "View.MemoryView":614
  *             return self.view.shape[0]
- *
+ * 
  *         return 0             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __repr__(self):
  */
   __pyx_r = 0;
@@ -10039,7 +10039,7 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
 
   /* "View.MemoryView":610
  *         return self._size
- *
+ * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         if self.view.ndim >= 1:
  *             return self.view.shape[0]
@@ -10052,7 +10052,7 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
 
 /* "View.MemoryView":616
  *         return 0
- *
+ * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,
  *                                                id(self))
@@ -10085,11 +10085,11 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
   __Pyx_RefNannySetupContext("__repr__", 1);
 
   /* "View.MemoryView":617
- *
+ * 
  *     def __repr__(self):
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,             # <<<<<<<<<<<<<<
  *                                                id(self))
- *
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 617, __pyx_L1_error)
@@ -10105,18 +10105,18 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
  *     def __repr__(self):
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,
  *                                                id(self))             # <<<<<<<<<<<<<<
- *
+ * 
  *     def __str__(self):
  */
   __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_id, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 618, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
   /* "View.MemoryView":617
- *
+ * 
  *     def __repr__(self):
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,             # <<<<<<<<<<<<<<
  *                                                id(self))
- *
+ * 
  */
   __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 617, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -10135,7 +10135,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
 
   /* "View.MemoryView":616
  *         return 0
- *
+ * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,
  *                                                id(self))
@@ -10156,10 +10156,10 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
 
 /* "View.MemoryView":620
  *                                                id(self))
- *
+ * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r object>" % (self.base.__class__.__name__,)
- *
+ * 
  */
 
 /* Python wrapper */
@@ -10188,11 +10188,11 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_14
   __Pyx_RefNannySetupContext("__str__", 1);
 
   /* "View.MemoryView":621
- *
+ * 
  *     def __str__(self):
  *         return "<MemoryView of %r object>" % (self.base.__class__.__name__,)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 621, __pyx_L1_error)
@@ -10217,10 +10217,10 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_14
 
   /* "View.MemoryView":620
  *                                                id(self))
- *
+ * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r object>" % (self.base.__class__.__name__,)
- *
+ * 
  */
 
   /* function exit code */
@@ -10236,22 +10236,22 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_14
 }
 
 /* "View.MemoryView":624
- *
- *
+ * 
+ * 
  *     def is_c_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
  */
 
 /* Python wrapper */
-static PyObject *__pyx_memoryview_is_c_contig(PyObject *__pyx_v_self,
+static PyObject *__pyx_memoryview_is_c_contig(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_memoryview_is_c_contig(PyObject *__pyx_v_self,
+static PyObject *__pyx_memoryview_is_c_contig(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10300,7 +10300,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)             # <<<<<<<<<<<<<<
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)
- *
+ * 
  */
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(__pyx_v_self, (&__pyx_v_tmp)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(1, 627, __pyx_L1_error)
   __pyx_v_mslice = __pyx_t_1;
@@ -10309,7 +10309,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)             # <<<<<<<<<<<<<<
- *
+ * 
  *     def is_f_contig(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -10320,8 +10320,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
   goto __pyx_L0;
 
   /* "View.MemoryView":624
- *
- *
+ * 
+ * 
  *     def is_c_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -10340,21 +10340,21 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
 
 /* "View.MemoryView":630
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)
- *
+ * 
  *     def is_f_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
  */
 
 /* Python wrapper */
-static PyObject *__pyx_memoryview_is_f_contig(PyObject *__pyx_v_self,
+static PyObject *__pyx_memoryview_is_f_contig(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_memoryview_is_f_contig(PyObject *__pyx_v_self,
+static PyObject *__pyx_memoryview_is_f_contig(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10403,7 +10403,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)             # <<<<<<<<<<<<<<
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)
- *
+ * 
  */
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(__pyx_v_self, (&__pyx_v_tmp)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(1, 633, __pyx_L1_error)
   __pyx_v_mslice = __pyx_t_1;
@@ -10412,7 +10412,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)             # <<<<<<<<<<<<<<
- *
+ * 
  *     def copy(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -10424,7 +10424,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
 
   /* "View.MemoryView":630
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)
- *
+ * 
  *     def is_f_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -10443,21 +10443,21 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
 
 /* "View.MemoryView":636
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)
- *
+ * 
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice mslice
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS
  */
 
 /* Python wrapper */
-static PyObject *__pyx_memoryview_copy(PyObject *__pyx_v_self,
+static PyObject *__pyx_memoryview_copy(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_memoryview_copy(PyObject *__pyx_v_self,
+static PyObject *__pyx_memoryview_copy(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10505,14 +10505,14 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
  *     def copy(self):
  *         cdef __Pyx_memviewslice mslice
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS             # <<<<<<<<<<<<<<
- *
+ * 
  *         slice_copy(self, &mslice)
  */
   __pyx_v_flags = (__pyx_v_self->flags & (~PyBUF_F_CONTIGUOUS));
 
   /* "View.MemoryView":640
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS
- *
+ * 
  *         slice_copy(self, &mslice)             # <<<<<<<<<<<<<<
  *         mslice = slice_copy_contig(&mslice, "c", self.view.ndim,
  *                                    self.view.itemsize,
@@ -10520,7 +10520,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
   __pyx_memoryview_slice_copy(__pyx_v_self, (&__pyx_v_mslice));
 
   /* "View.MemoryView":641
- *
+ * 
  *         slice_copy(self, &mslice)
  *         mslice = slice_copy_contig(&mslice, "c", self.view.ndim,             # <<<<<<<<<<<<<<
  *                                    self.view.itemsize,
@@ -10531,9 +10531,9 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 
   /* "View.MemoryView":646
  *                                    self.dtype_is_object)
- *
+ * 
  *         return memoryview_copy_from_slice(self, &mslice)             # <<<<<<<<<<<<<<
- *
+ * 
  *     def copy_fortran(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -10545,7 +10545,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 
   /* "View.MemoryView":636
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)
- *
+ * 
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice mslice
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS
@@ -10564,21 +10564,21 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 
 /* "View.MemoryView":648
  *         return memoryview_copy_from_slice(self, &mslice)
- *
+ * 
  *     def copy_fortran(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice src, dst
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS
  */
 
 /* Python wrapper */
-static PyObject *__pyx_memoryview_copy_fortran(PyObject *__pyx_v_self,
+static PyObject *__pyx_memoryview_copy_fortran(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_memoryview_copy_fortran(PyObject *__pyx_v_self,
+static PyObject *__pyx_memoryview_copy_fortran(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10627,14 +10627,14 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
  *     def copy_fortran(self):
  *         cdef __Pyx_memviewslice src, dst
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS             # <<<<<<<<<<<<<<
- *
+ * 
  *         slice_copy(self, &src)
  */
   __pyx_v_flags = (__pyx_v_self->flags & (~PyBUF_C_CONTIGUOUS));
 
   /* "View.MemoryView":652
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS
- *
+ * 
  *         slice_copy(self, &src)             # <<<<<<<<<<<<<<
  *         dst = slice_copy_contig(&src, "fortran", self.view.ndim,
  *                                 self.view.itemsize,
@@ -10642,7 +10642,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
   __pyx_memoryview_slice_copy(__pyx_v_self, (&__pyx_v_src));
 
   /* "View.MemoryView":653
- *
+ * 
  *         slice_copy(self, &src)
  *         dst = slice_copy_contig(&src, "fortran", self.view.ndim,             # <<<<<<<<<<<<<<
  *                                 self.view.itemsize,
@@ -10653,10 +10653,10 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
 
   /* "View.MemoryView":658
  *                                 self.dtype_is_object)
- *
+ * 
  *         return memoryview_copy_from_slice(self, &dst)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = __pyx_memoryview_copy_object_from_slice(__pyx_v_self, (&__pyx_v_dst)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 658, __pyx_L1_error)
@@ -10667,7 +10667,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
 
   /* "View.MemoryView":648
  *         return memoryview_copy_from_slice(self, &mslice)
- *
+ * 
  *     def copy_fortran(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice src, dst
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS
@@ -10691,14 +10691,14 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw___pyx_memoryview_1__reduce_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_memoryview_1__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_pw___pyx_memoryview_1__reduce_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_memoryview_1__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10770,14 +10770,14 @@ static PyObject *__pyx_pf___pyx_memoryview___reduce_cython__(CYTHON_UNUSED struc
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw___pyx_memoryview_3__setstate_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_memoryview_3__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_pw___pyx_memoryview_3__setstate_cython__(PyObject *__pyx_v_self,
+static PyObject *__pyx_pw___pyx_memoryview_3__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10897,7 +10897,7 @@ static PyObject *__pyx_pf___pyx_memoryview_2__setstate_cython__(CYTHON_UNUSED st
 }
 
 /* "View.MemoryView":662
- *
+ * 
  * @cname('__pyx_memoryview_new')
  * cdef memoryview_cwrapper(object o, int flags, bint dtype_is_object, __Pyx_TypeInfo *typeinfo):             # <<<<<<<<<<<<<<
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
@@ -10949,7 +10949,7 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
  *     result.typeinfo = typeinfo             # <<<<<<<<<<<<<<
  *     return result
- *
+ * 
  */
   __pyx_v_result->typeinfo = __pyx_v_typeinfo;
 
@@ -10957,7 +10957,7 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
  *     result.typeinfo = typeinfo
  *     return result             # <<<<<<<<<<<<<<
- *
+ * 
  * @cname('__pyx_memoryview_check')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -10966,7 +10966,7 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
   goto __pyx_L0;
 
   /* "View.MemoryView":662
- *
+ * 
  * @cname('__pyx_memoryview_new')
  * cdef memoryview_cwrapper(object o, int flags, bint dtype_is_object, __Pyx_TypeInfo *typeinfo):             # <<<<<<<<<<<<<<
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
@@ -10988,11 +10988,11 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
 }
 
 /* "View.MemoryView":668
- *
+ * 
  * @cname('__pyx_memoryview_check')
  * cdef inline bint memoryview_check(object o) noexcept:             # <<<<<<<<<<<<<<
  *     return isinstance(o, memoryview)
- *
+ * 
  */
 
 static CYTHON_INLINE int __pyx_memoryview_check(PyObject *__pyx_v_o) {
@@ -11003,19 +11003,19 @@ static CYTHON_INLINE int __pyx_memoryview_check(PyObject *__pyx_v_o) {
  * @cname('__pyx_memoryview_check')
  * cdef inline bint memoryview_check(object o) noexcept:
  *     return isinstance(o, memoryview)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef tuple _unellipsify(object index, int ndim):
  */
-  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_o, __pyx_memoryview_type);
+  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_o, __pyx_memoryview_type); 
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
   /* "View.MemoryView":668
- *
+ * 
  * @cname('__pyx_memoryview_check')
  * cdef inline bint memoryview_check(object o) noexcept:             # <<<<<<<<<<<<<<
  *     return isinstance(o, memoryview)
- *
+ * 
  */
 
   /* function exit code */
@@ -11025,7 +11025,7 @@ static CYTHON_INLINE int __pyx_memoryview_check(PyObject *__pyx_v_o) {
 
 /* "View.MemoryView":671
  *     return isinstance(o, memoryview)
- *
+ * 
  * cdef tuple _unellipsify(object index, int ndim):             # <<<<<<<<<<<<<<
  *     """
  *     Replace all ellipses with full slices and fill incomplete indices with
@@ -11057,10 +11057,10 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *     """
  *     cdef Py_ssize_t idx
  *     tup = <tuple>index if isinstance(index, tuple) else (index,)             # <<<<<<<<<<<<<<
- *
+ * 
  *     result = [slice(None)] * ndim
  */
-  __pyx_t_2 = PyTuple_Check(__pyx_v_index);
+  __pyx_t_2 = PyTuple_Check(__pyx_v_index); 
   if (__pyx_t_2) {
     __Pyx_INCREF(((PyObject*)__pyx_v_index));
     __pyx_t_1 = __pyx_v_index;
@@ -11078,7 +11078,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
   /* "View.MemoryView":679
  *     tup = <tuple>index if isinstance(index, tuple) else (index,)
- *
+ * 
  *     result = [slice(None)] * ndim             # <<<<<<<<<<<<<<
  *     have_slices = False
  *     seen_ellipsis = False
@@ -11096,7 +11096,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
   __pyx_t_1 = 0;
 
   /* "View.MemoryView":680
- *
+ * 
  *     result = [slice(None)] * ndim
  *     have_slices = False             # <<<<<<<<<<<<<<
  *     seen_ellipsis = False
@@ -11231,7 +11231,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *             elif not PyIndex_Check(item):
  */
     /*else*/ {
-      __pyx_t_2 = PySlice_Check(__pyx_v_item);
+      __pyx_t_2 = PySlice_Check(__pyx_v_item); 
       if (__pyx_t_2) {
 
         /* "View.MemoryView":691
@@ -11311,7 +11311,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *                 raise TypeError, f"Cannot index with type '{type(item)}'"
  *             result[idx] = item             # <<<<<<<<<<<<<<
  *         idx += 1
- *
+ * 
  */
       if (unlikely((__Pyx_SetItemInt(__pyx_v_result, __pyx_v_idx, __pyx_v_item, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1) < 0))) __PYX_ERR(1, 694, __pyx_L1_error)
     }
@@ -11321,7 +11321,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *                 raise TypeError, f"Cannot index with type '{type(item)}'"
  *             result[idx] = item
  *         idx += 1             # <<<<<<<<<<<<<<
- *
+ * 
  *     nslices = ndim - idx
  */
     __pyx_v_idx = (__pyx_v_idx + 1);
@@ -11338,18 +11338,18 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
   /* "View.MemoryView":697
  *         idx += 1
- *
+ * 
  *     nslices = ndim - idx             # <<<<<<<<<<<<<<
  *     return have_slices or nslices, tuple(result)
- *
+ * 
  */
   __pyx_v_nslices = (__pyx_v_ndim - __pyx_v_idx);
 
   /* "View.MemoryView":698
- *
+ * 
  *     nslices = ndim - idx
  *     return have_slices or nslices, tuple(result)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef int assert_direct_dimensions(Py_ssize_t *suboffsets, int ndim) except -1:
  */
   __Pyx_XDECREF(__pyx_r);
@@ -11382,7 +11382,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
   /* "View.MemoryView":671
  *     return isinstance(o, memoryview)
- *
+ * 
  * cdef tuple _unellipsify(object index, int ndim):             # <<<<<<<<<<<<<<
  *     """
  *     Replace all ellipses with full slices and fill incomplete indices with
@@ -14534,16 +14534,16 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 
   /* "View.MemoryView":1094
  *     cdef int (*to_dtype_func)(char *, object) except 0
- *
+ * 
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         to_object_func = (<_memoryviewslice> memview).to_object_func
  *         to_dtype_func = (<_memoryviewslice> memview).to_dtype_func
  */
-  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type);
+  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type); 
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1095
- *
+ * 
  *     if isinstance(memview, _memoryviewslice):
  *         to_object_func = (<_memoryviewslice> memview).to_object_func             # <<<<<<<<<<<<<<
  *         to_dtype_func = (<_memoryviewslice> memview).to_dtype_func
@@ -14564,7 +14564,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 
     /* "View.MemoryView":1094
  *     cdef int (*to_dtype_func)(char *, object) except 0
- *
+ * 
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         to_object_func = (<_memoryviewslice> memview).to_object_func
  *         to_dtype_func = (<_memoryviewslice> memview).to_dtype_func
@@ -14577,7 +14577,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
  *     else:
  *         to_object_func = NULL             # <<<<<<<<<<<<<<
  *         to_dtype_func = NULL
- *
+ * 
  */
   /*else*/ {
     __pyx_v_to_object_func = NULL;
@@ -14586,7 +14586,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
  *     else:
  *         to_object_func = NULL
  *         to_dtype_func = NULL             # <<<<<<<<<<<<<<
- *
+ * 
  *     return memoryview_fromslice(memviewslice[0], memview.view.ndim,
  */
     __pyx_v_to_dtype_func = NULL;
@@ -14595,7 +14595,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 
   /* "View.MemoryView":1101
  *         to_dtype_func = NULL
- *
+ * 
  *     return memoryview_fromslice(memviewslice[0], memview.view.ndim,             # <<<<<<<<<<<<<<
  *                                 to_object_func, to_dtype_func,
  *                                 memview.dtype_is_object)
@@ -14606,8 +14606,8 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
  *     return memoryview_fromslice(memviewslice[0], memview.view.ndim,
  *                                 to_object_func, to_dtype_func,
  *                                 memview.dtype_is_object)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_4 = __pyx_memoryview_fromslice((__pyx_v_memviewslice[0]), __pyx_v_memview->view.ndim, __pyx_v_to_object_func, __pyx_v_to_dtype_func, __pyx_v_memview->dtype_is_object); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 1101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -14616,7 +14616,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
   goto __pyx_L0;
 
   /* "View.MemoryView":1087
- *
+ * 
  * @cname('__pyx_memoryview_copy_object_from_slice')
  * cdef memoryview_copy_from_slice(memoryview memview, __Pyx_memviewslice *memviewslice):             # <<<<<<<<<<<<<<
  *     """
@@ -14867,7 +14867,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
 }
 
 /* "View.MemoryView":1137
- *
+ * 
  * @cython.cdivision(True)
  * cdef void _copy_strided_to_strided(char *src_data, Py_ssize_t *src_strides,             # <<<<<<<<<<<<<<
  *                                    char *dst_data, Py_ssize_t *dst_strides,
@@ -14887,7 +14887,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
   Py_ssize_t __pyx_t_5;
 
   /* "View.MemoryView":1144
- *
+ * 
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t src_extent = src_shape[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t dst_extent = dst_shape[0]
@@ -14909,7 +14909,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *     cdef Py_ssize_t dst_extent = dst_shape[0]
  *     cdef Py_ssize_t src_stride = src_strides[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t dst_stride = dst_strides[0]
- *
+ * 
  */
   __pyx_v_src_stride = (__pyx_v_src_strides[0]);
 
@@ -14917,14 +14917,14 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *     cdef Py_ssize_t dst_extent = dst_shape[0]
  *     cdef Py_ssize_t src_stride = src_strides[0]
  *     cdef Py_ssize_t dst_stride = dst_strides[0]             # <<<<<<<<<<<<<<
- *
+ * 
  *     if ndim == 1:
  */
   __pyx_v_dst_stride = (__pyx_v_dst_strides[0]);
 
   /* "View.MemoryView":1149
  *     cdef Py_ssize_t dst_stride = dst_strides[0]
- *
+ * 
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *         if (src_stride > 0 and dst_stride > 0 and
  *             <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -14933,7 +14933,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1150
- *
+ * 
  *     if ndim == 1:
  *         if (src_stride > 0 and dst_stride > 0 and             # <<<<<<<<<<<<<<
  *             <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -14967,7 +14967,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
     __pyx_L5_bool_binop_done:;
 
     /* "View.MemoryView":1150
- *
+ * 
  *     if ndim == 1:
  *         if (src_stride > 0 and dst_stride > 0 and             # <<<<<<<<<<<<<<
  *             <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -14985,7 +14985,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
       (void)(memcpy(__pyx_v_dst_data, __pyx_v_src_data, (__pyx_v_itemsize * __pyx_v_dst_extent)));
 
       /* "View.MemoryView":1150
- *
+ * 
  *     if ndim == 1:
  *         if (src_stride > 0 and dst_stride > 0 and             # <<<<<<<<<<<<<<
  *             <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -15039,7 +15039,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
 
     /* "View.MemoryView":1149
  *     cdef Py_ssize_t dst_stride = dst_strides[0]
- *
+ * 
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *         if (src_stride > 0 and dst_stride > 0 and
  *             <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -15074,7 +15074,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *                                      ndim - 1, itemsize)
  *             src_data += src_stride             # <<<<<<<<<<<<<<
  *             dst_data += dst_stride
- *
+ * 
  */
       __pyx_v_src_data = (__pyx_v_src_data + __pyx_v_src_stride);
 
@@ -15082,7 +15082,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *                                      ndim - 1, itemsize)
  *             src_data += src_stride
  *             dst_data += dst_stride             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef void copy_strided_to_strided(__Pyx_memviewslice *src,
  */
       __pyx_v_dst_data = (__pyx_v_dst_data + __pyx_v_dst_stride);
@@ -15091,7 +15091,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
   __pyx_L3:;
 
   /* "View.MemoryView":1137
- *
+ * 
  * @cython.cdivision(True)
  * cdef void _copy_strided_to_strided(char *src_data, Py_ssize_t *src_strides,             # <<<<<<<<<<<<<<
  *                                    char *dst_data, Py_ssize_t *dst_strides,
@@ -15103,7 +15103,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
 
 /* "View.MemoryView":1167
  *             dst_data += dst_stride
- *
+ * 
  * cdef void copy_strided_to_strided(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice *dst,
  *                                   int ndim, size_t itemsize) noexcept nogil:
@@ -15116,13 +15116,13 @@ static void copy_strided_to_strided(__Pyx_memviewslice *__pyx_v_src, __Pyx_memvi
  *                                   int ndim, size_t itemsize) noexcept nogil:
  *     _copy_strided_to_strided(src.data, src.strides, dst.data, dst.strides,             # <<<<<<<<<<<<<<
  *                              src.shape, dst.shape, ndim, itemsize)
- *
+ * 
  */
   _copy_strided_to_strided(__pyx_v_src->data, __pyx_v_src->strides, __pyx_v_dst->data, __pyx_v_dst->strides, __pyx_v_src->shape, __pyx_v_dst->shape, __pyx_v_ndim, __pyx_v_itemsize);
 
   /* "View.MemoryView":1167
  *             dst_data += dst_stride
- *
+ * 
  * cdef void copy_strided_to_strided(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice *dst,
  *                                   int ndim, size_t itemsize) noexcept nogil:
@@ -15132,7 +15132,7 @@ static void copy_strided_to_strided(__Pyx_memviewslice *__pyx_v_src, __Pyx_memvi
 }
 
 /* "View.MemoryView":1174
- *
+ * 
  * @cname('__pyx_memoryview_slice_get_size')
  * cdef Py_ssize_t slice_get_size(__Pyx_memviewslice *src, int ndim) noexcept nogil:             # <<<<<<<<<<<<<<
  *     "Return the size of the memory occupied by the slice in number of bytes"
@@ -15152,7 +15152,7 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
  * cdef Py_ssize_t slice_get_size(__Pyx_memviewslice *src, int ndim) noexcept nogil:
  *     "Return the size of the memory occupied by the slice in number of bytes"
  *     cdef Py_ssize_t shape, size = src.memview.view.itemsize             # <<<<<<<<<<<<<<
- *
+ * 
  *     for shape in src.shape[:ndim]:
  */
   __pyx_t_1 = __pyx_v_src->memview->view.itemsize;
@@ -15160,10 +15160,10 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
 
   /* "View.MemoryView":1178
  *     cdef Py_ssize_t shape, size = src.memview.view.itemsize
- *
+ * 
  *     for shape in src.shape[:ndim]:             # <<<<<<<<<<<<<<
  *         size *= shape
- *
+ * 
  */
   __pyx_t_3 = (__pyx_v_src->shape + __pyx_v_ndim);
   for (__pyx_t_4 = __pyx_v_src->shape; __pyx_t_4 < __pyx_t_3; __pyx_t_4++) {
@@ -15171,10 +15171,10 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
     __pyx_v_shape = (__pyx_t_2[0]);
 
     /* "View.MemoryView":1179
- *
+ * 
  *     for shape in src.shape[:ndim]:
  *         size *= shape             # <<<<<<<<<<<<<<
- *
+ * 
  *     return size
  */
     __pyx_v_size = (__pyx_v_size * __pyx_v_shape);
@@ -15182,16 +15182,16 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
 
   /* "View.MemoryView":1181
  *         size *= shape
- *
+ * 
  *     return size             # <<<<<<<<<<<<<<
- *
+ * 
  * @cname('__pyx_fill_contig_strides_array')
  */
   __pyx_r = __pyx_v_size;
   goto __pyx_L0;
 
   /* "View.MemoryView":1174
- *
+ * 
  * @cname('__pyx_memoryview_slice_get_size')
  * cdef Py_ssize_t slice_get_size(__Pyx_memviewslice *src, int ndim) noexcept nogil:             # <<<<<<<<<<<<<<
  *     "Return the size of the memory occupied by the slice in number of bytes"
@@ -15204,7 +15204,7 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
 }
 
 /* "View.MemoryView":1184
- *
+ * 
  * @cname('__pyx_fill_contig_strides_array')
  * cdef Py_ssize_t fill_contig_strides_array(             # <<<<<<<<<<<<<<
  *                 Py_ssize_t *shape, Py_ssize_t *strides, Py_ssize_t stride,
@@ -15221,7 +15221,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 
   /* "View.MemoryView":1193
  *     cdef int idx
- *
+ * 
  *     if order == 'F':             # <<<<<<<<<<<<<<
  *         for idx in range(ndim):
  *             strides[idx] = stride
@@ -15230,7 +15230,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1194
- *
+ * 
  *     if order == 'F':
  *         for idx in range(ndim):             # <<<<<<<<<<<<<<
  *             strides[idx] = stride
@@ -15262,7 +15262,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 
     /* "View.MemoryView":1193
  *     cdef int idx
- *
+ * 
  *     if order == 'F':             # <<<<<<<<<<<<<<
  *         for idx in range(ndim):
  *             strides[idx] = stride
@@ -15286,7 +15286,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
  *         for idx in range(ndim - 1, -1, -1):
  *             strides[idx] = stride             # <<<<<<<<<<<<<<
  *             stride *= shape[idx]
- *
+ * 
  */
       (__pyx_v_strides[__pyx_v_idx]) = __pyx_v_stride;
 
@@ -15294,7 +15294,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
  *         for idx in range(ndim - 1, -1, -1):
  *             strides[idx] = stride
  *             stride *= shape[idx]             # <<<<<<<<<<<<<<
- *
+ * 
  *     return stride
  */
       __pyx_v_stride = (__pyx_v_stride * (__pyx_v_shape[__pyx_v_idx]));
@@ -15304,16 +15304,16 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 
   /* "View.MemoryView":1202
  *             stride *= shape[idx]
- *
+ * 
  *     return stride             # <<<<<<<<<<<<<<
- *
+ * 
  * @cname('__pyx_memoryview_copy_data_to_temp')
  */
   __pyx_r = __pyx_v_stride;
   goto __pyx_L0;
 
   /* "View.MemoryView":1184
- *
+ * 
  * @cname('__pyx_fill_contig_strides_array')
  * cdef Py_ssize_t fill_contig_strides_array(             # <<<<<<<<<<<<<<
  *                 Py_ssize_t *shape, Py_ssize_t *strides, Py_ssize_t stride,
@@ -15326,7 +15326,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 }
 
 /* "View.MemoryView":1205
- *
+ * 
  * @cname('__pyx_memoryview_copy_data_to_temp')
  * cdef void *copy_data_to_temp(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                              __Pyx_memviewslice *tmpslice,
@@ -15354,26 +15354,26 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
   /* "View.MemoryView":1216
  *     cdef void *result
- *
+ * 
  *     cdef size_t itemsize = src.memview.view.itemsize             # <<<<<<<<<<<<<<
  *     cdef size_t size = slice_get_size(src, ndim)
- *
+ * 
  */
   __pyx_t_1 = __pyx_v_src->memview->view.itemsize;
   __pyx_v_itemsize = __pyx_t_1;
 
   /* "View.MemoryView":1217
- *
+ * 
  *     cdef size_t itemsize = src.memview.view.itemsize
  *     cdef size_t size = slice_get_size(src, ndim)             # <<<<<<<<<<<<<<
- *
+ * 
  *     result = malloc(size)
  */
   __pyx_v_size = __pyx_memoryview_slice_get_size(__pyx_v_src, __pyx_v_ndim);
 
   /* "View.MemoryView":1219
  *     cdef size_t size = slice_get_size(src, ndim)
- *
+ * 
  *     result = malloc(size)             # <<<<<<<<<<<<<<
  *     if not result:
  *         _err_no_memory()
@@ -15381,11 +15381,11 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
   __pyx_v_result = malloc(__pyx_v_size);
 
   /* "View.MemoryView":1220
- *
+ * 
  *     result = malloc(size)
  *     if not result:             # <<<<<<<<<<<<<<
  *         _err_no_memory()
- *
+ * 
  */
   __pyx_t_2 = (!(__pyx_v_result != 0));
   if (__pyx_t_2) {
@@ -15394,23 +15394,23 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     result = malloc(size)
  *     if not result:
  *         _err_no_memory()             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
     __pyx_t_3 = __pyx_memoryview_err_no_memory(); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(1, 1221, __pyx_L1_error)
 
     /* "View.MemoryView":1220
- *
+ * 
  *     result = malloc(size)
  *     if not result:             # <<<<<<<<<<<<<<
  *         _err_no_memory()
- *
+ * 
  */
   }
 
   /* "View.MemoryView":1224
- *
- *
+ * 
+ * 
  *     tmpslice.data = <char *> result             # <<<<<<<<<<<<<<
  *     tmpslice.memview = src.memview
  *     for i in range(ndim):
@@ -15418,7 +15418,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
   __pyx_v_tmpslice->data = ((char *)__pyx_v_result);
 
   /* "View.MemoryView":1225
- *
+ * 
  *     tmpslice.data = <char *> result
  *     tmpslice.memview = src.memview             # <<<<<<<<<<<<<<
  *     for i in range(ndim):
@@ -15444,7 +15444,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     for i in range(ndim):
  *         tmpslice.shape[i] = src.shape[i]             # <<<<<<<<<<<<<<
  *         tmpslice.suboffsets[i] = -1
- *
+ * 
  */
     (__pyx_v_tmpslice->shape[__pyx_v_i]) = (__pyx_v_src->shape[__pyx_v_i]);
 
@@ -15452,7 +15452,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     for i in range(ndim):
  *         tmpslice.shape[i] = src.shape[i]
  *         tmpslice.suboffsets[i] = -1             # <<<<<<<<<<<<<<
- *
+ * 
  *     fill_contig_strides_array(&tmpslice.shape[0], &tmpslice.strides[0], itemsize, ndim, order)
  */
     (__pyx_v_tmpslice->suboffsets[__pyx_v_i]) = -1L;
@@ -15460,16 +15460,16 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
   /* "View.MemoryView":1230
  *         tmpslice.suboffsets[i] = -1
- *
+ * 
  *     fill_contig_strides_array(&tmpslice.shape[0], &tmpslice.strides[0], itemsize, ndim, order)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   (void)(__pyx_fill_contig_strides_array((&(__pyx_v_tmpslice->shape[0])), (&(__pyx_v_tmpslice->strides[0])), __pyx_v_itemsize, __pyx_v_ndim, __pyx_v_order));
 
   /* "View.MemoryView":1233
- *
- *
+ * 
+ * 
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
  *         if tmpslice.shape[i] == 1:
  *             tmpslice.strides[i] = 0
@@ -15480,11 +15480,11 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
     __pyx_v_i = __pyx_t_6;
 
     /* "View.MemoryView":1234
- *
+ * 
  *     for i in range(ndim):
  *         if tmpslice.shape[i] == 1:             # <<<<<<<<<<<<<<
  *             tmpslice.strides[i] = 0
- *
+ * 
  */
     __pyx_t_2 = ((__pyx_v_tmpslice->shape[__pyx_v_i]) == 1);
     if (__pyx_t_2) {
@@ -15493,24 +15493,24 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     for i in range(ndim):
  *         if tmpslice.shape[i] == 1:
  *             tmpslice.strides[i] = 0             # <<<<<<<<<<<<<<
- *
+ * 
  *     if slice_is_contig(src[0], order, ndim):
  */
       (__pyx_v_tmpslice->strides[__pyx_v_i]) = 0;
 
       /* "View.MemoryView":1234
- *
+ * 
  *     for i in range(ndim):
  *         if tmpslice.shape[i] == 1:             # <<<<<<<<<<<<<<
  *             tmpslice.strides[i] = 0
- *
+ * 
  */
     }
   }
 
   /* "View.MemoryView":1237
  *             tmpslice.strides[i] = 0
- *
+ * 
  *     if slice_is_contig(src[0], order, ndim):             # <<<<<<<<<<<<<<
  *         memcpy(result, src.data, size)
  *     else:
@@ -15519,7 +15519,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1238
- *
+ * 
  *     if slice_is_contig(src[0], order, ndim):
  *         memcpy(result, src.data, size)             # <<<<<<<<<<<<<<
  *     else:
@@ -15529,7 +15529,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
     /* "View.MemoryView":1237
  *             tmpslice.strides[i] = 0
- *
+ * 
  *     if slice_is_contig(src[0], order, ndim):             # <<<<<<<<<<<<<<
  *         memcpy(result, src.data, size)
  *     else:
@@ -15541,7 +15541,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *         memcpy(result, src.data, size)
  *     else:
  *         copy_strided_to_strided(src, tmpslice, ndim, itemsize)             # <<<<<<<<<<<<<<
- *
+ * 
  *     return result
  */
   /*else*/ {
@@ -15551,16 +15551,16 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
   /* "View.MemoryView":1242
  *         copy_strided_to_strided(src, tmpslice, ndim, itemsize)
- *
+ * 
  *     return result             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
   /* "View.MemoryView":1205
- *
+ * 
  * @cname('__pyx_memoryview_copy_data_to_temp')
  * cdef void *copy_data_to_temp(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                              __Pyx_memviewslice *tmpslice,
@@ -15582,7 +15582,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 }
 
 /* "View.MemoryView":1247
- *
+ * 
  * @cname('__pyx_memoryview_err_extents')
  * cdef int _err_extents(int i, Py_ssize_t extent1,             # <<<<<<<<<<<<<<
  *                              Py_ssize_t extent2) except -1 with gil:
@@ -15608,7 +15608,7 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
  * cdef int _err_extents(int i, Py_ssize_t extent1,
  *                              Py_ssize_t extent2) except -1 with gil:
  *     raise ValueError, f"got differing extents in dimension {i} (got {extent1} and {extent2})"             # <<<<<<<<<<<<<<
- *
+ * 
  * @cname('__pyx_memoryview_err_dim')
  */
   __pyx_t_1 = PyTuple_New(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1249, __pyx_L1_error)
@@ -15657,7 +15657,7 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
   __PYX_ERR(1, 1249, __pyx_L1_error)
 
   /* "View.MemoryView":1247
- *
+ * 
  * @cname('__pyx_memoryview_err_extents')
  * cdef int _err_extents(int i, Py_ssize_t extent1,             # <<<<<<<<<<<<<<
  *                              Py_ssize_t extent2) except -1 with gil:
@@ -15678,11 +15678,11 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
 }
 
 /* "View.MemoryView":1252
- *
+ * 
  * @cname('__pyx_memoryview_err_dim')
  * cdef int _err_dim(PyObject *error, str msg, int dim) except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise <object>error, msg % dim
- *
+ * 
  */
 
 static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, PyObject *__pyx_v_msg, int __pyx_v_dim) {
@@ -15703,7 +15703,7 @@ static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, PyObject *__pyx_v_m
  * @cname('__pyx_memoryview_err_dim')
  * cdef int _err_dim(PyObject *error, str msg, int dim) except -1 with gil:
  *     raise <object>error, msg % dim             # <<<<<<<<<<<<<<
- *
+ * 
  * @cname('__pyx_memoryview_err')
  */
   __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_dim); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1253, __pyx_L1_error)
@@ -15716,11 +15716,11 @@ static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, PyObject *__pyx_v_m
   __PYX_ERR(1, 1253, __pyx_L1_error)
 
   /* "View.MemoryView":1252
- *
+ * 
  * @cname('__pyx_memoryview_err_dim')
  * cdef int _err_dim(PyObject *error, str msg, int dim) except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise <object>error, msg % dim
- *
+ * 
  */
 
   /* function exit code */
@@ -15738,11 +15738,11 @@ static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, PyObject *__pyx_v_m
 }
 
 /* "View.MemoryView":1256
- *
+ * 
  * @cname('__pyx_memoryview_err')
  * cdef int _err(PyObject *error, str msg) except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise <object>error, msg
- *
+ * 
  */
 
 static int __pyx_memoryview_err(PyObject *__pyx_v_error, PyObject *__pyx_v_msg) {
@@ -15761,18 +15761,18 @@ static int __pyx_memoryview_err(PyObject *__pyx_v_error, PyObject *__pyx_v_msg) 
  * @cname('__pyx_memoryview_err')
  * cdef int _err(PyObject *error, str msg) except -1 with gil:
  *     raise <object>error, msg             # <<<<<<<<<<<<<<
- *
+ * 
  * @cname('__pyx_memoryview_err_no_memory')
  */
   __Pyx_Raise(((PyObject *)__pyx_v_error), __pyx_v_msg, 0, 0);
   __PYX_ERR(1, 1257, __pyx_L1_error)
 
   /* "View.MemoryView":1256
- *
+ * 
  * @cname('__pyx_memoryview_err')
  * cdef int _err(PyObject *error, str msg) except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise <object>error, msg
- *
+ * 
  */
 
   /* function exit code */
@@ -15788,11 +15788,11 @@ static int __pyx_memoryview_err(PyObject *__pyx_v_error, PyObject *__pyx_v_msg) 
 }
 
 /* "View.MemoryView":1260
- *
+ * 
  * @cname('__pyx_memoryview_err_no_memory')
  * cdef int _err_no_memory() except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise MemoryError
- *
+ * 
  */
 
 static int __pyx_memoryview_err_no_memory(void) {
@@ -15808,17 +15808,17 @@ static int __pyx_memoryview_err_no_memory(void) {
  * @cname('__pyx_memoryview_err_no_memory')
  * cdef int _err_no_memory() except -1 with gil:
  *     raise MemoryError             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   PyErr_NoMemory(); __PYX_ERR(1, 1261, __pyx_L1_error)
 
   /* "View.MemoryView":1260
- *
+ * 
  * @cname('__pyx_memoryview_err_no_memory')
  * cdef int _err_no_memory() except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise MemoryError
- *
+ * 
  */
 
   /* function exit code */
@@ -15832,7 +15832,7 @@ static int __pyx_memoryview_err_no_memory(void) {
 }
 
 /* "View.MemoryView":1265
- *
+ * 
  * @cname('__pyx_memoryview_copy_contents')
  * cdef int memoryview_copy_contents(__Pyx_memviewslice src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice dst,
@@ -15905,13 +15905,13 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *     cdef bint broadcasting = False
  *     cdef bint direct_copy = False             # <<<<<<<<<<<<<<
  *     cdef __Pyx_memviewslice tmp
- *
+ * 
  */
   __pyx_v_direct_copy = 0;
 
   /* "View.MemoryView":1281
  *     cdef __Pyx_memviewslice tmp
- *
+ * 
  *     if src_ndim < dst_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:
@@ -15920,7 +15920,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1282
- *
+ * 
  *     if src_ndim < dst_ndim:
  *         broadcast_leading(&src, src_ndim, dst_ndim)             # <<<<<<<<<<<<<<
  *     elif dst_ndim < src_ndim:
@@ -15930,7 +15930,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
     /* "View.MemoryView":1281
  *     cdef __Pyx_memviewslice tmp
- *
+ * 
  *     if src_ndim < dst_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:
@@ -15943,7 +15943,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&dst, dst_ndim, src_ndim)
- *
+ * 
  */
   __pyx_t_2 = (__pyx_v_dst_ndim < __pyx_v_src_ndim);
   if (__pyx_t_2) {
@@ -15952,7 +15952,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:
  *         broadcast_leading(&dst, dst_ndim, src_ndim)             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef int ndim = max(src_ndim, dst_ndim)
  */
     __pyx_memoryview_broadcast_leading((&__pyx_v_dst), __pyx_v_dst_ndim, __pyx_v_src_ndim);
@@ -15962,16 +15962,16 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&dst, dst_ndim, src_ndim)
- *
+ * 
  */
   }
   __pyx_L3:;
 
   /* "View.MemoryView":1286
  *         broadcast_leading(&dst, dst_ndim, src_ndim)
- *
+ * 
  *     cdef int ndim = max(src_ndim, dst_ndim)             # <<<<<<<<<<<<<<
- *
+ * 
  *     for i in range(ndim):
  */
   __pyx_t_3 = __pyx_v_dst_ndim;
@@ -15986,7 +15986,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
   /* "View.MemoryView":1288
  *     cdef int ndim = max(src_ndim, dst_ndim)
- *
+ * 
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
  *         if src.shape[i] != dst.shape[i]:
  *             if src.shape[i] == 1:
@@ -15997,7 +15997,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
     __pyx_v_i = __pyx_t_4;
 
     /* "View.MemoryView":1289
- *
+ * 
  *     for i in range(ndim):
  *         if src.shape[i] != dst.shape[i]:             # <<<<<<<<<<<<<<
  *             if src.shape[i] == 1:
@@ -16048,7 +16048,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *                 src.strides[i] = 0
  *             else:
  *                 _err_extents(i, dst.shape[i], src.shape[i])             # <<<<<<<<<<<<<<
- *
+ * 
  *         if src.suboffsets[i] >= 0:
  */
       /*else*/ {
@@ -16057,7 +16057,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
       __pyx_L7:;
 
       /* "View.MemoryView":1289
- *
+ * 
  *     for i in range(ndim):
  *         if src.shape[i] != dst.shape[i]:             # <<<<<<<<<<<<<<
  *             if src.shape[i] == 1:
@@ -16067,38 +16067,38 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
     /* "View.MemoryView":1296
  *                 _err_extents(i, dst.shape[i], src.shape[i])
- *
+ * 
  *         if src.suboffsets[i] >= 0:             # <<<<<<<<<<<<<<
  *             _err_dim(PyExc_ValueError, "Dimension %d is not direct", i)
- *
+ * 
  */
     __pyx_t_2 = ((__pyx_v_src.suboffsets[__pyx_v_i]) >= 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":1297
- *
+ * 
  *         if src.suboffsets[i] >= 0:
  *             _err_dim(PyExc_ValueError, "Dimension %d is not direct", i)             # <<<<<<<<<<<<<<
- *
+ * 
  *     if slices_overlap(&src, &dst, ndim, itemsize):
  */
       __pyx_t_6 = __pyx_memoryview_err_dim(PyExc_ValueError, __pyx_kp_s_Dimension_d_is_not_direct, __pyx_v_i); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(1, 1297, __pyx_L1_error)
 
       /* "View.MemoryView":1296
  *                 _err_extents(i, dst.shape[i], src.shape[i])
- *
+ * 
  *         if src.suboffsets[i] >= 0:             # <<<<<<<<<<<<<<
  *             _err_dim(PyExc_ValueError, "Dimension %d is not direct", i)
- *
+ * 
  */
     }
   }
 
   /* "View.MemoryView":1299
  *             _err_dim(PyExc_ValueError, "Dimension %d is not direct", i)
- *
+ * 
  *     if slices_overlap(&src, &dst, ndim, itemsize):             # <<<<<<<<<<<<<<
- *
+ * 
  *         if not slice_is_contig(src, order, ndim):
  */
   __pyx_t_2 = __pyx_slices_overlap((&__pyx_v_src), (&__pyx_v_dst), __pyx_v_ndim, __pyx_v_itemsize);
@@ -16106,73 +16106,73 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
     /* "View.MemoryView":1301
  *     if slices_overlap(&src, &dst, ndim, itemsize):
- *
+ * 
  *         if not slice_is_contig(src, order, ndim):             # <<<<<<<<<<<<<<
  *             order = get_best_order(&dst, ndim)
- *
+ * 
  */
     __pyx_t_2 = (!__pyx_memviewslice_is_contig(__pyx_v_src, __pyx_v_order, __pyx_v_ndim));
     if (__pyx_t_2) {
 
       /* "View.MemoryView":1302
- *
+ * 
  *         if not slice_is_contig(src, order, ndim):
  *             order = get_best_order(&dst, ndim)             # <<<<<<<<<<<<<<
- *
+ * 
  *         tmpdata = copy_data_to_temp(&src, &tmp, order, ndim)
  */
       __pyx_v_order = __pyx_get_best_slice_order((&__pyx_v_dst), __pyx_v_ndim);
 
       /* "View.MemoryView":1301
  *     if slices_overlap(&src, &dst, ndim, itemsize):
- *
+ * 
  *         if not slice_is_contig(src, order, ndim):             # <<<<<<<<<<<<<<
  *             order = get_best_order(&dst, ndim)
- *
+ * 
  */
     }
 
     /* "View.MemoryView":1304
  *             order = get_best_order(&dst, ndim)
- *
+ * 
  *         tmpdata = copy_data_to_temp(&src, &tmp, order, ndim)             # <<<<<<<<<<<<<<
  *         src = tmp
- *
+ * 
  */
     __pyx_t_7 = __pyx_memoryview_copy_data_to_temp((&__pyx_v_src), (&__pyx_v_tmp), __pyx_v_order, __pyx_v_ndim); if (unlikely(__pyx_t_7 == ((void *)NULL))) __PYX_ERR(1, 1304, __pyx_L1_error)
     __pyx_v_tmpdata = __pyx_t_7;
 
     /* "View.MemoryView":1305
- *
+ * 
  *         tmpdata = copy_data_to_temp(&src, &tmp, order, ndim)
  *         src = tmp             # <<<<<<<<<<<<<<
- *
+ * 
  *     if not broadcasting:
  */
     __pyx_v_src = __pyx_v_tmp;
 
     /* "View.MemoryView":1299
  *             _err_dim(PyExc_ValueError, "Dimension %d is not direct", i)
- *
+ * 
  *     if slices_overlap(&src, &dst, ndim, itemsize):             # <<<<<<<<<<<<<<
- *
+ * 
  *         if not slice_is_contig(src, order, ndim):
  */
   }
 
   /* "View.MemoryView":1307
  *         src = tmp
- *
+ * 
  *     if not broadcasting:             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_2 = (!__pyx_v_broadcasting);
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1310
- *
- *
+ * 
+ * 
  *         if slice_is_contig(src, 'C', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):
@@ -16181,7 +16181,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
     if (__pyx_t_2) {
 
       /* "View.MemoryView":1311
- *
+ * 
  *         if slice_is_contig(src, 'C', ndim):
  *             direct_copy = slice_is_contig(dst, 'C', ndim)             # <<<<<<<<<<<<<<
  *         elif slice_is_contig(src, 'F', ndim):
@@ -16190,8 +16190,8 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
       __pyx_v_direct_copy = __pyx_memviewslice_is_contig(__pyx_v_dst, 'C', __pyx_v_ndim);
 
       /* "View.MemoryView":1310
- *
- *
+ * 
+ * 
  *         if slice_is_contig(src, 'C', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):
@@ -16204,7 +16204,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- *
+ * 
  */
     __pyx_t_2 = __pyx_memviewslice_is_contig(__pyx_v_src, 'F', __pyx_v_ndim);
     if (__pyx_t_2) {
@@ -16213,7 +16213,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):
  *             direct_copy = slice_is_contig(dst, 'F', ndim)             # <<<<<<<<<<<<<<
- *
+ * 
  *         if direct_copy:
  */
       __pyx_v_direct_copy = __pyx_memviewslice_is_contig(__pyx_v_dst, 'F', __pyx_v_ndim);
@@ -16223,23 +16223,23 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- *
+ * 
  */
     }
     __pyx_L12:;
 
     /* "View.MemoryView":1315
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- *
+ * 
  *         if direct_copy:             # <<<<<<<<<<<<<<
- *
+ * 
  *             refcount_copying(&dst, dtype_is_object, ndim, inc=False)
  */
     if (__pyx_v_direct_copy) {
 
       /* "View.MemoryView":1317
  *         if direct_copy:
- *
+ * 
  *             refcount_copying(&dst, dtype_is_object, ndim, inc=False)             # <<<<<<<<<<<<<<
  *             memcpy(dst.data, src.data, slice_get_size(&src, ndim))
  *             refcount_copying(&dst, dtype_is_object, ndim, inc=True)
@@ -16247,7 +16247,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
       __pyx_memoryview_refcount_copying((&__pyx_v_dst), __pyx_v_dtype_is_object, __pyx_v_ndim, 0);
 
       /* "View.MemoryView":1318
- *
+ * 
  *             refcount_copying(&dst, dtype_is_object, ndim, inc=False)
  *             memcpy(dst.data, src.data, slice_get_size(&src, ndim))             # <<<<<<<<<<<<<<
  *             refcount_copying(&dst, dtype_is_object, ndim, inc=True)
@@ -16269,7 +16269,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             refcount_copying(&dst, dtype_is_object, ndim, inc=True)
  *             free(tmpdata)             # <<<<<<<<<<<<<<
  *             return 0
- *
+ * 
  */
       free(__pyx_v_tmpdata);
 
@@ -16277,7 +16277,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             refcount_copying(&dst, dtype_is_object, ndim, inc=True)
  *             free(tmpdata)
  *             return 0             # <<<<<<<<<<<<<<
- *
+ * 
  *     if order == 'F' == get_best_order(&dst, ndim):
  */
       __pyx_r = 0;
@@ -16285,28 +16285,28 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
       /* "View.MemoryView":1315
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- *
+ * 
  *         if direct_copy:             # <<<<<<<<<<<<<<
- *
+ * 
  *             refcount_copying(&dst, dtype_is_object, ndim, inc=False)
  */
     }
 
     /* "View.MemoryView":1307
  *         src = tmp
- *
+ * 
  *     if not broadcasting:             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   }
 
   /* "View.MemoryView":1323
  *             return 0
- *
+ * 
  *     if order == 'F' == get_best_order(&dst, ndim):             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_2 = (__pyx_v_order == 'F');
   if (__pyx_t_2) {
@@ -16315,35 +16315,35 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1326
- *
- *
+ * 
+ * 
  *         transpose_memslice(&src)             # <<<<<<<<<<<<<<
  *         transpose_memslice(&dst)
- *
+ * 
  */
     __pyx_t_5 = __pyx_memslice_transpose((&__pyx_v_src)); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(1, 1326, __pyx_L1_error)
 
     /* "View.MemoryView":1327
- *
+ * 
  *         transpose_memslice(&src)
  *         transpose_memslice(&dst)             # <<<<<<<<<<<<<<
- *
+ * 
  *     refcount_copying(&dst, dtype_is_object, ndim, inc=False)
  */
     __pyx_t_5 = __pyx_memslice_transpose((&__pyx_v_dst)); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(1, 1327, __pyx_L1_error)
 
     /* "View.MemoryView":1323
  *             return 0
- *
+ * 
  *     if order == 'F' == get_best_order(&dst, ndim):             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   }
 
   /* "View.MemoryView":1329
  *         transpose_memslice(&dst)
- *
+ * 
  *     refcount_copying(&dst, dtype_is_object, ndim, inc=False)             # <<<<<<<<<<<<<<
  *     copy_strided_to_strided(&src, &dst, ndim, itemsize)
  *     refcount_copying(&dst, dtype_is_object, ndim, inc=True)
@@ -16351,11 +16351,11 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
   __pyx_memoryview_refcount_copying((&__pyx_v_dst), __pyx_v_dtype_is_object, __pyx_v_ndim, 0);
 
   /* "View.MemoryView":1330
- *
+ * 
  *     refcount_copying(&dst, dtype_is_object, ndim, inc=False)
  *     copy_strided_to_strided(&src, &dst, ndim, itemsize)             # <<<<<<<<<<<<<<
  *     refcount_copying(&dst, dtype_is_object, ndim, inc=True)
- *
+ * 
  */
   copy_strided_to_strided((&__pyx_v_src), (&__pyx_v_dst), __pyx_v_ndim, __pyx_v_itemsize);
 
@@ -16363,32 +16363,32 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *     refcount_copying(&dst, dtype_is_object, ndim, inc=False)
  *     copy_strided_to_strided(&src, &dst, ndim, itemsize)
  *     refcount_copying(&dst, dtype_is_object, ndim, inc=True)             # <<<<<<<<<<<<<<
- *
+ * 
  *     free(tmpdata)
  */
   __pyx_memoryview_refcount_copying((&__pyx_v_dst), __pyx_v_dtype_is_object, __pyx_v_ndim, 1);
 
   /* "View.MemoryView":1333
  *     refcount_copying(&dst, dtype_is_object, ndim, inc=True)
- *
+ * 
  *     free(tmpdata)             # <<<<<<<<<<<<<<
  *     return 0
- *
+ * 
  */
   free(__pyx_v_tmpdata);
 
   /* "View.MemoryView":1334
- *
+ * 
  *     free(tmpdata)
  *     return 0             # <<<<<<<<<<<<<<
- *
+ * 
  * @cname('__pyx_memoryview_broadcast_leading')
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "View.MemoryView":1265
- *
+ * 
  * @cname('__pyx_memoryview_copy_contents')
  * cdef int memoryview_copy_contents(__Pyx_memviewslice src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice dst,
@@ -16410,7 +16410,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 }
 
 /* "View.MemoryView":1337
- *
+ * 
  * @cname('__pyx_memoryview_broadcast_leading')
  * cdef void broadcast_leading(__Pyx_memviewslice *mslice,             # <<<<<<<<<<<<<<
  *                             int ndim,
@@ -16428,14 +16428,14 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *                             int ndim_other) noexcept nogil:
  *     cdef int i
  *     cdef int offset = ndim_other - ndim             # <<<<<<<<<<<<<<
- *
+ * 
  *     for i in range(ndim - 1, -1, -1):
  */
   __pyx_v_offset = (__pyx_v_ndim_other - __pyx_v_ndim);
 
   /* "View.MemoryView":1343
  *     cdef int offset = ndim_other - ndim
- *
+ * 
  *     for i in range(ndim - 1, -1, -1):             # <<<<<<<<<<<<<<
  *         mslice.shape[i + offset] = mslice.shape[i]
  *         mslice.strides[i + offset] = mslice.strides[i]
@@ -16444,7 +16444,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
     __pyx_v_i = __pyx_t_1;
 
     /* "View.MemoryView":1344
- *
+ * 
  *     for i in range(ndim - 1, -1, -1):
  *         mslice.shape[i + offset] = mslice.shape[i]             # <<<<<<<<<<<<<<
  *         mslice.strides[i + offset] = mslice.strides[i]
@@ -16457,7 +16457,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i + offset] = mslice.shape[i]
  *         mslice.strides[i + offset] = mslice.strides[i]             # <<<<<<<<<<<<<<
  *         mslice.suboffsets[i + offset] = mslice.suboffsets[i]
- *
+ * 
  */
     (__pyx_v_mslice->strides[(__pyx_v_i + __pyx_v_offset)]) = (__pyx_v_mslice->strides[__pyx_v_i]);
 
@@ -16465,7 +16465,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i + offset] = mslice.shape[i]
  *         mslice.strides[i + offset] = mslice.strides[i]
  *         mslice.suboffsets[i + offset] = mslice.suboffsets[i]             # <<<<<<<<<<<<<<
- *
+ * 
  *     for i in range(offset):
  */
     (__pyx_v_mslice->suboffsets[(__pyx_v_i + __pyx_v_offset)]) = (__pyx_v_mslice->suboffsets[__pyx_v_i]);
@@ -16473,7 +16473,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
 
   /* "View.MemoryView":1348
  *         mslice.suboffsets[i + offset] = mslice.suboffsets[i]
- *
+ * 
  *     for i in range(offset):             # <<<<<<<<<<<<<<
  *         mslice.shape[i] = 1
  *         mslice.strides[i] = mslice.strides[0]
@@ -16484,7 +16484,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
     __pyx_v_i = __pyx_t_3;
 
     /* "View.MemoryView":1349
- *
+ * 
  *     for i in range(offset):
  *         mslice.shape[i] = 1             # <<<<<<<<<<<<<<
  *         mslice.strides[i] = mslice.strides[0]
@@ -16497,7 +16497,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i] = 1
  *         mslice.strides[i] = mslice.strides[0]             # <<<<<<<<<<<<<<
  *         mslice.suboffsets[i] = -1
- *
+ * 
  */
     (__pyx_v_mslice->strides[__pyx_v_i]) = (__pyx_v_mslice->strides[0]);
 
@@ -16505,14 +16505,14 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i] = 1
  *         mslice.strides[i] = mslice.strides[0]
  *         mslice.suboffsets[i] = -1             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
     (__pyx_v_mslice->suboffsets[__pyx_v_i]) = -1L;
   }
 
   /* "View.MemoryView":1337
- *
+ * 
  * @cname('__pyx_memoryview_broadcast_leading')
  * cdef void broadcast_leading(__Pyx_memviewslice *mslice,             # <<<<<<<<<<<<<<
  *                             int ndim,
@@ -16523,10 +16523,10 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
 }
 
 /* "View.MemoryView":1359
- *
+ * 
  * @cname('__pyx_memoryview_refcount_copying')
  * cdef void refcount_copying(__Pyx_memviewslice *dst, bint dtype_is_object, int ndim, bint inc) noexcept nogil:             # <<<<<<<<<<<<<<
- *
+ * 
  *     if dtype_is_object:
  */
 
@@ -16534,36 +16534,36 @@ static void __pyx_memoryview_refcount_copying(__Pyx_memviewslice *__pyx_v_dst, i
 
   /* "View.MemoryView":1361
  * cdef void refcount_copying(__Pyx_memviewslice *dst, bint dtype_is_object, int ndim, bint inc) noexcept nogil:
- *
+ * 
  *     if dtype_is_object:             # <<<<<<<<<<<<<<
  *         refcount_objects_in_slice_with_gil(dst.data, dst.shape, dst.strides, ndim, inc)
- *
+ * 
  */
   if (__pyx_v_dtype_is_object) {
 
     /* "View.MemoryView":1362
- *
+ * 
  *     if dtype_is_object:
  *         refcount_objects_in_slice_with_gil(dst.data, dst.shape, dst.strides, ndim, inc)             # <<<<<<<<<<<<<<
- *
+ * 
  * @cname('__pyx_memoryview_refcount_objects_in_slice_with_gil')
  */
     __pyx_memoryview_refcount_objects_in_slice_with_gil(__pyx_v_dst->data, __pyx_v_dst->shape, __pyx_v_dst->strides, __pyx_v_ndim, __pyx_v_inc);
 
     /* "View.MemoryView":1361
  * cdef void refcount_copying(__Pyx_memviewslice *dst, bint dtype_is_object, int ndim, bint inc) noexcept nogil:
- *
+ * 
  *     if dtype_is_object:             # <<<<<<<<<<<<<<
  *         refcount_objects_in_slice_with_gil(dst.data, dst.shape, dst.strides, ndim, inc)
- *
+ * 
  */
   }
 
   /* "View.MemoryView":1359
- *
+ * 
  * @cname('__pyx_memoryview_refcount_copying')
  * cdef void refcount_copying(__Pyx_memviewslice *dst, bint dtype_is_object, int ndim, bint inc) noexcept nogil:             # <<<<<<<<<<<<<<
- *
+ * 
  *     if dtype_is_object:
  */
 
@@ -16571,7 +16571,7 @@ static void __pyx_memoryview_refcount_copying(__Pyx_memviewslice *__pyx_v_dst, i
 }
 
 /* "View.MemoryView":1365
- *
+ * 
  * @cname('__pyx_memoryview_refcount_objects_in_slice_with_gil')
  * cdef void refcount_objects_in_slice_with_gil(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                              Py_ssize_t *strides, int ndim,
@@ -16587,13 +16587,13 @@ static void __pyx_memoryview_refcount_objects_in_slice_with_gil(char *__pyx_v_da
  *                                              Py_ssize_t *strides, int ndim,
  *                                              bint inc) noexcept with gil:
  *     refcount_objects_in_slice(data, shape, strides, ndim, inc)             # <<<<<<<<<<<<<<
- *
+ * 
  * @cname('__pyx_memoryview_refcount_objects_in_slice')
  */
   __pyx_memoryview_refcount_objects_in_slice(__pyx_v_data, __pyx_v_shape, __pyx_v_strides, __pyx_v_ndim, __pyx_v_inc);
 
   /* "View.MemoryView":1365
- *
+ * 
  * @cname('__pyx_memoryview_refcount_objects_in_slice_with_gil')
  * cdef void refcount_objects_in_slice_with_gil(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                              Py_ssize_t *strides, int ndim,
@@ -16607,7 +16607,7 @@ static void __pyx_memoryview_refcount_objects_in_slice_with_gil(char *__pyx_v_da
 }
 
 /* "View.MemoryView":1371
- *
+ * 
  * @cname('__pyx_memoryview_refcount_objects_in_slice')
  * cdef void refcount_objects_in_slice(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                     Py_ssize_t *strides, int ndim, bint inc) noexcept:
@@ -16626,14 +16626,14 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
  *                                     Py_ssize_t *strides, int ndim, bint inc) noexcept:
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t stride = strides[0]             # <<<<<<<<<<<<<<
- *
+ * 
  *     for i in range(shape[0]):
  */
   __pyx_v_stride = (__pyx_v_strides[0]);
 
   /* "View.MemoryView":1376
  *     cdef Py_ssize_t stride = strides[0]
- *
+ * 
  *     for i in range(shape[0]):             # <<<<<<<<<<<<<<
  *         if ndim == 1:
  *             if inc:
@@ -16644,7 +16644,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
     __pyx_v_i = __pyx_t_3;
 
     /* "View.MemoryView":1377
- *
+ * 
  *     for i in range(shape[0]):
  *         if ndim == 1:             # <<<<<<<<<<<<<<
  *             if inc:
@@ -16694,7 +16694,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
       __pyx_L6:;
 
       /* "View.MemoryView":1377
- *
+ * 
  *     for i in range(shape[0]):
  *         if ndim == 1:             # <<<<<<<<<<<<<<
  *             if inc:
@@ -16707,7 +16707,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
  *                 Py_DECREF((<PyObject **> data)[0])
  *         else:
  *             refcount_objects_in_slice(data, shape + 1, strides + 1, ndim - 1, inc)             # <<<<<<<<<<<<<<
- *
+ * 
  *         data += stride
  */
     /*else*/ {
@@ -16717,16 +16717,16 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
 
     /* "View.MemoryView":1385
  *             refcount_objects_in_slice(data, shape + 1, strides + 1, ndim - 1, inc)
- *
+ * 
  *         data += stride             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
     __pyx_v_data = (__pyx_v_data + __pyx_v_stride);
   }
 
   /* "View.MemoryView":1371
- *
+ * 
  * @cname('__pyx_memoryview_refcount_objects_in_slice')
  * cdef void refcount_objects_in_slice(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                     Py_ssize_t *strides, int ndim, bint inc) noexcept:
@@ -16737,7 +16737,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
 }
 
 /* "View.MemoryView":1391
- *
+ * 
  * @cname('__pyx_memoryview_slice_assign_scalar')
  * cdef void slice_assign_scalar(__Pyx_memviewslice *dst, int ndim,             # <<<<<<<<<<<<<<
  *                               size_t itemsize, void *item,
@@ -16760,7 +16760,7 @@ static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *__pyx_v_dst
  *     refcount_copying(dst, dtype_is_object, ndim, inc=False)
  *     _slice_assign_scalar(dst.data, dst.shape, dst.strides, ndim, itemsize, item)             # <<<<<<<<<<<<<<
  *     refcount_copying(dst, dtype_is_object, ndim, inc=True)
- *
+ * 
  */
   __pyx_memoryview__slice_assign_scalar(__pyx_v_dst->data, __pyx_v_dst->shape, __pyx_v_dst->strides, __pyx_v_ndim, __pyx_v_itemsize, __pyx_v_item);
 
@@ -16768,13 +16768,13 @@ static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *__pyx_v_dst
  *     refcount_copying(dst, dtype_is_object, ndim, inc=False)
  *     _slice_assign_scalar(dst.data, dst.shape, dst.strides, ndim, itemsize, item)
  *     refcount_copying(dst, dtype_is_object, ndim, inc=True)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_memoryview_refcount_copying(__pyx_v_dst, __pyx_v_dtype_is_object, __pyx_v_ndim, 1);
 
   /* "View.MemoryView":1391
- *
+ * 
  * @cname('__pyx_memoryview_slice_assign_scalar')
  * cdef void slice_assign_scalar(__Pyx_memviewslice *dst, int ndim,             # <<<<<<<<<<<<<<
  *                               size_t itemsize, void *item,
@@ -16785,7 +16785,7 @@ static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *__pyx_v_dst
 }
 
 /* "View.MemoryView":1400
- *
+ * 
  * @cname('__pyx_memoryview__slice_assign_scalar')
  * cdef void _slice_assign_scalar(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                               Py_ssize_t *strides, int ndim,
@@ -16806,7 +16806,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t stride = strides[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t extent = shape[0]
- *
+ * 
  */
   __pyx_v_stride = (__pyx_v_strides[0]);
 
@@ -16814,14 +16814,14 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t stride = strides[0]
  *     cdef Py_ssize_t extent = shape[0]             # <<<<<<<<<<<<<<
- *
+ * 
  *     if ndim == 1:
  */
   __pyx_v_extent = (__pyx_v_shape[0]);
 
   /* "View.MemoryView":1407
  *     cdef Py_ssize_t extent = shape[0]
- *
+ * 
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *         for i in range(extent):
  *             memcpy(data, item, itemsize)
@@ -16830,7 +16830,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1408
- *
+ * 
  *     if ndim == 1:
  *         for i in range(extent):             # <<<<<<<<<<<<<<
  *             memcpy(data, item, itemsize)
@@ -16862,7 +16862,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
 
     /* "View.MemoryView":1407
  *     cdef Py_ssize_t extent = shape[0]
- *
+ * 
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *         for i in range(extent):
  *             memcpy(data, item, itemsize)
@@ -16888,7 +16888,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *         for i in range(extent):
  *             _slice_assign_scalar(data, shape + 1, strides + 1, ndim - 1, itemsize, item)             # <<<<<<<<<<<<<<
  *             data += stride
- *
+ * 
  */
       __pyx_memoryview__slice_assign_scalar(__pyx_v_data, (__pyx_v_shape + 1), (__pyx_v_strides + 1), (__pyx_v_ndim - 1), __pyx_v_itemsize, __pyx_v_item);
 
@@ -16896,8 +16896,8 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *         for i in range(extent):
  *             _slice_assign_scalar(data, shape + 1, strides + 1, ndim - 1, itemsize, item)
  *             data += stride             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
       __pyx_v_data = (__pyx_v_data + __pyx_v_stride);
     }
@@ -16905,7 +16905,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
   __pyx_L3:;
 
   /* "View.MemoryView":1400
- *
+ * 
  * @cname('__pyx_memoryview__slice_assign_scalar')
  * cdef void _slice_assign_scalar(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                               Py_ssize_t *strides, int ndim,
@@ -16922,7 +16922,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_15View_dot_MemoryView_1__pyx_unpickle_Enum(PyObject *__pyx_self,
+static PyObject *__pyx_pw_15View_dot_MemoryView_1__pyx_unpickle_Enum(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -16930,7 +16930,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
 static PyMethodDef __pyx_mdef_15View_dot_MemoryView_1__pyx_unpickle_Enum = {"__pyx_unpickle_Enum", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15View_dot_MemoryView_1__pyx_unpickle_Enum, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15View_dot_MemoryView_1__pyx_unpickle_Enum(PyObject *__pyx_self,
+static PyObject *__pyx_pw_15View_dot_MemoryView_1__pyx_unpickle_Enum(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -17358,7 +17358,7 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
   return __pyx_r;
 }
 
-/* "monotonic_align/core.pyx":7
+/* "tts/monotonic_align/core.pyx":7
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void maximum_path_each(int[:,::1] path, float[:,::1] value, int t_y, int t_x, float max_neg_val=-1e9) nogil:             # <<<<<<<<<<<<<<
@@ -17366,7 +17366,7 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
  *   cdef int y
  */
 
-static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice __pyx_v_path, __Pyx_memviewslice __pyx_v_value, int __pyx_v_t_y, int __pyx_v_t_x, struct __pyx_opt_args_15monotonic_align_4core_maximum_path_each *__pyx_optional_args) {
+static void __pyx_f_3tts_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice __pyx_v_path, __Pyx_memviewslice __pyx_v_value, int __pyx_v_t_y, int __pyx_v_t_x, struct __pyx_opt_args_3tts_15monotonic_align_4core_maximum_path_each *__pyx_optional_args) {
   float __pyx_v_max_neg_val = __pyx_k__9;
   int __pyx_v_x;
   int __pyx_v_y;
@@ -17395,18 +17395,18 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
     }
   }
 
-  /* "monotonic_align/core.pyx":13
+  /* "tts/monotonic_align/core.pyx":13
  *   cdef float v_cur
  *   cdef float tmp
  *   cdef int index = t_x - 1             # <<<<<<<<<<<<<<
- *
+ * 
  *   for y in range(t_y):
  */
   __pyx_v_index = (__pyx_v_t_x - 1);
 
-  /* "monotonic_align/core.pyx":15
+  /* "tts/monotonic_align/core.pyx":15
  *   cdef int index = t_x - 1
- *
+ * 
  *   for y in range(t_y):             # <<<<<<<<<<<<<<
  *     for x in range(max(0, t_x + y - t_y), min(t_x, y + 1)):
  *       if x == y:
@@ -17416,8 +17416,8 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_y = __pyx_t_3;
 
-    /* "monotonic_align/core.pyx":16
- *
+    /* "tts/monotonic_align/core.pyx":16
+ * 
  *   for y in range(t_y):
  *     for x in range(max(0, t_x + y - t_y), min(t_x, y + 1)):             # <<<<<<<<<<<<<<
  *       if x == y:
@@ -17444,7 +17444,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
     for (__pyx_t_5 = __pyx_t_8; __pyx_t_5 < __pyx_t_6; __pyx_t_5+=1) {
       __pyx_v_x = __pyx_t_5;
 
-      /* "monotonic_align/core.pyx":17
+      /* "tts/monotonic_align/core.pyx":17
  *   for y in range(t_y):
  *     for x in range(max(0, t_x + y - t_y), min(t_x, y + 1)):
  *       if x == y:             # <<<<<<<<<<<<<<
@@ -17454,7 +17454,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
       __pyx_t_7 = (__pyx_v_x == __pyx_v_y);
       if (__pyx_t_7) {
 
-        /* "monotonic_align/core.pyx":18
+        /* "tts/monotonic_align/core.pyx":18
  *     for x in range(max(0, t_x + y - t_y), min(t_x, y + 1)):
  *       if x == y:
  *         v_cur = max_neg_val             # <<<<<<<<<<<<<<
@@ -17463,7 +17463,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
  */
         __pyx_v_v_cur = __pyx_v_max_neg_val;
 
-        /* "monotonic_align/core.pyx":17
+        /* "tts/monotonic_align/core.pyx":17
  *   for y in range(t_y):
  *     for x in range(max(0, t_x + y - t_y), min(t_x, y + 1)):
  *       if x == y:             # <<<<<<<<<<<<<<
@@ -17473,7 +17473,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
         goto __pyx_L7;
       }
 
-      /* "monotonic_align/core.pyx":20
+      /* "tts/monotonic_align/core.pyx":20
  *         v_cur = max_neg_val
  *       else:
  *         v_cur = value[y-1, x]             # <<<<<<<<<<<<<<
@@ -17487,7 +17487,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
       }
       __pyx_L7:;
 
-      /* "monotonic_align/core.pyx":21
+      /* "tts/monotonic_align/core.pyx":21
  *       else:
  *         v_cur = value[y-1, x]
  *       if x == 0:             # <<<<<<<<<<<<<<
@@ -17497,7 +17497,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
       __pyx_t_7 = (__pyx_v_x == 0);
       if (__pyx_t_7) {
 
-        /* "monotonic_align/core.pyx":22
+        /* "tts/monotonic_align/core.pyx":22
  *         v_cur = value[y-1, x]
  *       if x == 0:
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -17507,7 +17507,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
         __pyx_t_7 = (__pyx_v_y == 0);
         if (__pyx_t_7) {
 
-          /* "monotonic_align/core.pyx":23
+          /* "tts/monotonic_align/core.pyx":23
  *       if x == 0:
  *         if y == 0:
  *           v_prev = 0.             # <<<<<<<<<<<<<<
@@ -17516,7 +17516,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
  */
           __pyx_v_v_prev = 0.;
 
-          /* "monotonic_align/core.pyx":22
+          /* "tts/monotonic_align/core.pyx":22
  *         v_cur = value[y-1, x]
  *       if x == 0:
  *         if y == 0:             # <<<<<<<<<<<<<<
@@ -17526,7 +17526,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
           goto __pyx_L9;
         }
 
-        /* "monotonic_align/core.pyx":25
+        /* "tts/monotonic_align/core.pyx":25
  *           v_prev = 0.
  *         else:
  *           v_prev = max_neg_val             # <<<<<<<<<<<<<<
@@ -17538,7 +17538,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
         }
         __pyx_L9:;
 
-        /* "monotonic_align/core.pyx":21
+        /* "tts/monotonic_align/core.pyx":21
  *       else:
  *         v_cur = value[y-1, x]
  *       if x == 0:             # <<<<<<<<<<<<<<
@@ -17548,12 +17548,12 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
         goto __pyx_L8;
       }
 
-      /* "monotonic_align/core.pyx":27
+      /* "tts/monotonic_align/core.pyx":27
  *           v_prev = max_neg_val
  *       else:
  *         v_prev = value[y-1, x-1]             # <<<<<<<<<<<<<<
  *       value[y, x] += max(v_prev, v_cur)
- *
+ * 
  */
       /*else*/ {
         __pyx_t_10 = (__pyx_v_y - 1);
@@ -17562,11 +17562,11 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
       }
       __pyx_L8:;
 
-      /* "monotonic_align/core.pyx":28
+      /* "tts/monotonic_align/core.pyx":28
  *       else:
  *         v_prev = value[y-1, x-1]
  *       value[y, x] += max(v_prev, v_cur)             # <<<<<<<<<<<<<<
- *
+ * 
  *   for y in range(t_y - 1, -1, -1):
  */
       __pyx_t_11 = __pyx_v_v_cur;
@@ -17583,9 +17583,9 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
     }
   }
 
-  /* "monotonic_align/core.pyx":30
+  /* "tts/monotonic_align/core.pyx":30
  *       value[y, x] += max(v_prev, v_cur)
- *
+ * 
  *   for y in range(t_y - 1, -1, -1):             # <<<<<<<<<<<<<<
  *     path[y, index] = 1
  *     if index != 0 and (index == y or value[y-1, index] < value[y-1, index-1]):
@@ -17593,8 +17593,8 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
   for (__pyx_t_1 = (__pyx_v_t_y - 1); __pyx_t_1 > -1; __pyx_t_1-=1) {
     __pyx_v_y = __pyx_t_1;
 
-    /* "monotonic_align/core.pyx":31
- *
+    /* "tts/monotonic_align/core.pyx":31
+ * 
  *   for y in range(t_y - 1, -1, -1):
  *     path[y, index] = 1             # <<<<<<<<<<<<<<
  *     if index != 0 and (index == y or value[y-1, index] < value[y-1, index-1]):
@@ -17604,12 +17604,12 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
     __pyx_t_9 = __pyx_v_index;
     *((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_path.data + __pyx_t_10 * __pyx_v_path.strides[0]) )) + __pyx_t_9)) )) = 1;
 
-    /* "monotonic_align/core.pyx":32
+    /* "tts/monotonic_align/core.pyx":32
  *   for y in range(t_y - 1, -1, -1):
  *     path[y, index] = 1
  *     if index != 0 and (index == y or value[y-1, index] < value[y-1, index-1]):             # <<<<<<<<<<<<<<
  *       index = index - 1
- *
+ * 
  */
     __pyx_t_14 = (__pyx_v_index != 0);
     if (__pyx_t_14) {
@@ -17632,26 +17632,26 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
     __pyx_L13_bool_binop_done:;
     if (__pyx_t_7) {
 
-      /* "monotonic_align/core.pyx":33
+      /* "tts/monotonic_align/core.pyx":33
  *     path[y, index] = 1
  *     if index != 0 and (index == y or value[y-1, index] < value[y-1, index-1]):
  *       index = index - 1             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
       __pyx_v_index = (__pyx_v_index - 1);
 
-      /* "monotonic_align/core.pyx":32
+      /* "tts/monotonic_align/core.pyx":32
  *   for y in range(t_y - 1, -1, -1):
  *     path[y, index] = 1
  *     if index != 0 and (index == y or value[y-1, index] < value[y-1, index-1]):             # <<<<<<<<<<<<<<
  *       index = index - 1
- *
+ * 
  */
     }
   }
 
-  /* "monotonic_align/core.pyx":7
+  /* "tts/monotonic_align/core.pyx":7
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void maximum_path_each(int[:,::1] path, float[:,::1] value, int t_y, int t_x, float max_neg_val=-1e9) nogil:             # <<<<<<<<<<<<<<
@@ -17662,7 +17662,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
   /* function exit code */
 }
 
-/* "monotonic_align/core.pyx":38
+/* "tts/monotonic_align/core.pyx":38
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef void maximum_path_c(int[:,:,::1] paths, float[:,:,::1] values, int[::1] t_ys, int[::1] t_xs) nogil:             # <<<<<<<<<<<<<<
@@ -17670,14 +17670,14 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_each(__Pyx_memviewslice
  *   cdef int i
  */
 
-static PyObject *__pyx_pw_15monotonic_align_4core_1maximum_path_c(PyObject *__pyx_self,
+static PyObject *__pyx_pw_3tts_15monotonic_align_4core_1maximum_path_c(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static void __pyx_f_15monotonic_align_4core_maximum_path_c(__Pyx_memviewslice __pyx_v_paths, __Pyx_memviewslice __pyx_v_values, __Pyx_memviewslice __pyx_v_t_ys, __Pyx_memviewslice __pyx_v_t_xs, CYTHON_UNUSED int __pyx_skip_dispatch) {
+static void __pyx_f_3tts_15monotonic_align_4core_maximum_path_c(__Pyx_memviewslice __pyx_v_paths, __Pyx_memviewslice __pyx_v_values, __Pyx_memviewslice __pyx_v_t_ys, __Pyx_memviewslice __pyx_v_t_xs, CYTHON_UNUSED int __pyx_skip_dispatch) {
   CYTHON_UNUSED int __pyx_v_b;
   int __pyx_v_i;
   __Pyx_RefNannyDeclarations
@@ -17696,7 +17696,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_c(__Pyx_memviewslice __
   #endif
   __Pyx_RefNannySetupContext("maximum_path_c", 1);
 
-  /* "monotonic_align/core.pyx":39
+  /* "tts/monotonic_align/core.pyx":39
  * @cython.wraparound(False)
  * cpdef void maximum_path_c(int[:,:,::1] paths, float[:,:,::1] values, int[::1] t_ys, int[::1] t_xs) nogil:
  *   cdef int b = paths.shape[0]             # <<<<<<<<<<<<<<
@@ -17705,7 +17705,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_c(__Pyx_memviewslice __
  */
   __pyx_v_b = (__pyx_v_paths.shape[0]);
 
-  /* "monotonic_align/core.pyx":41
+  /* "tts/monotonic_align/core.pyx":41
  *   cdef int b = paths.shape[0]
  *   cdef int i
  *   for i in prange(b, nogil=True):             # <<<<<<<<<<<<<<
@@ -17755,7 +17755,7 @@ static void __pyx_f_15monotonic_align_4core_maximum_path_c(__Pyx_memviewslice __
                         {
                             __pyx_v_i = (int)(0 + 1 * __pyx_t_2);
 
-                            /* "monotonic_align/core.pyx":42
+                            /* "tts/monotonic_align/core.pyx":42
  *   cdef int i
  *   for i in prange(b, nogil=True):
  *     maximum_path_each(paths[i], values[i], t_ys[i], t_xs[i])             # <<<<<<<<<<<<<<
@@ -17796,7 +17796,7 @@ __pyx_t_5.strides[1] = __pyx_v_values.strides[2];
 
 __pyx_t_6 = __pyx_v_i;
                             __pyx_t_7 = __pyx_v_i;
-                            __pyx_f_15monotonic_align_4core_maximum_path_each(__pyx_t_4, __pyx_t_5, (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_t_ys.data) + __pyx_t_6)) ))), (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_t_xs.data) + __pyx_t_7)) ))), NULL); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 42, __pyx_L8_error)
+                            __pyx_f_3tts_15monotonic_align_4core_maximum_path_each(__pyx_t_4, __pyx_t_5, (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_t_ys.data) + __pyx_t_6)) ))), (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_t_xs.data) + __pyx_t_7)) ))), NULL); if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 42, __pyx_L8_error)
                             __PYX_XCLEAR_MEMVIEW(&__pyx_t_4, 0);
                             __pyx_t_4.memview = NULL; __pyx_t_4.data = NULL;
                             __PYX_XCLEAR_MEMVIEW(&__pyx_t_5, 0);
@@ -17886,7 +17886,7 @@ __pyx_t_6 = __pyx_v_i;
         #endif
       }
 
-      /* "monotonic_align/core.pyx":41
+      /* "tts/monotonic_align/core.pyx":41
  *   cdef int b = paths.shape[0]
  *   cdef int i
  *   for i in prange(b, nogil=True):             # <<<<<<<<<<<<<<
@@ -17915,7 +17915,7 @@ __pyx_t_6 = __pyx_v_i;
       }
   }
 
-  /* "monotonic_align/core.pyx":38
+  /* "tts/monotonic_align/core.pyx":38
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef void maximum_path_c(int[:,:,::1] paths, float[:,:,::1] values, int[::1] t_ys, int[::1] t_xs) nogil:             # <<<<<<<<<<<<<<
@@ -17931,7 +17931,7 @@ __pyx_t_6 = __pyx_v_i;
   #endif
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_4, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_5, 1);
-  __Pyx_AddTraceback("monotonic_align.core.maximum_path_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("tts.monotonic_align.core.maximum_path_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
   #ifdef WITH_THREAD
   __Pyx_PyGILState_Release(__pyx_gilstate_save);
   #endif
@@ -17940,15 +17940,15 @@ __pyx_t_6 = __pyx_v_i;
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_15monotonic_align_4core_1maximum_path_c(PyObject *__pyx_self,
+static PyObject *__pyx_pw_3tts_15monotonic_align_4core_1maximum_path_c(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_15monotonic_align_4core_1maximum_path_c = {"maximum_path_c", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15monotonic_align_4core_1maximum_path_c, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15monotonic_align_4core_1maximum_path_c(PyObject *__pyx_self,
+static PyMethodDef __pyx_mdef_3tts_15monotonic_align_4core_1maximum_path_c = {"maximum_path_c", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_3tts_15monotonic_align_4core_1maximum_path_c, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_3tts_15monotonic_align_4core_1maximum_path_c(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -18067,11 +18067,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_values, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_t_ys, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_t_xs, 1);
-  __Pyx_AddTraceback("monotonic_align.core.maximum_path_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("tts.monotonic_align.core.maximum_path_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_15monotonic_align_4core_maximum_path_c(__pyx_self, __pyx_v_paths, __pyx_v_values, __pyx_v_t_ys, __pyx_v_t_xs);
+  __pyx_r = __pyx_pf_3tts_15monotonic_align_4core_maximum_path_c(__pyx_self, __pyx_v_paths, __pyx_v_values, __pyx_v_t_ys, __pyx_v_t_xs);
 
   /* function exit code */
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_paths, 1);
@@ -18088,7 +18088,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_15monotonic_align_4core_maximum_path_c(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_paths, __Pyx_memviewslice __pyx_v_values, __Pyx_memviewslice __pyx_v_t_ys, __Pyx_memviewslice __pyx_v_t_xs) {
+static PyObject *__pyx_pf_3tts_15monotonic_align_4core_maximum_path_c(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_paths, __Pyx_memviewslice __pyx_v_values, __Pyx_memviewslice __pyx_v_t_ys, __Pyx_memviewslice __pyx_v_t_xs) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -18101,7 +18101,7 @@ static PyObject *__pyx_pf_15monotonic_align_4core_maximum_path_c(CYTHON_UNUSED P
   if (unlikely(!__pyx_v_values.memview)) { __Pyx_RaiseUnboundLocalError("values"); __PYX_ERR(0, 38, __pyx_L1_error) }
   if (unlikely(!__pyx_v_t_ys.memview)) { __Pyx_RaiseUnboundLocalError("t_ys"); __PYX_ERR(0, 38, __pyx_L1_error) }
   if (unlikely(!__pyx_v_t_xs.memview)) { __Pyx_RaiseUnboundLocalError("t_xs"); __PYX_ERR(0, 38, __pyx_L1_error) }
-  __pyx_f_15monotonic_align_4core_maximum_path_c(__pyx_v_paths, __pyx_v_values, __pyx_v_t_ys, __pyx_v_t_xs, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_f_3tts_15monotonic_align_4core_maximum_path_c(__pyx_v_paths, __pyx_v_values, __pyx_v_t_ys, __pyx_v_t_xs, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
   __pyx_t_1 = __Pyx_void_to_None(NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
@@ -18111,7 +18111,7 @@ static PyObject *__pyx_pf_15monotonic_align_4core_maximum_path_c(CYTHON_UNUSED P
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("monotonic_align.core.maximum_path_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("tts.monotonic_align.core.maximum_path_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -18256,7 +18256,7 @@ static PyType_Slot __pyx_type___pyx_array_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_array_spec = {
-  "monotonic_align.core.array",
+  "tts.monotonic_align.core.array",
   sizeof(struct __pyx_array_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_SEQUENCE,
@@ -18302,7 +18302,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "monotonic_align.core.""array", /*tp_name*/
+  "tts.monotonic_align.core.""array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -18462,7 +18462,7 @@ static PyType_Slot __pyx_type___pyx_MemviewEnum_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
-  "monotonic_align.core.Enum",
+  "tts.monotonic_align.core.Enum",
   sizeof(struct __pyx_MemviewEnum_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -18472,7 +18472,7 @@ static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "monotonic_align.core.""Enum", /*tp_name*/
+  "tts.monotonic_align.core.""Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -18769,7 +18769,7 @@ static PyType_Slot __pyx_type___pyx_memoryview_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryview_spec = {
-  "monotonic_align.core.memoryview",
+  "tts.monotonic_align.core.memoryview",
   sizeof(struct __pyx_memoryview_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -18815,7 +18815,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "monotonic_align.core.""memoryview", /*tp_name*/
+  "tts.monotonic_align.core.""memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -18967,7 +18967,7 @@ static PyType_Slot __pyx_type___pyx_memoryviewslice_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
-  "monotonic_align.core._memoryviewslice",
+  "tts.monotonic_align.core._memoryviewslice",
   sizeof(struct __pyx_memoryviewslice_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC|Py_TPFLAGS_SEQUENCE,
@@ -18977,7 +18977,7 @@ static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "monotonic_align.core.""_memoryviewslice", /*tp_name*/
+  "tts.monotonic_align.core.""_memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -19160,7 +19160,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_maximum_path_c, __pyx_k_maximum_path_c, sizeof(__pyx_k_maximum_path_c), 0, 0, 1, 1},
     {&__pyx_n_s_memview, __pyx_k_memview, sizeof(__pyx_k_memview), 0, 0, 1, 1},
     {&__pyx_n_s_mode, __pyx_k_mode, sizeof(__pyx_k_mode), 0, 0, 1, 1},
-    {&__pyx_n_s_monotonic_align_core, __pyx_k_monotonic_align_core, sizeof(__pyx_k_monotonic_align_core), 0, 0, 1, 1},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
     {&__pyx_n_s_name_2, __pyx_k_name_2, sizeof(__pyx_k_name_2), 0, 0, 1, 1},
     {&__pyx_n_s_ndim, __pyx_k_ndim, sizeof(__pyx_k_ndim), 0, 0, 1, 1},
@@ -19199,6 +19198,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_t_xs, __pyx_k_t_xs, sizeof(__pyx_k_t_xs), 0, 0, 1, 1},
     {&__pyx_n_s_t_ys, __pyx_k_t_ys, sizeof(__pyx_k_t_ys), 0, 0, 1, 1},
     {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
+    {&__pyx_n_s_tts_monotonic_align_core, __pyx_k_tts_monotonic_align_core, sizeof(__pyx_k_tts_monotonic_align_core), 0, 0, 1, 1},
     {&__pyx_kp_s_unable_to_allocate_array_data, __pyx_k_unable_to_allocate_array_data, sizeof(__pyx_k_unable_to_allocate_array_data), 0, 0, 1, 0},
     {&__pyx_kp_s_unable_to_allocate_shape_and_str, __pyx_k_unable_to_allocate_shape_and_str, sizeof(__pyx_k_unable_to_allocate_shape_and_str), 0, 0, 1, 0},
     {&__pyx_n_s_unpack, __pyx_k_unpack, sizeof(__pyx_k_unpack), 0, 0, 1, 1},
@@ -19235,7 +19235,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:
  *             return (-1,) * self.view.ndim             # <<<<<<<<<<<<<<
- *
+ * 
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
  */
   __pyx_tuple__4 = PyTuple_New(1); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(1, 582, __pyx_L1_error)
@@ -19247,7 +19247,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "View.MemoryView":679
  *     tup = <tuple>index if isinstance(index, tuple) else (index,)
- *
+ * 
  *     result = [slice(None)] * ndim             # <<<<<<<<<<<<<<
  *     have_slices = False
  *     seen_ellipsis = False
@@ -19297,7 +19297,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     else:
  *         __pyx_collections_abc_Sequence = __import__("collections").Sequence             # <<<<<<<<<<<<<<
  * except:
- *
+ * 
  */
   __pyx_tuple__13 = PyTuple_Pack(1, __pyx_n_s_collections); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
@@ -19305,7 +19305,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "View.MemoryView":309
  *         return self.name
- *
+ * 
  * cdef generic = Enum("<strided and direct or indirect>")             # <<<<<<<<<<<<<<
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
@@ -19315,11 +19315,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__14);
 
   /* "View.MemoryView":310
- *
+ * 
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default             # <<<<<<<<<<<<<<
  * cdef indirect = Enum("<strided and indirect>")
- *
+ * 
  */
   __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__15);
@@ -19329,30 +19329,30 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(1, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
 
   /* "View.MemoryView":314
- *
- *
+ * 
+ * 
  * cdef contiguous = Enum("<contiguous and direct>")             # <<<<<<<<<<<<<<
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
- *
+ * 
  */
   __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
 
   /* "View.MemoryView":315
- *
+ * 
  * cdef contiguous = Enum("<contiguous and direct>")
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(1, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
@@ -19368,7 +19368,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__19);
   __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(1, 1, __pyx_L1_error)
 
-  /* "monotonic_align/core.pyx":38
+  /* "tts/monotonic_align/core.pyx":38
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef void maximum_path_c(int[:,:,::1] paths, float[:,:,::1] values, int[::1] t_ys, int[::1] t_xs) nogil:             # <<<<<<<<<<<<<<
@@ -19895,14 +19895,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_monotonic_align__core) {
+  if (__pyx_module_is_main_tts__monotonic_align__core) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "monotonic_align.core")) {
-      if (unlikely((PyDict_SetItemString(modules, "monotonic_align.core", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "tts.monotonic_align.core")) {
+      if (unlikely((PyDict_SetItemString(modules, "tts.monotonic_align.core", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -19924,7 +19924,7 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "View.MemoryView":99
- *
+ * 
  * cdef object __pyx_collections_abc_Sequence "__pyx_collections_abc_Sequence"
  * try:             # <<<<<<<<<<<<<<
  *     if __import__("sys").version_info >= (3, 3):
@@ -19992,7 +19992,7 @@ if (!__Pyx_RefNanny) {
  *     else:
  *         __pyx_collections_abc_Sequence = __import__("collections").Sequence             # <<<<<<<<<<<<<<
  * except:
- *
+ * 
  */
       /*else*/ {
         __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin___import__, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 103, __pyx_L2_error)
@@ -20008,7 +20008,7 @@ if (!__Pyx_RefNanny) {
       __pyx_L8:;
 
       /* "View.MemoryView":99
- *
+ * 
  * cdef object __pyx_collections_abc_Sequence "__pyx_collections_abc_Sequence"
  * try:             # <<<<<<<<<<<<<<
  *     if __import__("sys").version_info >= (3, 3):
@@ -20027,7 +20027,7 @@ if (!__Pyx_RefNanny) {
  *     else:
  *         __pyx_collections_abc_Sequence = __import__("collections").Sequence
  * except:             # <<<<<<<<<<<<<<
- *
+ * 
  *     __pyx_collections_abc_Sequence = None
  */
     /*except:*/ {
@@ -20039,10 +20039,10 @@ if (!__Pyx_RefNanny) {
 
       /* "View.MemoryView":106
  * except:
- *
+ * 
  *     __pyx_collections_abc_Sequence = None             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
       __Pyx_INCREF(Py_None);
       __Pyx_XGOTREF(__pyx_collections_abc_Sequence);
@@ -20055,7 +20055,7 @@ if (!__Pyx_RefNanny) {
     }
 
     /* "View.MemoryView":99
- *
+ * 
  * cdef object __pyx_collections_abc_Sequence "__pyx_collections_abc_Sequence"
  * try:             # <<<<<<<<<<<<<<
  *     if __import__("sys").version_info >= (3, 3):
@@ -20076,8 +20076,8 @@ if (!__Pyx_RefNanny) {
   }
 
   /* "View.MemoryView":241
- *
- *
+ * 
+ * 
  *     try:             # <<<<<<<<<<<<<<
  *         count = __pyx_collections_abc_Sequence.count
  *         index = __pyx_collections_abc_Sequence.index
@@ -20092,7 +20092,7 @@ if (!__Pyx_RefNanny) {
     /*try:*/ {
 
       /* "View.MemoryView":242
- *
+ * 
  *     try:
  *         count = __pyx_collections_abc_Sequence.count             # <<<<<<<<<<<<<<
  *         index = __pyx_collections_abc_Sequence.index
@@ -20118,8 +20118,8 @@ if (!__Pyx_RefNanny) {
       PyType_Modified(__pyx_array_type);
 
       /* "View.MemoryView":241
- *
- *
+ * 
+ * 
  *     try:             # <<<<<<<<<<<<<<
  *         count = __pyx_collections_abc_Sequence.count
  *         index = __pyx_collections_abc_Sequence.index
@@ -20139,7 +20139,7 @@ if (!__Pyx_RefNanny) {
  *         index = __pyx_collections_abc_Sequence.index
  *     except:             # <<<<<<<<<<<<<<
  *         pass
- *
+ * 
  */
     /*except:*/ {
       __Pyx_ErrRestore(0,0,0);
@@ -20155,7 +20155,7 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":309
  *         return self.name
- *
+ * 
  * cdef generic = Enum("<strided and direct or indirect>")             # <<<<<<<<<<<<<<
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
@@ -20168,11 +20168,11 @@ if (!__Pyx_RefNanny) {
   __pyx_t_7 = 0;
 
   /* "View.MemoryView":310
- *
+ * 
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default             # <<<<<<<<<<<<<<
  * cdef indirect = Enum("<strided and indirect>")
- *
+ * 
  */
   __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -20185,8 +20185,8 @@ if (!__Pyx_RefNanny) {
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -20196,11 +20196,11 @@ if (!__Pyx_RefNanny) {
   __pyx_t_7 = 0;
 
   /* "View.MemoryView":314
- *
- *
+ * 
+ * 
  * cdef contiguous = Enum("<contiguous and direct>")             # <<<<<<<<<<<<<<
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
- *
+ * 
  */
   __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -20210,11 +20210,11 @@ if (!__Pyx_RefNanny) {
   __pyx_t_7 = 0;
 
   /* "View.MemoryView":315
- *
+ * 
  * cdef contiguous = Enum("<contiguous and direct>")
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -20224,8 +20224,8 @@ if (!__Pyx_RefNanny) {
   __pyx_t_7 = 0;
 
   /* "View.MemoryView":323
- *
- *
+ * 
+ * 
  * cdef int __pyx_memoryview_thread_locks_used = 0             # <<<<<<<<<<<<<<
  * cdef PyThread_type_lock[8] __pyx_memoryview_thread_locks = [
  *     PyThread_allocate_lock(),
@@ -20233,7 +20233,7 @@ if (!__Pyx_RefNanny) {
   __pyx_memoryview_thread_locks_used = 0;
 
   /* "View.MemoryView":324
- *
+ * 
  * cdef int __pyx_memoryview_thread_locks_used = 0
  * cdef PyThread_type_lock[8] __pyx_memoryview_thread_locks = [             # <<<<<<<<<<<<<<
  *     PyThread_allocate_lock(),
@@ -20250,8 +20250,8 @@ if (!__Pyx_RefNanny) {
   memcpy(&(__pyx_memoryview_thread_locks[0]), __pyx_t_8, sizeof(__pyx_memoryview_thread_locks[0]) * (8));
 
   /* "View.MemoryView":982
- *
- *
+ * 
+ * 
  *     try:             # <<<<<<<<<<<<<<
  *         count = __pyx_collections_abc_Sequence.count
  *         index = __pyx_collections_abc_Sequence.index
@@ -20266,7 +20266,7 @@ if (!__Pyx_RefNanny) {
     /*try:*/ {
 
       /* "View.MemoryView":983
- *
+ * 
  *     try:
  *         count = __pyx_collections_abc_Sequence.count             # <<<<<<<<<<<<<<
  *         index = __pyx_collections_abc_Sequence.index
@@ -20292,8 +20292,8 @@ if (!__Pyx_RefNanny) {
       PyType_Modified(__pyx_memoryviewslice_type);
 
       /* "View.MemoryView":982
- *
- *
+ * 
+ * 
  *     try:             # <<<<<<<<<<<<<<
  *         count = __pyx_collections_abc_Sequence.count
  *         index = __pyx_collections_abc_Sequence.index
@@ -20313,7 +20313,7 @@ if (!__Pyx_RefNanny) {
  *         index = __pyx_collections_abc_Sequence.index
  *     except:             # <<<<<<<<<<<<<<
  *         pass
- *
+ * 
  */
     /*except:*/ {
       __Pyx_ErrRestore(0,0,0);
@@ -20329,10 +20329,10 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":988
  *         pass
- *
+ * 
  * try:             # <<<<<<<<<<<<<<
  *     if __pyx_collections_abc_Sequence:
- *
+ * 
  */
   {
     __Pyx_PyThreadState_declare
@@ -20344,18 +20344,18 @@ if (!__Pyx_RefNanny) {
     /*try:*/ {
 
       /* "View.MemoryView":989
- *
+ * 
  * try:
  *     if __pyx_collections_abc_Sequence:             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
       __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_collections_abc_Sequence); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(1, 989, __pyx_L23_error)
       if (__pyx_t_6) {
 
         /* "View.MemoryView":993
- *
- *
+ * 
+ * 
  *         __pyx_collections_abc_Sequence.register(_memoryviewslice)             # <<<<<<<<<<<<<<
  *         __pyx_collections_abc_Sequence.register(array)
  * except:
@@ -20368,7 +20368,7 @@ if (!__Pyx_RefNanny) {
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
         /* "View.MemoryView":994
- *
+ * 
  *         __pyx_collections_abc_Sequence.register(_memoryviewslice)
  *         __pyx_collections_abc_Sequence.register(array)             # <<<<<<<<<<<<<<
  * except:
@@ -20382,20 +20382,20 @@ if (!__Pyx_RefNanny) {
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
         /* "View.MemoryView":989
- *
+ * 
  * try:
  *     if __pyx_collections_abc_Sequence:             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
       }
 
       /* "View.MemoryView":988
  *         pass
- *
+ * 
  * try:             # <<<<<<<<<<<<<<
  *     if __pyx_collections_abc_Sequence:
- *
+ * 
  */
     }
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -20412,7 +20412,7 @@ if (!__Pyx_RefNanny) {
  *         __pyx_collections_abc_Sequence.register(array)
  * except:             # <<<<<<<<<<<<<<
  *     pass  # ignore failure, it's a minor issue
- *
+ * 
  */
     /*except:*/ {
       __Pyx_ErrRestore(0,0,0);
@@ -20436,7 +20436,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Enum, __pyx_t_7) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "monotonic_align/core.pyx":7
+  /* "tts/monotonic_align/core.pyx":7
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void maximum_path_each(int[:,::1] path, float[:,::1] value, int t_y, int t_x, float max_neg_val=-1e9) nogil:             # <<<<<<<<<<<<<<
@@ -20445,22 +20445,22 @@ if (!__Pyx_RefNanny) {
  */
   __pyx_k__9 = (-1e9);
 
-  /* "monotonic_align/core.pyx":38
+  /* "tts/monotonic_align/core.pyx":38
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef void maximum_path_c(int[:,:,::1] paths, float[:,:,::1] values, int[::1] t_ys, int[::1] t_xs) nogil:             # <<<<<<<<<<<<<<
  *   cdef int b = paths.shape[0]
  *   cdef int i
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_15monotonic_align_4core_1maximum_path_c, 0, __pyx_n_s_maximum_path_c, NULL, __pyx_n_s_monotonic_align_core, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_3tts_15monotonic_align_4core_1maximum_path_c, 0, __pyx_n_s_maximum_path_c, NULL, __pyx_n_s_tts_monotonic_align_core, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_maximum_path_c, __pyx_t_7) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "monotonic_align/core.pyx":1
+  /* "tts/monotonic_align/core.pyx":1
  * cimport cython             # <<<<<<<<<<<<<<
  * from cython.parallel import prange
- *
+ * 
  */
   __pyx_t_7 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -20476,7 +20476,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_7);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
-      __Pyx_AddTraceback("init monotonic_align.core", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init tts.monotonic_align.core", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_USE_MODULE_STATE
     Py_CLEAR(__pyx_m);
@@ -20490,7 +20490,7 @@ if (!__Pyx_RefNanny) {
     }
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init monotonic_align.core");
+    PyErr_SetString(PyExc_ImportError, "init tts.monotonic_align.core");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

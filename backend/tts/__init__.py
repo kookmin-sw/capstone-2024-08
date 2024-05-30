@@ -6,12 +6,11 @@ from torch import nn
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
 
-import commons
-import utils
-from data_utils import TextAudioLoader, TextAudioCollate, TextAudioSpeakerLoader, TextAudioSpeakerCollate
-from models import SynthesizerTrn
-from ..text.symbols import symbols
-from ..text import text_to_sequence
+from tts import commons, utils
+from tts.data_utils import TextAudioLoader, TextAudioCollate, TextAudioSpeakerLoader, TextAudioSpeakerCollate
+from tts.models import SynthesizerTrn
+from text.symbols import symbols
+from text import text_to_sequence
 import soundfile as sf
 
 
@@ -26,16 +25,10 @@ def get_text(text, hps):
     return text_norm
 
 
-def infer(script: str):
-    hps = utils.get_hparams_from_file("/home/ubuntu/forked/capstone-2024-08/backend/tts/config/nia22.json")
-    net_g = SynthesizerTrn(
-        len(symbols),
-        hps.data.filter_length // 2 + 1,
-        hps.train.segment_size // hps.data.hop_length,
-        n_speakers=hps.data.n_speakers,
-        **hps.model).cpu()
-    _ = net_g.eval()
-    _ = utils.load_checkpoint("/home/ubuntu/forked/capstone-2024-08/backend/tts/vits_nia22.pth", net_g, None)
+def infer(script: str, hps, net_g):
+    current_file_path = os.path.abspath(__file__)
+    current_dir = os.path.dirname(current_file_path)
+    output_path = os.path.join(current_dir, "output_audio.wav")
     stn_tst = get_text(script, hps)
     with torch.no_grad():
         x_tst = stn_tst.cpu().unsqueeze(0)
@@ -44,5 +37,5 @@ def infer(script: str):
         audio = net_g.infer(x_tst, x_tst_lengths, sid=sid, noise_scale=.667, noise_scale_w=0.8, length_scale=1.0)[0][
             0, 0].data.cpu().float().numpy()
     # `audio`는 NumPy 배열 형태의 음성 데이터이고, `hps.data.sampling_rate`는 해당 데이터의 샘플링 레이트입니다.
-    sf.write('output_audio.wav', audio, hps.data.sampling_rate)
-    return audio
+    sf.write(output_path, audio, hps.data.sampling_rate)
+    return output_path

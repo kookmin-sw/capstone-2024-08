@@ -12,5 +12,6 @@ __pycache__/
 
 # backend
 backend/create_script/.config_secret
-
-
+*.pth
+backend/**/build/
+backend/**/monotonic_align/*
