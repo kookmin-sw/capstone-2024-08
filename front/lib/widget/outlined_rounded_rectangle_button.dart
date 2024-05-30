@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:flutter/services.dart';
 
 OutlinedButton outlinedRoundedRectangleButton(String buttonText, Function pressedFunc) {
@@ -8,7 +9,10 @@ OutlinedButton outlinedRoundedRectangleButton(String buttonText, Function presse
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(69),
       ),
-      side: const BorderSide(color: colors.buttonSideColor),
+      side: const BorderSide(
+        color: colors.textColor,
+        width: 0.4
+      ),
   ),
   onPressed: () {
     HapticFeedback.lightImpact();
@@ -18,9 +22,9 @@ OutlinedButton outlinedRoundedRectangleButton(String buttonText, Function presse
     buttonText,
     semanticsLabel: buttonText,
     textAlign: TextAlign.center,
-    style: const TextStyle(
+    style: TextStyle(
       color: colors.textColor,
-      fontSize: 13,
+      fontSize: fonts.button,
       fontWeight: FontWeight.w700,
     ),
   )

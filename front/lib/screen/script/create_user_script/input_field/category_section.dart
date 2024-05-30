@@ -51,7 +51,7 @@ class _CategorySectionState extends State<CategorySection> {
                           padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
                           child: ChoiceChip(
                             label: Text(texts.category[index],
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: colors.textColor
                                 )),
                             selected: _selectedCategory ==

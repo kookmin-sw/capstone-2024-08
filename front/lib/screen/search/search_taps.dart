@@ -1,5 +1,6 @@
 import 'package:capstone/widget/script/read_script.dart';
 import 'package:capstone/widget/tap_bar.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/constants/color.dart' as colors;
@@ -38,7 +39,7 @@ class SearchTabsState extends State<SearchTabs> with SingleTickerProviderStateMi
       appBar: searchTapBar(_tabController),
       body: Container(
         color: colors.bgrDarkColor,
-        padding: const EdgeInsets.only(left: 35),
+        padding: EdgeInsets.only(left: getDeviceWidth(context) * 0.075),
         child: TabBarView(
           controller: _tabController,
           children: [

@@ -1,6 +1,7 @@
 import 'package:capstone/screen/search/search_script.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:get/get.dart';
 
 final List<Tab> _tabs = [
@@ -9,7 +10,7 @@ final List<Tab> _tabs = [
         'News',
         semanticsLabel: 'News',
         style: TextStyle(
-          fontSize: 20,
+          fontSize: fonts.tab,
           fontWeight: FontWeight.w800
         )
       ),
@@ -19,7 +20,7 @@ final List<Tab> _tabs = [
         'User',
         semanticsLabel: 'User',
         style: TextStyle(
-          fontSize: 20,
+          fontSize: fonts.tab,
           fontWeight: FontWeight.w800
         )
       )
@@ -36,43 +37,43 @@ final List<Tab> _tabs = [
     );
   }
 
-  PreferredSize listTapBar(TabController tabController, String route) {
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: Container(
-          color: colors.bgrDarkColor,
-          padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
+  AppBar listTapBar(TabController tabController, String route) {
+    return AppBar(
+      backgroundColor: colors.bgrDarkColor,
+      toolbarHeight: 0,
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Row(
-            children: [
-              Expanded(
-                child: TabBar(
-                  controller: tabController,
-                  labelColor: colors.exampleScriptColor,
-                  unselectedLabelColor: colors.blockColor,
-                  dividerColor: colors.bgrDarkColor,
-                  indicatorColor: Colors.transparent,
-                  isScrollable: true,
-                  tabAlignment: TabAlignment.start, 
-                  labelPadding: const EdgeInsets.only(left: 20),
-                  tabs: _tabs.map((label) => Container(
-                      child: label,
-                  )).toList(),
-                )
-              ),
-              route == 'script'
-                ? moveToSearchPage()
-                : Container()
-          ])
-        )
-    );
+              children: [
+                Expanded(
+                  child: TabBar(
+                    controller: tabController,
+                    labelColor: colors.exampleScriptColor,
+                    unselectedLabelColor: colors.blockColor,
+                    dividerColor: colors.bgrDarkColor,
+                    indicatorColor: Colors.transparent,
+                    isScrollable: true,
+                    tabAlignment: TabAlignment.start, 
+                    labelPadding: const EdgeInsets.only(left: 20),
+                    tabs: _tabs.map((label) => Container(
+                        child: label,
+                    )).toList(),
+                  )
+                ),
+                route == 'script'
+                  ? moveToSearchPage()
+                  : Container()
+            ])
+      ));
   }        
 
-  PreferredSize searchTapBar(TabController tabController) {
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(kToolbarHeight),
-      child: AppBar(
-        backgroundColor: colors.bgrDarkColor,
-        bottom: TabBar(
+  AppBar searchTapBar(TabController tabController) {
+    return AppBar(
+      backgroundColor: colors.bgrDarkColor,
+      toolbarHeight: 0,
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: TabBar(
           controller: tabController,
           labelColor: colors.exampleScriptColor,
           unselectedLabelColor: colors.blockColor,
@@ -83,7 +84,6 @@ final List<Tab> _tabs = [
               child: label,
           )).toList(),
         )
-        )
-    );
+    ));
   }        
 

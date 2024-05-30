@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/color.dart' as colors;
+import 'package:capstone/constants/fonts.dart' as fonts;
 import 'package:flutter/services.dart';
 
 ElevatedButton fullyRoundedRectangleButton(Color backgroundColor, String buttonText, Function pressedFunc) {
@@ -18,9 +19,11 @@ ElevatedButton fullyRoundedRectangleButton(Color backgroundColor, String buttonT
     buttonText,
     semanticsLabel: buttonText,
     textAlign: TextAlign.center,
-    style: const TextStyle(
-      color: colors.blockColor,
-      fontSize: 13,
+    style: TextStyle(
+      color: backgroundColor != colors.blockColor 
+        ? colors.blockColor
+        : colors.textColor,
+      fontSize: fonts.button,
       fontWeight: FontWeight.w700,
     ),
   )

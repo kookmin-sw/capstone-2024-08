@@ -9,6 +9,7 @@ import 'package:capstone/widget/basic_app_bar.dart';
 import 'package:capstone/widget/bottom_buttons.dart';
 import 'package:capstone/widget/fully_rounded_rectangle_button.dart';
 import 'package:capstone/widget/outlined_rounded_rectangle_button.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:capstone/widget/warning_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,44 +46,58 @@ class _CreateUserScriptState extends State<CreateUserScript> {
       });
   }
 
-  void checkValidCategory(String? category) {
+  bool checkValidCategory(String? category) {
     if (category == null) {
       showDialog(
         context: context,
-        builder: (context) {
-          return const WarningDialog(
-              warningObject: 'category');
-        });
+        builder: (BuildContext context) =>
+          const WarningDialog(
+            warningObject: 'category'
+          )
+      );
+      return false;
     }
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
+    final contentController = Get.put(UserScriptContentController());
+
     return Scaffold(
-      appBar: basicAppBar(title: '나만의 대본 만들기'),
+      appBar: basicAppBar(context, title: '나만의 대본 만들기'),
       body: Stack(
         children: [
-          Column(
-            children: [
-              TitleSection(titleController: _title, formKey: _titleKey),
-              CategorySection(onCategorySelected: _handleCategorySelected),
-              ContentSection(contentController: _content, formKey: _contentKey)
-          ]),
+          GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: ListView(
+              children: [
+                  Column(
+                    children: [
+                      TitleSection(titleController: _title, formKey: _titleKey),
+                      CategorySection(onCategorySelected: _handleCategorySelected),
+                      ContentSection(contentController: _content, formKey: _contentKey)
+                  ]),
+                ]
+            )
+          ),
           bottomButtons(
-            MediaQuery.of(context).size.width, 
+            getDeviceWidth(context), 
             outlinedRoundedRectangleButton('AI로 생성하기', () {
-              checkValidCategory(_selectedCategory);
+              bool validCategory = checkValidCategory(_selectedCategory);
               
-              if (_titleKey.currentState!.validate()) {
+              if (_titleKey.currentState!.validate() & validCategory) {
                 createScriptByGpt(_title.text, _selectedCategory!);
               }
             }), 
             fullyRoundedRectangleButton(colors.buttonColor, '완료', () { 
-              checkValidCategory(_selectedCategory);
+              bool validCategory = checkValidCategory(_selectedCategory);
 
-              if (_titleKey.currentState!.validate() & _contentKey.currentState!.validate()) {
+              if (_titleKey.currentState!.validate() & validCategory & _contentKey.currentState!.validate()) {
                 List<String>? sentenceList = splitContent(_content.text);
-                Get.put(UserScriptContentController(sentenceList));
+                contentController.updateContent(sentenceList);
 
                 Get.to(() => AdjustUserScript(
                   title: _title.text, 
@@ -100,8 +115,7 @@ class _CreateUserScriptState extends State<CreateUserScript> {
 List<String> splitContent(String content) {
   List<String> sentenceList = [];
   for(String sentence in content.split('.')){
-    sentence.trim();
-    sentenceList.add('$sentence.');
+    sentenceList.add('${sentence.trim()}.');
   }
   if(sentenceList.last == '.') { sentenceList.removeLast(); }
   return sentenceList;

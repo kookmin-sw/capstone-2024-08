@@ -1,16 +1,13 @@
 import 'package:capstone/constants/color.dart' as colors;
 import 'package:capstone/widget/record/read_record_script.dart';
+import 'package:capstone/widget/utils/device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/constants/text.dart' as texts;
 import 'package:capstone/model/load_data.dart';
 import 'package:capstone/widget/category_buttons.dart';
 
-
 class RecordList extends StatefulWidget {
-  const RecordList({
-    Key? key,
-    required this.index
-  }) : super(key: key);
+  const RecordList({Key? key, required this.index}) : super(key: key);
 
   final int index;
 
@@ -30,23 +27,28 @@ class _RecordListState extends State<RecordList> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceWidth = getDeviceWidth(context);
+    
     return Scaffold(
         body: Container(
-          padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
           color: colors.bgrDarkColor,
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                padding: const EdgeInsets.fromLTRB(20, 10, 0, 15),
                 child: CategoryButtons(onCategorySelected: _handleCategorySelected),
               ),
-              widget.index == 0 ?
-                Expanded(
-                  child: readRecordScripts(loadData.readExampleScripts(selectedCategoryValue), 'example')
-                )
+              widget.index == 0 
+              ? Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.only(left: deviceWidth * 0.075),
+                      child: readRecordScripts(loadData.readExampleScripts(selectedCategoryValue), 'example')
+                  ))
                 : Expanded(
-                    child: readRecordScripts(loadData.readUserScripts(selectedCategoryValue), 'user'),                     
-                  )                    
+                    child: Padding(
+                      padding: EdgeInsets.only(left: deviceWidth * 0.075),
+                      child: readRecordScripts(loadData.readUserScripts(selectedCategoryValue), 'user'),                     
+                  ))                    
           ])
         )
     );

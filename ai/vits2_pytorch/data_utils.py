@@ -13,7 +13,6 @@ from utils import load_filepaths_and_text, load_wav_to_torch
 import sys
 sys.path.append('../')
 
-from vae.inference import get_cond
 
 class TextAudioLoader(torch.utils.data.Dataset):
     """
@@ -36,7 +35,7 @@ class TextAudioLoader(torch.utils.data.Dataset):
         print(len(self.audiopaths_and_text), "Audio files found")
 
         self.use_mel_spec_posterior = getattr(
-            hparams, "use_mel_posterior_encoder", False
+            hparams, "use_mel_posterior_encoder", True
         )
         if self.use_mel_spec_posterior:
             self.n_mel_channels = getattr(hparams, "n_mel_channels", 80)
@@ -60,7 +59,7 @@ class TextAudioLoader(torch.utils.data.Dataset):
 
         audiopaths_and_text_new = []
         lengths = []
-        for audiopath, text in self.audiopaths_and_text:
+        for audiopath, sid, text in self.audiopaths_and_text:
             if self.min_text_len <= len(text) and len(text) <= self.max_text_len:
                 audiopaths_and_text_new.append([audiopath, text])
                 lengths.append(os.path.getsize(audiopath) // (2 * self.hop_length))
@@ -85,6 +84,8 @@ class TextAudioLoader(torch.utils.data.Dataset):
             )
         audio_norm = audio / self.max_wav_value
         audio_norm = audio_norm.unsqueeze(0)
+        # print("audio_norm.size()", audio_norm.size())
+        # audio_norm.size() torch.Size([1, 310832])
         spec_filename = filename.replace(".wav", ".spec.pt")
         if self.use_mel_spec_posterior:
             spec_filename = spec_filename.replace(".spec.pt", ".mel.pt")
@@ -101,6 +102,7 @@ class TextAudioLoader(torch.utils.data.Dataset):
                 #         torch.load(filename.replace(".wav", ".spec.pt")),
                 #         self.filter_length, self.n_mel_channels, self.sampling_rate,
                 #         self.hparams.mel_fmin, self.hparams.mel_fmax)
+                print("mel_spectrogram_torch---------------------------------")
                 spec = mel_spectrogram_torch(
                     audio_norm,
                     self.filter_length,
@@ -113,6 +115,7 @@ class TextAudioLoader(torch.utils.data.Dataset):
                     center=False,
                 )
             else:
+                print("spectrogram_torch---------------------------------")
                 spec = spectrogram_torch(
                     audio_norm,
                     self.filter_length,
@@ -122,7 +125,9 @@ class TextAudioLoader(torch.utils.data.Dataset):
                     center=False,
                 )
             spec = torch.squeeze(spec, 0)
-            torch.save(spec, spec_filename)
+            # print("Saving spec size", spec.size())
+            # Saving spec size torch.Size([80, 1565])
+            # torch.save(spec, spec_filename)
         return spec, audio_norm
 
     def get_text(self, text):
@@ -276,15 +281,16 @@ class TextAudioSpeakerLoader(torch.utils.data.Dataset):
 
     def get_audio_text_speaker_pair(self, audiopath_sid_text):
         # separate filename, speaker_id and text
-        audiopath, sid, text = (
+        audiopath, sid, text, cond = (
             audiopath_sid_text[0],
             audiopath_sid_text[1],
             audiopath_sid_text[2],
+            audiopath_sid_text[3],
         )
         text = self.get_text(text)
         spec, wav = self.get_audio(audiopath)
         print(spec.size(), wav.size())
-        cond = get_cond(wav, self.vae_path)
+        cond = self.get_cond(cond)
         print(cond)
         sid = self.get_sid(sid)
         print(cond)
@@ -354,6 +360,10 @@ class TextAudioSpeakerLoader(torch.utils.data.Dataset):
     def get_sid(self, sid):
         sid = torch.LongTensor([int(sid)])
         return sid
+
+    def get_cond(self, cond):
+        cond = torch.LongTensor([int(cond)])
+        return cond
 
     def __getitem__(self, index):
         return self.get_audio_text_speaker_pair(self.audiopaths_sid_text[index])
