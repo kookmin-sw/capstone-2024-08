@@ -97,7 +97,7 @@ async def provide_voice_guide(sentence: str = Form(...), wavs: list[UploadFile] 
     guide_audio_path = infer(sentence, hps, net_g)
     print(f"guide_audio_path: {guide_audio_path}")
     # part-2: voice conversion
-    output_voice_path = change_voice(kkaguragzi, guide_audio_path, user_voices_paths)
+    output_voice_path = change_voice(kkaguragzi, guide_audio_path, user_voices_paths[0])
     shutil.rmtree(temp_dir)
     base_url = "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/"
     file_name = os.path.basename(guide_audio_path)

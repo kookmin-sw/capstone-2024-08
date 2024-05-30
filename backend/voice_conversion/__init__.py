@@ -3,7 +3,7 @@ from typing import List
 import os
 
 
-def change_voice(tts, src: str, ref: List[str]):
+def change_voice(tts, src: str, ref: str):
     """
     src: path to 16kHz, single-channel, source waveform
     ref: list of paths to all reference waveforms (each must be 16kHz, single-channel) from the target speaker
