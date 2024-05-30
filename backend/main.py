@@ -18,6 +18,8 @@ from tts import utils
 from tts.models import SynthesizerTrn
 from text.symbols import symbols
 import torch
+from TTS.api import TTS
+
 from pathlib import Path
 
 
@@ -39,8 +41,9 @@ net_g = SynthesizerTrn(
     **hps.model).cpu()
 _ = net_g.eval()
 _ = utils.load_checkpoint(model_path, net_g, None)
+kkaguragzi = TTS(model_name="voice_conversion_models/multilingual/vctk/freevc24", progress_bar=False).to("cuda")
 
-knn_vc = torch.hub.load('bshall/knn-vc', 'knn_vc', prematched=True, trust_repo=True, pretrained=True, device='cuda')
+# knn_vc = torch.hub.load('bshall/knn-vc', 'knn_vc', prematched=True, trust_repo=True, pretrained=True, device='cuda')
 
 app = FastAPI()
 
@@ -94,9 +97,7 @@ async def provide_voice_guide(sentence: str = Form(...), wavs: list[UploadFile] 
     guide_audio_path = infer(sentence, hps, net_g)
     print(f"guide_audio_path: {guide_audio_path}")
     # part-2: voice conversion
-    output_voice_path = change_voice(knn_vc, guide_audio_path, user_voices_paths)
-    # print(f"output_voice_path: {output_voice_path}")
-    # print("conversion complete!!")
+    output_voice_path = change_voice(kkaguragzi, guide_audio_path, user_voices_paths)
     shutil.rmtree(temp_dir)
     base_url = "http://ec2-13-124-219-249.ap-northeast-2.compute.amazonaws.com/static/"
     file_name = os.path.basename(guide_audio_path)
