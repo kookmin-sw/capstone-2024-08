@@ -50,7 +50,7 @@ class SaveData {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      DocumentReference docRef = await FirebaseFirestore.instance
+      DocumentReference docRef = FirebaseFirestore.instance
           .collection('user')
           .doc(user.uid)
           .collection('${scriptType}_practice')
