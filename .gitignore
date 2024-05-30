@@ -4,6 +4,7 @@
 .idea
 .vscode
 .dart_tool
+.DS_Store
 
 # python
 venv/

@@ -14,18 +14,26 @@ if __name__ == "__main__":
             "filelists/ljs_audio_text_test_filelist.txt",
         ],
     )
-    parser.add_argument("--text_cleaners", nargs="+", default=["english_cleaners2"])
+    parser.add_argument("--text_cleaners", nargs="+", default=["korean_cleaners"])
 
     args = parser.parse_args()
 
-    for filelist in args.filelists:
-        print("START:", filelist)
-        filepaths_and_text = load_filepaths_and_text(filelist)
-        for i in range(len(filepaths_and_text)):
-            original_text = filepaths_and_text[i][args.text_index]
-            cleaned_text = text._clean_text(original_text, args.text_cleaners)
-            filepaths_and_text[i][args.text_index] = cleaned_text
+    
+for filelist in args.filelists:
+    print("START:", filelist)
+    with open(filelist, "r", encoding="utf-8") as f:
+        lines = f.readlines()
 
-        new_filelist = filelist + "." + args.out_extension
-        with open(new_filelist, "w", encoding="utf-8") as f:
-            f.writelines(["|".join(x) + "\n" for x in filepaths_and_text])
+    batch_size = 64
+    for i in range(0, len(lines), batch_size):
+        batch_lines = lines[i:i+batch_size]
+
+        for line in batch_lines:
+            parts = line.strip().split("|")
+            original_text = parts[args.text_index]
+            cleaned_text = text._clean_text(original_text, args.text_cleaners)
+            parts[args.text_index] = cleaned_text
+
+            new_filelist = filelist + "." + args.out_extension
+            with open(new_filelist, "a", encoding="utf-8") as f:
+                f.write("|".join(parts) + "\n") 

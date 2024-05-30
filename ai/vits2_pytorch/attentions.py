@@ -33,12 +33,14 @@ class Encoder(nn.Module):  # backward compatible vits2 encoder
         self.window_size = window_size
 
         self.drop = nn.Dropout(p_dropout)
-        self.attn_layers = nn.ModuleList()
+        self.attn_layers_x = nn.ModuleList()
+        self.attn_layers_g = nn.ModuleList()
         self.norm_layers_1 = nn.ModuleList()
         self.ffn_layers = nn.ModuleList()
         self.norm_layers_2 = nn.ModuleList()
         # if kwargs has spk_emb_dim, then add a linear layer to project spk_emb_dim to hidden_channels
         self.cond_layer_idx = self.n_layers
+
         if "gin_channels" in kwargs:
             self.gin_channels = kwargs["gin_channels"]
             if self.gin_channels != 0:
@@ -52,7 +54,16 @@ class Encoder(nn.Module):  # backward compatible vits2 encoder
                 ), "cond_layer_idx should be less than n_layers"
 
         for i in range(self.n_layers):
-            self.attn_layers.append(
+            self.attn_layers_x.append(
+                MultiHeadAttention(
+                    hidden_channels,
+                    hidden_channels,
+                    n_heads,
+                    p_dropout=p_dropout,
+                    window_size=window_size,
+                )
+            )
+            self.attn_layers_g.append(
                 MultiHeadAttention(
                     hidden_channels,
                     hidden_channels,
@@ -72,23 +83,29 @@ class Encoder(nn.Module):  # backward compatible vits2 encoder
                 )
             )
             self.norm_layers_2.append(LayerNorm(hidden_channels))
-
+            
     def forward(self, x, x_mask, g=None):
         attn_mask = x_mask.unsqueeze(2) * x_mask.unsqueeze(-1)
         x = x * x_mask
+
         for i in range(self.n_layers):
+            key = x
+            value = x
             if i == self.cond_layer_idx and g is not None:
                 g = self.spk_emb_linear(g.transpose(1, 2))
                 g = g.transpose(1, 2)
-                x = x + g
-                x = x * x_mask
-            y = self.attn_layers[i](x, x, attn_mask)
+                g_attn = self.attn_layers_g[i](g, g, attn_mask=None)  
+                key = g_attn
+                value = g_attn
+
+            y = self.attn_layers_x[i](x, key, value, attn_mask)
             y = self.drop(y)
             x = self.norm_layers_1[i](x + y)
 
             y = self.ffn_layers[i](x, x_mask)
             y = self.drop(y)
             x = self.norm_layers_2[i](x + y)
+
         x = x * x_mask
         return x
 

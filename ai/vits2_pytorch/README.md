@@ -35,7 +35,8 @@ Would recommend experts to rename the ckpts to *_0.pth and starting the training
 ```sh
 # Cython-version Monotonoic Alignment Search
 cd monotonic_align
-python setup.py build_ext --inplace
+mkdir monotonic align
+python3 setup.py build_ext --inplace
 
 # Preprocessing (g2p) for your own datasets. Preprocessed phonemes for LJ Speech and VCTK have been already provided.
 # python preprocess.py --text_index 1 --filelists filelists/ljs_audio_text_train_filelist.txt filelists/ljs_audio_text_val_filelist.txt filelists/ljs_audio_text_test_filelist.txt 
@@ -95,15 +96,15 @@ net_g(
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/12iCPWMpKdekM6F1HujYCh5H8PyzrgJN2?usp=sharing)
 ```sh
 # LJ Speech
-python train.py -c configs/vits2_ljs_nosdp.json -m ljs_base # no-sdp; (recommended)
-python train.py -c configs/vits2_ljs_base.json -m ljs_base # with sdp;
+python3 train.py -c configs/vits2_ljs_nosdp.json -m ljs_base # no-sdp; (recommended)
+python3 train.py -c configs/vits2_ljs_base.json -m ljs_base # with sdp;
 
 # VCTK
-python train_ms.py -c configs/vits2_vctk_base.json -m vctk_base
+python3 train_ms.py -c configs/vits2_vctk_base.json -m vctk_base
 
 # for onnx export of trained models
-python export_onnx.py --model-path="G_64000.pth" --config-path="config.json" --output="vits2.onnx"
-python infer_onnx.py --model="vits2.onnx" --config-path="config.json" --output-wav-path="output.wav" --text="hello world, how are you?"
+python3 export_onnx.py --model-path="G_64000.pth" --config-path="config.json" --output="vits2.onnx"
+python3 infer_onnx.py --model="vits2.onnx" --config-path="config.json" --output-wav-path="output.wav" --text="hello world, how are you?"
 ```
 
 ## TODOs, features and notes

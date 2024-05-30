@@ -54,11 +54,11 @@ def sequence_to_text(sequence):
         result += s
     return result
 
-
 def _clean_text(text, cleaner_names):
     for name in cleaner_names:
         cleaner = getattr(cleaners, name)
         if not cleaner:
             raise Exception("Unknown cleaner: %s" % name)
         text = cleaner(text)
+        del cleaner 
     return text

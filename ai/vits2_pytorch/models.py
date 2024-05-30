@@ -1134,7 +1134,7 @@ class SynthesizerTrn(nn.Module):
         upsample_rates,
         upsample_initial_channel,
         upsample_kernel_sizes,
-        n_speakers=0,
+        cond_lengths=0,
         gin_channels=0,
         use_sdp=True,
         **kwargs,
@@ -1156,7 +1156,7 @@ class SynthesizerTrn(nn.Module):
         self.upsample_initial_channel = upsample_initial_channel
         self.upsample_kernel_sizes = upsample_kernel_sizes
         self.segment_size = segment_size
-        self.n_speakers = n_speakers
+        self.cond_lengths = cond_lengths
         self.gin_channels = gin_channels
         self.use_spk_conditioned_encoder = kwargs.get(
             "use_spk_conditioned_encoder", False
@@ -1235,12 +1235,12 @@ class SynthesizerTrn(nn.Module):
                 hidden_channels, 256, 3, 0.5, gin_channels=gin_channels
             )
 
-        if n_speakers > 1:
-            self.emb_g = nn.Embedding(n_speakers, gin_channels)
+        if cond_lengths > 1:
+            self.emb_g = nn.Embedding(cond_lengths, gin_channels)
 
-    def forward(self, x, x_lengths, y, y_lengths, sid=None):
-        if self.n_speakers > 0:
-            g = self.emb_g(sid).unsqueeze(-1)  # [b, h, 1]
+    def forward(self, x, x_lengths, y, y_lengths, cond=None):
+        if self.cond_lengths > 0:
+            g = self.emb_g(cond).unsqueeze(-1)  # [batch, gin_channels, 1] = [b, h, 1]
         else:
             g = None
 
@@ -1316,14 +1316,14 @@ class SynthesizerTrn(nn.Module):
         self,
         x,
         x_lengths,
-        sid=None,
+        cond=None,
         noise_scale=1,
         length_scale=1,
         noise_scale_w=1.0,
         max_len=None,
     ):
-        if self.n_speakers > 0:
-            g = self.emb_g(sid).unsqueeze(-1)  # [b, h, 1]
+        if self.cond_lengths > 0:
+            g = self.emb_g(cond).unsqueeze(-1)  # [b, h, 1]
         else:
             g = None
         x, m_p, logs_p, x_mask = self.enc_p(x, x_lengths, g=g)
@@ -1356,7 +1356,6 @@ class SynthesizerTrn(nn.Module):
     ## comment - choihkk
     ## Assuming the use of the ResidualCouplingTransformersLayer2 module, it seems that voice conversion is possible 
     def voice_conversion(self, y, y_lengths, sid_src, sid_tgt):
-        assert self.n_speakers > 0, "n_speakers have to be larger than 0."
         g_src = self.emb_g(sid_src).unsqueeze(-1)
         g_tgt = self.emb_g(sid_tgt).unsqueeze(-1)
         z, m_q, logs_q, y_mask = self.enc_q(y, y_lengths, g=g_src)
