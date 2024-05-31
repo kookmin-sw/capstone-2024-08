@@ -18,13 +18,15 @@ from torch.utils.data import DistributedSampler, DataLoader
 
 
 from meldataset import MelDataset, mel_spectrogram
+from model.generator import Generator
 from model.discriminator import MultiPeriodDiscriminator, MultiScaleDiscriminator
 from model.vae import VAE
 from model.loss import feature_loss, generator_loss, discriminator_loss, vae_loss
-from utils import plot_spectrogram, scan_checkpoint, load_checkpoint, save_checkpoint, get_dataset_filelist
+from utils import plot_spectrogram, scan_checkpoint, load_checkpoint, save_checkpoint, load_filepaths_and_text
 
-
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 torch.backends.cudnn.benchmark = True
+torch.cuda.empty_cache()
 
 
 
@@ -37,11 +39,13 @@ def train(rank, a, h):
     device = torch.device('cuda:{:d}'.format(rank))
 
     vae = VAE(h).to(device)
+    generator = Generator(h).to(device)
     mpd = MultiPeriodDiscriminator().to(device)
     msd = MultiScaleDiscriminator().to(device)
 
     if rank == 0:
         print(vae)
+        print(generator)
         os.makedirs(a.checkpoint_path, exist_ok=True)
         print("checkpoints directory : ", a.checkpoint_path)
 
@@ -57,6 +61,7 @@ def train(rank, a, h):
         state_dict_g = load_checkpoint(cp_g, device)
         state_dict_do = load_checkpoint(cp_do, device)
         vae.load_state_dict(state_dict_g['vae'])
+        generator.load_state_dict(state_dict_g['generator'])
         mpd.load_state_dict(state_dict_do['mpd'])
         msd.load_state_dict(state_dict_do['msd'])
         steps = state_dict_do['steps'] + 1
@@ -67,20 +72,24 @@ def train(rank, a, h):
         mpd = DistributedDataParallel(mpd, device_ids=[rank]).to(device)
         msd = DistributedDataParallel(msd, device_ids=[rank]).to(device)
 
-    optim_g = torch.optim.AdamW(vae.parameters(), h.learning_rate, betas=[h.adam_b1, h.adam_b2])
+    optim_v = torch.optim.AdamW(vae.parameters(), h.learning_rate, betas=[h.adam_b1, h.adam_b2])
+    optim_g = torch.optim.AdamW(generator.parameters(), h.learning_rate, betas=[h.adam_b1, h.adam_b2])
     optim_d = torch.optim.AdamW(itertools.chain(msd.parameters(), mpd.parameters()),
                                 h.learning_rate, betas=[h.adam_b1, h.adam_b2])
 
     if state_dict_do is not None:
+        optim_v.load_state_dict(state_dict_do['optim_g'])
         optim_g.load_state_dict(state_dict_do['optim_g'])
         optim_d.load_state_dict(state_dict_do['optim_d'])
 
+    scheduler_g = torch.optim.lr_scheduler.ExponentialLR(optim_v, gamma=h.lr_decay, last_epoch=last_epoch)
     scheduler_g = torch.optim.lr_scheduler.ExponentialLR(optim_g, gamma=h.lr_decay, last_epoch=last_epoch)
     scheduler_d = torch.optim.lr_scheduler.ExponentialLR(optim_d, gamma=h.lr_decay, last_epoch=last_epoch)
 
-    training_filelist, validation_filelist = get_dataset_filelist(a)
+    training_filelist = load_filepaths_and_text(a.input_training_file)
+    validation_filelist = load_filepaths_and_text(a.input_validation_file)
 
-    trainset = MelDataset(training_filelist, h.segment_size, h.n_fft, h.latent_space_dim,
+    trainset = MelDataset(training_filelist, h.segment_size, h.n_fft, h.num_mels,
                           h.hop_size, h.win_size, h.sampling_rate, h.fmin, h.fmax, n_cache_reuse=0,
                           shuffle=False if h.num_gpus > 1 else True, fmax_loss=h.fmax_loss, device=device,
                           fine_tuning=a.fine_tuning, base_mels_path=a.input_mels_dir)
@@ -94,19 +103,20 @@ def train(rank, a, h):
                               drop_last=True)
 
     if rank == 0:
-        validset = MelDataset(validation_filelist, h.segment_size, h.n_fft, h.latent_space_dim,
-                              h.hop_size, h.win_size, h.sampling_rate, h.fmin, h.fmax, False, False, n_cache_reuse=0,
+        validset = MelDataset(validation_filelist, h.segment_size, h.n_fft, h.num_mels,
+                              h.hop_size, h.win_size, h.sampling_rate, h.fmin, h.fmax, False, n_cache_reuse=0,
                               fmax_loss=h.fmax_loss, device=device, fine_tuning=a.fine_tuning,
                               base_mels_path=a.input_mels_dir)
         validation_loader = DataLoader(validset, num_workers=1, shuffle=False,
                                        sampler=None,
-                                       batch_size=1,
+                                       batch_size=h.batch_size,
                                        pin_memory=True,
                                        drop_last=True)
 
         sw = SummaryWriter(os.path.join(a.checkpoint_path, 'logs'))
 
     vae.train()
+    generator.train()
     mpd.train()
     msd.train()
 
@@ -120,20 +130,24 @@ def train(rank, a, h):
 
         # batch = (mel.squeeze(), audio.squeeze(0), filename, mel_loss.squeeze())
         for i, batch in enumerate(train_loader):
+            torch.cuda.empty_cache()
+
             if rank == 0:
                 start_b = time.time()
             x, y, _, y_mel = batch
+            # torch.Size([64, 80, 29]) torch.Size([64, 8192]) torch.Size([64, 80, 32]) shapes
             x = torch.autograd.Variable(x.to(device, non_blocking=True))
             y = torch.autograd.Variable(y.to(device, non_blocking=True))
             y_mel = torch.autograd.Variable(y_mel.to(device, non_blocking=True))
-            y = y.unsqueeze(1)
 
             # Forward pass through VAE
-            y_g_hat, mu, logvar = vae(x)
-            y_g_hat = y_g_hat.squeeze(1)
-            y_g_hat_mel = mel_spectrogram(y_g_hat, h.n_fft, h.latent_space_dim, h.sampling_rate, h.hop_size, h.win_size, h.fmin, h.fmax_loss)
+            x_mel, mu, logvar = vae(x)
+            y_g_hat = generator(x_mel)
+            y_g_hat_mel = mel_spectrogram(y_g_hat.squeeze(), h.n_fft, h.num_mels, h.sampling_rate, h.hop_size, h.win_size,
+                                          h.fmin, h.fmax_loss)
 
             optim_d.zero_grad()
+            optim_g.zero_grad()
 
             # MPD
             y_df_hat_r, y_df_hat_g, _, _ = mpd(y, y_g_hat.detach())
@@ -149,10 +163,15 @@ def train(rank, a, h):
             optim_d.step()
 
             # Generator
-            optim_g.zero_grad()
+            optim_v.zero_grad()
+
 
             # L1 Mel-Spectrogram Loss, KL Divergence Loss
-            loss_mel = vae_loss(y_g_hat_mel, y_mel, mu, logvar, vae.reconstruction_loss_weight)  # Using mel spectrograms for VAE loss
+            loss_vae_mel = vae_loss(x_mel, y_mel, mu, logvar, vae.reconstruction_loss_weight)  # Using mel spectrograms for VAE loss
+            
+            # Generator Mel-Spectrogram Loss
+            print(y_mel.size(), y_g_hat_mel.size())
+            loss_gen_mel = F.l1_loss(y_mel, y_g_hat_mel) * 45
 
             y_df_hat_r, y_df_hat_g, fmap_f_r, fmap_f_g = mpd(y, y_g_hat)
             y_ds_hat_r, y_ds_hat_g, fmap_s_r, fmap_s_g = msd(y, y_g_hat)
@@ -160,13 +179,12 @@ def train(rank, a, h):
             loss_fm_s = feature_loss(fmap_s_r, fmap_s_g)
             loss_gen_f, losses_gen_f = generator_loss(y_df_hat_g)
             loss_gen_s, losses_gen_s = generator_loss(y_ds_hat_g)
-            loss_gen_all = loss_gen_s + loss_gen_f + loss_fm_s + loss_fm_f + loss_mel
+            loss_gen_all = loss_gen_s + loss_gen_f + loss_fm_s + loss_fm_f + loss_vae_mel + loss_gen_mel
 
             loss_gen_all.backward()
+            optim_v.step()
             optim_g.step()
             
-            # VAE loss
-
             if rank == 0:
                 # STDOUT logging
                 if steps % a.stdout_interval == 0:
@@ -187,6 +205,7 @@ def train(rank, a, h):
                                                          else mpd).state_dict(),
                                      'msd': (msd.module if h.num_gpus > 1
                                                          else msd).state_dict(),
+                                     'optim_v': optim_v.state_dict(),
                                      'optim_g': optim_g.state_dict(), 'optim_d': optim_d.state_dict(), 'steps': steps,
                                      'epoch': epoch})
 
@@ -203,9 +222,10 @@ def train(rank, a, h):
                     with torch.no_grad():
                         for j, batch in enumerate(validation_loader):
                             x, y, _, y_mel = batch
-                            y_g_hat = vae(x.to(device))
+                            x_mel = vae(x.to(device))
+                            y_g_hat = generator(x_mel)
                             y_mel = torch.autograd.Variable(y_mel.to(device, non_blocking=True))
-                            y_g_hat_mel = mel_spectrogram(y_g_hat.squeeze(1), h.n_fft, h.latent_space_dim, h.sampling_rate,
+                            y_g_hat_mel = mel_spectrogram(y_g_hat.squeeze(1), h.n_fft, h.num_mels, h.sampling_rate,
                                                           h.hop_size, h.win_size,
                                                           h.fmin, h.fmax_loss)
                             val_err_tot += F.l1_loss(y_mel, y_g_hat_mel).item()
@@ -216,7 +236,7 @@ def train(rank, a, h):
                                     sw.add_figure('gt/y_spec_{}'.format(j), plot_spectrogram(x[0]), steps)
 
                                 sw.add_audio('generated/y_hat_{}'.format(j), y_g_hat[0], steps, h.sampling_rate)
-                                y_hat_spec = mel_spectrogram(y_g_hat.squeeze(1), h.n_fft, h.latent_space_dim,
+                                y_hat_spec = mel_spectrogram(y_g_hat.squeeze(1), h.n_fft, h.num_mels,
                                                              h.sampling_rate, h.hop_size, h.win_size,
                                                              h.fmin, h.fmax)
                                 sw.add_figure('generated/y_hat_spec_{}'.format(j),

@@ -42,7 +42,7 @@ class _PromptRecoderState extends State<PromptRecoder> with AudioRecorderMixin {
   Future<void> _start() async {
     try {
       if (await _audioRecorder.hasPermission()) {
-        const encoder = AudioEncoder.aacLc;
+        const encoder = AudioEncoder.wav;
 
         if (!await _isEncoderSupported(encoder)) {
           return;

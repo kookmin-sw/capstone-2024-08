@@ -49,7 +49,9 @@ class _PromptResultState extends State<PromptResult> {
       semanticsLabel: category,
       textAlign: TextAlign.start,
       style: TextStyle(
-          fontSize: fonts.category(context), fontWeight: FontWeight.w500, color: colors.textColor),
+          fontSize: fonts.category(context),
+          fontWeight: FontWeight.w500,
+          color: colors.textColor),
     );
   }
 
@@ -59,11 +61,15 @@ class _PromptResultState extends State<PromptResult> {
       semanticsLabel: title,
       textAlign: TextAlign.start,
       style: TextStyle(
-          fontSize: fonts.title(context), fontWeight: FontWeight.w800, color: colors.textColor),
+          fontSize: fonts.title(context),
+          fontWeight: FontWeight.w800,
+          color: colors.textColor),
     );
   }
 
   nextButtonPressed() async {
+    _precision = int.parse(practiceResult!['precision']!);
+    print("prompt_precision: $_precision");
     saveData.updatePromptPracticeResult(
         scriptId: widget.script.id!,
         scriptType: widget.scriptType,
@@ -115,18 +121,9 @@ class _PromptResultState extends State<PromptResult> {
   Future<Widget> precisionSection() async {
     practiceResult = await getVoicesSimilarity(
         widget.script.content.join(' '), widget.practiceVoicePath!);
-    setState(() {
-      if (practiceResult == null) {
-        _precision = null;
-      } else {
-        (practiceResult!['precision'] == null)
-            ? _precision = null
-            : _precision = int.parse(practiceResult!['precision']!);
-      }
-    });
     return Column(children: [
       Container(
-        child: Text('정확도 : ${_precision}'),
+        child: Text('정확도 : ${practiceResult!['precision']}'),
         padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
       ),
       Container(
