@@ -18,6 +18,11 @@ from phonemizer import phonemize
 from phonemizer.backend import EspeakBackend
 backend = EspeakBackend("en-us", preserve_punctuation=True, with_stress=True)
 
+from g2pk import G2p
+import jamotools
+
+g2p = G2p()
+g2p_dict = dict()
 
 # Regular expression matching whitespace:
 _whitespace_re = re.compile(r"\s+")
@@ -119,4 +124,33 @@ def english_cleaners3(text):
     text = expand_abbreviations(text)
     phonemes = backend.phonemize([text], strip=True)[0]
     phonemes = collapse_whitespace(phonemes)
+    return phonemes
+
+# TODO: Fix number duplication (11) / (십 일)
+def korean_cleaners(text):
+    """Pipeline for Korean text, including number and abbreviation expansion."""
+    text = jamotools.join_jamos(text)
+
+    try:
+        phoneme = g2p_dict.get(text)
+        if phoneme is None:
+            phoneme = g2p(text, descriptive=True, group_vowels=True)
+            g2p_dict[text] = phoneme
+    except Exception as e:
+        print("Error during g2p conversion:", e)
+        phoneme = text  # Fallback to original text if g2p conversion fails
+
+    text = jamotools.split_syllables(phoneme, jamo_type="JAMO")
+    text = text.replace("@", "")
+
+    phonemes = phonemize(
+        text,
+        language="ko",
+        backend="espeak",
+        strip=True,
+        preserve_punctuation=True,
+        with_stress=True,
+    )
+    phonemes = collapse_whitespace(phonemes)
+    phonemes = phonemes.replace("(en)", "").replace(" ", "")
     return phonemes

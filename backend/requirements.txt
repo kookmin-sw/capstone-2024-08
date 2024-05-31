@@ -8,6 +8,12 @@ unidecode
 g2pk
 kiwipiepy
 openai-whisper
+python-Levenshtein
+setuptools
+levenshtein
+espeakng
+Cython
+
 
 # script
 pydantic

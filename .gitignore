@@ -4,6 +4,7 @@
 .idea
 .vscode
 .dart_tool
+.DS_Store
 
 # python
 venv/
@@ -11,5 +12,6 @@ __pycache__/
 
 # backend
 backend/create_script/.config_secret
-
-
+*.pth
+backend/**/build/
+backend/**/monotonic_align/*
